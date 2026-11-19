@@ -1,4 +1,5 @@
 ﻿namespace DevWinUI;
+
 public partial class TextBlockStrokeView : Control
 {
     public bool Animate
@@ -19,7 +20,10 @@ public partial class TextBlockStrokeView : Control
 
             if ((bool)e.NewValue)
             {
-                ctl.StrokeBrush = Application.Current.Resources["TextBlockStrokeViewGradientBrushSample"] as LinearGradientBrush;
+                if (Application.Current.Resources["TextBlockStrokeViewGradientBrushSample"] is LinearGradientBrush brush)
+                {
+                    ctl.StrokeBrush = brush;
+                }
                 storyBoard?.Begin();
             }
             else

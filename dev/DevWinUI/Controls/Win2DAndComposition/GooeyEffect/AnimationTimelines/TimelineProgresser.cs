@@ -11,7 +11,7 @@ public partial class TimelineProgresser
     public bool AutoReverse { get; set; }
     public TimeSpan? BeginTime { get; set; }
     public Duration Duration { get; set; } = new(TimeSpan.FromSeconds(1));
-    public EasingFunctionBase EasingFunction { get; set; }
+    public EasingFunctionBase? EasingFunction { get; set; }
     public bool Forever { get; set; }
 
     public double GetCurrentProgress(TimeSpan timeSpan)

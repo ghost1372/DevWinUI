@@ -7,17 +7,17 @@ namespace DevWinUI;
 public partial class SpectrumVisualizer : Control
 {
     private const string PART_SpectrumCanvasControl = "PART_SpectrumCanvasControl";
-    private CanvasAnimatedControl spectrumCanvasControl;
+    private CanvasAnimatedControl? spectrumCanvasControl;
 
-    private GlobalSystemMediaTransportControlsSessionManager _sessionManager;
-    private GlobalSystemMediaTransportControlsSession _currentSession;
-    private GlobalSystemMediaTransportControlsSessionMediaProperties _mediaProperties;
-    private CanvasDevice _device;
-    private CanvasBitmap _albumArtBitmap;
-    private CanvasTextFormat _titleTextFormat;
-    private CanvasTextFormat _artistTextFormat;
+    private GlobalSystemMediaTransportControlsSessionManager? _sessionManager;
+    private GlobalSystemMediaTransportControlsSession? _currentSession;
+    private GlobalSystemMediaTransportControlsSessionMediaProperties? _mediaProperties;
+    private CanvasDevice? _device;
+    private CanvasBitmap? _albumArtBitmap;
+    private CanvasTextFormat? _titleTextFormat;
+    private CanvasTextFormat? _artistTextFormat;
 
-    private ISpectrumAnalyzer _analyzer;
+    private ISpectrumAnalyzer? _analyzer;
     private SpectrumType spectrumMode = SpectrumType.Round;
     private SpectrumColorType colorType = SpectrumColorType.GradientLoop;
 
@@ -35,8 +35,8 @@ public partial class SpectrumVisualizer : Control
     private bool _showArtist = true;
     private bool _showAlbumArt = true;
 
-    private string _title;
-    private string _artist;
+    private string? _title;
+    private string? _artist;
     private float _smoothAverage = 0f;
     private float _currentAverage = 0f;
     private float _centerX = 0f;
@@ -48,7 +48,7 @@ public partial class SpectrumVisualizer : Control
     private float fontOpacity = 1.0f;
     private float smoothingFactor = 0.95f;
     private float sensitivity = 20.0f;
-    public Func<float, int, Color> CustomColorProvider { get; set; }
+    public Func<float, int, Color>? CustomColorProvider { get; set; }
     public SpectrumVisualizer()
     {
         DefaultStyleKey = typeof(SpectrumVisualizer);
@@ -222,7 +222,7 @@ public partial class SpectrumVisualizer : Control
         }
     }
 
-    private void SetAlbumArt(CanvasBitmap bitmap)
+    private void SetAlbumArt(CanvasBitmap? bitmap)
     {
         if (_disposed)
         {
@@ -232,7 +232,7 @@ public partial class SpectrumVisualizer : Control
         Interlocked.Exchange(ref _albumArtBitmap, bitmap)?.Dispose();
     }
 
-    private void OnSpectrumDataUpdated(float[] spectrumData)
+    private void OnSpectrumDataUpdated(float[]? spectrumData)
     {
         if (spectrumData == null || spectrumData.Length == 0) return;
 
@@ -491,6 +491,10 @@ public partial class SpectrumVisualizer : Control
 
     private void DrawTitleAndArtist(CanvasDrawingSession session, Windows.Foundation.Size size)
     {
+        var titleFormat = _titleTextFormat;
+        var artistFormat = _artistTextFormat;
+        if (titleFormat == null || artistFormat == null) return;
+
         if (string.IsNullOrEmpty(_title) && string.IsNullOrEmpty(_artist)) return;
         if (!_showTitle && !_showArtist) return;
 
@@ -499,11 +503,11 @@ public partial class SpectrumVisualizer : Control
         float newFontSize = baseFontSize * (maxTextWidth / 200f);
         float centerX = _centerX - maxTextWidth / 2;
         float centerY = _centerY - newFontSize;
-        _titleTextFormat.FontSize = newFontSize;
-        _artistTextFormat.FontSize = newFontSize * 0.9f;
+        titleFormat.FontSize = newFontSize;
+        artistFormat.FontSize = newFontSize * 0.9f;
 
-        using CanvasTextLayout titleLayout = new(session, _title ?? string.Empty, _titleTextFormat, maxTextWidth, 20);
-        using CanvasTextLayout artistLayout = new(session, _artist ?? string.Empty, _artistTextFormat, maxTextWidth, 16);
+        using CanvasTextLayout titleLayout = new(session, _title ?? string.Empty, titleFormat, maxTextWidth, 20);
+        using CanvasTextLayout artistLayout = new(session, _artist ?? string.Empty, artistFormat, maxTextWidth, 16);
         var fontColor = Color.FromArgb((byte)(255 * fontOpacity), 255, 255, 255);
 
         if (_showTitle)

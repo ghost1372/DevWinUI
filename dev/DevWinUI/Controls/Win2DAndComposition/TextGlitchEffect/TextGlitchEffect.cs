@@ -8,12 +8,12 @@ namespace DevWinUI;
 public partial class TextGlitchEffect : Control
 {
     private string PART_TextBackground = "PART_TextBackground";
-    private Rectangle _rectangle;
-    private Compositor _compositor;
+    private Rectangle? _rectangle;
+    private Compositor? _compositor;
     private Compositor Compositor => _compositor ??= ElementCompositionPreview.GetElementVisual(this).Compositor;
-    private SpriteVisual lineVisual;
-    private TextToBrushWrapper secondaryWrapper;
-    private TextToBrushWrapper primaryWrapper;
+    private SpriteVisual? lineVisual;
+    private TextToBrushWrapper? secondaryWrapper;
+    private TextToBrushWrapper? primaryWrapper;
     private Size _lastSize;
 
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -59,7 +59,7 @@ public partial class TextGlitchEffect : Control
         }
     }
 
-    public Rectangle GetRectangle()
+    public Rectangle? GetRectangle()
     {
         return _rectangle;
     }
@@ -112,7 +112,7 @@ public partial class TextGlitchEffect : Control
 
         ElementCompositionPreview.SetElementChildVisual(_rectangle, containerVisual);
 
-        StartAnimation();
+        StartAnimation(lineVisual, secondaryWrapper, primaryWrapper);
     }
 
     private void TextGlitchEffect_Loaded(object sender, RoutedEventArgs e)
@@ -136,11 +136,11 @@ public partial class TextGlitchEffect : Control
         return compositionBrush;
     }
 
-    private void StartAnimation()
+    private void StartAnimation(SpriteVisual line, TextToBrushWrapper secondary, TextToBrushWrapper primary)
     {
-        StartOffsetAnimation(secondaryWrapper.Brush, TimeSpan.FromSeconds(0.95), TimeSpan.Zero);
-        StartOffsetAnimation(primaryWrapper.Brush, TimeSpan.FromSeconds(1.1), TimeSpan.FromSeconds(0.2));
-        StartOffsetAnimation(lineVisual, TimeSpan.FromSeconds(10), TimeSpan.Zero);
+        StartOffsetAnimation(secondary.Brush, TimeSpan.FromSeconds(0.95), TimeSpan.Zero);
+        StartOffsetAnimation(primary.Brush, TimeSpan.FromSeconds(1.1), TimeSpan.FromSeconds(0.2));
+        StartOffsetAnimation(line, TimeSpan.FromSeconds(10), TimeSpan.Zero);
     }
     private void StartOffsetAnimation(SpriteVisual visual, TimeSpan duration, TimeSpan delay)
     {
@@ -192,14 +192,14 @@ public partial class TextGlitchEffect : Control
         addKey(1, 0, -1.2f);
         brush.StartAnimation(nameof(CompositionSurfaceBrush.Offset), offsetAnimation);
     }
-    private void StopOffsetAnimation(SpriteVisual visual)
+    private void StopOffsetAnimation(SpriteVisual? visual)
     {
         if (visual != null)
         {
             visual.StopAnimation(nameof(CompositionSurfaceBrush.Offset));
         }
     }
-    private void StopOffsetAnimation(CompositionSurfaceBrush brush)
+    private void StopOffsetAnimation(CompositionSurfaceBrush? brush)
     {
         if (brush != null)
         {

@@ -4,10 +4,10 @@
 public partial class ConfettiCannon : Control
 {
     private const string PART_CanvasAnimation = "PART_CanvasAnimated";
-    private CanvasAnimatedControl _canvas;
+    private CanvasAnimatedControl? _canvas;
     private readonly ConfettiEngine _engine = new();
-    public event EventHandler AnimationStarted;
-    public event EventHandler AnimationCompleted;
+    public event EventHandler? AnimationStarted;
+    public event EventHandler? AnimationCompleted;
     private bool _isAnimating;
 
     public bool IsFixedTimeStep

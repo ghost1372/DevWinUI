@@ -1,9 +1,9 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
-    private List<ParticleGlobeTimelineFrame> _tlFrames;      // guarded by _valLock
-    private float[][] _tlT;                      // normalized values per frame per country id (global min/max)
+    private List<ParticleGlobeTimelineFrame>? _tlFrames;      // guarded by _valLock
+    private float[][]? _tlT;                      // normalized values per frame per country id (global min/max)
     private volatile int _tlCount;
     private double _tlPos;
     private double _tlSpeed = 1.0;
@@ -13,7 +13,7 @@ public sealed partial class ParticleGlobe
     private float _tlEventTimer;
     private int _tlLastIndex = -1;
 
-    public event EventHandler<string> TimelineChanged;
+    public event EventHandler<string>? TimelineChanged;
 
     public int TimelineFrameCount => _tlCount;
 
@@ -94,7 +94,7 @@ public sealed partial class ParticleGlobe
 
     private bool ResolveTimeline()
     {
-        List<ParticleGlobeTimelineFrame> frames;
+        List<ParticleGlobeTimelineFrame>? frames;
         lock (_valLock)
         {
             frames = _tlFrames;

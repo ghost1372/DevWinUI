@@ -7,8 +7,8 @@ namespace DevWinUI;
 public partial class Watermark : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private CanvasControl _Canvas;
-    private CanvasBitmap _canvasBitmap;
+    private CanvasControl? _Canvas;
+    private CanvasBitmap? _canvasBitmap;
 
     private long _foregroundPropertyToken;
     private long _fontFamilyPropertyToken;
@@ -125,21 +125,27 @@ public partial class Watermark : Control
 
     private async Task LoadBitmap(Uri uri)
     {
+        var canvas = _Canvas;
+        if (canvas == null)
+        {
+            return;
+        }
+
         CanvasBitmap bitmap;
 
         if ((RuntimeHelper.IsPackaged() && !uri.IsFile) || uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
         {
-            bitmap = await CanvasBitmap.LoadAsync(_Canvas, uri);
+            bitmap = await CanvasBitmap.LoadAsync(canvas, uri);
         }
         else
         {
             using var fs = File.OpenRead(uri.LocalPath);
-            bitmap = await CanvasBitmap.LoadAsync(_Canvas, fs.AsRandomAccessStream());
+            bitmap = await CanvasBitmap.LoadAsync(canvas, fs.AsRandomAccessStream());
         }
 
         _canvasBitmap?.Dispose();
         _canvasBitmap = bitmap;
-        _Canvas.Invalidate();
+        canvas.Invalidate();
     }
 
     private void OnSystemPropertyChanged(DependencyObject sender, DependencyProperty dp)
@@ -162,7 +168,9 @@ public partial class Watermark : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        if (IsImage ? _canvasBitmap == null : string.IsNullOrEmpty(Mark))
+        var bitmap = _canvasBitmap;
+
+        if (IsImage ? bitmap == null : string.IsNullOrEmpty(Mark))
         {
             return;
         }
@@ -222,12 +230,17 @@ public partial class Watermark : Control
         }
         else
         {
-            ICanvasImage graphicsEffect = _canvasBitmap;
-            tileEffect.SourceRectangle = _canvasBitmap.Bounds;
+            if (bitmap == null)
+            {
+                return;
+            }
+
+            ICanvasImage graphicsEffect = bitmap;
+            tileEffect.SourceRectangle = bitmap.Bounds;
 
             if (scale != null)
             {
-                scale.Source = _canvasBitmap;
+                scale.Source = bitmap;
                 graphicsEffect = scale;
             }
 
@@ -245,7 +258,7 @@ public partial class Watermark : Control
         }
     }
 
-    private ICanvasImage CreateMarkEffect(ICanvasImage source)
+    private ICanvasImage? CreateMarkEffect(ICanvasImage source)
     {
         switch (MarkEffect)
         {
@@ -270,7 +283,7 @@ public partial class Watermark : Control
     {
         return (float)(Math.PI * angle / 180.0);
     }
-    public CanvasControl GetCanvas()
+    public CanvasControl? GetCanvas()
     {
         return _Canvas;
     }

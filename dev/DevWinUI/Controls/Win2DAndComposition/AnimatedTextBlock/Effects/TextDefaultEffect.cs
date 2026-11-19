@@ -25,7 +25,7 @@ public partial class TextDefaultEffect : ITextEffect
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush,
+        CanvasLinearGradientBrush? gradientBrush,
         AnimatedTextBlockRedrawState state,
         CanvasDrawingSession drawingSession,
         CanvasAnimatedDrawEventArgs args)
@@ -103,20 +103,20 @@ public partial class TextDefaultEffect : ITextEffect
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush)
+        CanvasLinearGradientBrush? gradientBrush)
     {
         ds.Transform = Matrix3x2.Identity;
         ds.DrawTextLayout(newTextLayout, 0, 0, textColor);
     }
 
     private void DrawInsert(CanvasDrawingSession ds,
-        GraphemeCluster oldCluster,
-        GraphemeCluster newCluster,
+        GraphemeCluster? oldCluster,
+        GraphemeCluster? newCluster,
         CanvasTextLayout oldTextLayout,
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush)
+        CanvasLinearGradientBrush? gradientBrush)
     {
         if (newCluster == null)
         {
@@ -145,13 +145,13 @@ public partial class TextDefaultEffect : ITextEffect
     }
 
     private void DrawMove(CanvasDrawingSession ds,
-        GraphemeCluster oldCluster,
-        GraphemeCluster newCluster,
+        GraphemeCluster? oldCluster,
+        GraphemeCluster? newCluster,
         CanvasTextLayout oldTextLayout,
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush)
+        CanvasLinearGradientBrush? gradientBrush)
     {
         if (oldCluster == null || newCluster == null)
         {
@@ -179,13 +179,13 @@ public partial class TextDefaultEffect : ITextEffect
     }
 
     private void DrawUpdate(CanvasDrawingSession ds,
-        GraphemeCluster oldCluster,
-        GraphemeCluster newCluster,
+        GraphemeCluster? oldCluster,
+        GraphemeCluster? newCluster,
         CanvasTextLayout oldTextLayout,
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush)
+        CanvasLinearGradientBrush? gradientBrush)
     {
         if (oldCluster == null || newCluster == null)
         {
@@ -235,13 +235,13 @@ public partial class TextDefaultEffect : ITextEffect
     }
 
     private void DrawRemove(CanvasDrawingSession ds,
-        GraphemeCluster oldCluster,
-        GraphemeCluster newCluster,
+        GraphemeCluster? oldCluster,
+        GraphemeCluster? newCluster,
         CanvasTextLayout oldTextLayout,
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush)
+        CanvasLinearGradientBrush? gradientBrush)
     {
         if (oldCluster == null)
         {

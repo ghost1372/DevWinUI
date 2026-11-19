@@ -126,7 +126,7 @@ internal abstract partial class ExpressionNode : IDisposable
             _objRefList = new List<ReferenceInfo>();
             foreach (var refNode in referenceNodes)
             {
-                string nodeName = refNode.GetReferenceNodeString();
+                string? nodeName = refNode.GetReferenceNodeString();
 
                 if ((refNode.Reference == null) && (nodeName == null))
                 {
@@ -432,17 +432,17 @@ internal abstract partial class ExpressionNode : IDisposable
         public CompositionObject CompObject { get; set; }
     }
 
-    internal string PropertyName { get; set; }
+    internal string? PropertyName { get; set; }
 
     internal ExpressionNodeType NodeType { get; set; }
 
     internal List<ExpressionNode> Children { get; set; } = new List<ExpressionNode>();
 
-    internal string ParamName { get; set; }
+    internal string? ParamName { get; set; }
 
-    internal string NodeName { get; set; }
+    internal string? NodeName { get; set; }
 
-    internal ExpressionAnimation ExpressionAnimation { get; set; }
+    internal ExpressionAnimation? ExpressionAnimation { get; set; }
 
     protected internal string[]? Subchannels { get; set; }
 }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.UI.Xaml.Shapes;
 
 namespace DevWinUI;
+
 public partial class ColorBloomControl : ContentControl, IDisposable
 {
-    private Panel panel;
-    public event EventHandler<Color> ColorBloomTransitionCompleted;
-    private ColorBloomTransitionHelper _transition;
+    private Panel? panel;
+    public event EventHandler<Color>? ColorBloomTransitionCompleted;
+    private ColorBloomTransitionHelper? _transition;
 
     public static readonly DependencyProperty ColorProperty =
         DependencyProperty.Register(nameof(Color), typeof(Color), typeof(ColorBloomControl), new PropertyMetadata(Colors.Transparent));
@@ -38,6 +39,9 @@ public partial class ColorBloomControl : ContentControl, IDisposable
 
     public void StartTransition(FrameworkElement element, Size finalSize)
     {
+        if (panel == null || _transition == null)
+            return;
+
         var origin = element.TransformToVisual(panel).TransformPoint(new Point(0, 0));
         var initialBounds = new Rect(origin, element.RenderSize);
 
@@ -45,6 +49,7 @@ public partial class ColorBloomControl : ContentControl, IDisposable
 
         _transition.Start(Color, initialBounds, finalBounds);
     }
+
     private void OnTransitionCompleted(object sender, EventArgs e)
     {
         ColorBloomTransitionCompleted?.Invoke(this, Color);
@@ -52,6 +57,9 @@ public partial class ColorBloomControl : ContentControl, IDisposable
 
     public void ApplyClipping(Size newSize)
     {
+        if (panel == null)
+            return;
+
         panel.Clip = new RectangleGeometry { Rect = new Rect(0, 0, newSize.Width, newSize.Height) };
     }
 

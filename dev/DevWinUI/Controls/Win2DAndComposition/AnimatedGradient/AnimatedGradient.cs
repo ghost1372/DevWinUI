@@ -16,11 +16,11 @@ public partial class AnimatedGradient : Control
     private readonly Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
     private readonly Vector3KeyFrameAnimation _scaleAnimation;
 
-    private Rectangle _rectangle;
-    private SpriteVisual _visual;
-    private CompositionLinearGradientBrush _brush;
-    private CompositionColorGradientStop _gradientStop1;
-    private CompositionColorGradientStop _gradientStop2;
+    private Rectangle? _rectangle;
+    private SpriteVisual? _visual;
+    private CompositionLinearGradientBrush? _brush;
+    private CompositionColorGradientStop? _gradientStop1;
+    private CompositionColorGradientStop? _gradientStop2;
     private bool _isAtEnd;
 
     public AnimatedGradient()
@@ -166,9 +166,9 @@ public partial class AnimatedGradient : Control
             ElementCompositionPreview.SetElementChildVisual(_rectangle, null);
 
         _visual.Dispose();
-        _brush.Dispose();
-        _gradientStop1.Dispose();
-        _gradientStop2.Dispose();
+        _brush?.Dispose();
+        _gradientStop1?.Dispose();
+        _gradientStop2?.Dispose();
 
         _visual = null;
         _brush = null;
@@ -179,7 +179,7 @@ public partial class AnimatedGradient : Control
 
     private void ApplyColorScheme()
     {
-        if (_gradientStop1 == null)
+        if (_gradientStop1 == null || _gradientStop2 == null)
             return;
 
         var (stop1Color, stop2Color) = GetCurrentColors();
@@ -197,6 +197,9 @@ public partial class AnimatedGradient : Control
 
     private void AnimateToNewPosition()
     {
+        if (_visual == null)
+            return;
+
         _visual.StartAnimation(nameof(Visual.Scale), _scaleAnimation);
 
         _isAtEnd = !_isAtEnd;

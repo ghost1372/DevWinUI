@@ -6,12 +6,14 @@ public partial class BannerViewItem : FlipViewItem
 {
     private const string ShadowHost = "ShadowHost";
     private const string BackgroundRect = "BackgroundRect";
-    private Canvas shadowHost;
-    private Rectangle backgroundRect;
+    private Canvas? shadowHost;
+    private Rectangle? backgroundRect;
 
-    private DropShadow dropShadow;
-    private ImplicitAnimationCollection imps;
-    internal Compositor Compositor;
+    private DropShadow? dropShadow;
+    private ImplicitAnimationCollection? imps;
+
+    // Assigned in InitComposition() before any use.
+    internal Compositor Compositor = null!;
     private bool isCycleItemContainer;
 
     public bool IsCycleItemContainer

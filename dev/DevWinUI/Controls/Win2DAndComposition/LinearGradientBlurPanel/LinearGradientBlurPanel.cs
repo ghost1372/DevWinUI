@@ -2,7 +2,7 @@
 
 public partial class LinearGradientBlurPanel : Grid
 {
-    private CompositionRoundedRectangleGeometry clipGeometry;
+    private CompositionRoundedRectangleGeometry? clipGeometry;
     public LinearGradientBlurPanel()
     {
         HorizontalAlignment = HorizontalAlignment.Stretch;

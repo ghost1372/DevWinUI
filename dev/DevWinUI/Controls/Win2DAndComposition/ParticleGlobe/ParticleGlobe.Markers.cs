@@ -1,10 +1,10 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 
 namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
-    public event EventHandler<ParticleGlobeMarkerEventArgs> MarkerClicked;
+    public event EventHandler<ParticleGlobeMarkerEventArgs>? MarkerClicked;
 
     public IEnumerable<ParticleGlobeMarker> Markers
     {
@@ -27,9 +27,9 @@ public sealed partial class ParticleGlobe
     private volatile ParticleGlobeMarker[] _markers = Array.Empty<ParticleGlobeMarker>();
     private volatile ParticleGlobeArc[] _userArcs = Array.Empty<ParticleGlobeArc>();
     private readonly object _arcLock = new();
-    private ParticleGlobeMarker _hoverMarker;
+    private ParticleGlobeMarker? _hoverMarker;
     private bool _showMarkerLabels = true;
-    private CanvasTextFormat _markerFormat;
+    private CanvasTextFormat? _markerFormat;
     private readonly List<(Vector2 Pos, float Alpha, Vector3 Rgb)> _userPackets = new();
 
     private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -40,7 +40,7 @@ public sealed partial class ParticleGlobe
         globe.SnapshotMarkers();
     }
 
-    private void OnMarkersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => SnapshotMarkers();
+    private void OnMarkersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => SnapshotMarkers();
 
     private void SnapshotMarkers()
     {
@@ -58,14 +58,14 @@ public sealed partial class ParticleGlobe
         if (_hoverMarker != null && Array.IndexOf(snap, _hoverMarker) < 0) _hoverMarker = null;
     }
 
-    public ParticleGlobeArc AddArc(ParticleGlobeMarker from, ParticleGlobeMarker to, Color? color = null)
+    public ParticleGlobeArc? AddArc(ParticleGlobeMarker from, ParticleGlobeMarker to, Color? color = null)
     {
         ArgumentNullException.ThrowIfNull(from);
         ArgumentNullException.ThrowIfNull(to);
         return AddArc(from.Latitude, from.Longitude, to.Latitude, to.Longitude, color);
     }
 
-    public ParticleGlobeArc AddArc(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude, Color? color = null)
+    public ParticleGlobeArc? AddArc(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude, Color? color = null)
     {
         var a = new ParticleGlobeMarker(fromLatitude, fromLongitude).ToVector();
         var b = new ParticleGlobeMarker(toLatitude, toLongitude).ToVector();
@@ -96,12 +96,12 @@ public sealed partial class ParticleGlobe
         lock (_arcLock) _userArcs = Array.Empty<ParticleGlobeArc>();
     }
 
-    private ParticleGlobeMarker MarkerAt(Vector2 point)
+    private ParticleGlobeMarker? MarkerAt(Vector2 point)
     {
         var list = _markers;
         float reach = MathF.Max(12f, _radius * 0.03f);
         float best = reach * reach;
-        ParticleGlobeMarker hit = null;
+        ParticleGlobeMarker? hit = null;
 
         foreach (var m in list)
         {

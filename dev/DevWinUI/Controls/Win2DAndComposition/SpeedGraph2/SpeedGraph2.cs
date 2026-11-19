@@ -40,24 +40,27 @@ public sealed partial class SpeedGraph2 : Control
 
     Compositor compositor;
 
-    ContainerVisual rootVisual;
-    RectangleClip rootClip;
-    SpriteVisual container;
-    ShapeVisual graphVisual;
+    // The fields below are created in InitGraph(). Every code path that uses them
+    // is guarded by the 'initialized' flag (or a null check on backgroundBrush),
+    // so they are declared with 'null!' instead of being made nullable.
+    ContainerVisual rootVisual = null!;
+    RectangleClip rootClip = null!;
+    SpriteVisual container = null!;
+    ShapeVisual graphVisual = null!;
 
-    CompositionPathGeometry graphGeometry;
-    InsetClip graphClip;
+    CompositionPathGeometry graphGeometry = null!;
+    InsetClip graphClip = null!;
 
-    SpriteVisual line;
+    SpriteVisual line = null!;
 
-    CompositionColorBrush backgroundBrush;
-    CompositionColorGradientStop graphFillBottom;
-    CompositionColorGradientStop graphFillTop;
-    CompositionColorBrush graphStrokeBrush;
+    CompositionColorBrush backgroundBrush = null!;
+    CompositionColorGradientStop graphFillBottom = null!;
+    CompositionColorGradientStop graphFillTop = null!;
+    CompositionColorBrush graphStrokeBrush = null!;
 
-    LinearEasingFunction linearEasing;
-    ScalarKeyFrameAnimation lineAnim;
-    ScalarKeyFrameAnimation clipAnim;
+    LinearEasingFunction linearEasing = null!;
+    ScalarKeyFrameAnimation lineAnim = null!;
+    ScalarKeyFrameAnimation clipAnim = null!;
 
     bool initialized;
     bool isAttached;
@@ -346,6 +349,7 @@ public sealed partial class SpeedGraph2 : Control
 
     private void SetGraphColors(string colorResourceKey)
     {
+        // backgroundBrush is null until InitGraph() has run
         if (backgroundBrush == null)
             return;
 

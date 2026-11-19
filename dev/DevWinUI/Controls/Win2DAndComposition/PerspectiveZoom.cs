@@ -5,12 +5,12 @@ public partial class PerspectiveZoom : ContentControl
 {
     private const string PART_Panel = "PART_Panel";
 
-    private PerspectiveHost _panel;
-    private FrameworkElement hostedControl;
-    private Compositor _compositor;
+    private PerspectiveHost? _panel;
+    private FrameworkElement? hostedControl;
+    private Compositor? _compositor;
     private bool _zoomed;
 
-    private Visual _visual;
+    private Visual? _visual;
 
     public TimeSpan ZoomOutRotationDuration
     {
@@ -102,7 +102,8 @@ public partial class PerspectiveZoom : ContentControl
 
     private void PerspectiveZoom_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        _panel.PerspectiveDepth = e.NewSize.Width;
+        if (_panel != null)
+            _panel.PerspectiveDepth = e.NewSize.Width;
     }
     public void ToggleZoom(FrameworkElement targetItem)
     {
@@ -131,7 +132,7 @@ public partial class PerspectiveZoom : ContentControl
 
     public void ZoomIn(FrameworkElement targetItem)
     {
-        if (_compositor == null || _visual == null || targetItem == null || _zoomed)
+        if (_compositor == null || _visual == null || hostedControl == null || _panel == null || targetItem == null || _zoomed)
             return;
 
         GeneralTransform coordinate = targetItem.TransformToVisual(hostedControl);

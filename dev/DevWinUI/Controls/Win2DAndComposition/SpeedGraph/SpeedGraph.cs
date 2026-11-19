@@ -19,22 +19,22 @@ public partial class SpeedGraph : Control
 
     private static readonly string[] speedUnits = { "B/s", "KB/s", "MB/s", "GB/s", "TB/s" };
 
-    private CanvasControl canvas;
-    private TextBlock noDataAvailableTextBlock;
-    private Grid graphGrid;
-    private Grid hostGrid;
-    private ScaleTransform graphScale;
-    private Polygon polygon;
+    private CanvasControl? canvas;
+    private TextBlock? noDataAvailableTextBlock;
+    private Grid? graphGrid;
+    private Grid? hostGrid;
+    private ScaleTransform? graphScale;
+    private Polygon? polygon;
 
-    private Storyboard scaleStoryboard;
-    private Microsoft.UI.Composition.Visual hostVisual;
-    private Microsoft.UI.Composition.ScalarKeyFrameAnimation offsetAnimation;
-    private Microsoft.UI.Composition.CubicBezierEasingFunction offsetEasing;
+    private Storyboard? scaleStoryboard;
+    private Microsoft.UI.Composition.Visual? hostVisual;
+    private Microsoft.UI.Composition.ScalarKeyFrameAnimation? offsetAnimation;
+    private Microsoft.UI.Composition.CubicBezierEasingFunction? offsetEasing;
 
     private bool m_hasData;
     private TimeSpan speedLineAndTextAnimationDuration = TimeSpan.FromMilliseconds(300);
 
-    private SpeedGraphData m_graphData;
+    private SpeedGraphData? m_graphData;
 
     protected override void OnApplyTemplate()
     {
@@ -53,7 +53,7 @@ public partial class SpeedGraph : Control
         hostVisual = hostGrid != null ? ElementCompositionPreview.GetElementVisual(hostGrid) : null;
 
         m_hasData = false;
-        m_graphData = new SpeedGraphData(polygon);
+        m_graphData = polygon != null ? new SpeedGraphData(polygon) : null;
 
         if (canvas != null)
         {
@@ -72,16 +72,17 @@ public partial class SpeedGraph : Control
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (m_graphData == null)
+        var graphData = m_graphData;
+        if (graphData == null)
             return;
 
         var newSize = e.NewSize;
         if (newSize.Width <= 0 || newSize.Height <= 0)
             return;
 
-        float oldWidth = m_graphData.Width;
-        float oldHeight = m_graphData.Height;
-        m_graphData.NewSize(newSize);
+        float oldWidth = graphData.Width;
+        float oldHeight = graphData.Height;
+        graphData.NewSize(newSize);
 
         if (oldWidth <= 0 || oldHeight <= 0)
             return;
@@ -154,15 +155,16 @@ public partial class SpeedGraph : Control
 
     public void SetSpeed(double percent, ulong speed)
     {
-        if (m_graphData == null)
+        var graphData = m_graphData;
+        if (graphData == null)
             return;
 
         if (!m_hasData)
         {
-            m_graphData.NewSize(new Size(ActualSize.X, ActualSize.Y));
+            graphData.NewSize(new Size(ActualSize.X, ActualSize.Y));
         }
 
-        var result = m_graphData.SetSpeed(percent, speed);
+        var result = graphData.SetSpeed(percent, speed);
         float newScaleRatio = result.NewScaleRatio;
         bool needAnimation = result.NeedAnimation;
 
@@ -181,15 +183,21 @@ public partial class SpeedGraph : Control
 
         if (!m_hasData)
         {
-            graphGrid.Visibility = Visibility.Visible;
-            noDataAvailableTextBlock.Visibility = Visibility.Collapsed;
+            if (graphGrid != null)
+                graphGrid.Visibility = Visibility.Visible;
+            if (noDataAvailableTextBlock != null)
+                noDataAvailableTextBlock.Visibility = Visibility.Collapsed;
 
             m_hasData = true;
         }
     }
 
-    private Storyboard CreateScaleAnimation()
+    private Storyboard? CreateScaleAnimation()
     {
+        var graphData = m_graphData;
+        if (graphData == null || graphScale == null)
+            return null;
+
         var storyboard = new Storyboard();
         var easing = new ExponentialEase();
         easing.EasingMode = EasingMode.EaseInOut;
@@ -197,7 +205,7 @@ public partial class SpeedGraph : Control
 
         var scaleYAnimation = new DoubleAnimation
         {
-            To = m_graphData.GetRatio(),
+            To = graphData.GetRatio(),
             Duration = new Duration(speedLineAndTextAnimationDuration),
             EasingFunction = easing
         };
@@ -210,33 +218,42 @@ public partial class SpeedGraph : Control
     }
     private void ResizeGraphPoint(float ratio)
     {
-        m_graphData.SetRatio(ratio);
+        var graphData = m_graphData;
+        if (graphData == null)
+            return;
+
+        graphData.SetRatio(ratio);
         scaleStoryboard = CreateScaleAnimation();
-        scaleStoryboard.Begin();
+        scaleStoryboard?.Begin();
     }
     private void MakeAnimation(double y)
     {
-        if (hostVisual == null)
+        var visual = hostVisual;
+        if (visual == null)
             return;
 
-        if (offsetAnimation == null)
+        if (offsetAnimation == null || offsetEasing == null)
         {
-            var compositor = hostVisual.Compositor;
+            var compositor = visual.Compositor;
             offsetEasing = compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f));
             offsetAnimation = compositor.CreateScalarKeyFrameAnimation();
             offsetAnimation.Duration = speedLineAndTextAnimationDuration;
         }
 
         offsetAnimation.InsertKeyFrame(1.0f, (float)y, offsetEasing);
-        hostVisual.StartAnimation("Offset.Y", offsetAnimation);
+        visual.StartAnimation("Offset.Y", offsetAnimation);
     }
 
     private void MakeAnimation()
     {
-        var p = m_graphData.GetLastPoint();
+        var graphData = m_graphData;
+        if (graphData == null)
+            return;
 
-        double y = m_graphData.Height -
-                   ((m_graphData.Height - p.Y) * m_graphData.GetRatio());
+        var p = graphData.GetLastPoint();
+
+        double y = graphData.Height -
+                   ((graphData.Height - p.Y) * graphData.GetRatio());
 
         MakeAnimation(y);
     }
@@ -261,18 +278,20 @@ public partial class SpeedGraph : Control
         VisualStateManager.GoToState(this, "Error", false);
     }
 
-    public PointCollection GetPoints()
+    public PointCollection? GetPoints()
     {
         return polygon?.Points;
     }
 
     public void ResetGraph()
     {
-        if (m_graphData == null)
+        var graphData = m_graphData;
+        if (graphData == null)
             return;
 
         scaleStoryboard?.Stop();
-        graphScale.ScaleY = 1.0;
+        if (graphScale != null)
+            graphScale.ScaleY = 1.0;
 
         if (hostVisual != null)
         {
@@ -282,15 +301,17 @@ public partial class SpeedGraph : Control
             hostVisual.Offset = offset;
         }
 
-        m_graphData.Reset();
+        graphData.Reset();
 
         if (AutoUpdateSpeedText)
         {
             ClearValue(SpeedTextProperty);
         }
 
-        graphGrid.Visibility = Visibility.Collapsed;
-        noDataAvailableTextBlock.Visibility = Visibility.Visible;
+        if (graphGrid != null)
+            graphGrid.Visibility = Visibility.Collapsed;
+        if (noDataAvailableTextBlock != null)
+            noDataAvailableTextBlock.Visibility = Visibility.Visible;
         m_hasData = false;
     }
     private static string GetSpeedReadable(ulong bytesPerSecond)

@@ -4,8 +4,7 @@
 public partial class Particle : Control
 {
     private string PART_Canvas = "PART_Canvas";
-    private CanvasControl _Canvas;
-
+    private CanvasControl? _Canvas;
     private DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
     private List<ParticleModel> Particles = new List<ParticleModel>();
@@ -89,7 +88,7 @@ public partial class Particle : Control
         PointerPosition = e.GetCurrentPoint(this).Position.ToVector2();
     }
 
-    private void DispatcherTimer_Tick(object sender, object e)
+    private void DispatcherTimer_Tick(object? sender, object e)
     {
         ReDrawCanvas();
     }

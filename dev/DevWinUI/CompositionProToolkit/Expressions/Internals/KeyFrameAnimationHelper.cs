@@ -58,7 +58,10 @@ internal static partial class KeyFrameAnimationHelper
                                      (m.GetParameters().Length == 3));
 #pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
 
-            InsertMethods[animationType.Key] = methodInfo;
+            if (methodInfo != null)
+            {
+                InsertMethods[animationType.Key] = methodInfo;
+            }
         }
     }
 
@@ -80,12 +83,13 @@ internal static partial class KeyFrameAnimationHelper
         }
 
         var animationType = AnimationTypes[typeof(T)];
-        if (InitMethods.ContainsKey(animationType))
+        if (InitMethods.ContainsKey(animationType) &&
+            InitMethods[animationType].Invoke(compositor, null) is KeyFrameAnimation animation)
         {
-            return (KeyFrameAnimation)InitMethods[animationType].Invoke(compositor, null);
+            return animation;
         }
 
-        return null;
+        throw new InvalidOperationException($"Unable to create a KeyFrameAnimation for the type '{typeof(T)}'.");
     }
 
     #endregion

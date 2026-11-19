@@ -7,7 +7,7 @@ internal static partial class ShadowProvider
 {
     #region Fields
 
-    private static DropShadow _sharedShadow;
+    private static DropShadow? _sharedShadow;
     private static readonly object ShadowLock = new object();
 
     #endregion

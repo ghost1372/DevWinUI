@@ -104,7 +104,13 @@ internal abstract partial class AbstractPathElement : ICanvasPathElement
         Data = capture.Value;
         IsRelative = isRelative;
 
-        var match = GetAttributesRegex().Match(Data);
+        var regex = GetAttributesRegex();
+        if (regex == null)
+        {
+            return;
+        }
+
+        var match = regex.Match(Data);
         if (match.Captures.Count != 1)
         {
             return;
@@ -128,7 +134,7 @@ internal abstract partial class AbstractPathElement : ICanvasPathElement
     /// commands, used for creating the CanvasGeometry, in string format.</param>
     /// <returns>The latest location in the Path after adding the Path Element</returns>
     public abstract Vector2 CreatePath(CanvasPathBuilder pathBuilder, Vector2 currentPoint, 
-        ref ICanvasPathElement lastElement, StringBuilder logger);
+        ref ICanvasPathElement? lastElement, StringBuilder? logger);
 
     #endregion
 
@@ -138,7 +144,7 @@ internal abstract partial class AbstractPathElement : ICanvasPathElement
     /// Get the Regex for extracting Path Element Attributes
     /// </summary>
     /// <returns></returns>
-    protected abstract Regex GetAttributesRegex();
+    protected abstract Regex? GetAttributesRegex();
 
     /// <summary>
     /// Gets the Path Element Attributes from the Match

@@ -13,18 +13,18 @@ public partial class TextGlitchEffect3 : Control
     private static readonly List<(float, float)> SecondaryScaleKeyFrames = new() { (0, 1), (.20f, 1), (.35f, .27f), (.50f, .91f), (.60f, .45f), (.70f, .77f), (.80f, .5f), (1, 0) };
 
     private string PART_TextBackground = "PART_TextBackground";
-    private Rectangle _rectangle;
-    private Compositor _compositor;
+    private Rectangle? _rectangle;
+    private Compositor? _compositor;
     private Compositor Compositor => _compositor ??= ElementCompositionPreview.GetElementVisual(this).Compositor;
-    private TextToBrushWrapper primaryWrapper;
-    private TextToBrushWrapper secondaryWrapper;
-    private TextToBrushWrapper tertiaryWrapper;
-    private SpriteVisual lineVisual;
-    private CompositionSurfaceBrush redMaskBrush;
-    private CompositionSurfaceBrush blueMaskBrush;
-    private LoadedImageSurface _maskSurface;
-    private Storyboard _storyboard;
-    private CancellationTokenSource _cancellationTokenSource;
+    private TextToBrushWrapper? primaryWrapper;
+    private TextToBrushWrapper? secondaryWrapper;
+    private TextToBrushWrapper? tertiaryWrapper;
+    private SpriteVisual? lineVisual;
+    private CompositionSurfaceBrush? redMaskBrush;
+    private CompositionSurfaceBrush? blueMaskBrush;
+    private LoadedImageSurface? _maskSurface;
+    private Storyboard? _storyboard;
+    private CancellationTokenSource? _cancellationTokenSource;
     private Size _lastSize;
     private static async void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -76,7 +76,7 @@ public partial class TextGlitchEffect3 : Control
         }
     }
 
-    public Rectangle GetRectangle()
+    public Rectangle? GetRectangle()
     {
         return _rectangle;
     }
@@ -314,7 +314,7 @@ public partial class TextGlitchEffect3 : Control
         brush.StartAnimation(nameof(CompositionSurfaceBrush.Scale), offsetAnimation);
     }
 
-    private void StopAnimation(SpriteVisual visual)
+    private void StopAnimation(SpriteVisual? visual)
     {
         if (visual != null)
         {
@@ -327,7 +327,7 @@ public partial class TextGlitchEffect3 : Control
         }
     }
 
-    private void StopAnimation(CompositionSurfaceBrush compositionSurfaceBrush)
+    private void StopAnimation(CompositionSurfaceBrush? compositionSurfaceBrush)
     {
         if (compositionSurfaceBrush != null)
         {

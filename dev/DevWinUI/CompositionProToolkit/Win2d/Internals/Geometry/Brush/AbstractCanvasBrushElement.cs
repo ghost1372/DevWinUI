@@ -47,7 +47,7 @@ internal abstract partial class AbstractCanvasBrushElement : ICanvasBrushElement
     /// <summary>
     /// Gets the Brush data defining the Brush Element
     /// </summary>
-    public string Data { get; protected set; }
+    public string Data { get; protected set; } = string.Empty;
     /// <summary>
     /// Gets the number of non-whitespace characters in 
     /// the Brush Data

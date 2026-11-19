@@ -270,7 +270,7 @@ public sealed partial class CanvasElement : ICanvasElement
     /// <param name="rotation">Rotation angle (in radians) about the center of the 
     /// geometry</param>
     /// <returns>CanvasGeometry</returns>
-    private CanvasGeometry GetGeometry(int layer, float width, float height,
+    private CanvasGeometry? GetGeometry(int layer, float width, float height,
         Vector2 offset, Vector4 padding, float rotation)
     {
         if ((layer < 0) || (layer >= Layers.Count) || (Layers[layer] == null))
@@ -296,7 +296,7 @@ public sealed partial class CanvasElement : ICanvasElement
     /// <param name="rotation">Rotation angle (in radians) about the center of the 
     /// geometry</param>
     /// <returns>ICanvasBrush</returns>
-    private ICanvasBrush GetFill(int layer, float width, float height,
+    private ICanvasBrush? GetFill(int layer, float width, float height,
         Vector2 offset, Vector4 padding, float rotation)
     {
         if ((layer < 0) || (layer >= Layers.Count) || (Layers[layer] == null))
@@ -329,7 +329,7 @@ public sealed partial class CanvasElement : ICanvasElement
     /// <param name="rotation">Rotation angle (in radians) about the center of the 
     /// geometry</param>
     /// <returns>ICanvasStroke</returns>
-    private ICanvasStroke GetStroke(int layer, float width, float height,
+    private ICanvasStroke? GetStroke(int layer, float width, float height,
         Vector2 offset, Vector4 padding, float rotation)
     {
         if ((layer < 0) || (layer >= Layers.Count) || (Layers[layer] == null))

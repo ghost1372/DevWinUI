@@ -9,8 +9,8 @@ public partial class BetterLyric : Control
     private const string PART_Canvas = "PART_Canvas";
     private const string PART_ScrollViewer = "PART_ScrollViewer";
 
-    private CanvasAnimatedControl canvas;
-    private ScrollViewer _scrollViewer;
+    private CanvasAnimatedControl canvas = null!; // assigned in OnApplyTemplate
+    private ScrollViewer? _scrollViewer;          // optional template part
 
     public event EventHandler<int>? LineClicked;
 
@@ -28,7 +28,7 @@ public partial class BetterLyric : Control
         AnimationEasingHelper.GetInterpolatorByEasingType<double>(AnimationEasingType.Sine),
         defaultTotalDuration: 0.3f
     );
-    
+
     private readonly ValueTransition<double> _canvasYScrollTransition = new(
         initialValue: 0f,
         AnimationEasingHelper.GetInterpolatorByEasingType<double>(AnimationEasingType.Sine),
@@ -44,13 +44,13 @@ public partial class BetterLyric : Control
     private TimeSpan _songPositionWithOffset;
     private TimeSpan _songPosition;
 
-    
+
     private int _mouseHoverLineIndex = -1;
-    
+
     private List<RenderLyricsLine>? _renderLyricsLines = null;
 
     private readonly Debouncer _layoutDebouncer = new();
-    private readonly Debouncer _scrollWheelDebounceTimer =new();
+    private readonly Debouncer _scrollWheelDebounceTimer = new();
     private bool _isLayoutChanged = false;
     private bool _isNowPlayingPaletteChanged = false;
 
@@ -71,7 +71,8 @@ public partial class BetterLyric : Control
     {
         base.OnApplyTemplate();
 
-        canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
+        canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl
+            ?? throw new InvalidOperationException($"{PART_Canvas} template part is missing.");
         canvas.CreateResources -= OnCreateResources;
         canvas.CreateResources += OnCreateResources;
         canvas.Draw -= OnDraw;
@@ -87,16 +88,16 @@ public partial class BetterLyric : Control
 
             _scrollViewer.PointerExited -= OnScrollViewerPointerExited;
             _scrollViewer.PointerExited += OnScrollViewerPointerExited;
-            
+
             _scrollViewer.PointerMoved -= OnScrollViewerPointerMoved;
             _scrollViewer.PointerMoved += OnScrollViewerPointerMoved;
-            
+
             _scrollViewer.PointerPressed -= OnScrollViewerPointerPressed;
             _scrollViewer.PointerPressed += OnScrollViewerPointerPressed;
-            
+
             _scrollViewer.PointerReleased -= OnScrollViewerPointerReleased;
             _scrollViewer.PointerReleased += OnScrollViewerPointerReleased;
-            
+
             _scrollViewer.PointerWheelChanged -= OnScrollViewerPointerWheelChanged;
             _scrollViewer.PointerWheelChanged += OnScrollViewerPointerWheelChanged;
         }
@@ -148,9 +149,9 @@ public partial class BetterLyric : Control
     {
         if (isScrollViewerEnabled)
         {
-            mousePosition = e.GetCurrentPoint(_scrollViewer).Position;
+            mousePosition = e.GetCurrentPoint((UIElement)sender).Position;
         }
-    } 
+    }
 
     private void OnScrollViewerPointerPressed(object sender, PointerRoutedEventArgs e)
     {
@@ -178,12 +179,12 @@ public partial class BetterLyric : Control
             isMouseScrolling = true;
             isMouseScrollingChanged = true;
 
-            var delta = e.GetCurrentPoint(_scrollViewer).Properties.MouseWheelDelta;
+            var delta = e.GetCurrentPoint((UIElement)sender).Properties.MouseWheelDelta;
             var value = _mouseYScrollTransition.TargetValue + delta;
             value = Math.Clamp(value, -_canvasYScrollTransition.Value - CalculateActualHeight(_renderLyricsLines), -_canvasYScrollTransition.Value);
             _mouseYScrollTransition.Start(value);
 
-           _ = _scrollWheelDebounceTimer.RunAsync(() =>
+            _ = _scrollWheelDebounceTimer.RunAsync(() =>
             {
                 _mouseYScrollTransition.Start(0);
                 isMouseScrolling = false;
@@ -211,7 +212,7 @@ public partial class BetterLyric : Control
 
         canvas.Paused = true;
         canvas.RemoveFromVisualTree();
-        canvas = null;
+        canvas = null!; // intentionally released on unload
 
         _lyricsRenderer.Dispose();
         DisposeRenderLyricsLines();
@@ -318,8 +319,8 @@ public partial class BetterLyric : Control
             renderLyricsWidth,
             renderLyricsHeight,
             _canvasTargetScrollOffset,
-            playingLineTopOffset / 100.0,            
-            _canvasYScrollTransition,            
+            playingLineTopOffset / 100.0,
+            _canvasYScrollTransition,
             elapsedTime,
             isMouseScrolling,
             _isLayoutChanged,
@@ -338,7 +339,7 @@ public partial class BetterLyric : Control
         }
 
         _isLayoutChanged = false;
-        
+
         if (isLyricsVisible)
         {
             _lyricsRenderer.MouseHoverLineIndex = _mouseHoverLineIndex;
@@ -464,6 +465,8 @@ public partial class BetterLyric : Control
             lyricsGlowEffectLongSyllableDuration
         );
 
+        int dataDurationMs = (int)(currentLyricsData?.Duration.TotalMilliseconds ?? 0);
+
         var lines = _renderLyricsLines;
         for (int i = 0; i < lines.Count; i++)
         {
@@ -471,7 +474,7 @@ public partial class BetterLyric : Control
             if (line == null) continue;
 
             bool isLastLine = i + 1 >= lines.Count;
-            var nextLineStartMs = isLastLine ? (int)currentLyricsData.Duration.TotalMilliseconds : lines[i + 1].StartMs;
+            var nextLineStartMs = isLastLine ? dataDurationMs : lines[i + 1].StartMs;
 
             bool isLongSyllable = line.PrimaryRenderSyllables.LastOrDefault()?.DurationMs > longSyllableThreshold;
 

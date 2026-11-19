@@ -6,7 +6,7 @@
 [TemplatePart(Name = RenderBorder, Type = typeof(Border))]
 public sealed partial class ImageFrame : Control, IDisposable
 {
-    private CanvasDevice device;
+    private CanvasDevice device = null!;
     internal Color _shadowColor = Colors.Transparent;
     private Dictionary<Uri, Color?> cachedImagesColorDic = new Dictionary<Uri, Color?>();
     internal bool useImageEdgeOverContentColor = true;
@@ -26,11 +26,11 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// <summary>
     /// Fired when Image has been loaded successfully
     /// </summary>
-    public event RoutedEventHandler ImageOpened;
+    public event RoutedEventHandler? ImageOpened;
     /// <summary>
     /// Fired when loading of the Image failed
     /// </summary>
-    public event RoutedEventHandler ImageFailed;
+    public event RoutedEventHandler? ImageFailed;
 
     #endregion
 
@@ -48,38 +48,38 @@ public sealed partial class ImageFrame : Control, IDisposable
 
     #region Fields
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private IImageSurface _imageSurface;
-    private IImageSurface _nextImageSurface;
-    private IMaskSurface _frameLayerMask;
-    private IGeometrySurface _placeholderContentMask;
-    private CompositionSurfaceBrush _placeholderContentBrush;
-    private CompositionSurfaceBrush _nextSurfaceBrush;
-    private ContainerVisual _rootContainer;
-    private SpriteVisual _shadowVisual;
-    private LayerVisual _frameLayer;
-    private SpriteVisual _frameBackgroundVisual;
-    private SpriteVisual _placeholderBackgroundVisual;
-    private SpriteVisual _placeholderContentVisual;
-    private SpriteVisual _frameContentVisual;
-    private SpriteVisual _nextVisualContent;
-    private DropShadow _shadow;
-    private CompositionEffectBrush _layerEffectBrush;
+    private Compositor _compositor = null!;
+    private ICompositionGenerator _generator = null!;
+    private IImageSurface? _imageSurface;
+    private IImageSurface _nextImageSurface = null!;
+    private IMaskSurface _frameLayerMask = null!;
+    private IGeometrySurface _placeholderContentMask = null!;
+    private CompositionSurfaceBrush _placeholderContentBrush = null!;
+    private CompositionSurfaceBrush _nextSurfaceBrush = null!;
+    private ContainerVisual _rootContainer = null!;
+    private SpriteVisual _shadowVisual = null!;
+    private LayerVisual _frameLayer = null!;
+    private SpriteVisual _frameBackgroundVisual = null!;
+    private SpriteVisual _placeholderBackgroundVisual = null!;
+    private SpriteVisual _placeholderContentVisual = null!;
+    private SpriteVisual _frameContentVisual = null!;
+    private SpriteVisual _nextVisualContent = null!;
+    private DropShadow _shadow = null!;
+    private CompositionEffectBrush _layerEffectBrush = null!;
     private ImageSurfaceOptions _imageOptions;
-    private ScalarKeyFrameAnimation _fadeOutAnimation;
-    private ScalarKeyFrameAnimation _fadeInAnimation;
-    private ColorKeyFrameAnimation _colorAnimation;
-    private ScalarKeyFrameAnimation _alignXAnimation;
-    private ScalarKeyFrameAnimation _alignYAnimation;
-    private Vector3KeyFrameAnimation _offsetAnimation;
-    private Vector3KeyFrameAnimation _scaleAnimation;
-    private CompositionAnimationGroup _zoomInAnimationGroup;
+    private ScalarKeyFrameAnimation _fadeOutAnimation = null!;
+    private ScalarKeyFrameAnimation _fadeInAnimation = null!;
+    private ColorKeyFrameAnimation _colorAnimation = null!;
+    private ScalarKeyFrameAnimation _alignXAnimation = null!;
+    private ScalarKeyFrameAnimation _alignYAnimation = null!;
+    private Vector3KeyFrameAnimation _offsetAnimation = null!;
+    private Vector3KeyFrameAnimation _scaleAnimation = null!;
+    private CompositionAnimationGroup _zoomInAnimationGroup = null!;
 
     private ImageEngineState _engineState;
-    private Uri _scheduledUri;
-    private Uri _currentUri;
-    private Border _renderBorder;
+    private Uri? _scheduledUri;
+    private Uri? _currentUri;
+    private Border? _renderBorder;
 
     #endregion
 
@@ -1024,7 +1024,7 @@ public sealed partial class ImageFrame : Control, IDisposable
     public void Dispose()
     {
         // Clean up resources
-        _compositor = null;
+        _compositor = null!;
         Source = null;
         DataContext = null;
         Foreground = null;
@@ -1036,58 +1036,58 @@ public sealed partial class ImageFrame : Control, IDisposable
         _imageSurface?.Dispose();
         _imageSurface = null;
         _nextImageSurface?.Dispose();
-        _nextImageSurface = null;
+        _nextImageSurface = null!;
         _frameLayerMask?.Dispose();
-        _frameLayerMask = null;
+        _frameLayerMask = null!;
         _placeholderContentMask?.Dispose();
-        _placeholderContentMask = null;
+        _placeholderContentMask = null!;
         _placeholderContentBrush?.Dispose();
-        _placeholderContentBrush = null;
+        _placeholderContentBrush = null!;
         _nextSurfaceBrush?.Dispose();
-        _nextSurfaceBrush = null;
+        _nextSurfaceBrush = null!;
         _rootContainer?.Dispose();
-        _rootContainer = null;
+        _rootContainer = null!;
         _shadowVisual?.Dispose();
-        _shadowVisual = null;
+        _shadowVisual = null!;
         _frameLayer?.Dispose();
-        _frameLayer = null;
+        _frameLayer = null!;
         _frameBackgroundVisual?.Dispose();
-        _frameBackgroundVisual = null;
+        _frameBackgroundVisual = null!;
         _placeholderBackgroundVisual?.Dispose();
-        _placeholderBackgroundVisual = null;
+        _placeholderBackgroundVisual = null!;
         _placeholderContentVisual?.Dispose();
-        _placeholderContentVisual = null;
+        _placeholderContentVisual = null!;
         _frameContentVisual?.Dispose();
-        _frameContentVisual = null;
+        _frameContentVisual = null!;
         _nextVisualContent?.Dispose();
-        _nextVisualContent = null;
+        _nextVisualContent = null!;
         _shadow?.Dispose();
-        _shadow = null;
+        _shadow = null!;
         _layerEffectBrush?.Dispose();
-        _layerEffectBrush = null;
-        _imageOptions = null;
+        _layerEffectBrush = null!;
+        _imageOptions = null!;
         _zoomInAnimationGroup?.Dispose();
-        _zoomInAnimationGroup = null;
+        _zoomInAnimationGroup = null!;
         _fadeOutAnimation?.Dispose();
-        _fadeOutAnimation = null;
+        _fadeOutAnimation = null!;
         _fadeInAnimation?.Dispose();
-        _fadeInAnimation = null;
+        _fadeInAnimation = null!;
         _colorAnimation?.Dispose();
-        _colorAnimation = null;
+        _colorAnimation = null!;
         _alignXAnimation?.Dispose();
-        _alignXAnimation = null;
+        _alignXAnimation = null!;
         _alignYAnimation?.Dispose();
-        _alignYAnimation = null;
+        _alignYAnimation = null!;
         _offsetAnimation?.Dispose();
-        _offsetAnimation = null;
+        _offsetAnimation = null!;
         _scaleAnimation?.Dispose();
-        _scaleAnimation = null;
+        _scaleAnimation = null!;
 
         // Dispose the generator at the end to allow the 
         // dependent composition objects to unsubscribe from
         // generator events
         _generator?.Dispose();
-        _generator = null;
+        _generator = null!;
 
         cachedImagesColorDic.Clear();
     }
@@ -1231,12 +1231,11 @@ public sealed partial class ImageFrame : Control, IDisposable
         // If the PlaceholderBackground has changed since the last time it was
         // applied to the _placeholderBackgroundVisual, then update the brush's
         // color to the new color.
-        brush = _placeholderBackgroundVisual.Brush as CompositionColorBrush;
-        if (brush != null)
+        if (_placeholderBackgroundVisual.Brush is CompositionColorBrush placeholderBrush)
         {
-            if (!brush.Color.Equals(PlaceholderBackground))
+            if (!placeholderBrush.Color.Equals(PlaceholderBackground))
             {
-                brush.Color = PlaceholderBackground;
+                placeholderBrush.Color = PlaceholderBackground;
             }
         }
 
@@ -1421,7 +1420,7 @@ public sealed partial class ImageFrame : Control, IDisposable
         _layerEffectBrush = layerEffectFactory.CreateBrush();
 
         // The mask for the imageFrame
-        _frameLayerMask = _generator.CreateMaskSurface(new Size(0, 0), null);
+        _frameLayerMask = _generator.CreateMaskSurface(new Size(0, 0), null!);
         _layerEffectBrush.SetSourceParameter("mask", _compositor.CreateSurfaceBrush(_frameLayerMask.Surface));
         // Apply the mask effect to the frameLayer
         _frameLayer.Effect = _layerEffectBrush;
@@ -1561,7 +1560,7 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// Converts the Source value to appropriate Uri object
     /// </summary>
     /// <returns>Uri</returns>
-    private Uri GetUriFromSource()
+    private Uri? GetUriFromSource()
     {
         switch (Source)
         {
@@ -1581,7 +1580,7 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// <param name="scheduledUri">The next object to load</param>
     /// <param name="size">Render size of the image</param>
     /// <returns>Task</returns>
-    private async Task LoadImageAsync(Uri scheduledUri, Size size)
+    private async Task LoadImageAsync(Uri? scheduledUri, Size size)
     {
         try
         {
@@ -1739,7 +1738,7 @@ public sealed partial class ImageFrame : Control, IDisposable
                 DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal,
                 () =>
                 {
-                    ImageOpened?.Invoke(this, new ImageFrameEventArgs(_imageSurface.Uri, string.Empty));
+                    ImageOpened?.Invoke(this, new ImageFrameEventArgs((object?)_imageSurface?.Uri ?? string.Empty, string.Empty));
                 });
             }
         }
@@ -1749,7 +1748,7 @@ public sealed partial class ImageFrame : Control, IDisposable
             DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal,
                 () =>
                 {
-                    ImageFailed?.Invoke(this, new ImageFrameEventArgs(_currentUri, ex.ToString()));
+                    ImageFailed?.Invoke(this, new ImageFrameEventArgs((object?)_currentUri ?? string.Empty, ex.ToString()));
                 });
         }
 
@@ -1767,10 +1766,10 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// <param name="isLoadingNext">Whether loading in the imageSurface or the 
     /// nextImageSurface</param>
     /// <returns>Uri</returns>
-    private async Task<Uri> LoadNextScheduledUriAsync(Uri nextUri, Size size, bool isLoadingNext)
+    private async Task<Uri?> LoadNextScheduledUriAsync(Uri? nextUri, Size size, bool isLoadingNext)
     {
         bool loadNext;
-        Uri lastUri;
+        Uri? lastUri;
 
         do
         {
@@ -1778,21 +1777,21 @@ public sealed partial class ImageFrame : Control, IDisposable
 
             if (isLoadingNext)
             {
-                _nextImageSurface = await _generator.CreateImageSurfaceAsync(nextUri, size, _imageOptions);
+                _nextImageSurface = await _generator.CreateImageSurfaceAsync(nextUri!, size, _imageOptions);
             }
             else
             {
-                _imageSurface = await _generator.CreateImageSurfaceAsync(nextUri, size, _imageOptions);
+                _imageSurface = await _generator.CreateImageSurfaceAsync(nextUri!, size, _imageOptions);
             }
 
             if ((isLoadingNext && _nextImageSurface.Status == ImageSurfaceLoadStatus.Error)
-                || (!isLoadingNext && _imageSurface.Status == ImageSurfaceLoadStatus.Error))
+                || (!isLoadingNext && _imageSurface?.Status == ImageSurfaceLoadStatus.Error))
             {
                 // Notify to subscribers that loading of the image failed
                 DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal,
                     () =>
                     {
-                        ImageFailed?.Invoke(this, new ImageFrameEventArgs(_currentUri, $"Failed to load image {_currentUri}"));
+                        ImageFailed?.Invoke(this, new ImageFrameEventArgs((object?)_currentUri ?? string.Empty, $"Failed to load image {_currentUri}"));
                     });
             }
 
@@ -1890,7 +1889,7 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// loaded for the first time.</param>
     private void StartTransition(bool isFirstLoad)
     {
-        SpriteVisual prevContent;
+        SpriteVisual? prevContent;
         SpriteVisual nextContent;
 
         if (isFirstLoad)

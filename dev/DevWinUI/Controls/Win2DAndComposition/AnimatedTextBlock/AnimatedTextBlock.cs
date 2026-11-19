@@ -8,7 +8,7 @@ namespace DevWinUI;
 [TemplatePart(Name = "AnimatedCanvas", Type = typeof(CanvasAnimatedControl))]
 public sealed partial class AnimatedTextBlock : Control
 {
-    private CanvasAnimatedControl _animatedCanvas = null;
+    private CanvasAnimatedControl? _animatedCanvas;
 
     private string _oldText = string.Empty;
     private string _newText = string.Empty;
@@ -16,16 +16,16 @@ public sealed partial class AnimatedTextBlock : Control
     private AnimatedTextBlockRedrawState _currentState = AnimatedTextBlockRedrawState.Idle;
     private TimeSpan _animationBeginTime;
 
-    private List<TextDiffResult> _diffResults = null;
+    private List<TextDiffResult> _diffResults = new();
 
     private CanvasTextFormat _textFormat = new CanvasTextFormat();
-    private CanvasLinearGradientBrush _textBrush;
+    private CanvasLinearGradientBrush? _textBrush;
     private Color _textColor = Colors.Black;
 
-    private CanvasTextLayout _oldTextLayout;
-    private CanvasTextLayout _newTextLayout;
+    private CanvasTextLayout? _oldTextLayout;
+    private CanvasTextLayout? _newTextLayout;
 
-    private ITextEffect _textEffect;
+    private ITextEffect? _textEffect;
 
     private float _fontSize = 14;
     private string _fontFamily = FontFamily.XamlAutoFontFamily.Source;
@@ -60,9 +60,9 @@ public sealed partial class AnimatedTextBlock : Control
     public static readonly DependencyProperty TextEffectProperty = DependencyProperty.Register(
         nameof(TextEffect), typeof(ITextEffect), typeof(AnimatedTextBlock), new PropertyMetadata(default(ITextEffect)));
 
-    public ITextEffect TextEffect
+    public ITextEffect? TextEffect
     {
-        get { return (ITextEffect)GetValue(TextEffectProperty); }
+        get { return (ITextEffect?)GetValue(TextEffectProperty); }
         set
         {
             _textEffect = value;
@@ -126,7 +126,7 @@ public sealed partial class AnimatedTextBlock : Control
 
     #endregion
 
-    public event EventHandler<AnimatedTextBlockRedrawState> RedrawStateChanged;
+    public event EventHandler<AnimatedTextBlockRedrawState>? RedrawStateChanged;
 
     public AnimatedTextBlock()
     {
@@ -272,6 +272,9 @@ public sealed partial class AnimatedTextBlock : Control
             UpdateAllClusterProgress(args.Timing);
         }
 
+        if (_oldTextLayout == null || _newTextLayout == null)
+            return;
+
         _textEffect.Update(_oldText,
             _newText,
             _diffResults,
@@ -297,9 +300,9 @@ public sealed partial class AnimatedTextBlock : Control
 
             args.DrawingSession.DrawTextLayout(ctl, 0, 0, _textColor);
         }
-        else
+        else if (_oldTextLayout != null && _newTextLayout != null)
         {
-            _textEffect?.DrawText(_oldText,
+            _textEffect.DrawText(_oldText,
                 _newText,
                 _diffResults,
                 _oldTextLayout,
@@ -384,6 +387,9 @@ public sealed partial class AnimatedTextBlock : Control
 
     private void GenerateDiffResults()
     {
+        if (_oldTextLayout == null || _newTextLayout == null)
+            return;
+
         var oldGraphemeClusters = TextRenderingHelper.GenerateGraphemeClusters(_oldText, _oldTextLayout);
         var newGraphemeClusters = TextRenderingHelper.GenerateGraphemeClusters(_newText, _newTextLayout);
 
@@ -461,7 +467,7 @@ public sealed partial class AnimatedTextBlock : Control
     /// <param name="delay">Duration of delay</param>
     /// <param name="timing">Timing info</param>
     /// <returns>If the animation of the cluster is finished</returns>
-    private bool UpdateClusterProgress(GraphemeCluster cluster,
+    private bool UpdateClusterProgress(GraphemeCluster? cluster,
         int offset,
         float step,
         TimeSpan delay,
@@ -506,8 +512,11 @@ public sealed partial class AnimatedTextBlock : Control
             var oldCluster = diffResult.OldGlyphCluster;
             var newCluster = diffResult.NewGlyphCluster;
 
-            oldCluster.Progress = 0;
-            newCluster.Progress = 0;
+            if (oldCluster != null)
+                oldCluster.Progress = 0;
+
+            if (newCluster != null)
+                newCluster.Progress = 0;
         }
     }
 

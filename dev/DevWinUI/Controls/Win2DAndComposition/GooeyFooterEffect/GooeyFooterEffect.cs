@@ -6,16 +6,16 @@ namespace DevWinUI;
 public partial class GooeyFooterEffect : Control
 {
     private string PART_Canvas = "PART_Canvas";
-    private CanvasControl _Canvas;
+    private CanvasControl? _Canvas;
     private static Random random = new Random();
 
     private static int unit = 16;
 
-    private GaussianBlurEffect _blurEffect;
-    private ICanvasBrush _brush;
-    private List<GooeyBubble> _bubbles;
+    private GaussianBlurEffect? _blurEffect;
+    private ICanvasBrush? _brush;
+    private List<GooeyBubble> _bubbles = new();
     private Vector2 _centerPoint;
-    private ICanvasImage _image;
+    private ICanvasImage? _image;
     private DateTime _startTime;
 
     private static double _timeLineFromDefaultValue = -(6 + random.NextDouble() * 4) * unit;
@@ -89,13 +89,16 @@ public partial class GooeyFooterEffect : Control
             _bubbles.Add(new GooeyBubble { X = x, OffsetTimeline = offsetTimeline, SizeTimeline = sizeTimeline });
         }
     }
-    public CanvasControl GetCanvas()
+    public CanvasControl? GetCanvas()
     {
         return _Canvas;
     }
     private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        _centerPoint = _Canvas.ActualSize / 2;
+        if (_Canvas != null)
+        {
+            _centerPoint = _Canvas.ActualSize / 2;
+        }
     }
 
     private void OnCreateResource(CanvasControl sender, CanvasCreateResourcesEventArgs args)
@@ -139,6 +142,11 @@ public partial class GooeyFooterEffect : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
+        if (_brush == null || _blurEffect == null || _image == null)
+        {
+            return;
+        }
+
         var source = new CanvasCommandList(sender);
         var totalTime = DateTime.Now - _startTime;
         using (var darwingSession = source.CreateDrawingSession())
@@ -156,6 +164,6 @@ public partial class GooeyFooterEffect : Control
 
         _blurEffect.Source = source;
         args.DrawingSession.DrawImage(_image);
-        _Canvas.Invalidate();
+        sender.Invalidate();
     }
 }

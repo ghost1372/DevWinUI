@@ -391,9 +391,9 @@ internal static partial class RegexFactory
     #region Fields
 
     private static readonly Dictionary<PathFigureType, Regex> PathFigureRegexes;
-    private static readonly Dictionary<PathFigureType, Regex> PathFigureAttributeRegexes;
+    private static readonly Dictionary<PathFigureType, Regex?> PathFigureAttributeRegexes;
     private static readonly Dictionary<PathElementType, Regex> PathElementRegexes;
-    private static readonly Dictionary<PathElementType, Regex> PathElementAttributeRegexes;
+    private static readonly Dictionary<PathElementType, Regex?> PathElementAttributeRegexes;
     private static readonly Dictionary<BrushType, Regex> BrushRegexes;
     private static readonly Dictionary<GradientStopAttributeType, Regex> GradientStopAttributeRegexes;
 
@@ -457,7 +457,7 @@ internal static partial class RegexFactory
             [PathFigureType.RoundedRectangleFigure] = new Regex(RoundedRectangleFigureRegexString, RegexOptions.Compiled)
         };
 
-        PathFigureAttributeRegexes = new Dictionary<PathFigureType, Regex>
+        PathFigureAttributeRegexes = new Dictionary<PathFigureType, Regex?>
         {
             // Not Applicable for FillRuleElement
             [PathFigureType.FillRule] = null,
@@ -483,7 +483,7 @@ internal static partial class RegexFactory
             [PathElementType.ClosePath] = new Regex(ClosePathRegexString, RegexOptions.Compiled)
         };
 
-        PathElementAttributeRegexes = new Dictionary<PathElementType, Regex>
+        PathElementAttributeRegexes = new Dictionary<PathElementType, Regex?>
         {
             [PathElementType.MoveTo] = new Regex($"{Sep}{MoveToAttributes}", RegexOptions.Compiled),
             [PathElementType.Line] = new Regex($"{Sep}{LineAttributes}", RegexOptions.Compiled),
@@ -555,7 +555,7 @@ internal static partial class RegexFactory
     /// </summary>
     /// <param name="figureType">PathFigureType</param>
     /// <returns>Regex</returns>
-    internal static Regex GetAttributesRegex(PathFigureType figureType)
+    internal static Regex? GetAttributesRegex(PathFigureType figureType)
     {
         return PathFigureAttributeRegexes[figureType];
     }
@@ -565,7 +565,7 @@ internal static partial class RegexFactory
     /// </summary>
     /// <param name="elementType">PathElementType</param>
     /// <returns>Regex</returns>
-    internal static Regex GetAttributesRegex(PathElementType elementType)
+    internal static Regex? GetAttributesRegex(PathElementType elementType)
     {
         return PathElementAttributeRegexes[elementType];
     }

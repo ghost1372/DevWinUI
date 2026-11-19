@@ -40,7 +40,7 @@ public partial class GooeyButtonItemsPanel : Canvas
 
     #region Event Methods
 
-    private void OnStoryboardCompleted(object sender, object e)
+    private void OnStoryboardCompleted(object? sender, object? e)
     {
         foreach (var item in Children)
             if (item is GooeyButtonItem gooeyButtonItem)
@@ -207,8 +207,8 @@ public partial class GooeyButtonItemsPanel : Canvas
 
     #region Events
 
-    public event EventHandler ItemsAnimationStarted;
-    public event EventHandler ItemsAnimationCompleted;
+    public event EventHandler? ItemsAnimationStarted;
+    public event EventHandler? ItemsAnimationCompleted;
 
     #endregion Events
 

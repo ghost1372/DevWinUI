@@ -6,16 +6,16 @@ namespace DevWinUI;
 public partial class TextMorphEffect : Control
 {
     private string PART_Canvas = "PART_Canvas";
-    private CanvasControl _Canvas;
+    private CanvasControl? _Canvas;
 
-    private GaussianBlurEffect _blurEffect;
+    private GaussianBlurEffect? _blurEffect;
     private Vector2 _centerPoint;
-    private ColorMatrixEffect _colorMatrixEffect;
-    private CanvasSolidColorBrush _brush;
-    private List<TextMorphItem> _morphItems;
+    private ColorMatrixEffect? _colorMatrixEffect;
+    private CanvasSolidColorBrush? _brush;
+    private List<TextMorphItem>? _morphItems;
 
-    private CanvasTextFormat _textFormat;
-    private string[] _texts;
+    private CanvasTextFormat? _textFormat;
+    private string[]? _texts;
 
     private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -107,12 +107,17 @@ public partial class TextMorphEffect : Control
             FontFamily = FontFamily.Source
         };
     }
-    public CanvasControl GetCanvas()
+    public CanvasControl? GetCanvas()
     {
         return _Canvas;
     }
     private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
     {
+        if (_Canvas == null)
+        {
+            return;
+        }
+
         _centerPoint = _Canvas.ActualSize / 2;
     }
 
@@ -165,7 +170,8 @@ public partial class TextMorphEffect : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        if (string.IsNullOrEmpty(Text) || _morphItems == null || MorphSpeed <= 0)
+        if (string.IsNullOrEmpty(Text) || _morphItems == null || _brush == null || _blurEffect == null ||
+            _colorMatrixEffect == null || _textFormat == null || _Canvas == null || MorphSpeed <= 0)
         {
             return;
         }

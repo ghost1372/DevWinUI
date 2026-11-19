@@ -1,10 +1,10 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobeMarker
 {
     public ParticleGlobeMarker() { }
 
-    public ParticleGlobeMarker(double latitude, double longitude, string label = null, Color? color = null)
+    public ParticleGlobeMarker(double latitude, double longitude, string? label = null, Color? color = null)
     {
         Latitude = latitude;
         Longitude = longitude;
@@ -14,11 +14,11 @@ public sealed partial class ParticleGlobeMarker
 
     public double Latitude { get; set; }
     public double Longitude { get; set; }
-    public string Label { get; set; }
+    public string? Label { get; set; }
 
     public Color? Color { get; set; }
 
-    public object Tag { get; set; }
+    public object? Tag { get; set; }
 
     internal Vector3 ToVector()
     {

@@ -51,11 +51,11 @@ public sealed partial class CarouselView
             {
                 if ((bool)e.NewValue)
                 {
-                    (s as CarouselView)._dispatcherTimer.Start();
+                    (s as CarouselView)?._dispatcherTimer?.Start();
                 }
                 else
                 {
-                    (s as CarouselView)._dispatcherTimer.Stop();
+                    (s as CarouselView)?._dispatcherTimer?.Stop();
                 }
             }
         }));
@@ -71,8 +71,11 @@ public sealed partial class CarouselView
         {
             if (e.NewValue != e.OldValue)
             {
-                (s as CarouselView)._dispatcherTimer.Interval = (TimeSpan)e.NewValue;
-                (s as CarouselView)._dispatcherTimer.Start();
+                if (s is CarouselView { _dispatcherTimer: { } timer })
+                {
+                    timer.Interval = (TimeSpan)e.NewValue;
+                    timer.Start();
+                }
             }
         }));
 }

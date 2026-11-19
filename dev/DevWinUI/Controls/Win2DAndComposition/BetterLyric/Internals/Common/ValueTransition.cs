@@ -39,10 +39,7 @@ internal partial class ValueTransition<T> where T : struct
         _targetValue = initialValue;
         _totalDurationForAutoSplit = defaultTotalDuration;
 
-        if (interpolator != null)
-        {
-            _interpolator = interpolator;
-        }
+        _interpolator = interpolator ?? ((start, end, progress) => progress >= 1.0 ? end : start);
     }
 
     #region Configuration

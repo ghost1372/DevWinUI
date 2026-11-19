@@ -30,9 +30,9 @@ public partial class Hatch : Control
         DependencyProperty.Register(nameof(Content), typeof(object), typeof(Hatch), new PropertyMetadata(null));
 
     private const string CanvasElement = "PART_Canvas";
-    private CanvasControl canvas;
-    private CanvasRenderTarget patternTarget;
-    private CanvasImageBrush patternBrush;
+    private CanvasControl? canvas;
+    private CanvasRenderTarget? patternTarget;
+    private CanvasImageBrush? patternBrush;
     private HatchStyle patternStyle;
     private Color patternColor;
     private float patternDpi;
@@ -137,8 +137,8 @@ public partial class Hatch : Control
         const int patternSize = 8;
 
         // Create a pixel grid using the hatch data
-        patternTarget = new CanvasRenderTarget(device, patternSize, patternSize, dpi);
-        using (var offscreenSession = patternTarget.CreateDrawingSession())
+        var target = new CanvasRenderTarget(device, patternSize, patternSize, dpi);
+        using (var offscreenSession = target.CreateDrawingSession())
         {
             offscreenSession.Clear(Colors.Transparent);
             for (int y = 0; y < patternSize; y++)
@@ -155,16 +155,18 @@ public partial class Hatch : Control
         }
 
         // Use the generated pattern as a tiled brush
-        patternBrush = new CanvasImageBrush(device, patternTarget)
+        var brush = new CanvasImageBrush(device, target)
         {
             ExtendX = CanvasEdgeBehavior.Wrap,
             ExtendY = CanvasEdgeBehavior.Wrap
         };
 
+        patternTarget = target;
+        patternBrush = brush;
         patternStyle = hatchStyle;
         patternColor = foreColor;
         patternDpi = dpi;
 
-        return patternBrush;
+        return brush;
     }
 }

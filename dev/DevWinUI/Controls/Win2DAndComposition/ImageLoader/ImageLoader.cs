@@ -32,13 +32,13 @@ public partial class DeviceReplacedEventArgs : EventArgs
 
 public partial class ImageLoader
 {
-    private static bool                 _intialized;
-    private static ImageLoader          _imageLoader;
-    private Compositor                  _compositor;
-    private CanvasDevice                _canvasDevice;
-    private CompositionGraphicsDevice   _graphicsDevice;
-    private Object                      _drawingLock;
-    private event EventHandler<Object>  _deviceReplacedEvent;
+    private static bool _intialized;
+    private static ImageLoader? _imageLoader;
+    private Compositor? _compositor;
+    private CanvasDevice? _canvasDevice;
+    private CompositionGraphicsDevice _graphicsDevice;
+    private Object _drawingLock;
+    private event EventHandler<Object>? _deviceReplacedEvent;
 
     public ImageLoader(Compositor compositor)
     {
@@ -70,7 +70,7 @@ public partial class ImageLoader
             {
                 _graphicsDevice.RenderingDeviceReplaced -= RenderingDeviceReplaced;
                 _graphicsDevice.Dispose();
-                _graphicsDevice = null;
+                _graphicsDevice = null!;
             }
         }
     }
@@ -107,7 +107,7 @@ public partial class ImageLoader
                 }
             }
 
-            return _imageLoader;
+            return _imageLoader!;
         }
     }
 
@@ -126,7 +126,7 @@ public partial class ImageLoader
     {
         _deviceReplacedEvent?.Invoke(this, new DeviceReplacedEventArgs(_graphicsDevice, _drawingLock));
     }
-    
+
     public ManagedSurface LoadFromUri(Uri uri)
     {
         return LoadFromUri(uri, Size.Empty);
@@ -137,7 +137,7 @@ public partial class ImageLoader
         return LoadFromUri(uri, size, null);
     }
 
-    public ManagedSurface LoadFromUri(Uri uri, Size size, LoadTimeEffectHandler handler)
+    public ManagedSurface LoadFromUri(Uri uri, Size size, LoadTimeEffectHandler? handler)
     {
         ManagedSurface surface = new ManagedSurface(CreateSurface(size));
         var ignored = surface.Draw(_graphicsDevice, _drawingLock, new BitmapDrawer(uri, handler));
@@ -145,7 +145,7 @@ public partial class ImageLoader
         return surface;
     }
 
-    public ManagedSurface LoadFromFile(StorageFile file, Size size, LoadTimeEffectHandler handler)
+    public ManagedSurface LoadFromFile(StorageFile file, Size size, LoadTimeEffectHandler? handler)
     {
         ManagedSurface surface = new ManagedSurface(CreateSurface(size));
 
@@ -164,7 +164,7 @@ public partial class ImageLoader
         return LoadFromUriAsyncWorker(uri, size, null).AsAsyncOperation<ManagedSurface>();
     }
 
-    public IAsyncOperation<ManagedSurface> LoadFromUriAsync(Uri uri, Size size, LoadTimeEffectHandler handler)
+    public IAsyncOperation<ManagedSurface> LoadFromUriAsync(Uri uri, Size size, LoadTimeEffectHandler? handler)
     {
         return LoadFromUriAsyncWorker(uri, size, handler).AsAsyncOperation<ManagedSurface>();
     }
@@ -185,7 +185,7 @@ public partial class ImageLoader
         return surface;
     }
 
-    private async Task<ManagedSurface> LoadFromUriAsyncWorker(Uri uri, Size size, LoadTimeEffectHandler handler)
+    private async Task<ManagedSurface> LoadFromUriAsyncWorker(Uri uri, Size size, LoadTimeEffectHandler? handler)
     {
         ManagedSurface surface = new ManagedSurface(CreateSurface(size));
         await surface.Draw(_graphicsDevice, _drawingLock, new BitmapDrawer(uri, handler));
@@ -230,4 +230,3 @@ public partial class ImageLoader
         });
     }
 }
-

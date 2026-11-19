@@ -7,11 +7,11 @@ public sealed partial class ParticleGlobe
     private const float GeoScale = 913f;
     private const float GeoRasterScale = 0.5f;
 
-    private byte[] _geoMask;
-    private ushort[] _geoIds;
+    private byte[]? _geoMask;
+    private ushort[]? _geoIds;
     private int _geoW, _geoH;
-    private Uri _geoSource;
-    private Uri _geoLoadedSource;
+    private Uri? _geoSource;
+    private Uri? _geoLoadedSource;
     private bool _geoLoaded;
 
     private async void ReloadGeoMask()
@@ -22,7 +22,7 @@ public sealed partial class ParticleGlobe
         await LoadGeoMaskAsync(device, _geoSource);
     }
 
-    private async Task LoadGeoMaskAsync(ICanvasResourceCreator rc, Uri source)
+    private async Task LoadGeoMaskAsync(ICanvasResourceCreator rc, Uri? source)
     {
         if (_geoMask != null && _geoLoaded && _geoLoadedSource == source)
         {
@@ -32,7 +32,9 @@ public sealed partial class ParticleGlobe
 
         try
         {
-            var data = await WorldMapData.LoadAsync(source);
+            // A null source means "use the built-in map data"; the null-forgiving
+            // operator only silences the warning (see WorldMapData.LoadAsync).
+            var data = await WorldMapData.LoadAsync(source!);
             int w = Math.Max(1, (int)(data.MapSize.Width * GeoRasterScale));
             int h = Math.Max(1, (int)(data.MapSize.Height * GeoRasterScale));
 

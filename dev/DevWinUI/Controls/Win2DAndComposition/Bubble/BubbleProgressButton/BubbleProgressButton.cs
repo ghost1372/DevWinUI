@@ -42,7 +42,7 @@ public partial class BubbleProgressButton : RangeBase
         var target = obj as BubbleProgressButton;
         var oldValue = (BubbleProgressState)args.OldValue;
         var newValue = (BubbleProgressState)args.NewValue;
-        if (oldValue != newValue)
+        if (target != null && oldValue != newValue)
             target.OnStateChanged(oldValue, newValue);
     }
 
@@ -55,9 +55,9 @@ public partial class BubbleProgressButton : RangeBase
         IsEnabledChanged += OnIsEnabledChanged;
     }
 
-    public event EventHandler StateChanged;
-    public event EventHandler<HoldingEventArgs> GestureRecognizerHolding;
-    public event EventHandler<TappedEventArgs> GestureRecognizerTapped;
+    public event EventHandler? StateChanged;
+    public event EventHandler<HoldingEventArgs>? GestureRecognizerHolding;
+    public event EventHandler<TappedEventArgs>? GestureRecognizerTapped;
 
     protected override void OnApplyTemplate()
     {

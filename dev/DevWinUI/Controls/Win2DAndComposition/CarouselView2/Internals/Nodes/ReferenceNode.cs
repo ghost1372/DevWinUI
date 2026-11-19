@@ -2,7 +2,7 @@
 
 internal abstract partial class ReferenceNode : ExpressionNode
 {
-    internal ReferenceNode(string paramName, CompositionObject? compObj = null)
+    internal ReferenceNode(string? paramName, CompositionObject? compObj = null)
     {
         Reference = compObj;
         NodeType = ExpressionNodeType.Reference;
@@ -11,7 +11,7 @@ internal abstract partial class ReferenceNode : ExpressionNode
 
     public CompositionObject? Reference { get; private set; }
 
-    internal string GetReferenceNodeString()
+    internal string? GetReferenceNodeString()
     {
         if (NodeType == ExpressionNodeType.TargetReference)
         {

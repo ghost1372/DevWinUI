@@ -59,9 +59,9 @@ public sealed partial class CompositionExpressionContext<T>
     /// </summary>
     internal CompositionExpressionContext()
     {
-        StartingValue = default(T);
-        CurrentValue = default(T);
-        FinalValue = default(T);
+        StartingValue = default!;
+        CurrentValue = default!;
+        FinalValue = default!;
     }
 
     #endregion

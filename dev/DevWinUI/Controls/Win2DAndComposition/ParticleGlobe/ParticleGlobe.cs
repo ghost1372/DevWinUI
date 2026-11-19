@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Microsoft.UI.Xaml.Input;
 
 namespace DevWinUI;
@@ -9,10 +9,10 @@ public sealed partial class ParticleGlobe : Control
     private const string PartCanvas = "PART_Canvas";
     private const float Perspective = 0.10f;
 
-    private CanvasAnimatedControl _canvas;
-    private CanvasRenderTarget _dot;
-    private CanvasRadialGradientBrush _glowBrush;
-    private CanvasRadialGradientBrush _discBrush;
+    private CanvasAnimatedControl? _canvas;
+    private CanvasRenderTarget _dot = null!;
+    private CanvasRadialGradientBrush? _glowBrush;
+    private CanvasRadialGradientBrush? _discBrush;
     private int _builtVersion = -1;
 
     // ---- settings cache (written on UI thread, read on render thread) ----
@@ -23,7 +23,7 @@ public sealed partial class ParticleGlobe : Control
     private float _landThreshold = 0.52f, _arcFrequency = 1.6f;
     private bool _autoRotate = true, _interactive = true;
     private bool _showStars = true, _showGrid = true, _showArcs = true, _showCities = true, _showOrbits = true, _showHud = true;
-    private Uri _maskUri;
+    private Uri? _maskUri;
 
     private static readonly Vector4 DefLand = new(0.30f, 0.95f, 1.00f, 0.90f);
     private static readonly Vector4 DefOcean = new(0.10f, 0.45f, 0.85f, 0.55f);
@@ -35,7 +35,7 @@ public sealed partial class ParticleGlobe : Control
 
     private Vector4 _land = DefLand, _ocean = DefOcean, _atmos = DefAtmos, _grid = DefGrid, _arc = DefArc, _accent = DefAccent, _star = DefStar;
 
-    private byte[] _mask;
+    private byte[]? _mask;
     private int _maskW, _maskH;
 
     private float[] _px = Array.Empty<float>(), _py = Array.Empty<float>(), _pz = Array.Empty<float>();
@@ -83,7 +83,7 @@ public sealed partial class ParticleGlobe : Control
     }
 
     // Pauses rendering while the host window is hidden or minimized; uses XamlRoot so no Window reference is needed.
-    private XamlRoot _hostRoot;
+    private XamlRoot? _hostRoot;
 
     private void HookHostVisibility()
     {
@@ -193,7 +193,7 @@ public sealed partial class ParticleGlobe : Control
         _brushVersion++;
     }
 
-    private static Vector4 ToVector(Brush brush, Vector4 fallback)
+    private static Vector4 ToVector(Brush? brush, Vector4 fallback)
     {
         if (brush is SolidColorBrush solid)
         {
@@ -453,7 +453,7 @@ public sealed partial class ParticleGlobe : Control
         EndDrag(null);
     }
 
-    private void EndDrag(Pointer pointer)
+    private void EndDrag(Pointer? pointer)
     {
         lock (_inputLock) { _dragging = false; }
         if (pointer != null) ReleasePointerCapture(pointer);
@@ -894,11 +894,11 @@ public sealed partial class ParticleGlobe : Control
         {
             using var layer = morph > 0.001f ? ds.CreateLayer(1f - morph) : null;
 
-            _glowBrush.Center = c;
+            _glowBrush!.Center = c;
             _glowBrush.RadiusX = _glowBrush.RadiusY = R * 1.42f;
             ds.FillCircle(c, R * 1.42f, _glowBrush);
 
-            _discBrush.Center = c + new Vector2(-0.28f * R, -0.28f * R);
+            _discBrush!.Center = c + new Vector2(-0.28f * R, -0.28f * R);
             _discBrush.RadiusX = _discBrush.RadiusY = R * 1.35f;
             ds.FillCircle(c, R, _discBrush);
 
@@ -1001,7 +1001,7 @@ public sealed partial class ParticleGlobe : Control
 
         // optional multi-threaded path: sprites are computed in parallel into buffers, then submitted in order
         bool par = _parallel && loopCount >= ParallelMinParticles;
-        Vector2[] outPos = null; Vector4[] outTint = null; float[] outScale = null;
+        Vector2[] outPos = Array.Empty<Vector2>(); Vector4[] outTint = Array.Empty<Vector4>(); float[] outScale = Array.Empty<float>();
         if (par) EnsureParticleBuffers(loopCount, out outPos, out outTint, out outScale);
 
         int Work(int from, int to, bool buffered)
@@ -1129,7 +1129,7 @@ public sealed partial class ParticleGlobe : Control
             if (heat && kind == 1)
             {
                 int vid = pc[i];
-                if (vid < vset.T.Length && !float.IsNaN(vset.T[vid]))
+                if (vid < vset!.T.Length && !float.IsNaN(vset.T[vid]))
                 {
                     rgb = Vector3.Lerp(rgb, Vector3.Lerp(vset.Low, vset.High, vset.T[vid]), heatAmt);
                     baseA *= 1f + 0.15f * heatAmt;

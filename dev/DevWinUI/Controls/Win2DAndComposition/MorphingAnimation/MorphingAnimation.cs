@@ -5,21 +5,21 @@ public partial class MorphingAnimation : Control
 {
     private const string PART_Canvas = "PART_Canvas";
 
-    private CanvasAnimatedControl canvas;
+    private CanvasAnimatedControl? canvas;
 
     private Windows.UI.Color primaryColor = Windows.UI.Color.FromArgb(255, 0x1D, 0xA1, 0xF2);
     private Windows.UI.Color secondaryColor = Windows.UI.Color.FromArgb(255, 0x18, 0x77, 0xF2);
 
-    private string primaryData;
-    private string secondaryData;
+    private string? primaryData;
+    private string? secondaryData;
 
     private enum MorphingAnimationPhase { ToSecondary, HoldSecondary, ToPrimary, HoldPrimary }
 
     private double animDuration = 0.5;  // seconds – morph travel time
     private double holdDuration = 1.0;  // seconds – pause at each end
 
-    private List<Vector2> primaryShape;
-    private List<Vector2> secondaryShape;
+    private List<Vector2>? primaryShape;
+    private List<Vector2>? secondaryShape;
 
     private MorphingAnimationPhase phase = MorphingAnimationPhase.ToSecondary;
     private double phaseTime = 0.0;
@@ -39,6 +39,9 @@ public partial class MorphingAnimation : Control
         canvas = GetTemplateChild(PART_Canvas) as CanvasAnimatedControl;
 
         GetShapesPoint();
+
+        if (canvas == null)
+            return;
 
         canvas.Draw -= OnDraw;
         canvas.Draw += OnDraw;
@@ -101,14 +104,17 @@ public partial class MorphingAnimation : Control
 
     private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
     {
+        var from = primaryShape;
+        var to = secondaryShape;
+
+        if (from == null || to == null || from.Count == 0)
+            return;
+
         var ds = args.DrawingSession;
 
         float eased = EaseInOut(progress);
 
-        if (primaryShape == null || secondaryShape == null)
-            return;
-
-        var morphed = Morph(primaryShape, secondaryShape, eased);
+        var morphed = Morph(from, to, eased);
 
         // Scale and center the morphed points to always fit the current canvas size.
         var fitted = FitToCanvas(morphed, (float)sender.Size.Width, (float)sender.Size.Height);
@@ -133,7 +139,7 @@ public partial class MorphingAnimation : Control
     /// </summary>
     private static List<Vector2> FitToCanvas(List<Vector2> points, float canvasWidth, float canvasHeight, float padding = 8f)
     {
-        if (points == null || points.Count == 0 || canvasWidth <= 0 || canvasHeight <= 0)
+        if (points.Count == 0 || canvasWidth <= 0 || canvasHeight <= 0)
             return points;
 
         float minX = points[0].X, maxX = points[0].X;
@@ -150,7 +156,7 @@ public partial class MorphingAnimation : Control
         float geomW = maxX - minX;
         float geomH = maxY - minY;
 
-        float availW = canvasWidth  - padding * 2f;
+        float availW = canvasWidth - padding * 2f;
         float availH = canvasHeight - padding * 2f;
 
         // Uniform scale so the shape fits without distortion.
@@ -169,7 +175,7 @@ public partial class MorphingAnimation : Control
         return result;
     }
 
-    private static List<Vector2> SamplePointsOnPath(string svgPath, int pointCount)
+    private static List<Vector2>? SamplePointsOnPath(string? svgPath, int pointCount)
     {
         if (string.IsNullOrEmpty(svgPath))
             return null;
@@ -196,7 +202,7 @@ public partial class MorphingAnimation : Control
     private static float EaseInOut(float t) => t * t * (3f - 2f * t);
 
     private static List<Vector2> Morph(List<Vector2> a, List<Vector2> b, float t)
-    { 
+    {
         var result = new List<Vector2>(a.Count);
 
         for (int i = 0; i < a.Count; i++)

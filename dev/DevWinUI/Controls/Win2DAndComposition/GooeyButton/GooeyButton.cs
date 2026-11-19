@@ -8,27 +8,27 @@ namespace DevWinUI;
 [ContentProperty(Name = "Content")]
 public sealed partial class GooeyButton : ItemsControl
 {
-    private Brush background;
-    private Shape BackgroundShape;
-    private TranslateTransform BackgroundShapeTranslate;
+    private Brush? background;
+    private Shape? BackgroundShape;
+    private TranslateTransform? BackgroundShapeTranslate;
     private long brushColorToken = -1;
     private long brushOpacityToken = -1;
 
-    private GaussianBlurEffect effect;
-    private IReadOnlyList<GooeyButtonItem.GooeyButtonItemProperty> gooeyButtonItemsProperty;
-    private ICanvasImage image;
-    private Button InnerButton;
+    private GaussianBlurEffect? effect;
+    private IReadOnlyList<GooeyButtonItem.GooeyButtonItemProperty>? gooeyButtonItemsProperty;
+    private ICanvasImage? image;
+    private Button? InnerButton;
 
-    private Grid LayoutRoot;
+    private Grid? LayoutRoot;
     private readonly double mainButtonAnimationDuration = 0.6d;
-    private Storyboard mainButtonCloseStoryboard;
+    private Storyboard? mainButtonCloseStoryboard;
 
-    private Storyboard mainButtonOpenStoryboard;
-    private GooeyButtonItemsPanel panel;
+    private Storyboard? mainButtonOpenStoryboard;
+    private GooeyButtonItemsPanel? panel;
     private readonly GooeyButtonProperty property = new();
     private bool unloaded;
-    private CanvasControl Win2DCanvas;
-    private Canvas Win2DHost;
+    private CanvasControl? Win2DCanvas;
+    private Canvas? Win2DHost;
 
     public GooeyButton()
     {
@@ -53,7 +53,8 @@ public sealed partial class GooeyButton : ItemsControl
     private void UpdateOpenStoryboard()
     {
         mainButtonOpenStoryboard = null;
-        if (panel == null) return;
+        var translate = BackgroundShapeTranslate;
+        if (panel == null || translate == null) return;
 
         var duration = mainButtonAnimationDuration / 2;
 
@@ -85,7 +86,7 @@ public sealed partial class GooeyButton : ItemsControl
         }
 
         var dax = new DoubleAnimationUsingKeyFrames();
-        Storyboard.SetTarget(dax, BackgroundShapeTranslate);
+        Storyboard.SetTarget(dax, translate);
         Storyboard.SetTargetProperty(dax, "X");
         dax.Duration = TimeSpan.FromSeconds(mainButtonAnimationDuration);
         dax.KeyFrames.Add(new EasingDoubleKeyFrame
@@ -102,7 +103,7 @@ public sealed partial class GooeyButton : ItemsControl
         });
 
         var day = new DoubleAnimationUsingKeyFrames();
-        Storyboard.SetTarget(day, BackgroundShapeTranslate);
+        Storyboard.SetTarget(day, translate);
         Storyboard.SetTargetProperty(day, "Y");
         day.Duration = TimeSpan.FromSeconds(mainButtonAnimationDuration);
         day.KeyFrames.Add(new EasingDoubleKeyFrame
@@ -140,7 +141,8 @@ public sealed partial class GooeyButton : ItemsControl
     private void UpdateCloseStoryboard()
     {
         mainButtonCloseStoryboard = null;
-        if (panel == null) return;
+        var translate = BackgroundShapeTranslate;
+        if (panel == null || translate == null) return;
 
         var begin = 0.16d;
 
@@ -176,7 +178,7 @@ public sealed partial class GooeyButton : ItemsControl
         y = -y;
 
         var dax = new DoubleAnimationUsingKeyFrames();
-        Storyboard.SetTarget(dax, BackgroundShapeTranslate);
+        Storyboard.SetTarget(dax, translate);
         Storyboard.SetTargetProperty(dax, "X");
         dax.Duration = TimeSpan.FromSeconds(mainButtonAnimationDuration);
         dax.BeginTime = TimeSpan.FromSeconds(begin);
@@ -194,7 +196,7 @@ public sealed partial class GooeyButton : ItemsControl
         });
 
         var day = new DoubleAnimationUsingKeyFrames();
-        Storyboard.SetTarget(day, BackgroundShapeTranslate);
+        Storyboard.SetTarget(day, translate);
         Storyboard.SetTargetProperty(day, "Y");
         day.Duration = TimeSpan.FromSeconds(mainButtonAnimationDuration);
         day.BeginTime = TimeSpan.FromSeconds(begin);
@@ -251,6 +253,7 @@ public sealed partial class GooeyButton : ItemsControl
     private void UpdateWin2DCanvas()
     {
         if (unloaded) return;
+        if (Win2DHost == null) return;
         if (ItemsPanelRoot is GooeyButtonItemsPanel panel)
         {
             if (this.panel == null) this.panel = panel;
@@ -360,7 +363,7 @@ public sealed partial class GooeyButton : ItemsControl
                             });
             }
 
-            if (property.BlurAmount > 0)
+            if (property.BlurAmount > 0 && effect != null && image != null)
             {
                 effect.BlurAmount = (float)property.BlurAmount;
                 effect.Source = source;
@@ -380,11 +383,11 @@ public sealed partial class GooeyButton : ItemsControl
 
     #region ItemsPanel
 
-    private void OnItemsAnimationCompleted(object sender, EventArgs e)
+    private void OnItemsAnimationCompleted(object? sender, EventArgs e)
     {
     }
 
-    private void OnItemsAnimationStarted(object sender, EventArgs e)
+    private void OnItemsAnimationStarted(object? sender, EventArgs e)
     {
     }
 
@@ -422,12 +425,15 @@ public sealed partial class GooeyButton : ItemsControl
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         unloaded = true;
-
-        Win2DCanvas.Draw -= OnWin2DDraw;
         panel = null;
-        Win2DCanvas.RemoveFromVisualTree();
-        Win2DHost.Children.Remove(Win2DCanvas);
-        Win2DCanvas = null;
+
+        if (Win2DCanvas != null)
+        {
+            Win2DCanvas.Draw -= OnWin2DDraw;
+            Win2DCanvas.RemoveFromVisualTree();
+            Win2DHost?.Children.Remove(Win2DCanvas);
+            Win2DCanvas = null;
+        }
     }
 
     private void InnerButton_Click(object sender, RoutedEventArgs e)
@@ -492,8 +498,8 @@ public sealed partial class GooeyButton : ItemsControl
 
     #region Events
 
-    public event GooeyButtonInvokedEventHandler Invoked;
-    public event GooeyButtonItemInvokedEventHandler ItemInvoked;
+    public event GooeyButtonInvokedEventHandler? Invoked;
+    public event GooeyButtonItemInvokedEventHandler? ItemInvoked;
 
     private bool OnInvoked()
     {
@@ -546,7 +552,7 @@ public sealed partial class GooeyButton : ItemsControl
 
     #region Dependency Properties
 
-    public object Content
+    public object? Content
     {
         get => GetValue(ContentProperty);
         set => SetValue(ContentProperty, value);
@@ -554,7 +560,7 @@ public sealed partial class GooeyButton : ItemsControl
 
     // Using a DependencyProperty as the backing store for Content.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ContentProperty =
-        DependencyProperty.Register("Content", typeof(object), typeof(GooeyButton), new PropertyMetadata(null));
+        DependencyProperty.Register("Content", typeof(object), typeof(GooeyButton), new PropertyMetadata(null!));
 
     public bool Expanded
     {
@@ -659,12 +665,12 @@ public sealed partial class GooeyButton : ItemsControl
 
     public partial class GooeyButtonItemInvokedEventArgs : EventArgs
     {
-        internal GooeyButtonItemInvokedEventArgs(object item)
+        internal GooeyButtonItemInvokedEventArgs(object? item)
         {
             Item = item;
         }
 
-        public object Item { get; }
+        public object? Item { get; }
     }
 
     #endregion Nested Class

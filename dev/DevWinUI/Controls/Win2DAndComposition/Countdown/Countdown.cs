@@ -4,15 +4,15 @@
 public partial class Countdown : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private CanvasAnimatedControl canvas;
+    private CanvasAnimatedControl? canvas;
 
-    private ICanvasBrush backgroundDefaultBrush;
-    private ICanvasBrush BackgroundSuccessBrush;
-    private ICanvasBrush backgroundErrorBrush;
-    private ICanvasBrush borderDefaultBrush;
-    private CanvasLinearGradientBrush borderGradientBrush;
-    private ICanvasBrush borderSuccessBrush;
-    private ICanvasBrush borderErrorBrush;
+    private ICanvasBrush? backgroundDefaultBrush;
+    private ICanvasBrush? BackgroundSuccessBrush;
+    private ICanvasBrush? backgroundErrorBrush;
+    private ICanvasBrush? borderDefaultBrush;
+    private CanvasLinearGradientBrush? borderGradientBrush;
+    private ICanvasBrush? borderSuccessBrush;
+    private ICanvasBrush? borderErrorBrush;
     private const float size = 1000;
     private const float padding = 8;
     private const float radius = size / 2 - padding;
@@ -20,6 +20,7 @@ public partial class Countdown : Control
     private const float startAngle = fullCircle * 0.75f;
     private static readonly Vector2 centerPoint = new Vector2(size / 2);
     private Vector2 textPosition;
+
     public Countdown()
     {
         DefaultStyleKey = typeof(Countdown);
@@ -83,26 +84,19 @@ public partial class Countdown : Control
             };
         }
 
-        if (_textFormat == null)
+        if (canvas != null)
         {
-            _textFormat = new CanvasTextFormat()
-            {
-                FontFamily = "XamlAutoFontFamily",
-                FontSize = size / 2,
-                HorizontalAlignment = CanvasHorizontalAlignment.Center,
-                VerticalAlignment = CanvasVerticalAlignment.Center
-            };
+            canvas.CreateResources -= OnCanvasCreateResources;
+            canvas.CreateResources += OnCanvasCreateResources;
+
+            canvas.Draw -= OnCanvasDraw;
+            canvas.Draw += OnCanvasDraw;
         }
-
-        canvas.CreateResources -= OnCanvasCreateResources;
-        canvas.CreateResources += OnCanvasCreateResources;
-
-        canvas.Draw -= OnCanvasDraw;
-        canvas.Draw += OnCanvasDraw;
 
         Unloaded -= OnUnloaded;
         Unloaded += OnUnloaded;
     }
+
     private void UpdateClearColor()
     {
         if (canvas == null)
@@ -110,6 +104,7 @@ public partial class Countdown : Control
 
         canvas.ClearColor = ClearColor;
     }
+
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         if (canvas == null)
@@ -129,13 +124,13 @@ public partial class Countdown : Control
     {
         if (disposing)
         {
-            backgroundDefaultBrush.Dispose();
-            BackgroundSuccessBrush.Dispose();
-            backgroundErrorBrush.Dispose();
-            borderDefaultBrush.Dispose();
-            borderGradientBrush.Dispose();
-            borderSuccessBrush.Dispose();
-            borderErrorBrush.Dispose();
+            backgroundDefaultBrush?.Dispose();
+            BackgroundSuccessBrush?.Dispose();
+            backgroundErrorBrush?.Dispose();
+            borderDefaultBrush?.Dispose();
+            borderGradientBrush?.Dispose();
+            borderSuccessBrush?.Dispose();
+            borderErrorBrush?.Dispose();
             hairlineStrokeStyle.Dispose();
             _textFormat.Dispose();
         }
@@ -143,7 +138,6 @@ public partial class Countdown : Control
 
     private void OnCanvasCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
     {
-        // Initialize the brushes.
         backgroundDefaultBrush = CreateRadialGradientBrush(sender, BackgroundGradientStops.Select(g => new CanvasGradientStop()
         {
             Color = g.Color,
@@ -180,8 +174,6 @@ public partial class Countdown : Control
         borderSuccessBrush = new CanvasSolidColorBrush(sender, SuccessBorderStrokeColor);
         borderErrorBrush = new CanvasSolidColorBrush(sender, ErrorBorderStrokeColor);
 
-        // Calculate the text position for vertical centering to account for the
-        // fact that text is not vertically centered within its layout bounds. 
         var textLayout = new CanvasTextLayout(sender, "0123456789", _textFormat, 0, 0);
         var drawMidpoint = (float)(textLayout.DrawBounds.Top + (textLayout.DrawBounds.Height / 2));
         var layoutMidpoint = (float)(textLayout.LayoutBounds.Top + (textLayout.LayoutBounds.Height / 2));
@@ -203,15 +195,13 @@ public partial class Countdown : Control
     {
         var session = args.DrawingSession;
 
-        // Scale to fit the current window size. 
         var scale = (float)Math.Min(sender.Size.Width, sender.Size.Height) / size;
         session.Transform = Matrix3x2.CreateScale(scale, scale);
 
-        // Calculate key values affecting this draw pass. 
-        var numberString = _countdownSeconds.ToString();// Math.Ceiling(secondsRemaining).ToString();
+        var numberString = _countdownSeconds.ToString();
 
         var sweepAngle = fullCircle - (fullCircle * (_countdownSeconds) / _maxSeconds);
-        ICanvasBrush backgroundBrush, borderBrush;
+        ICanvasBrush? backgroundBrush, borderBrush;
         switch (_state)
         {
             case CountdownState.Success:
@@ -229,7 +219,9 @@ public partial class Countdown : Control
                 break;
         }
 
-        // Draw the background.
+        if (backgroundBrush == null || borderBrush == null)
+            return;
+
         using (var builder = new CanvasPathBuilder(session))
         {
             builder.BeginFigure(centerPoint);
@@ -241,7 +233,6 @@ public partial class Countdown : Control
             }
         }
 
-        // Draw the border.
         using (var builder = new CanvasPathBuilder(session))
         {
             builder.BeginFigure(centerPoint.X, centerPoint.Y - radius);
@@ -255,7 +246,7 @@ public partial class Countdown : Control
 
         if (string.IsNullOrEmpty(_text))
         {
-            session.DrawText(_countdownSeconds.ToString(), textPosition, _textForeground, _textFormat);
+            session.DrawText(numberString, textPosition, _textForeground, _textFormat);
         }
         else
         {
@@ -269,6 +260,17 @@ public partial class Countdown : Control
             return;
 
         canvas.Invalidate();
+    }
+
+    private static CanvasTextFormat CreateDefaultTextFormat()
+    {
+        return new CanvasTextFormat()
+        {
+            FontFamily = "XamlAutoFontFamily",
+            FontSize = size / 2,
+            HorizontalAlignment = CanvasHorizontalAlignment.Center,
+            VerticalAlignment = CanvasVerticalAlignment.Center
+        };
     }
 
     private static readonly CanvasStrokeStyle hairlineStrokeStyle = new CanvasStrokeStyle()

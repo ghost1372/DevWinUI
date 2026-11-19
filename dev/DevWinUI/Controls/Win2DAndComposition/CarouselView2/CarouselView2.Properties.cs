@@ -17,7 +17,7 @@ public partial class CarouselView2
     public static readonly DependencyProperty UseGesturesProperty = DependencyProperty.Register(nameof(UseGestures), typeof(bool), typeof(CarouselView2),
     new PropertyMetadata(true, new PropertyChangedCallback((s, e) =>
     {
-        var control = s as CarouselView2;
+        var control = (CarouselView2)s;
         control.Refresh();
     })));
 
@@ -36,14 +36,14 @@ public partial class CarouselView2
     public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(CarouselView2),
         new PropertyMetadata(null, new PropertyChangedCallback((s, e) =>
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             if (e.NewValue is IEnumerable<object> newValue)
             {
                 control.Items = newValue.ToArray();
             }
             else
             {
-                control.Items = null;
+                control.Items = null!;
             }
             control.Refresh();
         })));
@@ -113,7 +113,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
         {
             if (e.NewValue != null)
             {
-                var control = s as CarouselView2;
+                var control = (CarouselView2)s;
                 control.AnimateSelection();
             }
         })));
@@ -133,7 +133,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     public static readonly DependencyProperty NavigationSpeedProperty = DependencyProperty.Register(nameof(NavigationSpeed), typeof(int), typeof(CarouselView2),
     new PropertyMetadata(500, new PropertyChangedCallback((s, e) =>
     {
-        var control = s as CarouselView2;
+        var control = (CarouselView2)s;
         if (e.NewValue is int newValue && newValue > 1)
         {
             control._delayedZIndexUpdateTimer.Interval = TimeSpan.FromMilliseconds(newValue / 2);
@@ -340,7 +340,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     {
         if (e.NewValue != null)
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             control.ChangeSelection(false);
         }
     })));
@@ -362,7 +362,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     {
         if (e.NewValue != null)
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             control.ChangeSelection(true);
         }
     })));
@@ -384,7 +384,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     {
         if (e.NewValue != null)
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             control.StartManipulationMode();
         }
     })));
@@ -406,7 +406,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     {
         if (e.NewValue != null)
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             control.StopManipulationMode();
         }
     })));
@@ -420,7 +420,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     public static readonly DependencyProperty CarouselRotationAngleProperty = DependencyProperty.Register(nameof(CarouselRotationAngle), typeof(double), typeof(CarouselView2),
         new PropertyMetadata(null, new PropertyChangedCallback((s, e) =>
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             if (control._inputAllowed && control.IsCarouselMoving && e.NewValue is double v)
             {
                 control.UpdateWheelRotation((float)v);
@@ -436,7 +436,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     public static readonly DependencyProperty CarouselPositionYProperty = DependencyProperty.Register(nameof(CarouselPositionY), typeof(double), typeof(CarouselView2),
         new PropertyMetadata(null, new PropertyChangedCallback((s, e) =>
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             if (control._inputAllowed && control.IsCarouselMoving && e.NewValue is double v)
             {
                 control.UpdateCarouselVerticalScrolling(Convert.ToSingle(v));
@@ -452,7 +452,7 @@ new PropertyMetadata(0, OnSelectedIndexChanged));
     public static readonly DependencyProperty CarouselPositionXProperty = DependencyProperty.Register(nameof(CarouselPositionX), typeof(double), typeof(CarouselView2),
         new PropertyMetadata(null, new PropertyChangedCallback((s, e) =>
         {
-            var control = s as CarouselView2;
+            var control = (CarouselView2)s;
             if (control._inputAllowed && control.IsCarouselMoving && e.NewValue is double v)
             {
                 control.UpdateCarouselHorizontalScrolling(Convert.ToSingle(v));

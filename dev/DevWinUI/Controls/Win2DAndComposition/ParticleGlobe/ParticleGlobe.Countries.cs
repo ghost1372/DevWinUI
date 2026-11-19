@@ -1,16 +1,16 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
-    public event EventHandler<ParticleGlobeCountryEventArgs> CountryClicked;
-    public event EventHandler<ParticleGlobeSelectionChangedEventArgs> SelectionChanged;
+    public event EventHandler<ParticleGlobeCountryEventArgs>? CountryClicked;
+    public event EventHandler<ParticleGlobeSelectionChangedEventArgs>? SelectionChanged;
 
     private ParticleGlobeCountryEntry[] _countries = Array.Empty<ParticleGlobeCountryEntry>();
     private Dictionary<string, int> _codeToId = new(StringComparer.OrdinalIgnoreCase);
 
     private bool _countryHover = true, _showTooltip = true;
     private volatile int _selectedId;
-    private string _selectedCode;
+    private string? _selectedCode;
 
     private int _hoverId, _fadeId, _selDrawId;
     private float _hoverAmt, _fadeAmt, _selAmt;
@@ -19,8 +19,8 @@ public sealed partial class ParticleGlobe
     private Vector2 _pointerPos, _clickPos;
     private Windows.Foundation.Point _pressPt;
 
-    private CanvasTextFormat _tipFormat;
-    private CanvasTextLayout _tipLayout;
+    private CanvasTextFormat? _tipFormat;
+    private CanvasTextLayout? _tipLayout;
     private int _tipLayoutId = -1;
 
     private static ParticleGlobeCountryEntry CreateEntry(WorldMapCountry country)
@@ -30,7 +30,7 @@ public sealed partial class ParticleGlobe
         return new ParticleGlobeCountryEntry(string.IsNullOrEmpty(code) ? name : code, name ?? code);
     }
 
-    private ParticleGlobeCountryEntry FindEntry(string code)
+    private ParticleGlobeCountryEntry? FindEntry(string? code)
     {
         if (string.IsNullOrEmpty(code) || !_codeToId.TryGetValue(code, out int id)) return null;
         var list = _countries;
@@ -43,7 +43,7 @@ public sealed partial class ParticleGlobe
         _selectedId = !string.IsNullOrEmpty(code) && _codeToId.TryGetValue(code, out int id) ? id : 0;
     }
 
-    private void OnSelectedCodeChanged(string oldCode, string newCode)
+    private void OnSelectedCodeChanged(string? oldCode, string? newCode)
     {
         _selectedCode = newCode;
         ResolveSelectedId();
@@ -87,7 +87,7 @@ public sealed partial class ParticleGlobe
     private void PublishHover(int id)
     {
         var list = _countries;
-        string code = id > 0 && id < list.Length ? list[id].Code : null;
+        string? code = id > 0 && id < list.Length ? list[id].Code : null;
         DispatcherQueue.TryEnqueue(() => SetValue(HoveredCountryCodeProperty, code));
     }
 

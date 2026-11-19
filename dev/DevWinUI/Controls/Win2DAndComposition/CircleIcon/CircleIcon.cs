@@ -7,7 +7,7 @@ namespace DevWinUI;
 public partial class CircleIcon : Control
 {
     private const string PART_Canvas = "PART_Canvas";
-    private CanvasControl canvas;
+    private CanvasControl? canvas;
 
     public Color ClearColor
     {
@@ -26,6 +26,7 @@ public partial class CircleIcon : Control
             ctl.UpdateClearColor();
         }
     }
+
     public double BorderStrokeThickness
     {
         get { return (double)GetValue(BorderStrokeThicknessProperty); }
@@ -70,7 +71,7 @@ public partial class CircleIcon : Control
             ctl.UpdateCanvas();
         }
     }
-    
+
     public CircleIcon()
     {
         DefaultStyleKey = typeof(CircleIcon);
@@ -100,9 +101,13 @@ public partial class CircleIcon : Control
 
         UpdateClearColor();
 
-        canvas.Draw -= OnCanvasDraw;
-        canvas.Draw += OnCanvasDraw;
+        if (canvas != null)
+        {
+            canvas.Draw -= OnCanvasDraw;
+            canvas.Draw += OnCanvasDraw;
+        }
     }
+
     private void UpdateClearColor()
     {
         if (canvas == null)
@@ -118,6 +123,7 @@ public partial class CircleIcon : Control
 
         canvas.Invalidate();
     }
+
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
         var width = (float)sender.ActualWidth;
@@ -131,7 +137,7 @@ public partial class CircleIcon : Control
             Position = (float)g.Position
         }).ToArray();
 
-        using (var brush = new CanvasRadialGradientBrush(canvas, canvasStops, CanvasEdgeBehavior.Clamp, CanvasAlphaMode.Straight)
+        using (var brush = new CanvasRadialGradientBrush(sender, canvasStops, CanvasEdgeBehavior.Clamp, CanvasAlphaMode.Straight)
         {
             Center = center,
             RadiusX = radius,

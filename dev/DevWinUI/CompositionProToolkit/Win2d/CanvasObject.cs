@@ -48,7 +48,7 @@ public static partial class CanvasObject
     /// string format.</param>
     /// <returns>CanvasGeometry</returns>
     public static CanvasGeometry CreateGeometry(ICanvasResourceCreator resourceCreator, string pathData,
-        StringBuilder logger = null)
+        StringBuilder? logger = null)
     {
         using (new CultureShield("en-US"))
         {
@@ -95,7 +95,7 @@ public static partial class CanvasObject
     /// CanvasPathBuilder commands, used for creating the CanvasGeometry, in 
     /// string format.</param>
     /// <returns>CanvasGeometry</returns>
-    public static CanvasGeometry CreateGeometry(string pathData, StringBuilder logger = null)
+    public static CanvasGeometry CreateGeometry(string pathData, StringBuilder? logger = null)
     {
         using (new CultureShield("en-US"))
         {

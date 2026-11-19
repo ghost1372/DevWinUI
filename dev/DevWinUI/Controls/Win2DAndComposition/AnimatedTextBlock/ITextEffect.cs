@@ -53,7 +53,7 @@ public interface ITextEffect
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush,
+        CanvasLinearGradientBrush? gradientBrush,
         AnimatedTextBlockRedrawState state,
         CanvasDrawingSession drawingSession,
         CanvasAnimatedDrawEventArgs args);

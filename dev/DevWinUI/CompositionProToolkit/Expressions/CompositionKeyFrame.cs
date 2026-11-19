@@ -50,7 +50,7 @@ public sealed partial class KeyFrame<T>
     /// <summary>
     /// Gets or sets the Easing function
     /// </summary>
-    public CompositionEasingFunction Easing { get; set; }
+    public CompositionEasingFunction? Easing { get; set; }
 
     #endregion
 
@@ -64,7 +64,7 @@ public sealed partial class KeyFrame<T>
     /// to 1.0.</param>
     /// <param name="value">The expression used to calculate the value of the key frame.</param>
     /// <param name="easing">The easing function to use when interpolating between frames.</param>
-    public KeyFrame(float normalizedProgressKey, T value, CompositionEasingFunction easing = null)
+    public KeyFrame(float normalizedProgressKey, T value, CompositionEasingFunction? easing = null)
     {
         Key = normalizedProgressKey;
         Value = value;
@@ -180,13 +180,13 @@ public sealed partial class KeyFrameAnimation<T>
     /// a percentage of the animation Duration. Allowed value is from 0.0 to 1.0.</param>
     /// <param name="value">The expression used to calculate the value of the KeyFrame.</param>
     /// <param name="easingFunction">The easing function to use when interpolating between frames.</param>
-    public void InsertKeyFrame(float normalizedProgressKey, T value, CompositionEasingFunction easingFunction = null)
+    public void InsertKeyFrame(float normalizedProgressKey, T value, CompositionEasingFunction? easingFunction = null)
     {
         var type = typeof(T);
         // Invoke the appropriate InsertKeyFrame method for the encapsulated KeyFrameAnimation object
         if (KeyFrameAnimationHelper.InsertMethods.ContainsKey(type) && KeyFrameAnimationHelper.InsertMethods[type] != null)
         {
-            KeyFrameAnimationHelper.InsertMethods[type].Invoke(Animation, new object[] {
+            KeyFrameAnimationHelper.InsertMethods[type].Invoke(Animation, new object?[] {
                 normalizedProgressKey,
                 value,
                 easingFunction
@@ -225,7 +225,7 @@ public sealed partial class KeyFrameAnimation<T>
     /// <param name="expression">The expression which has to be converted to string to calculate the value of the KeyFrame.</param>
     /// <param name="easingFunction">The easing function to use when interpolating between frames.</param>
     public void InsertExpressionKeyFrame(float normalizedProgressKey, Expression<CompositionExpression<T>> expression,
-        CompositionEasingFunction easingFunction = null)
+        CompositionEasingFunction? easingFunction = null)
     {
         Animation.InsertExpressionKeyFrame(normalizedProgressKey, expression, easingFunction);
     }
@@ -236,7 +236,7 @@ public sealed partial class KeyFrameAnimation<T>
     /// <param name="normalizedProgressKey">The time the key frame should occur at, expressed as 
     /// a percentage of the animation Duration. Allowed value is from 0.0 to 1.0.</param>
     /// <param name="easingFunction">The easing function to use when interpolating between frames.</param>
-    public void InsertStartingValueKeyFrame(float normalizedProgressKey, CompositionEasingFunction easingFunction = null)
+    public void InsertStartingValueKeyFrame(float normalizedProgressKey, CompositionEasingFunction? easingFunction = null)
     {
         Animation.InsertExpressionKeyFrame(normalizedProgressKey,
             Animation.Compositor.CreateStartingValueExpression<T>(), easingFunction);
@@ -248,7 +248,7 @@ public sealed partial class KeyFrameAnimation<T>
     /// <param name="normalizedProgressKey">The time the key frame should occur at, expressed as 
     /// a percentage of the animation Duration. Allowed value is from 0.0 to 1.0.</param>
     /// <param name="easingFunction">The easing function to use when interpolating between frames.</param>
-    public void InsertFinalValueKeyFrame(float normalizedProgressKey, CompositionEasingFunction easingFunction = null)
+    public void InsertFinalValueKeyFrame(float normalizedProgressKey, CompositionEasingFunction? easingFunction = null)
     {
         Animation.InsertExpressionKeyFrame(normalizedProgressKey,
             Animation.Compositor.CreateFinalValueExpression<T>(), easingFunction);

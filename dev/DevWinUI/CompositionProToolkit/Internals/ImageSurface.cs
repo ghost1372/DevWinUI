@@ -1,4 +1,4 @@
-﻿// Copyright (c) Ratish Philip 
+// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,8 +38,8 @@ internal sealed partial class ImageSurface : IImageSurface
 
     private ICompositionGeneratorInternal _generator;
     private CompositionDrawingSurface _surface;
-    private Uri _uri;
-    private CanvasBitmap _canvasBitmap;
+    private Uri? _uri;
+    private CanvasBitmap? _canvasBitmap;
     private readonly object _surfaceLock;
     private bool _raiseLoadCompletedEvent;
 
@@ -51,7 +51,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// Event that is raised when the image has been downloaded, decoded and loaded
     /// to the underlying IImageSurface. This event fires regardless of success or failure.
     /// </summary>
-    public event TypedEventHandler<IImageSurface, ImageSurfaceLoadStatus> LoadCompleted;
+    public event TypedEventHandler<IImageSurface, ImageSurfaceLoadStatus>? LoadCompleted;
 
     #endregion
 
@@ -70,7 +70,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// <summary>
     /// Gets the Uri of the image to be loaded onto the IImageSurface
     /// </summary>
-    public Uri Uri => _uri;
+    public Uri? Uri => _uri;
 
     /// <summary>
     /// Gets the IImageSurface Size
@@ -100,7 +100,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// <summary>
     /// The CanvasBitmap representing the loaded image
     /// </summary>
-    public CanvasBitmap SurfaceBitmap => _canvasBitmap;
+    public CanvasBitmap? SurfaceBitmap => _canvasBitmap;
 
     #endregion
 
@@ -119,7 +119,7 @@ internal sealed partial class ImageSurface : IImageSurface
         _surfaceLock = new object();
         // Create the Surface of the IImageSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         _uri = uri;
         _raiseLoadCompletedEvent = _uri != null;
         _canvasBitmap = null;
@@ -137,13 +137,13 @@ internal sealed partial class ImageSurface : IImageSurface
     /// <param name="surfaceBitmap">CanvasBitmap which will be rendered on the IImageSurface.</param>
     /// <param name="size">Size of the IImageSurface</param>
     /// <param name="options">The image's resize and alignment options in the allocated space.</param>
-    internal ImageSurface(ICompositionGeneratorInternal generator, CanvasBitmap surfaceBitmap, Size size, ImageSurfaceOptions options)
+    internal ImageSurface(ICompositionGeneratorInternal generator, CanvasBitmap? surfaceBitmap, Size size, ImageSurfaceOptions options)
     {
         _generator = generator ?? throw new ArgumentNullException(nameof(generator), "CompositionGenerator cannot be null!");
         _surfaceLock = new object();
         // Create the Surface of the IImageSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         _uri = null;
         _raiseLoadCompletedEvent = false;
         if (surfaceBitmap != null)
@@ -239,7 +239,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// Redraws the IImageSurface using the given CanvasBitmap.
     /// </summary>
     /// <param name="surfaceBitmap">Image to be loaded on the surface.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap)
+    public void Redraw(CanvasBitmap? surfaceBitmap)
     {
         Redraw(surfaceBitmap, Size, Options);
     }
@@ -249,7 +249,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// </summary>
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
     /// <param name="options">The image's resize, alignment options in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, ImageSurfaceOptions options)
     {
         // Set the image options
         Options = options;
@@ -263,7 +263,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
     /// <param name="size">New size of the IImageSurface.</param>
     /// <param name="options">The image's resize, alignment options in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, Size size, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, Size size, ImageSurfaceOptions options)
     {
         if (_canvasBitmap != surfaceBitmap)
         {
@@ -406,10 +406,10 @@ internal sealed partial class ImageSurface : IImageSurface
             _generator.DeviceReplaced -= OnDeviceReplaced;
         _canvasBitmap?.Dispose();
         _canvasBitmap = null;
-        _surface = null;
-        _generator = null;
+        _surface = null!;
+        _generator = null!;
         _uri = null;
-        Options = null;
+        Options = null!;
     }
 
     #endregion
@@ -436,7 +436,7 @@ internal sealed partial class ImageSurface : IImageSurface
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">object</param>
-    private async void OnDeviceReplaced(object sender, object e)
+    private async void OnDeviceReplaced(object? sender, object e)
     {
         // Recreate the ImageSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, Size);

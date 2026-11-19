@@ -22,15 +22,15 @@ public partial class ColorShadow : Control
     private const double DefaultShadowOpacity = 0.7f;
     private static readonly Color DefaultShadowColor = Colors.Black;
 
-    private Compositor _compositor = null!;
-    private ICompositionGenerator _generator = null!;
+    private Compositor? _compositor;
+    private ICompositionGenerator? _generator;
     private IImageSurface? _imageSurface;
     private ContainerVisual? _rootVisual;
     private SpriteVisual? _colorShadowVisual;
     private SpriteVisual? _imageVisual;
-    private CompositionEffectBrush _colorShadowBrush = null!;
-    private DropShadow _dropShadow = null!;
-    private ScalarKeyFrameAnimation _colorShadowBlurAnimation = null!;
+    private CompositionEffectBrush? _colorShadowBrush;
+    private DropShadow? _dropShadow;
+    private ScalarKeyFrameAnimation? _colorShadowBlurAnimation;
     private readonly ImageSurfaceOptions _maskOptions = ImageSurfaceOptions.DefaultImageMaskOptions;
 
     private Grid? _renderGrid;
@@ -40,6 +40,7 @@ public partial class ColorShadow : Control
     private IImageMaskSurface? _imageMaskSurface;
     private bool forceUpdateMask = false;
     private ScalarKeyFrameAnimation? _breathAnimation;
+
     public ColorShadow()
     {
         // Set the default Style Key
@@ -58,10 +59,11 @@ public partial class ColorShadow : Control
         UpdateIsBreathing();
     }
 
-    private async Task<bool> OnImageUriChangedAsync(Uri? imageUri)
+    private async Task<bool> OnImageUriChangedAsync(Uri imageUri)
     {
         return await LoadImageAsync(imageUri);
     }
+
     protected override Size ArrangeOverride(Size finalSize)
     {
         var size = base.ArrangeOverride(finalSize);
@@ -73,170 +75,162 @@ public partial class ColorShadow : Control
 
     private async void BaseArrangeOverride(Size finalSize)
     {
-        if (_compositor == null)
+        var (compositor, generator, dropShadow) = EnsureComposition();
+
+        var imageSurface = _imageSurface;
+        if (!_imageSourceLoaded || imageSurface == null)
         {
-            InitComposition();
+            return;
         }
 
-        if (_imageSourceLoaded && _imageSurface != null)
+        // Taking into account the BorderThickness Padding
+        var padding = Padding;
+        var paddingSize = padding.CollapseThickness();
+
+        // Calculate the Dimensions of the frameVisual
+        var srcWidth = imageSurface.DecodedPhysicalSize.Width;
+        var srcHeight = imageSurface.DecodedPhysicalSize.Height;
+        var destWidth = Math.Max(0, finalSize.Width - paddingSize.Width);
+        var destHeight = Math.Max(0, finalSize.Height - paddingSize.Height);
+
+        // Get the size that can fit in the destination size
+        var targetRect = Utils.GetOptimumSize(srcWidth,
+                                              srcHeight,
+                                              destWidth,
+                                              destHeight,
+                                              Stretch,
+                                              AlignmentX.Center,
+                                              AlignmentY.Center);
+        var targetWidth = targetRect.Width;
+        var targetHeight = targetRect.Height;
+        var targetSize = new Vector2(targetWidth.ToSingle(), targetHeight.ToSingle());
+
+        // Center Alignment
+        var left = targetRect.Left.ToSingle();
+        var top = targetRect.Top.ToSingle();
+
+        var rootVisual = _rootVisual ??= compositor.CreateContainerVisual();
+        rootVisual.Size = targetSize;
+        rootVisual.Offset = new Vector3(left, top, 0f);
+
+        // Image Layer
+        var imageVisual = _imageVisual ??= compositor.CreateSpriteVisual();
+        imageVisual.Size = targetSize;
+        imageVisual.Offset = new Vector3((float)ImageLayoutOffsetX, (float)ImageLayoutOffsetY, (float)ImageLayoutOffsetZ);
+
+        var imageBrush = compositor.CreateSurfaceBrush(imageSurface);
+        imageBrush.Stretch = ImageStretch;
+        imageBrush.Offset = new Vector2((float)ImageOffsetX, (float)ImageOffsetY);
+
+        IImageSurface? maskSurface = await ApplyMaskAsync(compositor, generator, imageVisual, imageBrush);
+
+        // Color Shadow Layer
+        var colorShadowVisual = _colorShadowVisual ??= compositor.CreateSpriteVisual();
+
+        var colorPaddingSize = ColorShadowPadding.CollapseThickness();
+        colorShadowVisual.Size = new Vector2(targetSize.X + colorPaddingSize.Width.ToSingle(), targetSize.Y + colorPaddingSize.Height.ToSingle());
+        colorShadowVisual.Offset = new Vector3(-ColorShadowPadding.Left.ToSingle(), -ColorShadowPadding.Top.ToSingle(), 0);
+
+        var colorShadowBrush = _colorShadowBrush;
+        if (colorShadowBrush == null)
         {
-            // Taking into account the BorderThickness Padding
-            var padding = Padding;
-            var paddingSize = padding.CollapseThickness();
-
-            // Calculate the Dimensions of the frameVisual
-            var srcWidth = _imageSurface.DecodedPhysicalSize.Width;
-            var srcHeight = _imageSurface.DecodedPhysicalSize.Height;
-            var destWidth = Math.Max(0, finalSize.Width - paddingSize.Width);
-            var destHeight = Math.Max(0, finalSize.Height - paddingSize.Height);
-
-            // Get the size that can fit in the destination size
-            var targetRect = Utils.GetOptimumSize(srcWidth,
-                                                  srcHeight,
-                                                  destWidth,
-                                                  destHeight,
-                                                  Stretch,
-                                                  AlignmentX.Center,
-                                                  AlignmentY.Center);
-            var targetWidth = targetRect.Width;
-            var targetHeight = targetRect.Height;
-            var targetSize = new Vector2(targetWidth.ToSingle(), targetHeight.ToSingle());
-
-            // Center Alignment
-            var left = targetRect.Left.ToSingle();
-            var top = targetRect.Top.ToSingle();
-
-            if (_rootVisual == null)
+            var blurEffect = new GaussianBlurEffect
             {
-                _rootVisual = _compositor!.CreateContainerVisual();
-            }
+                Name = "Blur",
+                BlurAmount = ColorShadowBlurRadius.ToSingle(),
+                BorderMode = EffectBorderMode.Soft,
+                Source = new CompositionEffectSourceParameter("source")
+            };
 
-            _rootVisual.Size = targetSize;
-            _rootVisual.Offset = new Vector3(left, top, 0f);
-
-            // Image Layer
-            if (_imageVisual == null)
+            // Composite Effect
+            var effect = new CompositeEffect
             {
-                _imageVisual = _compositor!.CreateSpriteVisual();
-            }
-
-            _imageVisual.Size = targetSize;
-            _imageVisual.Offset = new Vector3((float)ImageLayoutOffsetX, (float)ImageLayoutOffsetY, (float)ImageLayoutOffsetZ);
-
-            var imageBrush = _compositor!.CreateSurfaceBrush(_imageSurface);
-            imageBrush.Stretch = ImageStretch;
-            imageBrush.Offset = new Vector2((float)ImageOffsetX, (float)ImageOffsetY);
-
-            IImageSurface? maskSurface = await ApplyMaskAsync(imageBrush);
-
-            // Color Shadow Layer
-            if (_colorShadowVisual == null)
-            {
-                _colorShadowVisual = _compositor.CreateSpriteVisual();
-            }
-
-            var colorPaddingSize = ColorShadowPadding.CollapseThickness();
-            _colorShadowVisual.Size = new Vector2(targetSize.X + colorPaddingSize.Width.ToSingle(), targetSize.Y + colorPaddingSize.Height.ToSingle());
-            _colorShadowVisual.Offset = new Vector3(-ColorShadowPadding.Left.ToSingle(), -ColorShadowPadding.Top.ToSingle(), 0);
-
-            if (_colorShadowBrush == null)
-            {
-                var blurEffect = new GaussianBlurEffect
+                Mode = CanvasComposite.DestinationIn,
+                Sources =
                 {
-                    Name = "Blur",
-                    BlurAmount = ColorShadowBlurRadius.ToSingle(),
-                    BorderMode = EffectBorderMode.Soft,
-                    Source = new CompositionEffectSourceParameter("source")
-                };
+                    blurEffect,
+                    new CompositionEffectSourceParameter("mask")
+                }
+            };
 
-                // Composite Effect
-                var effect = new CompositeEffect
-                {
-                    Mode = CanvasComposite.DestinationIn,
-                    Sources =
-                        {
-                            blurEffect,
-                            new CompositionEffectSourceParameter("mask")
-                        }
-                };
+            // Create Effect Factory
+            var factory = compositor.CreateEffectFactory(effect, new[] { "Blur.BlurAmount" });
+            // Create Effect Brush
+            colorShadowBrush = factory.CreateBrush();
+            _colorShadowBrush = colorShadowBrush;
+        }
 
-                // Create Effect Factory
-                var factory = _compositor.CreateEffectFactory(effect, new[] { "Blur.BlurAmount" });
-                // Create Effect Brush
-                _colorShadowBrush = factory.CreateBrush();
-            }
+        colorShadowBrush.SetSourceParameter("source", imageBrush);
 
-            _colorShadowBrush.SetSourceParameter("source", imageBrush);
+        _maskOptions.BlurRadius = ColorMaskBlurRadius.ToSingle();
 
-            _maskOptions.BlurRadius = ColorMaskBlurRadius.ToSingle();
+        void CreateShadowMask()
+        {
+            _imageMaskSurface?.Dispose();
+            _imageMaskSurface = null;
 
-            void CreateShadowMask()
-            {
-                _imageMaskSurface?.Dispose();
-                _imageMaskSurface = null;
+            // Create the ImageMaskSurface
+            var newMaskSurface = generator.CreateImageMaskSurface(maskSurface ?? imageSurface, colorShadowVisual.Size.ToSize(), ColorMaskPadding, _maskOptions);
+            _imageMaskSurface = newMaskSurface;
 
-                // Create the ImageMaskSurface 
+            // Create SurfaceBrush
+            var mask = compositor.CreateSurfaceBrush(newMaskSurface);
+            // Set the Mask
+            colorShadowBrush.SetSourceParameter("mask", mask);
+        }
 
-                _imageMaskSurface = _generator.CreateImageMaskSurface(maskSurface ?? _imageSurface!, _colorShadowVisual!.Size.ToSize(), ColorMaskPadding, _maskOptions);
-
-                // Create SurfaceBrush
-                var mask = _compositor.CreateSurfaceBrush(_imageMaskSurface);
-                // Set the Mask
-                _colorShadowBrush.SetSourceParameter("mask", mask);
-            }
-
-            if (_imageMaskSurface == null)
+        if (_imageMaskSurface == null)
+        {
+            CreateShadowMask();
+        }
+        else
+        {
+            if (forceUpdateMask)
             {
                 CreateShadowMask();
+                forceUpdateMask = false;
             }
             else
             {
-                if (forceUpdateMask)
-                {
-                    CreateShadowMask();
-                    forceUpdateMask = false;
-                }
-                else
-                {
-                    // Update the ImageMaskSurface
-                    _imageMaskSurface.Resize(_colorShadowVisual.Size.ToSize(), ColorMaskPadding, _maskOptions);
-                }
+                // Update the ImageMaskSurface
+                _imageMaskSurface.Resize(colorShadowVisual.Size.ToSize(), ColorMaskPadding, _maskOptions);
             }
+        }
 
-            _colorShadowVisual.Brush = _colorShadowBrush;
-            _colorShadowVisual.Opacity = ColorShadowOpacity.ToSingle();
+        colorShadowVisual.Brush = colorShadowBrush;
+        colorShadowVisual.Opacity = ColorShadowOpacity.ToSingle();
 
-            _colorShadowBlurAnimation = _compositor.CreateScalarKeyFrameAnimation();
-            _colorShadowBlurAnimation.Duration = TimeSpan.FromMilliseconds(100);
+        var blurAnimation = compositor.CreateScalarKeyFrameAnimation();
+        blurAnimation.Duration = TimeSpan.FromMilliseconds(100);
 
-            Expression<CompositionExpression<float>> expr = c => ColorShadowBlurRadius.ToSingle();
-            _colorShadowBlurAnimation.InsertExpressionKeyFrame(1f, expr, _compositor.CreateLinearEasingFunction());
-            _colorShadowBrush.Properties.StartAnimation("Blur.BlurAmount", _colorShadowBlurAnimation);
+        Expression<CompositionExpression<float>> expr = c => ColorShadowBlurRadius.ToSingle();
+        blurAnimation.InsertExpressionKeyFrame(1f, expr, compositor.CreateLinearEasingFunction());
+        colorShadowBrush.Properties.StartAnimation("Blur.BlurAmount", blurAnimation);
+        _colorShadowBlurAnimation = blurAnimation;
 
-            // Shadow for the Image Layer
-            if (IsShadowEnabled)
-            {
-                _dropShadow.Offset = new Vector3(ShadowOffsetX.ToSingle(), ShadowOffsetY.ToSingle(), 0);
-                _dropShadow.Opacity = ShadowOpacity.ToSingle();
-                _dropShadow.BlurRadius = ShadowBlurRadius.ToSingle();
-                _dropShadow.Color = ShadowColor;
-                _imageVisual.Shadow = _dropShadow;
-            }
-            else
-            {
-                _imageVisual.Shadow = null;
-            }
+        // Shadow for the Image Layer
+        if (IsShadowEnabled)
+        {
+            dropShadow.Offset = new Vector3(ShadowOffsetX.ToSingle(), ShadowOffsetY.ToSingle(), 0);
+            dropShadow.Opacity = ShadowOpacity.ToSingle();
+            dropShadow.BlurRadius = ShadowBlurRadius.ToSingle();
+            dropShadow.Color = ShadowColor;
+            imageVisual.Shadow = dropShadow;
+        }
+        else
+        {
+            imageVisual.Shadow = null;
+        }
 
-            if (!_rootVisual.Children.Any())
-            {
-                _rootVisual.Children.InsertAtTop(_colorShadowVisual);
-                _rootVisual.Children.InsertAtTop(_imageVisual);
-            }
+        if (!rootVisual.Children.Any())
+        {
+            rootVisual.Children.InsertAtTop(colorShadowVisual);
+            rootVisual.Children.InsertAtTop(imageVisual);
+        }
 
-            if (_renderGrid != null)
-            {
-                ElementCompositionPreview.SetElementChildVisual(_renderGrid, _rootVisual);
-            }
+        if (_renderGrid != null)
+        {
+            ElementCompositionPreview.SetElementChildVisual(_renderGrid, rootVisual);
         }
     }
 
@@ -282,13 +276,11 @@ public partial class ColorShadow : Control
                 }
             }
 
-            if (_compositor == null)
-            {
-                InitComposition();
-            }
+            var (_, generator, _) = EnsureComposition();
 
-            _imageSurface = await _generator.CreateImageSurfaceAsync(uri, new Size(), ImageSurfaceOptions.Default);
-            _imageSourceLoaded = _imageSurface.Status == ImageSurfaceLoadStatus.Success;
+            var imageSurface = await generator.CreateImageSurfaceAsync(uri, new Size(), ImageSurfaceOptions.Default);
+            _imageSurface = imageSurface;
+            _imageSourceLoaded = imageSurface.Status == ImageSurfaceLoadStatus.Success;
         }
         catch
         {
@@ -309,65 +301,67 @@ public partial class ColorShadow : Control
         return _imageSourceLoaded;
     }
 
-    private void InitComposition()
+    private (Compositor Compositor, ICompositionGenerator Generator, DropShadow DropShadow) EnsureComposition()
     {
-        _compositor = CompositionTarget.GetCompositorForCurrentThread();
-        _generator = _compositor.CreateCompositionGenerator();
-        _dropShadow = _compositor.CreateDropShadow();
-        _dropShadow.SourcePolicy = CompositionDropShadowSourcePolicy.InheritFromVisualContent;
+        if (_compositor == null || _generator == null || _dropShadow == null)
+        {
+            var compositor = CompositionTarget.GetCompositorForCurrentThread();
+            var generator = compositor.CreateCompositionGenerator();
+            var dropShadow = compositor.CreateDropShadow();
+            dropShadow.SourcePolicy = CompositionDropShadowSourcePolicy.InheritFromVisualContent;
+
+            _compositor = compositor;
+            _generator = generator;
+            _dropShadow = dropShadow;
+        }
+
+        return (_compositor, _generator, _dropShadow);
     }
 
-    private async Task<IImageSurface?> ApplyMaskAsync(CompositionBrush imageBrush)
+    private async Task<IImageSurface?> ApplyMaskAsync(
+        Compositor compositor,
+        ICompositionGenerator generator,
+        SpriteVisual imageVisual,
+        CompositionBrush imageBrush)
     {
         if (IsRounded)
         {
             // Force circular mask, ignore user mask completely
-            var circleSurface = await LoadCircleMaskAsync();
+            var circleSurface = await LoadMaskInternalAsync(generator, new Uri("ms-appx:///Assets/Mask/CircleMask.png"));
 
-            var maskBrush = _compositor.CreateMaskBrush();
+            var maskBrush = compositor.CreateMaskBrush();
             maskBrush.Source = imageBrush;
-            maskBrush.Mask = _compositor.CreateSurfaceBrush(circleSurface);
+            maskBrush.Mask = compositor.CreateSurfaceBrush(circleSurface);
 
-            _imageVisual!.Brush = maskBrush;
+            imageVisual.Brush = maskBrush;
             return circleSurface;
         }
 
         // Not rounded → check if user provided Mask
-        if (Mask != null)
+        if (Mask is Uri userMask)
         {
-            var userSurface = await LoadUserMaskAsync();
+            var userSurface = await LoadMaskInternalAsync(generator, userMask);
 
-            var maskBrush = _compositor.CreateMaskBrush();
+            var maskBrush = compositor.CreateMaskBrush();
             maskBrush.Source = imageBrush;
-            maskBrush.Mask = _compositor.CreateSurfaceBrush(userSurface);
+            maskBrush.Mask = compositor.CreateSurfaceBrush(userSurface);
 
-            _imageVisual!.Brush = maskBrush;
+            imageVisual.Brush = maskBrush;
             return userSurface;
         }
-        else
-        {
-            // No mask at all
-            _imageVisual!.Brush = imageBrush;
-            return null;
-        }
+
+        // No mask at all
+        imageVisual.Brush = imageBrush;
+        return null;
     }
 
-    private async Task<IImageSurface> LoadCircleMaskAsync()
-    {
-        return await LoadMaskInternalAsync(new Uri("ms-appx:///Assets/Mask/CircleMask.png"));
-    }
-
-    private async Task<IImageSurface> LoadUserMaskAsync()
-    {
-        return await LoadMaskInternalAsync(Mask);
-    }
-    private async Task<IImageSurface> LoadMaskInternalAsync(Uri uri)
+    private async Task<IImageSurface> LoadMaskInternalAsync(ICompositionGenerator generator, Uri uri)
     {
         var assembly = typeof(ColorShadow).Assembly;
 
         var stream = FileHelper.GetFileFromEmbededResourcesOrUri(uri, assembly);
 
-        CanvasBitmap? canvasBitmap = null;
+        CanvasBitmap canvasBitmap;
         var canvasDevice = CanvasDevice.GetSharedDevice();
 
         if (stream != null)
@@ -379,12 +373,12 @@ public partial class ColorShadow : Control
             canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, uri);
         }
 
-        return _generator.CreateImageSurface(canvasBitmap, canvasBitmap.Size, ImageSurfaceOptions.Default);
+        return generator.CreateImageSurface(canvasBitmap, canvasBitmap.Size, ImageSurfaceOptions.Default);
     }
 
     public void StartBreath(CompositionEasingFunction? breathEasing = null, TimeSpan? breathDuration = null)
     {
-        if (_colorShadowBrush == null || _breathAnimation != null)
+        if (_compositor == null || _colorShadowBrush == null || _breathAnimation != null)
             return;
 
         var easing = breathEasing ?? _compositor.CreateEaseInOutSineEasingFunction();

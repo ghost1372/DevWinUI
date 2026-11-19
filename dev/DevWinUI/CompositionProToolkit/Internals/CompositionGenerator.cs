@@ -1,4 +1,4 @@
-﻿// Copyright (c) Ratish Philip 
+// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,7 +40,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <summary>
     /// Device Replaced event
     /// </summary>
-    public event EventHandler<object> DeviceReplaced;
+    public event EventHandler<object>? DeviceReplaced;
 
     #endregion
 
@@ -49,7 +49,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     private Compositor _compositor;
     private CanvasDevice _canvasDevice;
     private CompositionGraphicsDevice _graphicsDevice;
-    private readonly object _disposingLock;
+    private readonly object _disposingLock = new();
 
     private readonly bool _isGraphicsDeviceCreator;
     private readonly bool _isCanvasDeviceCreator;
@@ -88,9 +88,6 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
         // Device Lost Helper
         _deviceLostHelper = new DeviceLostHelper();
         _deviceLostHelper.DeviceLost += OnDeviceLost;
-
-        // Disposing Lock
-        _disposingLock = new object();
 
         // Canvas Device
         _canvasDevice = useSharedCanvasDevice ?
@@ -155,7 +152,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="size">Size of the mask</param>
     /// <param name="geometry">Geometry of the mask</param>
     /// <returns>IMaskSurface</returns>
-    public IMaskSurface CreateMaskSurface(Size size, CanvasGeometry geometry)
+    public IMaskSurface CreateMaskSurface(Size size, CanvasGeometry? geometry)
     {
         return CreateMaskSurface(size, geometry, Vector2.Zero);
     }
@@ -170,7 +167,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
     /// <returns>IMaskSurface</returns>
-    public IMaskSurface CreateMaskSurface(Size size, CanvasGeometry geometry, Vector2 offset)
+    public IMaskSurface CreateMaskSurface(Size size, CanvasGeometry? geometry, Vector2 offset)
     {
         // Initialize the mask
         IMaskSurface mask = new MaskSurface(this, size, geometry, offset);
@@ -205,7 +202,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied on the IGaussianMaskSurface</param>
     /// <returns>IGaussianMaskSurface</returns>
-    public IGaussianMaskSurface CreateGaussianMaskSurface(Size size, CanvasGeometry geometry, Vector2 offset, float blurRadius)
+    public IGaussianMaskSurface CreateGaussianMaskSurface(Size size, CanvasGeometry? geometry, Vector2 offset, float blurRadius)
     {
         // Initialize the mask
         IGaussianMaskSurface mask = new GaussianMaskSurface(this, size, geometry, offset, blurRadius);
@@ -242,7 +239,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="geometry">Geometry to be rendered on the GeometrySurface</param>
     /// <param name="stroke">ICanvasStroke defining the outline for the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke)
     {
         // Initialize the geometrySurface
         IGeometrySurface geometrySurface = new GeometrySurface(this, size, geometry, stroke, Colors.Transparent, Colors.Transparent);
@@ -260,7 +257,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="geometry">Geometry of the mask</param>
     /// <param name="fillColor">Fill color of the geometry.</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, Color fillColor)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, Color fillColor)
     {
         // Initialize the geometrySurface
         IGeometrySurface geometrySurface = new GeometrySurface(this, size, geometry, null, fillColor, Colors.Transparent);
@@ -278,7 +275,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="stroke">ICanvasStroke defining the outline for the geometry</param>
     /// <param name="fillColor">Fill color of the geometry.</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke, Color fillColor)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, Color fillColor)
     {
         // Initialize the geometrySurface
         IGeometrySurface geometrySurface = new GeometrySurface(this, size, geometry, stroke, fillColor, Colors.Transparent);
@@ -298,7 +295,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundColor">Fill color of the Mask surface background which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, Color fillColor, Color backgroundColor)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, Color fillColor, Color backgroundColor)
     {
         // Initialize the geometrySurface
         IGeometrySurface geometrySurface = new GeometrySurface(this, size, geometry, null, fillColor, backgroundColor);
@@ -319,7 +316,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundColor">Fill color of the GeometrySurface background which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke, Color fillColor,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, Color fillColor,
         Color backgroundColor)
     {
         // Initialize the geometrySurface
@@ -338,7 +335,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="geometry">Geometry of the mask</param>
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasBrush fillBrush)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasBrush fillBrush)
     {
         // Create the background brush
         var backgroundBrush = new CanvasSolidColorBrush(Device, Colors.Transparent);
@@ -358,7 +355,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="stroke">ICanvasStroke defining the outline for the geometry</param>
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke, ICanvasBrush fillBrush)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush fillBrush)
     {
         // Create the background brush
         var backgroundBrush = new CanvasSolidColorBrush(Device, Colors.Transparent);
@@ -380,7 +377,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundBrush">The brush to fill the Mask background surface which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasBrush fillBrush,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasBrush fillBrush,
         ICanvasBrush backgroundBrush)
     {
         // Initialize the geometrySurface
@@ -402,7 +399,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundBrush">The brush to fill the GeometrySurface background which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke, ICanvasBrush fillBrush,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush fillBrush,
         ICanvasBrush backgroundBrush)
     {
         // Initialize the geometrySurface
@@ -423,7 +420,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundColor">Fill color of the Mask background surface which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasBrush fillBrush,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasBrush fillBrush,
         Color backgroundColor)
     {
         // Create the background brush
@@ -448,7 +445,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundColor">Fill color of the GeometrySurface background which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke,
         ICanvasBrush fillBrush, Color backgroundColor)
     {
         // Create the background brush
@@ -472,7 +469,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundBrush">The brush to fill the Mask background surface which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, Color fillColor,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, Color fillColor,
         ICanvasBrush backgroundBrush)
     {
         // Create the foreground brush
@@ -497,7 +494,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="backgroundBrush">The brush to fill the GeometrySurface background which is 
     /// not covered by the geometry</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke,
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke,
         Color fillColor, ICanvasBrush backgroundBrush)
     {
         // Create the foreground brush
@@ -541,7 +538,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="size">Size of the IImageSurface</param>
     /// <param name="options">The image's resize and alignment options in the allocated space.</param>
     /// <returns>IImageSurface</returns>
-    public IImageSurface CreateImageSurface(CanvasBitmap bitmap, Size size, ImageSurfaceOptions options)
+    public IImageSurface CreateImageSurface(CanvasBitmap? bitmap, Size size, ImageSurfaceOptions options)
     {
         // Create a new IImageSurface using the given imageSurface
         var imageSurface = new ImageSurface(this, bitmap, size, options);
@@ -611,7 +608,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the mask, created from the given image's alpha values, should be rendered.</param>
     /// <param name="blurRadius">Radius of the Gaussian blur applied to the the mask.</param>
     /// <returns>IImageMaskSurface</returns>
-    public IImageMaskSurface CreateImageMaskSurface(CanvasBitmap surfaceBitmap, Size size, Thickness padding, float blurRadius)
+    public IImageMaskSurface CreateImageMaskSurface(CanvasBitmap? surfaceBitmap, Size size, Thickness padding, float blurRadius)
     {
         return CreateImageMaskSurface(surfaceBitmap, size, padding, ImageSurfaceOptions.GetDefaultImageMaskOptionsForBlur(blurRadius));
     }
@@ -626,7 +623,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the mask, created from the given image's alpha values, should be rendered.</param>
     /// <param name="options">The image's resize, alignment and blur radius options in the allocated space.</param>
     /// <returns>IImageMaskSurface</returns>
-    public IImageMaskSurface CreateImageMaskSurface(CanvasBitmap surfaceBitmap, Size size, Thickness padding, ImageSurfaceOptions options)
+    public IImageMaskSurface CreateImageMaskSurface(CanvasBitmap? surfaceBitmap, Size size, Thickness padding, ImageSurfaceOptions options)
     {
         var imageMaskSurface = new ImageMaskSurface(this, surfaceBitmap, size, padding, options);
         // Render the image onto the surface
@@ -836,7 +833,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
     public void RedrawMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size,
-        CanvasGeometry geometry, Vector2 offset)
+        CanvasGeometry? geometry, Vector2 offset)
     {
         // If the surface is not created, create it
         if (surface == null)
@@ -891,7 +888,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied.</param>
     public void RedrawGaussianMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size,
-        CanvasGeometry geometry, Vector2 offset, float blurRadius)
+        CanvasGeometry? geometry, Vector2 offset, float blurRadius)
     {
         // If the surface is not created, create it
         if (surface == null)
@@ -964,7 +961,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <param name="backgroundBrush">The brush with which the GeometrySurface background has to be filled</param>
     public void RedrawGeometrySurface(object surfaceLock, CompositionDrawingSurface surface, Size size,
-        CanvasGeometry geometry, ICanvasStroke stroke, ICanvasBrush fillBrush, ICanvasBrush backgroundBrush)
+        CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush fillBrush, ICanvasBrush backgroundBrush)
     {
         // If the surface is not created, create it
         if (surface == null)
@@ -1037,7 +1034,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
     /// <param name="canvasBitmap">The CanvasBitmap on which the image is loaded.</param>
     public void RedrawImageSurface(object surfaceLock, CompositionDrawingSurface surface,
-        ImageSurfaceOptions options, CanvasBitmap canvasBitmap)
+        ImageSurfaceOptions options, CanvasBitmap? canvasBitmap)
     {
         // Render the image to the surface
         RenderBitmap(surfaceLock, surface, canvasBitmap, options);
@@ -1054,8 +1051,8 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
     /// <param name="canvasBitmap">The CanvasBitmap on which the image is loaded.</param>
     /// <returns>CanvasBitmap</returns>
-    public async Task<CanvasBitmap> RedrawImageSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface,
-        Uri uri, ImageSurfaceOptions options, CanvasBitmap canvasBitmap)
+    public async Task<CanvasBitmap?> RedrawImageSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface,
+        Uri? uri, ImageSurfaceOptions options, CanvasBitmap? canvasBitmap)
     {
         if ((canvasBitmap == null) && (uri != null))
         {
@@ -1096,7 +1093,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="surfaceBitmap">The image whose alpha values is used to create the IImageMaskSurface.</param>
     public void RedrawImageMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Thickness padding,
-        ImageSurfaceOptions options, CanvasBitmap surfaceBitmap)
+        ImageSurfaceOptions options, CanvasBitmap? surfaceBitmap)
     {
         // Render the image mask to the surface
         RenderBitmapMask(Device, surfaceLock, surface, surfaceBitmap, padding, options);
@@ -1115,8 +1112,8 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="options">Describes the image's resize and alignment options and blur radius in the allocated space.</param>
     /// <param name="surfaceBitmap">The CanvasBitmap on which the image is loaded.</param>
     /// <returns>The CanvasBitmap whose alpha values is used to create the IImageMaskSurface.</returns>
-    public async Task<CanvasBitmap> RedrawImageMaskSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface,
-        Uri uri, Thickness padding, ImageSurfaceOptions options, CanvasBitmap surfaceBitmap)
+    public async Task<CanvasBitmap?> RedrawImageMaskSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface,
+        Uri? uri, Thickness padding, ImageSurfaceOptions options, CanvasBitmap? surfaceBitmap)
     {
         if ((surfaceBitmap == null) && (uri != null))
         {
@@ -1153,12 +1150,12 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     {
         lock (_disposingLock)
         {
-            _compositor = null;
+            _compositor = null!;
 
             if (_canvasDevice != null)
             {
                 _deviceLostHelper.StopWatchingCurrentDevice();
-                _deviceLostHelper = null;
+                _deviceLostHelper = null!;
 
                 //
                 // Only dispose the canvas device if we own the device.
@@ -1167,7 +1164,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
                 {
                     _canvasDevice.Dispose();
                 }
-                _canvasDevice = null;
+                _canvasDevice = null!;
             }
 
             if (_graphicsDevice == null)
@@ -1182,7 +1179,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
                 _graphicsDevice.Dispose();
             }
 
-            _graphicsDevice = null;
+            _graphicsDevice = null!;
         }
     }
 
@@ -1313,7 +1310,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="surface">CompositionDrawingSurface on which the CanvasBitmap has to be rendered.</param>
     /// <param name="canvasBitmap">CanvasBitmap created by loading the image from the Uri</param>
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
-    private static void RenderBitmap(object surfaceLock, CompositionDrawingSurface surface, CanvasBitmap canvasBitmap,
+    private static void RenderBitmap(object surfaceLock, CompositionDrawingSurface surface, CanvasBitmap? canvasBitmap,
         ImageSurfaceOptions options)
     {
         var surfaceSize = surface.Size;
@@ -1424,7 +1421,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
     private static void RenderBitmapMask(CanvasDevice device, object surfaceLock, CompositionDrawingSurface surface,
-        CanvasBitmap canvasBitmap, Thickness padding, ImageSurfaceOptions options)
+        CanvasBitmap? canvasBitmap, Thickness padding, ImageSurfaceOptions options)
     {
         var surfaceSize = surface.Size;
 

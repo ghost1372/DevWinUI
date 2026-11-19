@@ -29,7 +29,7 @@ public partial class TextElasticSlideFadeEffect : ITextEffect
         CanvasTextLayout newTextLayout,
         CanvasTextFormat textFormat,
         Color textColor,
-        CanvasLinearGradientBrush gradientBrush,
+        CanvasLinearGradientBrush? gradientBrush,
         AnimatedTextBlockRedrawState state,
         CanvasDrawingSession drawingSession,
         CanvasAnimatedDrawEventArgs args)
@@ -48,7 +48,7 @@ public partial class TextElasticSlideFadeEffect : ITextEffect
         {
             progress = diffResults
                 .Where(x => x.NewGlyphCluster != null)
-                .Select(x => x.NewGlyphCluster.Progress)
+                .Select(x => x.NewGlyphCluster!.Progress)
                 .DefaultIfEmpty(0f)
                 .Max();
         }
