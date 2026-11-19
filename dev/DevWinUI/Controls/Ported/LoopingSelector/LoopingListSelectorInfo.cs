@@ -223,26 +223,13 @@ internal partial class LoopingListSelectorInfo : ContentControl
 		pLoopingSelectorNoRef.AutomationScrollToVisualIdx(_visualIndex, true /* ignoreScrollingState */);
 	}
 
-	internal void AutomationGetSelectionContainerUIAPeer(out AutomationPeer ppPeer)
+	internal void AutomationGetSelectionContainerUIAPeer(out AutomationPeer? ppPeer)
 	{
-		//wrl.ComPtr<xaml.Automation.Peers.FrameworkElementAutomationPeerStatics> spAutomationPeerStatics;
-		AutomationPeer spAutomationPeer;
-		UIElement spLoopingSelectorAsUI;
+		ppPeer = null;
 		LoopingSelector pLoopingSelectorNoRef;
 
 		GetParentNoRef(out pLoopingSelectorNoRef);
-		//(pLoopingSelectorNoRef.QueryInterface(
-		//	__uuidof(UIElement),
-		//	&spLoopingSelectorAsUI));
-		spLoopingSelectorAsUI = this;
-
-		//(wf.GetActivationFactory(
-		//	  wrl_wrappers.Hstring(RuntimeClass_Microsoft_UI_Xaml_Automation_Peers_FrameworkElementAutomationPeer),
-		//	  &spAutomationPeerStatics));
-		//spAutomationPeerStatics.CreatePeerForElement(spLoopingSelectorAsUI, &spAutomationPeer);
-		spAutomationPeer = FrameworkElementAutomationPeer.CreatePeerForElement(spLoopingSelectorAsUI);
-		//spAutomationPeer.CopyTo(ppPeer);
-		ppPeer = spAutomationPeer;
+		ppPeer = FrameworkElementAutomationPeer.CreatePeerForElement(pLoopingSelectorNoRef);
 	}
 
 	internal void AutomationGetIsSelected(out bool value)

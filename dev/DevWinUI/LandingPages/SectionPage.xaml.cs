@@ -90,7 +90,7 @@ public sealed partial class SectionPage : ItemsPageBase
     {
         if (group != null)
         {
-            TitleTxt.Text = group?.Title;
+            TitleTxt.Text = group.Title;
 
             IEnumerable<DataItem>? items = group.Items?.Where(i => !i.HideItem);
 

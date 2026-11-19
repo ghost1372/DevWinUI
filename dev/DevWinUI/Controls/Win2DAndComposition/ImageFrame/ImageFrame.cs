@@ -836,7 +836,7 @@ public sealed partial class ImageFrame : Control, IDisposable
     /// indicates Uri or StorageFile or IRandomAccessStream of the image 
     /// to be loaded into the ImageFrame.
     /// </summary>
-    public object Source
+    public object? Source
     {
         get => GetValue(SourceProperty);
         set => SetValue(SourceProperty, value);
@@ -1639,7 +1639,7 @@ public sealed partial class ImageFrame : Control, IDisposable
                 {
                     // Check whether the object to load is same as the existing image
                     // loaded in the ImageSurface
-                    if (_imageSurface.Uri.IsEqualTo(scheduledUri))
+                    if (_imageSurface.Uri is { } imageUri && imageUri.IsEqualTo(scheduledUri))
                     {
                         // Since the Uri has not changed, no need to raise the ImageOpened event
                         // Just resize the ImageSurface with the given imageOptions and

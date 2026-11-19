@@ -377,6 +377,11 @@ public partial class Timeline : Control
 
     private void UpdateStartEndEdgeLabelsLayout()
     {
+        if (_startEdgeLabel is null || _endEdgeLabel is null)
+        {
+            return;
+        }
+
         double w = timelineCanvas.ActualWidth;
         if (w <= 0)
         {

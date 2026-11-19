@@ -75,7 +75,8 @@ public partial class LoopingList : Control
         thirdPickerHost = (GetTemplateChild(PART_ThirdPickerHost) as Border)!;
         headerContentPresenter = (GetTemplateChild(PART_HeaderContentPresenter) as ContentPresenter)!;
 
-        var btnFlyout = GetTemplateChild(PART_FlyoutButton) as Button;
+        var btnFlyout = GetTemplateChild(PART_FlyoutButton) as Button
+            ?? throw new InvalidOperationException($"The template must contain a Button named '{PART_FlyoutButton}'.");
         
         var selectors = CreateLoopingSelectors();
 
@@ -171,7 +172,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = PrimaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = PrimaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void PrimaySelectorChanged(object sender, SelectionChangedEventArgs args)
@@ -193,7 +194,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = SecondaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = SecondaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void SecondarySelectorChanged(object sender, SelectionChangedEventArgs args)
@@ -215,7 +216,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = TertiaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = TertiaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void TertiarySelectorChanged(object sender, SelectionChangedEventArgs args)

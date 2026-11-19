@@ -282,7 +282,7 @@ internal abstract partial class ExpressionNode : IDisposable
 
     private string ToExpressionStringInternal()
     {
-        string ret;
+        string? ret = null;
 
         // Do a recursive depth-first traversal of the node tree to print out the full expression string
         switch (GetOperationKind())
@@ -415,7 +415,7 @@ internal abstract partial class ExpressionNode : IDisposable
                 throw new Exception($"Unexpected operation type ({GetOperationKind()}), nodeType = {NodeType}");
         }
 
-        return ret;
+        return ret ?? throw new InvalidOperationException("The expression node did not produce a string.");
     }
 
 

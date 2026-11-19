@@ -14,7 +14,7 @@ public partial class HeaderCarousel : ItemsControl
 
     private ScrollViewer scrollViewer = null!;
     private AnimatedImage backDropImage = null!;
-    private BlurEffectManager _blurManager = null!;
+    private BlurEffectManager? _blurManager;
     private HeaderCarouselItem? selectedTile;
     private int currentIndex;
     private bool _isSelecting;

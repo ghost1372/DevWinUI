@@ -1,4 +1,4 @@
-// Copyright (c) Ratish Philip 
+﻿// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -120,13 +120,13 @@ internal sealed partial class GeometrySurface : IGeometrySurface
     /// <param name="backgroundBrush">Brush to fill the GeometrySurface background surface which is 
     /// not covered by the geometry</param>
     public GeometrySurface(ICompositionGeneratorInternal generator, Size size, CanvasGeometry? geometry,
-        ICanvasStroke? stroke, ICanvasBrush fill, ICanvasBrush backgroundBrush)
+        ICanvasStroke? stroke, ICanvasBrush? fill, ICanvasBrush backgroundBrush)
     {
         _generator = generator ?? throw new ArgumentNullException(nameof(generator), "CompositionGenerator cannot be null!");
         _surfaceLock = new object();
         _geometry = geometry;
         _stroke = stroke;
-        _fill = fill;
+        _fill = fill ?? new CanvasSolidColorBrush(_generator.Device, Colors.Transparent);
         _backgroundBrush = backgroundBrush;
         // Create GeometrySurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);

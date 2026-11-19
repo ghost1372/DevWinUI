@@ -25,7 +25,7 @@ public sealed partial class ParticleGlobe
 
     private string[] _pfLines = Array.Empty<string>();
     private long _pfTextAt, _pfAllocPrev, _pfGcPrev;
-    private CanvasTextFormat _pfFormat;
+    private CanvasTextFormat? _pfFormat;
 
     private static float PfMs(long ticks) => ticks * 1000f / Stopwatch.Frequency;
 
@@ -69,7 +69,7 @@ public sealed partial class ParticleGlobe
             };
         }
 
-        _pfFormat ??= new CanvasTextFormat { FontFamily = "Consolas", FontSize = 11f, WordWrapping = CanvasWordWrapping.NoWrap };
+        var format = _pfFormat ??= new CanvasTextFormat { FontFamily = "Consolas", FontSize = 11f, WordWrapping = CanvasWordWrapping.NoWrap };
 
         const float lineH = 15f, pad = 8f, width = 360f;
         float height = _pfLines.Length * lineH + pad * 2f;
@@ -84,6 +84,6 @@ public sealed partial class ParticleGlobe
         var head = fpsNow >= _qTargetFps * 0.9f ? Color.FromArgb(255, 120, 255, 160) : fpsNow >= 30f ? Color.FromArgb(255, 255, 200, 90) : Color.FromArgb(255, 255, 110, 110);
         var text = Color.FromArgb(235, 200, 230, 255);
         for (int i = 0; i < _pfLines.Length; i++)
-            ds.DrawText(_pfLines[i], x + pad, y + pad + i * lineH, i == 0 ? head : text, _pfFormat);
+            ds.DrawText(_pfLines[i], x + pad, y + pad + i * lineH, i == 0 ? head : text, format);
     }
 }

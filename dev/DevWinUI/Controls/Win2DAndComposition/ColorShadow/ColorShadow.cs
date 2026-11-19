@@ -59,7 +59,7 @@ public partial class ColorShadow : Control
         UpdateIsBreathing();
     }
 
-    private async Task<bool> OnImageUriChangedAsync(Uri imageUri)
+    private async Task<bool> OnImageUriChangedAsync(Uri? imageUri)
     {
         return await LoadImageAsync(imageUri);
     }

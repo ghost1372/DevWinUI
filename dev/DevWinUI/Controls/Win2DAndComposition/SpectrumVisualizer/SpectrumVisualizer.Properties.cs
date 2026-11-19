@@ -310,7 +310,7 @@ public partial class SpectrumVisualizer
         }
     }
 
-    public ISpectrumAnalyzer Analyzer
+    public ISpectrumAnalyzer? Analyzer
     {
         get => _analyzer;
         set

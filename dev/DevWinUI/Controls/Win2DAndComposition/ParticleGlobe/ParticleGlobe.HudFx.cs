@@ -161,10 +161,10 @@ public sealed partial class ParticleGlobe
 
     #region HUD readout and ticker
 
-    private CanvasTextFormat _tickFormat;
+    private CanvasTextFormat? _tickFormat;
     private float _charW, _lineH;
     private string _tickUnit = "";
-    private string _tickText, _tickTextFor;
+    private string? _tickText, _tickTextFor;
     private int _tickReps;
     private float _tickStamp = -10f;
     private float _ctrLat, _ctrLon;
@@ -174,8 +174,9 @@ public sealed partial class ParticleGlobe
     {
         if (_tickFormat != null && _charW > 0f) return;
 
-        _tickFormat = new CanvasTextFormat { FontFamily = "Consolas", FontSize = 11f, WordWrapping = CanvasWordWrapping.NoWrap };
-        using var layout = new CanvasTextLayout(ds, "0000000000", _tickFormat, 400f, 40f);
+        var format = new CanvasTextFormat { FontFamily = "Consolas", FontSize = 11f, WordWrapping = CanvasWordWrapping.NoWrap };
+        _tickFormat = format;
+        using var layout = new CanvasTextLayout(ds, "0000000000", format, 400f, 40f);
         _charW = (float)layout.LayoutBounds.Width / 10f;
         _lineH = (float)layout.LayoutBounds.Height;
     }
@@ -243,7 +244,7 @@ public sealed partial class ParticleGlobe
                     _tickTextFor = _tickUnit;
                     _tickReps = reps;
                 }
-                var text = _tickText;
+                var text = _tickText ?? string.Empty;
 
                 float off = (t * 48f) % unitW;
                 ds.DrawLine(left, stripY, right, stripY, ToColor(_accent, 0.25f), 1f);
@@ -278,12 +279,12 @@ public sealed partial class ParticleGlobe
 
     #region Scanlines and glitch
 
-    private CanvasImageBrush _scanBrush;
+    private CanvasImageBrush? _scanBrush;
     private int _scanBrushVersion = -1;
 
     private CanvasImageBrush GetScanBrush(CanvasDrawingSession ds)
     {
-        if (_scanBrush != null && _scanBrushVersion == _brushVersion) return _scanBrush;
+        if (_scanBrush is { } currentBrush && _scanBrushVersion == _brushVersion) return currentBrush;
 
         _scanBrush?.Dispose();
         using (var tile = new CanvasRenderTarget(ds, 1f, 3f, 96f))
@@ -293,15 +294,16 @@ public sealed partial class ParticleGlobe
                 tds.Clear(Colors.Transparent);
                 tds.FillRectangle(0f, 0f, 1f, 1f, ToColor(_accent, 0.035f));
             }
-            _scanBrush = new CanvasImageBrush(ds, tile)
+            var brush = new CanvasImageBrush(ds, tile)
             {
                 ExtendX = CanvasEdgeBehavior.Wrap,
                 ExtendY = CanvasEdgeBehavior.Wrap,
                 SourceRectangle = new Windows.Foundation.Rect(0, 0, 1, 3)
             };
+            _scanBrush = brush;
+            _scanBrushVersion = _brushVersion;
+            return brush;
         }
-        _scanBrushVersion = _brushVersion;
-        return _scanBrush;
     }
 
     private void DrawScreenFx(CanvasDrawingSession ds, float w, float h, float t)

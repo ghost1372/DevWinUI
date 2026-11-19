@@ -2,18 +2,18 @@
 
 public partial class GotoTop : Button
 {
-    private Action _gotoTopAction;
+    private Action? _gotoTopAction;
 
-    private FrameworkElement _targetElement;
-    private ScrollViewer _scrollViewer;
-    private ScrollView _scrollView;
+    private FrameworkElement? _targetElement;
+    private ScrollViewer? _scrollViewer;
+    private ScrollView? _scrollView;
 
     public static readonly DependencyProperty TargetProperty = DependencyProperty.Register(
         nameof(Target), typeof(DependencyObject), typeof(GotoTop), new PropertyMetadata(null, OnTargetChanged));
 
-    public DependencyObject Target
+    public DependencyObject? Target
     {
-        get => (DependencyObject)GetValue(TargetProperty);
+        get => GetValue(TargetProperty) as DependencyObject;
         set => SetValue(TargetProperty, value);
     }
 
@@ -66,7 +66,7 @@ public partial class GotoTop : Button
         }
     }
 
-    public virtual void CreateGotoAction(DependencyObject obj)
+    public virtual void CreateGotoAction(DependencyObject? obj)
     {
         if (_targetElement != null)
         {
@@ -121,7 +121,7 @@ public partial class GotoTop : Button
         }
     }
 
-    private void TargetElement_Loaded(object sender, RoutedEventArgs e)
+    private void TargetElement_Loaded(object? sender, RoutedEventArgs e)
     {
         if (ReferenceEquals(sender, _targetElement))
         {
@@ -137,11 +137,11 @@ public partial class GotoTop : Button
         }
     }
 
-    private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    private void ScrollViewer_ViewChanged(object? sender, ScrollViewerViewChangedEventArgs e)
     {
-        if (AutoHiding)
+        if (AutoHiding && sender is ScrollViewer viewer)
         {
-            Visibility = _scrollViewer.VerticalOffset > HidingHeight ? Visibility.Visible : Visibility.Collapsed;
+            Visibility = viewer.VerticalOffset > HidingHeight ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

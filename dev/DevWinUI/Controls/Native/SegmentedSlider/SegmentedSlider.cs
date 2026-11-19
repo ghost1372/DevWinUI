@@ -141,12 +141,12 @@ public partial class SegmentedSlider : Control
         Value = maxX > 0 ? Math.Clamp(currentX + e.HorizontalChange, 0, maxX) / maxX * Maximum : 0;
     }
 
-    private void OnSegmentTitlesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private void OnSegmentTitlesCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         UpdateSegments();
     }
 
-    private void OnTimeSegmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private void OnTimeSegmentsCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         NormalizeTimeSegments();
         UpdateSegments();

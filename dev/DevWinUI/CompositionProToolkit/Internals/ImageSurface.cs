@@ -1,4 +1,4 @@
-// Copyright (c) Ratish Philip 
+﻿// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy

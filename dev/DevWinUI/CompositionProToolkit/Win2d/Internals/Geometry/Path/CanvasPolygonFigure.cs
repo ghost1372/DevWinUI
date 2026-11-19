@@ -98,7 +98,7 @@ internal partial class CanvasPolygonFigure : AbstractPathElement
     /// Get the Regex for extracting Path Element Attributes
     /// </summary>
     /// <returns></returns>
-    protected override Regex GetAttributesRegex()
+    protected override Regex? GetAttributesRegex()
     {
         return RegexFactory.GetAttributesRegex(PathFigureType.PolygonFigure);
     }

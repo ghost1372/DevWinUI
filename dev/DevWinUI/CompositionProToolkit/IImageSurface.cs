@@ -69,12 +69,12 @@ public interface IImageSurface : IRenderSurface
     /// <summary>
     /// Gets the Uri of the image to be loaded onto the IImageSurface
     /// </summary>
-    Uri Uri { get; }
+    Uri? Uri { get; }
 
     /// <summary>
     /// The CanvasBitmap representing the loaded image
     /// </summary>
-    CanvasBitmap SurfaceBitmap { get; }
+    CanvasBitmap? SurfaceBitmap { get; }
 
     /// <summary>
     /// Gets the image's resize and alignment options in the allocated space.

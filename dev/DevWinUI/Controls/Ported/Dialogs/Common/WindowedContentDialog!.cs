@@ -15,7 +15,7 @@ public partial class WindowedContentDialog
     private static void OnHasTitleBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (WindowedContentDialog)d;
-        if (ctl != null && ctl._window != null)
+        if (ctl._window != null && ctl.dragMoveHelper != null && ctl._view != null)
         {
             ctl._window?.HasTitleBar = (bool)e.NewValue;
         }
@@ -69,7 +69,7 @@ public partial class WindowedContentDialog
     private static void OnCanDragMoveWindowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (WindowedContentDialog)d;
-        if (ctl != null && ctl._window != null)
+        if (ctl._window != null && ctl.dragMoveHelper != null && ctl._view != null)
         {
             if ((bool)e.NewValue)
             {

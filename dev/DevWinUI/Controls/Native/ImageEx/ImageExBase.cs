@@ -176,7 +176,7 @@ public abstract partial class ImageExBase : Control
         ImageExFailed?.Invoke(this, new ImageExFailedEventArgs(new Exception(e.ErrorMessage)));
     }
 
-    private void ImageExBase_LayoutUpdated(object sender, object e)
+    private void ImageExBase_LayoutUpdated(object? sender, object e)
     {
         InvalidateLazyLoading();
     }

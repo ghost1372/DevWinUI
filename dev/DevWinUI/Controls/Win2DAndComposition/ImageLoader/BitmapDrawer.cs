@@ -20,23 +20,23 @@ namespace DevWinUI;
 
 public partial class BitmapDrawer : IContentDrawer
 {
-    readonly Uri _uri;
-    LoadTimeEffectHandler _handler;
-    StorageFile _file;
+    readonly Uri? _uri;
+    readonly LoadTimeEffectHandler? _handler;
+    readonly StorageFile? _file;
 
-    public BitmapDrawer(Uri uri, LoadTimeEffectHandler handler)
+    public BitmapDrawer(Uri uri, LoadTimeEffectHandler? handler)
     {
         _uri = uri;
         _handler = handler;
     }
 
-    public BitmapDrawer(StorageFile file, LoadTimeEffectHandler handler)
+    public BitmapDrawer(StorageFile file, LoadTimeEffectHandler? handler)
     {
         _file = file;
         _handler = handler;
     }
 
-    public Uri Uri
+    public Uri? Uri
     {
         get { return _uri; }
     }
@@ -61,17 +61,18 @@ public partial class BitmapDrawer : IContentDrawer
         var canvasDevice = CanvasComposition.GetCanvasDevice(device);
 
         CanvasBitmap canvasBitmap;
-        if (_file != null)
+        if (_file is { } file)
         {
-            SoftwareBitmap softwareBitmap = await LoadFromFile(_file);
+            SoftwareBitmap softwareBitmap = await LoadFromFile(file);
 
             canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(canvasDevice, softwareBitmap);
         }
         else
         {
+            var uri = _uri ?? throw new InvalidOperationException("A bitmap source is required.");
             var assembly = typeof(BitmapDrawer).Assembly;
 
-            var stream = FileHelper.GetFileFromEmbededResourcesOrUri(_uri, assembly);
+            var stream = FileHelper.GetFileFromEmbededResourcesOrUri(uri, assembly);
 
             if (stream != null)
             {
@@ -79,7 +80,7 @@ public partial class BitmapDrawer : IContentDrawer
             }
             else
             {
-                canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, _uri);
+                canvasBitmap = await CanvasBitmap.LoadAsync(canvasDevice, uri);
             }
         }
 

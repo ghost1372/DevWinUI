@@ -2,7 +2,7 @@
 
 public partial class LoopingSelector
 {
-	public event SelectionChangedEventHandler SelectionChanged;
+	public event SelectionChangedEventHandler? SelectionChanged;
 
 	public bool ShouldLoop
 	{
@@ -11,7 +11,7 @@ public partial class LoopingSelector
 	}
 
 
-	public object SelectedItem
+	public object? SelectedItem
 	{
 		get => this.GetValue(SelectedItemProperty);
 		set => this.SetValue(SelectedItemProperty, value);

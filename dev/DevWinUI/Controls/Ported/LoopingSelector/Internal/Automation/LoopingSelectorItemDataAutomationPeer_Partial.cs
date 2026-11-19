@@ -98,7 +98,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 		//if (spParent is {})
 		if (_wrParent?.TryGetTarget(out spParent) ?? false)
 		{
-			LoopingSelectorItemAutomationPeer spLSIAP;
+			LoopingSelectorItemAutomationPeer? spLSIAP;
 			spParent.GetContainerAutomationPeerForItem(_tpItem, out spLSIAP);
 
 			if (spLSIAP == null)
@@ -133,7 +133,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 
 	#region Method forwarders
 
-	protected override object GetPatternCore(PatternInterface patternInterface)
+	protected override object? GetPatternCore(PatternInterface patternInterface)
 	{
 		DependencyObject? returnValue = default;
 		if (patternInterface == PatternInterface.VirtualizedItem)
@@ -143,7 +143,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 		}
 		else
 		{
-			AutomationPeer spAutomationPeer;
+			AutomationPeer? spAutomationPeer;
 			GetContainerAutomationPeer(out spAutomationPeer);
 			if (spAutomationPeer is { })
 			{
@@ -155,13 +155,13 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 			}
 		}
 
-		return returnValue!;
+		return returnValue;
 	}
 
 	protected override string GetAcceleratorKeyCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -178,7 +178,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetAccessKeyCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -196,7 +196,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 
 	{
 		AutomationControlType returnValue;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -213,7 +213,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetAutomationIdCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -230,7 +230,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override Rect GetBoundingRectangleCore()
 	{
 		Rect returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -247,7 +247,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override IList<AutomationPeer> GetChildrenCore()
 	{
 		IList<AutomationPeer> returnValue;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -264,7 +264,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetClassNameCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -281,7 +281,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override Point GetClickablePointCore()
 	{
 		Point returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -298,7 +298,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetHelpTextCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -315,7 +315,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetItemStatusCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -332,7 +332,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetItemTypeCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -349,7 +349,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override AutomationPeer GetLabeledByCore()
 	{
 		AutomationPeer? returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -366,7 +366,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetLocalizedControlTypeCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -395,7 +395,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override AutomationOrientation GetOrientationCore()
 	{
 		AutomationOrientation returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -412,7 +412,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override AutomationLiveSetting GetLiveSettingCore()
 	{
 		AutomationLiveSetting returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -437,7 +437,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool HasKeyboardFocusCore()
 	{
 		bool returnValue;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -455,7 +455,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsContentElementCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -472,7 +472,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsControlElementCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -489,7 +489,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsEnabledCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -506,7 +506,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsKeyboardFocusableCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -523,7 +523,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsOffscreenCore()
 	{
 		bool returnValue;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -540,7 +540,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsPasswordCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -557,7 +557,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override bool IsRequiredForFormCore()
 	{
 		bool returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -573,7 +573,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 
 	protected override void SetFocusCore()
 	{
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 		if (spAutomationPeer is { })
 		{
@@ -584,7 +584,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override IList<AutomationPeerAnnotation> GetAnnotationsCore()
 	{
 		IList<AutomationPeerAnnotation> returnValue = [];
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })
@@ -602,7 +602,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override int GetPositionInSetCore()
 	{
 		int returnValue = -1;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })
@@ -620,7 +620,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override int GetSizeOfSetCore()
 	{
 		int returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })
@@ -638,7 +638,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override int GetLevelCore()
 	{
 		int returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })
@@ -656,7 +656,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override AutomationLandmarkType GetLandmarkTypeCore()
 	{
 		AutomationLandmarkType returnValue = default;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })
@@ -674,7 +674,7 @@ internal partial class LoopingSelectorItemDataAutomationPeer
 	protected override string GetLocalizedLandmarkTypeCore()
 	{
 		string returnValue = string.Empty;
-		AutomationPeer spAutomationPeer;
+		AutomationPeer? spAutomationPeer;
 		GetContainerAutomationPeer(out spAutomationPeer);
 
 		if (spAutomationPeer is { })

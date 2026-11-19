@@ -17,12 +17,12 @@ internal static partial class VisualStateUtilities
     {
         if (visualStateGroup is null)
         {
-            return null!;
+            return Enumerable.Empty<VisualState>();
         }
 
         var visualStates = visualStateGroup.GetVisualStates();
 
-        return string.IsNullOrWhiteSpace(name) ? visualStates : visualStates?.Where(vs => vs.Name == name);
+        return string.IsNullOrWhiteSpace(name) ? visualStates : visualStates.Where(vs => vs.Name == name);
     }
 
     public static IEnumerable<VisualStateGroup> GetVisualStateGroupsByName(this FrameworkElement element,
@@ -32,7 +32,7 @@ internal static partial class VisualStateUtilities
 
         if (groups is null)
         {
-            return null!;
+            return Enumerable.Empty<VisualStateGroup>();
         }
 
         IEnumerable<VisualStateGroup> castedVisualStateGroups;
@@ -42,12 +42,12 @@ internal static partial class VisualStateUtilities
             castedVisualStateGroups = groups.Cast<VisualStateGroup>().ToArray();
             if (!castedVisualStateGroups.Any())
             {
-                return null!;
+                return Enumerable.Empty<VisualStateGroup>();
             }
         }
         catch (InvalidCastException)
         {
-            return null!;
+            return Enumerable.Empty<VisualStateGroup>();
         }
 
         return string.IsNullOrWhiteSpace(name)
@@ -59,10 +59,10 @@ internal static partial class VisualStateUtilities
     {
         if (visualStateGroup is null)
         {
-            return null!;
+            return Enumerable.Empty<VisualState>();
         }
 
-        return visualStateGroup.States.Count == 0 ? null! : visualStateGroup.States.Cast<VisualState>();
+        return visualStateGroup.States.Cast<VisualState>();
     }
 }
 

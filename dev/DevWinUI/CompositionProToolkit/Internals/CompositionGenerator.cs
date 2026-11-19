@@ -1,3 +1,5 @@
+﻿#pragma warning disable IDE0032, IDE0330, CA1859, CA1860, IDE0063 
+
 // Copyright (c) Ratish Philip 
 //
 //
@@ -355,7 +357,7 @@ internal sealed partial class CompositionGenerator : ICompositionGeneratorIntern
     /// <param name="stroke">ICanvasStroke defining the outline for the geometry</param>
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <returns>IGeometrySurface</returns>
-    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush fillBrush)
+    public IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush? fillBrush)
     {
         // Create the background brush
         var backgroundBrush = new CanvasSolidColorBrush(Device, Colors.Transparent);
