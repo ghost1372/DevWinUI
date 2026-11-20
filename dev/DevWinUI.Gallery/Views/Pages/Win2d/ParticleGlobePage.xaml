@@ -15,7 +15,7 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme" Value="{x:Bind dev:ParticleGlobeTheme.Cyan}" />
+                            <local:ChoiceOption x:Name="CmbTheme" Header="Theme" Value="{x:Bind dev:ParticleGlobeTheme.Default}" />
                             <local:ChoiceOption x:Name="CmbQuality" Header="Quality" Value="{x:Bind dev:ParticleGlobeQuality.Auto}" />
                             <Slider x:Name="SliderParticleCount" Header="Particles" Maximum="50000" Minimum="5000" StepFrequency="5000" Value="26000" />
                             <Slider x:Name="SliderBorderParticleCount" Header="Border Particles" Maximum="40000" Minimum="1000" StepFrequency="1000" Value="12000" />
