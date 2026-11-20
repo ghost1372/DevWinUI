@@ -15,7 +15,7 @@
                     <local:OptionGroup Title="Selection">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbSelectionMode" Header="Selection Mode" Value="{x:Bind dev:WorldMapSelectionMode.Multiple}" />
-                            <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color" Value="{x:Bind dev:WorldMapHighlightColor.Cyan}" />
+                            <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color" Value="{x:Bind dev:WorldMapHighlightColor.Default}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Colors">
