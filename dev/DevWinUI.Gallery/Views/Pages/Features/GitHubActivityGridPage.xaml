@@ -11,7 +11,19 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <Color x:Key="ActivityGridLevel0Color">#262A30</Color>
+                    <Color x:Key="ActivityGridLevel1Color">#064E3B</Color>
+                    <Color x:Key="ActivityGridLevel2Color">#047857</Color>
+                    <Color x:Key="ActivityGridLevel3Color">#10B981</Color>
+                    <Color x:Key="ActivityGridLevel4Color">#6EE7B7</Color>
+                </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Color x:Key="ActivityGridLevel0Color">#EEF0F2</Color>
+                    <Color x:Key="ActivityGridLevel1Color">#A7F3D0</Color>
+                    <Color x:Key="ActivityGridLevel2Color">#34D399</Color>
+                    <Color x:Key="ActivityGridLevel3Color">#059669</Color>
+                    <Color x:Key="ActivityGridLevel4Color">#065F46</Color>
                     <SolidColorBrush x:Key="OceanActivityLevel0Brush" Color="#EBEDF0" />
                     <SolidColorBrush x:Key="OceanActivityLevel1Brush" Color="#C6D8F5" />
                     <SolidColorBrush x:Key="OceanActivityLevel2Brush" Color="#8DB4EC" />
@@ -48,6 +60,22 @@
                             <TextBox x:Name="TxtMore" Header="More Text" Text="More" />
                         </local:OptionPanel>
                     </local:OptionGroup>
+                    <local:OptionGroup Title="Colors">
+                        <local:OptionPanel>
+                            <local:ColorOption x:Name="CoLevel0" Header="Level 0" Value="{ThemeResource ActivityGridLevel0Color}" />
+                            <local:ColorOption x:Name="CoLevel1" Header="Level 1" Value="{ThemeResource ActivityGridLevel1Color}" />
+                            <local:ColorOption x:Name="CoLevel2" Header="Level 2" Value="{ThemeResource ActivityGridLevel2Color}" />
+                            <local:ColorOption x:Name="CoLevel3" Header="Level 3" Value="{ThemeResource ActivityGridLevel3Color}" />
+                            <local:ColorOption x:Name="CoLevel4" Header="Level 4" Value="{ThemeResource ActivityGridLevel4Color}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Tooltip Colors">
+                        <local:OptionPanel>
+                            <local:ColorOption x:Name="CoTipBackground" Header="Background" Value="#F2111827" />
+                            <local:ColorOption x:Name="CoTipForeground" Header="Foreground" Value="#FFFFFF" />
+                            <local:ColorOption x:Name="CoTipSecondaryForeground" Header="Secondary Foreground" Value="#B3FFFFFF" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
                     <local:OptionGroup Title="Behavior">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TsReduceMotion" Header="Reduce Motion" IsOn="False" />
@@ -62,7 +90,7 @@
                                 &lt;dev:GitHubActivityGrid CellGap="3" CellSize="12" Days="{x:Bind Days}" UnitPlural="contributions" UnitSingular="contribution" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:GitHubActivityGrid x:Name="ActivityGrid" CellGap="{x:Bind SliderCellGap.Value, Mode=OneWay}" CellSize="{x:Bind SliderCellSize.Value, Mode=OneWay}" Days="{x:Bind Days}" LessText="{x:Bind TxtLess.Text, Mode=OneWay}" MaxCount="{x:Bind GetMaxCount(NbMaxCount.Value), Mode=OneWay}" MoreText="{x:Bind TxtMore.Text, Mode=OneWay}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" UnitPlural="{x:Bind TxtUnitPlural.Text, Mode=OneWay}" UnitSingular="{x:Bind TxtUnitSingular.Text, Mode=OneWay}" />
+                        <dev:GitHubActivityGrid x:Name="ActivityGrid" CellGap="{x:Bind SliderCellGap.Value, Mode=OneWay}" CellSize="{x:Bind SliderCellSize.Value, Mode=OneWay}" Days="{x:Bind Days}" LessText="{x:Bind TxtLess.Text, Mode=OneWay}" Level0Brush="{x:Bind CoLevel0.Brush, Mode=OneWay}" Level1Brush="{x:Bind CoLevel1.Brush, Mode=OneWay}" Level2Brush="{x:Bind CoLevel2.Brush, Mode=OneWay}" Level3Brush="{x:Bind CoLevel3.Brush, Mode=OneWay}" Level4Brush="{x:Bind CoLevel4.Brush, Mode=OneWay}" MaxCount="{x:Bind GetMaxCount(NbMaxCount.Value), Mode=OneWay}" MoreText="{x:Bind TxtMore.Text, Mode=OneWay}" ReduceMotion="{x:Bind TsReduceMotion.IsOn, Mode=OneWay}" TipBackground="{x:Bind CoTipBackground.Brush, Mode=OneWay}" TipForeground="{x:Bind CoTipForeground.Brush, Mode=OneWay}" TipSecondaryForeground="{x:Bind CoTipSecondaryForeground.Brush, Mode=OneWay}" UnitPlural="{x:Bind TxtUnitPlural.Text, Mode=OneWay}" UnitSingular="{x:Bind TxtUnitSingular.Text, Mode=OneWay}" />
                     </local:Sample>
                     <local:Sample Title="Custom Palette">
                         <dev:GitHubActivityGrid x:Name="PaletteGrid" Days="{x:Bind Days}" Level0Brush="{ThemeResource OceanActivityLevel0Brush}" Level1Brush="{ThemeResource OceanActivityLevel1Brush}" Level2Brush="{ThemeResource OceanActivityLevel2Brush}" Level3Brush="{ThemeResource OceanActivityLevel3Brush}" Level4Brush="{ThemeResource OceanActivityLevel4Brush}" UnitPlural="commits" UnitSingular="commit" />

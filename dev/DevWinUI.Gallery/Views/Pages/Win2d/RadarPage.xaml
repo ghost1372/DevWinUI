@@ -8,30 +8,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default">
-                    <SolidColorBrush x:Key="AircraftBrush" Color="#FFB020" />
-                    <SolidColorBrush x:Key="HostileBrush" Color="#FF5C5C" />
-                    <SolidColorBrush x:Key="FriendlyBrush" Color="#5CC8FF" />
-                </ResourceDictionary>
-
-                <ResourceDictionary x:Key="Light">
-                    <SolidColorBrush x:Key="AircraftBrush" Color="#B86E00" />
-                    <SolidColorBrush x:Key="HostileBrush" Color="#C42B1C" />
-                    <SolidColorBrush x:Key="FriendlyBrush" Color="#005FB8" />
-                </ResourceDictionary>
-
-                <ResourceDictionary x:Key="HighContrast">
-                    <StaticResource x:Key="AircraftBrush" ResourceKey="SystemColorHighlightColorBrush" />
-                    <StaticResource x:Key="HostileBrush" ResourceKey="SystemColorHighlightColorBrush" />
-                    <StaticResource x:Key="FriendlyBrush" ResourceKey="SystemColorHighlightColorBrush" />
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
             <local:ControlExample Title="Radar" Doc="controls/radar">
@@ -50,6 +26,9 @@
                             <local:ColorOption Brush="{x:Bind RadarMain.Foreground, Mode=TwoWay}" Header="Foreground (Radar)" />
                             <local:ColorOption x:Name="ClrTarget" Header="TargetBrush (Radar)" Value="#FF5CC8FF" />
                             <local:ColorOption Brush="{x:Bind RadarBlips.Foreground, Mode=TwoWay}" Header="Foreground (Blips)" />
+                            <local:ColorOption x:Name="ClrAircraft" Header="Aircraft Color (Blips)" Value="#FFFFB020" />
+                            <local:ColorOption x:Name="ClrHostile" Header="Hostile Color (Blips)" Value="#FFFF5C5C" />
+                            <local:ColorOption x:Name="ClrFriendly" Header="Friendly Color (Blips)" Value="#FF5CC8FF" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Grid and clutter">
@@ -83,10 +62,10 @@
                     <local:Sample Title="Blips, labels, trails and states" Xaml="Win2d/Radar/RadarBlips_xaml.txt">
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
                             <dev:Radar x:Name="RadarBlips" Height="380" Clutter="0.15" Targets="0">
-                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Label="AC-101&#x0a;FL350" Marker="Plane" Motion="Linear" Repeat="Loop" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="14" />
-                                <dev:RadarBlip Angle="300" Distance="0.8" EndAngle="60" EndDistance="0.3" Foreground="{ThemeResource AircraftBrush}" Label="AC-207" Marker="Plane" Motion="Linear" Repeat="PingPong" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="8" />
-                                <dev:RadarBlip Angle="120" Distance="0.6" Foreground="{ThemeResource HostileBrush}" Label="UNKNOWN" Marker="Diamond" Size="3.5" State="{x:Bind ((dev:RadarBlipState)CmbState.Value), Mode=OneWay}" />
-                                <dev:RadarBlip Angle="235" Distance="0.45" Foreground="{ThemeResource FriendlyBrush}" Label="ALPHA" Marker="{x:Bind ((dev:RadarMarker)CmbMarker.Value), Mode=OneWay}" State="Selected" />
+                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{x:Bind ClrAircraft.Brush, Mode=OneWay}" Label="AC-101&#x0a;FL350" Marker="Plane" Motion="Linear" Repeat="Loop" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="14" />
+                                <dev:RadarBlip Angle="300" Distance="0.8" EndAngle="60" EndDistance="0.3" Foreground="{x:Bind ClrAircraft.Brush, Mode=OneWay}" Label="AC-207" Marker="Plane" Motion="Linear" Repeat="PingPong" TrailLength="{x:Bind SliderTrailLength.Value, Mode=OneWay}" Duration="8" />
+                                <dev:RadarBlip Angle="120" Distance="0.6" Foreground="{x:Bind ClrHostile.Brush, Mode=OneWay}" Label="UNKNOWN" Marker="Diamond" Size="3.5" State="{x:Bind ((dev:RadarBlipState)CmbState.Value), Mode=OneWay}" />
+                                <dev:RadarBlip Angle="235" Distance="0.45" Foreground="{x:Bind ClrFriendly.Brush, Mode=OneWay}" Label="ALPHA" Marker="{x:Bind ((dev:RadarMarker)CmbMarker.Value), Mode=OneWay}" State="Selected" />
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
@@ -110,6 +89,9 @@
                             <local:ColorOption Brush="{x:Bind RadarZones.Foreground, Mode=TwoWay}" Header="Foreground (Zones)" />
                             <local:ColorOption Brush="{x:Bind RadarEffects.Foreground, Mode=TwoWay}" Header="Foreground (Effects)" />
                             <local:ColorOption x:Name="ClrEffectsTarget" Header="TargetBrush (Effects)" Value="#FF5CC8FF" />
+                            <local:ColorOption x:Name="ClrAircraft2" Header="Aircraft Color" Value="#FFFFB020" />
+                            <local:ColorOption x:Name="ClrHostile2" Header="Hostile Color" Value="#FFFF5C5C" />
+                            <local:ColorOption x:Name="ClrFriendly2" Header="Friendly Color" Value="#FF5CC8FF" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Zones, jams and scale">
@@ -139,9 +121,9 @@
                     <local:Sample Title="Scan-only visibility" Xaml="Win2d/Radar/RadarScanOnly_xaml.txt">
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
                             <dev:Radar x:Name="RadarScan" Height="380" BlipVisibility="{x:Bind ((dev:RadarVisibility)CmbBlipVisibility.Value), Mode=OneWay}" Clutter="0.1" Mode="{x:Bind ((dev:RadarMode)CmbScanMode.Value), Mode=OneWay}" ScanFade="{x:Bind SliderScanFade.Value, Mode=OneWay}" TargetBrush="{x:Bind ClrScanTarget.Brush, Mode=OneWay}" TargetVisibility="{x:Bind ((dev:RadarVisibility)CmbTargetVisibility.Value), Mode=OneWay}" Targets="5" Trail="{x:Bind SliderScanTrail.Value, Mode=OneWay}">
-                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
-                                <dev:RadarBlip Angle="150" Distance="0.65" Foreground="{ThemeResource HostileBrush}" Marker="Diamond" Size="3.5" />
-                                <dev:RadarBlip Angle="260" Distance="0.5" Foreground="{ThemeResource AircraftBrush}" Marker="Square" Visibility="Always" />
+                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{x:Bind ClrAircraft2.Brush, Mode=OneWay}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
+                                <dev:RadarBlip Angle="150" Distance="0.65" Foreground="{x:Bind ClrHostile2.Brush, Mode=OneWay}" Marker="Diamond" Size="3.5" />
+                                <dev:RadarBlip Angle="260" Distance="0.5" Foreground="{x:Bind ClrAircraft2.Brush, Mode=OneWay}" Marker="Square" Visibility="Always" />
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
@@ -149,14 +131,14 @@
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="Dark">
                             <dev:Radar x:Name="RadarZones" Height="400" Clutter="0.1" MaxRange="{x:Bind SliderMaxRange.Value, Mode=OneWay}" RadarScale="0.8" RangeUnit="km" ShowCompass="{x:Bind TglCompass.IsOn, Mode=OneWay}" ShowRangeLabels="{x:Bind TglRangeLabels.IsOn, Mode=OneWay}" ShowReadout="{x:Bind TglReadout.IsOn, Mode=OneWay}" Targets="0">
                                 <dev:Radar.Zones>
-                                    <dev:RadarZone Angle="200" Distance="0.55" FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{ThemeResource HostileBrush}" Label="RESTRICTED" Radius="0.18" Shape="Circle" />
-                                    <dev:RadarZone FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{ThemeResource FriendlyBrush}" Label="CORRIDOR" Points="20,0.35 50,0.9 80,0.9 60,0.35" Shape="Polygon" Visibility="{x:Bind ZoneVisibility(TglZoneScan.IsOn), Mode=OneWay}" />
+                                    <dev:RadarZone Angle="200" Distance="0.55" FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{x:Bind ClrHostile2.Brush, Mode=OneWay}" Label="RESTRICTED" Radius="0.18" Shape="Circle" />
+                                    <dev:RadarZone FillOpacity="{x:Bind SliderZoneFill.Value, Mode=OneWay}" Foreground="{x:Bind ClrFriendly2.Brush, Mode=OneWay}" Label="CORRIDOR" Points="20,0.35 50,0.9 80,0.9 60,0.35" Shape="Polygon" Visibility="{x:Bind ZoneVisibility(TglZoneScan.IsOn), Mode=OneWay}" />
                                 </dev:Radar.Zones>
                                 <dev:Radar.Jams>
-                                    <dev:RadarJam EndAngle="330" Foreground="{ThemeResource HostileBrush}" Intensity="{x:Bind SliderJam.Value, Mode=OneWay}" StartAngle="285" />
+                                    <dev:RadarJam EndAngle="330" Foreground="{x:Bind ClrHostile2.Brush, Mode=OneWay}" Intensity="{x:Bind SliderJam.Value, Mode=OneWay}" StartAngle="285" />
                                 </dev:Radar.Jams>
-                                <dev:RadarBlip Angle="310" Distance="0.6" Foreground="{ThemeResource AircraftBrush}" Label="JAMMED" Marker="Plane" />
-                                <dev:RadarBlip Angle="70" Distance="0.6" EndAngle="30" EndDistance="0.85" Foreground="{ThemeResource AircraftBrush}" Label="IN CORRIDOR" Marker="Plane" Motion="Linear" Repeat="PingPong" Duration="12" />
+                                <dev:RadarBlip Angle="310" Distance="0.6" Foreground="{x:Bind ClrAircraft2.Brush, Mode=OneWay}" Label="JAMMED" Marker="Plane" />
+                                <dev:RadarBlip Angle="70" Distance="0.6" EndAngle="30" EndDistance="0.85" Foreground="{x:Bind ClrAircraft2.Brush, Mode=OneWay}" Label="IN CORRIDOR" Marker="Plane" Motion="Linear" Repeat="PingPong" Duration="12" />
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
@@ -168,7 +150,7 @@
                         </local:Sample.XamlCode>
                         <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="8" RequestedTheme="{x:Bind ThemeOf(TglLight.IsOn), Mode=OneWay}">
                             <dev:Radar x:Name="RadarEffects" Height="400" Brightness="{x:Bind SliderBrightness.Value, Mode=OneWay}" CenterY="0.55" Fade="{x:Bind SliderFade.Value, Mode=OneWay}" Grain="{x:Bind SliderGrain.Value, Mode=OneWay}" LightMode="{x:Bind TglLight.IsOn, Mode=OneWay}" LineWidth="{x:Bind SliderLineWidth.Value, Mode=OneWay}" Phosphor="{x:Bind SliderPhosphor.Value, Mode=OneWay}" TargetBrush="{x:Bind ClrEffectsTarget.Brush, Mode=OneWay}" Targets="4" Tilt="{x:Bind SliderTilt.Value, Mode=OneWay}">
-                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{ThemeResource AircraftBrush}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
+                                <dev:RadarBlip Angle="40" Distance="1.15" EndDistance="0" Foreground="{x:Bind ClrAircraft2.Brush, Mode=OneWay}" Marker="Plane" Motion="Linear" Repeat="Loop" Duration="14" />
                             </dev:Radar>
                         </Grid>
                     </local:Sample>
@@ -179,6 +161,7 @@
                     <local:OptionPanel>
                         <ToggleSwitch x:Name="TglLive" Header="Live movement" IsOn="True" />
                         <local:ColorOption Brush="{x:Bind RadarBinding.Foreground, Mode=TwoWay}" Header="Foreground" />
+                        <local:ColorOption Header="Aircraft Color" ValueChanged="OnAircraftColorChanged" Value="#FFFFB020" />
                         <Button Click="AddAircraft_Click" Content="Add aircraft" />
                         <Button Click="RemoveAircraft_Click" Content="Remove last aircraft" />
                         <Button Click="ToggleAlert_Click" Content="Toggle alert on first aircraft" />
