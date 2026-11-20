@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace DevWinUIGallery.Models;
+﻿namespace DevWinUIGallery.Models;
 
 public partial class SampleItemModel : DepthLayerViewItem
 {

@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Web;
 using Microsoft.UI.Input;
-using Microsoft.Win32;
 using Windows.Globalization;
 
 namespace DevWinUI;

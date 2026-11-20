@@ -1,6 +1,4 @@
-﻿using DevWinUI;
-using Microsoft.UI.Xaml.Media.Imaging;
-using System.Collections.ObjectModel;
+﻿using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.Views;
 

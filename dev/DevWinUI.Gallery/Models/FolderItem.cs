@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace DevWinUIGallery.Models;
+﻿namespace DevWinUIGallery.Models;
 
 public sealed partial class FolderItem : ObservableObject, ISidebarItemModel
 {

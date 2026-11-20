@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace DevWinUIGallery.Views;

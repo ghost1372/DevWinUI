@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System.Diagnostics;
-using WinRT;
 
 namespace DevWinUI;
 

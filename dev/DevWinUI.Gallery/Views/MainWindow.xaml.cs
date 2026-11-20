@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Input;
-using Microsoft.UI.Windowing;
+﻿using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Input;
 using WinRT;
 

@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class ContextMenuService
 {

@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Files Community
 // Licensed under the MIT License.
 
-using WinRT;
-
 namespace DevWinUI;
 
 public sealed partial class SidebarView

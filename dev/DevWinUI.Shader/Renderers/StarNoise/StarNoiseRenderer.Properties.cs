@@ -1,5 +1,5 @@
-﻿using Microsoft.UI.Xaml;
-using System.Numerics;
+﻿using System.Numerics;
+using Microsoft.UI.Xaml;
 using Windows.UI;
 
 namespace DevWinUI;

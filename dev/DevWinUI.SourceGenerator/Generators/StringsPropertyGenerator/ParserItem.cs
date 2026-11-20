@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 internal partial class ParserItem
 {

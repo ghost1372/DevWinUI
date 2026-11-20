@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DevWinUIGallery.ViewModels;
+﻿namespace DevWinUIGallery.ViewModels;
 
 public partial class ExtensionViewModel : ObservableObject
 {
