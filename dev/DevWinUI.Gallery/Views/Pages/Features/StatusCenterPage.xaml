@@ -41,9 +41,7 @@
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <Grid>
-                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Left" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
-                </Grid>
+                <dev:StatusCenterButton x:Name="StatusCenterButtonSample" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
