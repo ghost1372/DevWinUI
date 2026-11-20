@@ -3,7 +3,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:DevWinUI">
 
-    <Style TargetType="local:StatusCenterButton">
+    <Style BasedOn="{StaticResource DefaultStatusCenterButtonStyle}" TargetType="local:StatusCenterButton" />
+
+    <Style x:Key="DefaultStatusCenterButtonStyle" TargetType="local:StatusCenterButton">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StatusCenterButton">
