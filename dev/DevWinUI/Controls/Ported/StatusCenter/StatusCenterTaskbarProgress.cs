@@ -5,7 +5,7 @@ using WinRT.Interop;
 
 namespace DevWinUI;
 
-internal static class StatusCenterTaskbarProgress
+internal static partial class StatusCenterTaskbarProgress
 {
     private static readonly Dictionary<IntPtr, WindowTaskbarProgress> _windows = [];
     private static readonly object _sync = new();
@@ -66,7 +66,7 @@ internal static class StatusCenterTaskbarProgress
         }
     }
 
-    private sealed class WindowTaskbarProgress
+    private sealed partial class WindowTaskbarProgress
     {
         public HashSet<StatusCenterViewModel> ViewModels { get; } = [];
 
