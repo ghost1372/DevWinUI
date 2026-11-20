@@ -1,26 +1,10 @@
-﻿using Microsoft.UI.Xaml.Controls.Primitives;
-
-namespace DevWinUIGallery.Views;
+﻿namespace DevWinUIGallery.Views;
 
 public sealed partial class StatusCenterPage : Page
 {
     public StatusCenterPage()
     {
         InitializeComponent();
-        CmbFlyoutPlacement.SelectedIndex = 6;
-        CmbSizeUnit.SelectedIndex = 0;
-    }
-
-    private void CmbFlyoutPlacement_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (CmbFlyoutPlacement.SelectedItem is ComboBoxItem { Tag: string placement } && Enum.TryParse(placement, out FlyoutPlacementMode flyoutPlacement))
-            StatusCenterButtonSample.FlyoutPlacement = flyoutPlacement;
-    }
-
-    private void CmbSizeUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (CmbSizeUnit.SelectedItem is ComboBoxItem { Tag: string sizeUnit } && Enum.TryParse(sizeUnit, out SizeUnitTypes sizeUnitType))
-            StatusCenterButtonSample.SizeUnitFormat = sizeUnitType;
     }
 
     private async void Copy_Click(object sender, RoutedEventArgs e)

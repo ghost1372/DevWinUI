@@ -6,6 +6,7 @@
       xmlns:dev="using:DevWinUI"
       xmlns:local="using:DevWinUIGallery"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
       mc:Ignorable="d">
 
     <ScrollViewer>
@@ -16,25 +17,8 @@
                 </local:ControlExample.XamlCode>
                 <local:ControlExample.Options>
                     <local:OptionPanel>
-                        <ComboBox x:Name="CmbFlyoutPlacement" HorizontalAlignment="Stretch" Header="Flyout placement" SelectionChanged="CmbFlyoutPlacement_SelectionChanged">
-                            <ComboBoxItem Content="BottomEdgeAlignedRight" Tag="BottomEdgeAlignedRight" />
-                            <ComboBoxItem Content="BottomEdgeAlignedLeft" Tag="BottomEdgeAlignedLeft" />
-                            <ComboBoxItem Content="TopEdgeAlignedRight" Tag="TopEdgeAlignedRight" />
-                            <ComboBoxItem Content="TopEdgeAlignedLeft" Tag="TopEdgeAlignedLeft" />
-                            <ComboBoxItem Content="LeftEdgeAlignedTop" Tag="LeftEdgeAlignedTop" />
-                            <ComboBoxItem Content="LeftEdgeAlignedBottom" Tag="LeftEdgeAlignedBottom" />
-                            <ComboBoxItem Content="RightEdgeAlignedTop" Tag="RightEdgeAlignedTop" />
-                            <ComboBoxItem Content="RightEdgeAlignedBottom" Tag="RightEdgeAlignedBottom" />
-                            <ComboBoxItem Content="Top" Tag="Top" />
-                            <ComboBoxItem Content="Bottom" Tag="Bottom" />
-                            <ComboBoxItem Content="Left" Tag="Left" />
-                            <ComboBoxItem Content="Right" Tag="Right" />
-                            <ComboBoxItem Content="Full" Tag="Full" />
-                        </ComboBox>
-                        <ComboBox x:Name="CmbSizeUnit" HorizontalAlignment="Stretch" Header="Size unit" SelectionChanged="CmbSizeUnit_SelectionChanged">
-                            <ComboBoxItem Content="Binary (KiB, MiB, GiB)" Tag="BinaryUnits" />
-                            <ComboBoxItem Content="Decimal (KB, MB, GB)" Tag="DecimalUnits" />
-                        </ComboBox>
+                        <local:ChoiceOption x:Name="CmbFlyoutPlacement" Header="Flyout placement" Value="{x:Bind primitives:FlyoutPlacementMode.RightEdgeAlignedTop}" />
+                        <local:ChoiceOption x:Name="CmbSizeUnit" Header="Size unit" Value="{x:Bind dev:SizeUnitTypes.BinaryUnits}" />
                         <Grid ColumnSpacing="8" RowSpacing="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -68,7 +52,7 @@
                     </local:OptionPanel>
                 </local:ControlExample.Options>
                 <Grid>
-                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Left" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
                 </Grid>
             </local:ControlExample>
         </StackPanel>
