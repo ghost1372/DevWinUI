@@ -16,9 +16,6 @@
 
     <local:StatusCenterStateToBrushConverter x:Key="StatusCenterStateToBrushConverter" CanceledBackgroundBrush="{StaticResource StatusCenterCanceledBrush}" CanceledForegroundBrush="{StaticResource StatusCenterCanceledBrush}" ErrorBackgroundBrush="{StaticResource StatusCenterErrorBackgroundBrush}" ErrorForegroundBrush="{StaticResource StatusCenterErrorBrush}" InProgressBackgroundBrush="{StaticResource StatusCenterInProgressBrush}" InProgressForegroundBrush="{StaticResource StatusCenterInProgressBrush}" PausedBackgroundBrush="{StaticResource StatusCenterPausedBackgroundBrush}" PausedForegroundBrush="{StaticResource StatusCenterPausedBrush}" SuccessfulBackgroundBrush="{StaticResource StatusCenterSuccessfulBackgroundBrush}" SuccessfulForegroundBrush="{StaticResource StatusCenterSuccessfulBrush}" />
 
-    <local:BoolNegationConverter x:Key="BoolNegationConverter" />
-    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    <local:BoolToObjectConverter x:Key="NegateBoolToVisibilityConverter" FalseValue="Visible" TrueValue="Collapsed" />
     <local:EmptyStringToObjectConverter x:Key="EmptyStringToBoolConverter" EmptyValue="False" NotEmptyValue="True" />
 
     <DataTemplate x:Key="StatusCenterItemTemplate" x:DataType="local:StatusCenterItem">
@@ -96,7 +93,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!--  Main ProgressBar  -->
-                <ProgressBar x:Name="MainProgressBar" Margin="4,4,4,4" VerticalAlignment="Top" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" IsIndeterminate="{x:Bind IsIndeterminateProgress, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource NegateBoolToVisibilityConverter}, Mode=OneWay}" Value="{x:Bind ProgressPercentage, Mode=OneWay}" />
+                <ProgressBar x:Name="MainProgressBar" Margin="4,4,4,4" VerticalAlignment="Top" Foreground="{x:Bind ItemKind, Converter={StaticResource StatusCenterStateToBrushConverter}, Mode=OneWay}" IsIndeterminate="{x:Bind IsIndeterminateProgress, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityReConverter}, Mode=OneWay}" Value="{x:Bind ProgressPercentage, Mode=OneWay}" />
 
                 <!--  Graph  -->
                 <Grid x:Name="MainGraphCartesianChartClipGrid" Height="88" Margin="4,4,4,12" VerticalAlignment="Top" BorderBrush="{ThemeResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
@@ -117,10 +114,10 @@
                 </Grid>
 
                 <!--  Footer  -->
-                <Grid Grid.Row="1" Margin="4,0" VerticalAlignment="Top" Visibility="{x:Bind IsIndeterminateProgress, Converter={StaticResource NegateBoolToVisibilityConverter}, Mode=OneWay}">
+                <Grid Grid.Row="1" Margin="4,0" VerticalAlignment="Top" Visibility="{x:Bind IsIndeterminateProgress, Converter={StaticResource BoolToVisibilityReConverter}, Mode=OneWay}">
 
                     <!--  Abstract Info (Displayed When Graph Collapsed)  -->
-                    <TextBlock x:Name="StatusCenterItemSubFooterTextBlock" x:Load="{x:Bind Message, Converter={StaticResource EmptyStringToBoolConverter}, Mode=OneWay}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" MaxLines="1" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Message, Mode=OneWay}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" ToolTipService.ToolTip="{x:Bind Message, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource NegateBoolToVisibilityConverter}, Mode=OneWay}" />
+                    <TextBlock x:Name="StatusCenterItemSubFooterTextBlock" x:Load="{x:Bind Message, Converter={StaticResource EmptyStringToBoolConverter}, Mode=OneWay}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" MaxLines="1" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Message, Mode=OneWay}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" ToolTipService.ToolTip="{x:Bind Message, Mode=OneWay}" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityReConverter}, Mode=OneWay}" />
 
                     <!--  Detailed Info (Displayed When Graph Expanded)  -->
                     <StackPanel Spacing="2" Visibility="{x:Bind IsExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">

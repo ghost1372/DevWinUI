@@ -14,8 +14,6 @@
                                     <ResourceDictionary Source="ms-appx:///DevWinUI/Controls/Ported/StatusCenter/Styles/StatusCenterInfoBadgeStyles.xaml" />
                                 </ResourceDictionary.MergedDictionaries>
 
-                                <local:VisibilityInvertConverter x:Key="VisibilityInvertConverter" />
-
                                 <Style x:Key="StatusCenterButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
                                     <Setter Property="Padding" Value="0" />
                                     <Setter Property="Background" Value="Transparent" />
@@ -30,7 +28,7 @@
                         <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
 
                             <Grid Margin="-16">
-                                <Grid Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibilityInvertConverter}, Mode=OneWay}">
+                                <Grid Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource BoolToVisibilityReConverter}, Mode=OneWay}">
                                     <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityConverter}, Mode=OneWay}" />
 
                                     <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityReConverter}, Mode=OneWay}" />
