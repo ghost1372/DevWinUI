@@ -21,6 +21,17 @@
                             <Slider x:Name="SliderBorderParticleCount" Header="Border Particles" Maximum="40000" Minimum="1000" StepFrequency="1000" Value="12000" />
                         </local:OptionPanel>
                     </local:OptionGroup>
+                    <local:OptionGroup Title="Colors">
+                        <local:OptionPanel>
+                            <local:ColorOption Brush="{x:Bind Globe.LandBrush, Mode=TwoWay}" Header="Land" />
+                            <local:ColorOption Brush="{x:Bind Globe.OceanBrush, Mode=TwoWay}" Header="Ocean" />
+                            <local:ColorOption Brush="{x:Bind Globe.AtmosphereBrush, Mode=TwoWay}" Header="Atmosphere" />
+                            <local:ColorOption Brush="{x:Bind Globe.GridBrush, Mode=TwoWay}" Header="Grid" />
+                            <local:ColorOption Brush="{x:Bind Globe.ArcBrush, Mode=TwoWay}" Header="Arc" />
+                            <local:ColorOption Brush="{x:Bind Globe.AccentBrush, Mode=TwoWay}" Header="Accent" />
+                            <local:ColorOption Brush="{x:Bind Globe.StarBrush, Mode=TwoWay}" Header="Star" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
                     <local:OptionGroup Title="Rotation and tour">
                         <local:OptionPanel>
                             <ToggleSwitch x:Name="TglAutoRotate" Header="Auto Rotate" IsOn="True" />
@@ -59,7 +70,7 @@
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
                 <local:ControlExample.XamlCode>
-                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" IsCountrySelectionEnabled="True" SelectedCountryCode="USA" IsFlatMapEnabled="True" FlatMapMode="Scroll" ShowCountryBorders="True" ShowArcs="True" ShowGrid="True" ShowStars="True" /&gt;</x:String>
+                    <x:String>&lt;dev:ParticleGlobe Height="480" Theme="Cyan" Quality="Auto" IsAutoRotateEnabled="True" IsCountrySelectionEnabled="True" SelectedCountryCode="USA" IsFlatMapEnabled="True" FlatMapMode="Scroll" ShowCountryBorders="True" ShowArcs="True" ShowGrid="True" ShowStars="True" LandBrush="#FF3FD0FF" OceanBrush="#FF05121F" AtmosphereBrush="#FF3FD0FF" GridBrush="#FF3FD0FF" ArcBrush="#FFFFB020" AccentBrush="#FFFFFFFF" StarBrush="#FFFFFFFF" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
                 <StackPanel Spacing="8">
                     <dev:ParticleGlobe x:Name="Globe" Height="480" HorizontalAlignment="Stretch" BorderParticleCount="{x:Bind (x:Int32)SliderBorderParticleCount.Value, Mode=OneWay}" BorderScanOnly="{x:Bind TglBorderScanOnly.IsOn, Mode=OneWay}" CountryClicked="OnGlobeCountryClicked" FlatMapMode="{x:Bind ((dev:ParticleGlobeFlatMapMode)CmbFlatMapMode.Value), Mode=OneWay}" IsAutoRotateEnabled="{x:Bind TglAutoRotate.IsOn, Mode=OneWay}" IsCountrySelectionEnabled="True" IsFlatMapEnabled="{x:Bind TglFlatMap.IsOn, Mode=OneWay}" IsInteractive="{x:Bind TglInteractive.IsOn, Mode=OneWay}" IsTourLooping="{x:Bind TglTourLoop.IsOn, Mode=OneWay}" ParticleCount="{x:Bind (x:Int32)SliderParticleCount.Value, Mode=OneWay}" Quality="{x:Bind ((dev:ParticleGlobeQuality)CmbQuality.Value), Mode=OneWay}" RotationSpeed="{x:Bind SliderRotationSpeed.Value, Mode=OneWay}" ShowArcs="{x:Bind TglArcs.IsOn, Mode=OneWay}" ShowCountryBorders="{x:Bind TglCountryBorders.IsOn, Mode=OneWay}" ShowEvents="{x:Bind TglEvents.IsOn, Mode=OneWay}" ShowGrid="{x:Bind TglGrid.IsOn, Mode=OneWay}" ShowHud="{x:Bind TglHud.IsOn, Mode=OneWay}" ShowOrbits="{x:Bind TglOrbits.IsOn, Mode=OneWay}" ShowStars="{x:Bind TglStars.IsOn, Mode=OneWay}" Theme="{x:Bind ((dev:ParticleGlobeTheme)CmbTheme.Value), Mode=OneWay}" TourEnded="OnGlobeTourEnded" TourMarkerReached="OnGlobeTourMarkerReached" />
