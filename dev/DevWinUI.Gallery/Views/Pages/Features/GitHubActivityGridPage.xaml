@@ -17,6 +17,11 @@
                     <Color x:Key="ActivityGridLevel2Color">#047857</Color>
                     <Color x:Key="ActivityGridLevel3Color">#10B981</Color>
                     <Color x:Key="ActivityGridLevel4Color">#6EE7B7</Color>
+                    <SolidColorBrush x:Key="OceanActivityLevel0Brush" Color="#21262D" />
+                    <SolidColorBrush x:Key="OceanActivityLevel1Brush" Color="#1C3A66" />
+                    <SolidColorBrush x:Key="OceanActivityLevel2Brush" Color="#23559E" />
+                    <SolidColorBrush x:Key="OceanActivityLevel3Brush" Color="#3478D6" />
+                    <SolidColorBrush x:Key="OceanActivityLevel4Brush" Color="#6BA4F5" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ActivityGridLevel0Color">#EEF0F2</Color>
@@ -30,7 +35,12 @@
                     <SolidColorBrush x:Key="OceanActivityLevel3Brush" Color="#4F86DA" />
                     <SolidColorBrush x:Key="OceanActivityLevel4Brush" Color="#2457B2" />
                 </ResourceDictionary>
-                <ResourceDictionary x:Key="Dark">
+                <ResourceDictionary x:Key="HighContrast">
+                    <Color x:Key="ActivityGridLevel0Color">#262A30</Color>
+                    <Color x:Key="ActivityGridLevel1Color">#064E3B</Color>
+                    <Color x:Key="ActivityGridLevel2Color">#047857</Color>
+                    <Color x:Key="ActivityGridLevel3Color">#10B981</Color>
+                    <Color x:Key="ActivityGridLevel4Color">#6EE7B7</Color>
                     <SolidColorBrush x:Key="OceanActivityLevel0Brush" Color="#21262D" />
                     <SolidColorBrush x:Key="OceanActivityLevel1Brush" Color="#1C3A66" />
                     <SolidColorBrush x:Key="OceanActivityLevel2Brush" Color="#23559E" />
