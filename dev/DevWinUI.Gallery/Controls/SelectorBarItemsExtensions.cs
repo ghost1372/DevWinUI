@@ -27,7 +27,7 @@ internal static class SelectorBarItemsExtensions
         bar.Items.Insert(bar.ItemCount(), item);
     }
 
-    public static SelectorBarItem FindItem(this SelectorBar bar, Func<SelectorBarItem, bool> predicate)
+    public static SelectorBarItem? FindItem(this SelectorBar bar, Func<SelectorBarItem, bool> predicate)
     {
         foreach (var item in bar.Items)
         {

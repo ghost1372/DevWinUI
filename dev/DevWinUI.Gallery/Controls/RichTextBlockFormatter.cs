@@ -7,13 +7,14 @@ using Microsoft.UI.Xaml.Documents;
 using Windows.UI.Text;
 
 namespace DevWinUIGallery;
+
 public class RichTextBlockFormatter : CodeColorizerBase
 {
     /// <summary>
     /// Creates a <see cref="RichTextBlockFormatter"/>, for rendering Syntax Highlighted code to a RichTextBlock.
     /// </summary>
     /// <param name="Theme">The Theme to use, determines whether to use Default Light or Default Dark.</param>
-    public RichTextBlockFormatter(ElementTheme Theme, ILanguageParser languageParser = null) : this(Theme == ElementTheme.Dark ? StyleDictionary.DefaultDark : StyleDictionary.DefaultLight, languageParser)
+    public RichTextBlockFormatter(ElementTheme Theme, ILanguageParser? languageParser = null) : this(Theme == ElementTheme.Dark ? StyleDictionary.DefaultDark : StyleDictionary.DefaultLight, languageParser)
     {
     }
 
@@ -22,7 +23,7 @@ public class RichTextBlockFormatter : CodeColorizerBase
     /// </summary>
     /// <param name="Style">The Custom styles to Apply to the formatted Code.</param>
     /// <param name="languageParser">The language parser that the <see cref="RichTextBlockFormatter"/> instance will use for its lifetime.</param>
-    public RichTextBlockFormatter(StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Style, languageParser)
+    public RichTextBlockFormatter(StyleDictionary? Style = null, ILanguageParser? languageParser = null) : base(Style, languageParser)
     {
     }
 
@@ -51,7 +52,7 @@ public class RichTextBlockFormatter : CodeColorizerBase
         languageParser.Parse(sourceCode, Language, (parsedSourceCode, captures) => Write(parsedSourceCode, captures));
     }
 
-    private InlineCollection InlineCollection { get; set; }
+    private InlineCollection InlineCollection { get; set; } = null!;
 
     protected override void Write(string parsedSourceCode, IList<Scope> scopes)
     {
@@ -64,7 +65,7 @@ public class RichTextBlockFormatter : CodeColorizerBase
 
         int offset = 0;
 
-        Scope PreviousScope = null;
+        Scope? PreviousScope = null;
 
         foreach (var styleinsertion in styleInsertions)
         {
@@ -87,7 +88,7 @@ public class RichTextBlockFormatter : CodeColorizerBase
         }
     }
 
-    private void CreateSpan(string Text, Scope scope)
+    private void CreateSpan(string Text, Scope? scope)
     {
         var span = new Span();
         var run = new Run
@@ -104,8 +105,8 @@ public class RichTextBlockFormatter : CodeColorizerBase
 
     private void StyleRun(Run Run, Scope Scope)
     {
-        string foreground = null;
-        string background = null;
+        string? foreground = null;
+        string? background = null;
         bool italic = false;
         bool bold = false;
 

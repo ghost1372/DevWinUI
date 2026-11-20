@@ -11,7 +11,7 @@ public sealed partial class GeneralSettingPage : Page
 
     private async void NavigateToLogPath_Click(object sender, RoutedEventArgs e)
     {
-        string folderPath = (sender as HyperlinkButton).Content.ToString();
+        var folderPath = (sender as HyperlinkButton)?.Content?.ToString();
         if (Directory.Exists(folderPath))
         {
             Windows.Storage.StorageFolder folder = await Windows.Storage.StorageFolder.GetFolderFromPathAsync(folderPath);
@@ -19,5 +19,3 @@ public sealed partial class GeneralSettingPage : Page
         }
     }
 }
-
-

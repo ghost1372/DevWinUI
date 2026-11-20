@@ -11,9 +11,8 @@ public sealed partial class CompareSliderPage : Page
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        var currentTarget = CompareSlider.TargetImage as BitmapImage;
-
-        if (currentTarget.UriSource.ToString().Contains("GirlBlur.jpg"))
+        if (CompareSlider.TargetImage is BitmapImage { UriSource: { } uriSource } &&
+            uriSource.ToString().Contains("GirlBlur.jpg"))
         {
             var before = new BitmapImage(new Uri("ms-appx:///Assets/Others/GirlBefore.png"));
             var after = new BitmapImage(new Uri("ms-appx:///Assets/Others/GirlAfter.png"));

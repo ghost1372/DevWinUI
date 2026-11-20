@@ -2,6 +2,7 @@
 using System.ComponentModel;
 
 namespace DevWinUIGallery.Views;
+
 public sealed partial class ValidationPage : Page
 {
     public UserInfo UserInfo { get; }
@@ -26,14 +27,14 @@ public sealed partial class UserInfo : ObservableObject, INotifyDataErrorInfo
     }
 
     [ObservableProperty]
-    public partial string Name { get; set; }
+    public partial string Name { get; set; } = string.Empty;
     partial void OnNameChanged(string value)
     {
         ValidateName(value);
     }
 
     [ObservableProperty]
-    public partial string Mail { get; set; }
+    public partial string Mail { get; set; } = string.Empty;
     partial void OnMailChanged(string value)
     {
         ValidateMail(value);
@@ -57,7 +58,7 @@ public sealed partial class UserInfo : ObservableObject, INotifyDataErrorInfo
             if (name.Contains("LPK", StringComparison.InvariantCultureIgnoreCase))
                 errors.Add("Name is forbidden for unknown reasons.");
         }
-        
+
 
         SetErrors("Name", errors);
     }
@@ -84,20 +85,20 @@ public sealed partial class UserInfo : ObservableObject, INotifyDataErrorInfo
 
     public bool HasErrors => _validationErrors.Count > 0;
 
-    public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+    public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
     private void OnErrorsChanged(string propertyName)
     {
         ErrorsChanged?.Invoke(this, new(propertyName));
         OnPropertyChanged(nameof(HasErrors));
     }
 
-    public IEnumerable GetErrors(string propertyName)
+    public IEnumerable GetErrors(string? propertyName)
     {
-        if (string.IsNullOrEmpty(propertyName) ||
-            !_validationErrors.ContainsKey(propertyName))
-            return null;
+        if (!string.IsNullOrEmpty(propertyName) &&
+            _validationErrors.TryGetValue(propertyName, out var errors))
+            return errors;
 
-        return _validationErrors[propertyName];
+        return Array.Empty<string>();
     }
 
     private void SetErrors(string key, ICollection<string> errors)

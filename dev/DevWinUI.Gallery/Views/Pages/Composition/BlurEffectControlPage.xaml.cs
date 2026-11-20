@@ -22,7 +22,10 @@ public sealed partial class BlurEffectControlPage : Page
                 BlurEffectControlSample.VisualSource = ElementCompositionPreview.GetElementVisual(BackdropImage);
                 break;
             case BlurSourceType.Custom:
-                BlurEffectControlSample.CustomSourceBrush = BlurEffectControlSample.GetCompositor().CreateColorBrush(Colors.Green);
+                if (BlurEffectControlSample.GetCompositor() is { } compositor)
+                {
+                    BlurEffectControlSample.CustomSourceBrush = compositor.CreateColorBrush(Colors.Green);
+                }
                 break;
         }
 

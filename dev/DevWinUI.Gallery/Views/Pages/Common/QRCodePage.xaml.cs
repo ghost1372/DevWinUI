@@ -9,7 +9,7 @@ public sealed partial class QRCodePage : Page
         InitializeComponent();
     }
 
-    private BitmapImage GenerateImage(string text, object value)
+    private BitmapImage? GenerateImage(string text, object value)
     {
         if (string.IsNullOrEmpty(text) || value is not ErrorCorrectionLevel level)
             return null;

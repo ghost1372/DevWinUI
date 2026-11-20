@@ -45,7 +45,7 @@ public sealed partial class HomeLandingPage : Page
         DataSource.Instance.ParsingCompleted -= OnParsingCompleted;
     }
 
-    private void OnParsingCompleted(object sender, EventArgs e)
+    private void OnParsingCompleted(object? sender, EventArgs e)
     {
         if (DispatcherQueue.HasThreadAccess)
         {
@@ -85,14 +85,14 @@ public sealed partial class HomeLandingPage : Page
         SectionsRepeater.ItemsSource = sections;
     }
 
-    private static void AddSection(ObservableCollection<GroupInfoList> sections, List<DataItem> source, string key, string title, FrameworkElement chip, TextBlock chipText)
+    private static void AddSection(ObservableCollection<GroupInfoList> sections, List<DataItem> source, string key, string title, FrameworkElement? chip, TextBlock? chipText)
     {
         var items = source
             .Where(item => string.Equals(item.BadgeString, key, StringComparison.Ordinal))
             .OrderBy(item => item.Title)
             .ToList();
 
-        if (chip != null)
+        if (chip != null && chipText != null)
         {
             chip.Visibility = ToVisibility(items.Count > 0);
             chipText.Text = items.Count.ToString();

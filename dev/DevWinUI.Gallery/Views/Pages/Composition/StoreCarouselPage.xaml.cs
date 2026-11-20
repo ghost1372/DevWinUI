@@ -16,7 +16,7 @@ public sealed partial class StoreCarouselPage : Page
         }
     }
 
-    private async void OnActionButtonClick(object sender, StoreCarouselEventArgs e)
+    private async void OnActionButtonClick(object? sender, StoreCarouselEventArgs e)
     {
         await MessageBox.ShowInfoAsync("Action Button Clicked!");
     }

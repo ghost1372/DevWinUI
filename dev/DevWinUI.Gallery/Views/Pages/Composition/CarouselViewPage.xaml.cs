@@ -14,7 +14,6 @@ public sealed partial class CarouselViewPage : Page
 
     private async void CarouselSample_ItemClick(object sender, CarouselViewItemClickEventArgs e)
     {
-        await MessageBox.ShowInfoAsync($"You have clicked {(e.ClickItem as ICarouselViewItemSource).Title} ;-)", "Wow");
+        await MessageBox.ShowInfoAsync($"You have clicked {(e.ClickItem as ICarouselViewItemSource)?.Title} ;-)", "Wow");
     }
 }
-

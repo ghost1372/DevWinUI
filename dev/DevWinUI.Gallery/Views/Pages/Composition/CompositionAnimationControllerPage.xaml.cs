@@ -6,14 +6,13 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class CompositionAnimationControllerPage : Page
 {
-    private CompositionAnimationController controller;
-    private Vector3KeyFrameAnimation _animation;
+    private readonly CompositionAnimationController controller;
     public CompositionAnimationControllerPage()
     {
         InitializeComponent();
-        AnimationSetup();
+        controller = AnimationSetup();
     }
-    private void AnimationSetup()
+    private CompositionAnimationController AnimationSetup()
     {
         var compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
         var visual = ElementCompositionPreview.GetElementVisual(Rectangle);
@@ -22,18 +21,19 @@ public sealed partial class CompositionAnimationControllerPage : Page
         float animationMax = 250f;
         var linear = compositor.CreateLinearEasingFunction();
 
-        _animation = compositor.CreateVector3KeyFrameAnimation();
-        _animation.InsertKeyFrame(0.25f, new Vector3(animationMax, (float)Canvas.GetTop(Rectangle), 0f), linear);
-        _animation.InsertKeyFrame(0.5f, new Vector3(animationMax, animationMax, 0f), linear);
-        _animation.InsertKeyFrame(0.75f, new Vector3((float)Canvas.GetLeft(Rectangle), animationMax, 0f), linear);
-        _animation.InsertKeyFrame(1f, new Vector3((float)Canvas.GetLeft(Rectangle), (float)Canvas.GetTop(Rectangle), 0f), linear);
-        _animation.Duration = TimeSpan.FromSeconds(animationDuration);
-        _animation.IterationBehavior = AnimationIterationBehavior.Forever;
+        var animation = compositor.CreateVector3KeyFrameAnimation();
+        animation.InsertKeyFrame(0.25f, new Vector3(animationMax, (float)Canvas.GetTop(Rectangle), 0f), linear);
+        animation.InsertKeyFrame(0.5f, new Vector3(animationMax, animationMax, 0f), linear);
+        animation.InsertKeyFrame(0.75f, new Vector3((float)Canvas.GetLeft(Rectangle), animationMax, 0f), linear);
+        animation.InsertKeyFrame(1f, new Vector3((float)Canvas.GetLeft(Rectangle), (float)Canvas.GetTop(Rectangle), 0f), linear);
+        animation.Duration = TimeSpan.FromSeconds(animationDuration);
+        animation.IterationBehavior = AnimationIterationBehavior.Forever;
 
         // Plug it into the controller
-        controller = new CompositionAnimationController(visual, nameof(Visual.Offset), _animation);
-        controller.AttachSlider(slider);
-        controller.PlayIcon = PlayIcon;
+        var animationController = new CompositionAnimationController(visual, nameof(Visual.Offset), animation);
+        animationController.AttachSlider(slider);
+        animationController.PlayIcon = PlayIcon;
+        return animationController;
     }
 
     private void PlayPause_Animation(object sender, RoutedEventArgs e)

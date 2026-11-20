@@ -11,11 +11,12 @@ public sealed partial class SampleBackdrop : Window
 
     private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (SampleTxt == null)
+        if (SampleTxt == null ||
+            CmbBackdrop.SelectedItem is not ComboBoxItem item)
         {
             return;
         }
-        var item = CmbBackdrop.SelectedItem as ComboBoxItem;
+
         switch (item.Tag)
         {
             case "None":

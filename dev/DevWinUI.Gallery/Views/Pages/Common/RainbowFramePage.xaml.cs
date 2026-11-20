@@ -2,7 +2,7 @@
 
 public sealed partial class RainbowFramePage : Page
 {
-    private RainbowFrame rainbowFrameHelper;
+    private readonly RainbowFrame rainbowFrameHelper;
     public RainbowFramePage()
     {
         this.InitializeComponent();
@@ -12,23 +12,23 @@ public sealed partial class RainbowFramePage : Page
 
     private void btnFixed_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        rainbowFrameHelper?.StopRainbowFrame();
+        rainbowFrameHelper.StopRainbowFrame();
         rainbowFrameHelper.ChangeFrameColor(Colors.Red);
     }
 
     private void btnRainbow_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        rainbowFrameHelper?.StopRainbowFrame();
-        rainbowFrameHelper?.StartRainbowFrame();
+        rainbowFrameHelper.StopRainbowFrame();
+        rainbowFrameHelper.StartRainbowFrame();
     }
 
     private void nbEffectSpeed_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
     {
-        rainbowFrameHelper?.UpdateEffectSpeed((int)args.NewValue);
+        rainbowFrameHelper.UpdateEffectSpeed((int)args.NewValue);
     }
 
     private void ControlExample_ResetRequested(object sender, EventArgs e)
     {
-        rainbowFrameHelper?.ResetFrameColorToDefault();
+        rainbowFrameHelper.ResetFrameColorToDefault();
     }
 }

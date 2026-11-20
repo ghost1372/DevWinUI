@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Media;
 
 namespace DevWinUIGallery.Views;
+
 public sealed partial class UacStyleDialogWindowPage : Page
 {
     public UacStyleDialogWindowPage()
@@ -10,9 +11,9 @@ public sealed partial class UacStyleDialogWindowPage : Page
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
-        var flow = (FlowDirection)CmbFlow.Value;
-        var severity = (InfoBarSeverity)CmbSeverity.Value;
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value!;
+        var flow = (FlowDirection)CmbFlow.Value!;
+        var severity = (InfoBarSeverity)CmbSeverity.Value!;
 
         UacStyleDialogWindow dialog = new()
         {

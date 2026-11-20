@@ -11,14 +11,16 @@ public sealed partial class MessageBoxPage : Page
 
     private async void OnMessageBox(object sender, RoutedEventArgs e)
     {
-        var element = sender as Button;
-        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
+        if (sender is not Button element)
+            return;
 
-        var button = (MessageBoxButtons)CmbMessageBoxButtons.Value;
-        var defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultButton.Value;
-        var icon = (MessageBoxIcon)CmbMessageBoxIcon.Value;
-        var flow = (FlowDirection)CmbFlow.Value;
-        var location = (WindowStartupLocation)CmbWindowStartupLocation.Value;
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value!;
+
+        var button = (MessageBoxButtons)CmbMessageBoxButtons.Value!;
+        var defaultButton = (MessageBoxDefaultButton)CmbMessageBoxDefaultButton.Value!;
+        var icon = (MessageBoxIcon)CmbMessageBoxIcon.Value!;
+        var flow = (FlowDirection)CmbFlow.Value!;
+        var location = (WindowStartupLocation)CmbWindowStartupLocation.Value!;
 
         var ownerWindow = TGHasOwnerWindow.IsOn ? MainWindow.Instance : null;
 
@@ -50,7 +52,7 @@ public sealed partial class MessageBoxPage : Page
         MessageBox.HasTitleBar = TGHasTitleBar.IsOn;
         MessageBox.CanDragMoveWindow = TGDragMove.IsOn;
         MessageBoxResult result = MessageBoxResult.None;
-        switch (element.Tag.ToString())
+        switch (element.Tag?.ToString())
         {
             case "None":
                 result = await MessageBox.ShowAsync(ownerWindow, txtContent.Text?.ToString(), txtTitle.Text, button, icon, defaultButton);

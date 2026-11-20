@@ -21,6 +21,9 @@ public sealed partial class SystemTrayIconPage : Page
 
     private void TxtToolTip_TextChanged(object sender, TextChangedEventArgs e)
     {
-        MainWindow.Instance.TrayIcon?.Tooltip = TxtToolTip?.Text;
+        if (sender is not Microsoft.UI.Xaml.Controls.TextBox textBox)
+            return;
+
+        MainWindow.Instance.TrayIcon?.Tooltip = textBox.Text;
     }
 }

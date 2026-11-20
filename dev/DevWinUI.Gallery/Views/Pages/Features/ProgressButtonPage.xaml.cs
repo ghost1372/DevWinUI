@@ -9,8 +9,12 @@ public sealed partial class ProgressButtonPage : Page
 
     private async void ProgressButton_Checked(object sender, RoutedEventArgs e)
     {
-        var pb = sender as ProgressButton;
-        if (pb.IsChecked.Value && !pb.IsIndeterminate)
+        if (sender is not ProgressButton pb)
+        {
+            return;
+        }
+
+        if (pb.IsChecked == true && !pb.IsIndeterminate)
         {
             pb.Progress = 0;
             while (true)

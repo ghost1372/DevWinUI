@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.Views;
+
 public sealed partial class HoneycombPanelPage : Page
 {
     public ObservableCollection<PersonPicture> PictureList;
@@ -23,7 +24,7 @@ public sealed partial class HoneycombPanelPage : Page
     {
         if (PictureList.Count > 0)
         {
-            PictureList.Remove(PictureList.LastOrDefault());
+            PictureList.RemoveAt(PictureList.Count - 1);
         }
     }
 }

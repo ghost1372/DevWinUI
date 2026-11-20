@@ -21,18 +21,19 @@ public sealed partial class PasswordGeneratorPage : Page
         });
     }
 
-    private PasswordCharacterSet GetSelectedCharacterSets() {
+    private PasswordCharacterSet GetSelectedCharacterSets()
+    {
         PasswordCharacterSet sets = PasswordCharacterSet.None;
 
-        if (ChkUpper.IsChecked.Value) sets |= PasswordCharacterSet.UpperCase;
-        if (ChkLower.IsChecked.Value) sets |= PasswordCharacterSet.LowerCase;
-        if (ChkNumbers.IsChecked.Value) sets |= PasswordCharacterSet.Numbers;
-        if (ChkMath.IsChecked.Value) sets |= PasswordCharacterSet.Math;
-        if (ChkPunctuation.IsChecked.Value) sets |= PasswordCharacterSet.Punctuation;
-        if (ChkBrackets.IsChecked.Value) sets |= PasswordCharacterSet.Brackets;
-        if (ChkQuotes.IsChecked.Value) sets |= PasswordCharacterSet.Quotes;
-        if (ChkSpecial.IsChecked.Value) sets |= PasswordCharacterSet.Special;
-        if (ChkSpaces.IsChecked.Value) sets |= PasswordCharacterSet.Space;
+        if (ChkUpper.IsChecked == true) sets |= PasswordCharacterSet.UpperCase;
+        if (ChkLower.IsChecked == true) sets |= PasswordCharacterSet.LowerCase;
+        if (ChkNumbers.IsChecked == true) sets |= PasswordCharacterSet.Numbers;
+        if (ChkMath.IsChecked == true) sets |= PasswordCharacterSet.Math;
+        if (ChkPunctuation.IsChecked == true) sets |= PasswordCharacterSet.Punctuation;
+        if (ChkBrackets.IsChecked == true) sets |= PasswordCharacterSet.Brackets;
+        if (ChkQuotes.IsChecked == true) sets |= PasswordCharacterSet.Quotes;
+        if (ChkSpecial.IsChecked == true) sets |= PasswordCharacterSet.Special;
+        if (ChkSpaces.IsChecked == true) sets |= PasswordCharacterSet.Space;
         return sets;
     }
 

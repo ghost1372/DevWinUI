@@ -11,16 +11,17 @@ public sealed partial class KeyVisualPage : Page
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        
+
     }
 
     private void VisualTypePicker_ValueChanged(ChoiceOption sender, object args)
     {
         if (MainKeyVisual != null && MainKeyVisual2 != null && MainKeyVisual3 != null)
         {
-            MainKeyVisual.VisualType = (VisualType)VisualTypePicker.Value;
-            MainKeyVisual2.VisualType = (VisualType)VisualTypePicker.Value;
-            MainKeyVisual3.VisualType = (VisualType)VisualTypePicker.Value;
+            var visualType = (VisualType)VisualTypePicker.Value!;
+            MainKeyVisual.VisualType = visualType;
+            MainKeyVisual2.VisualType = visualType;
+            MainKeyVisual3.VisualType = visualType;
         }
     }
 }

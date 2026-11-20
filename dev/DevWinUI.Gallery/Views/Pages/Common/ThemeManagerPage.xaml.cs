@@ -9,13 +9,17 @@ public sealed partial class ThemeManagerPage : Page
 
     private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
     {
-        var item = sender as RadioButton;
-        cmbTheme.Value = GeneralHelper.GetEnum<ElementTheme>(item.Tag?.ToString());
+        if (sender is not RadioButton { Tag: string tag })
+            return;
+
+        cmbTheme.Value = GeneralHelper.GetEnum<ElementTheme>(tag);
     }
     private void OnBackdropRadioButtonChecked(object sender, RoutedEventArgs e)
     {
-        var item = sender as RadioButton;
-        cmbBackdrop.Value = GeneralHelper.GetEnum<BackdropType>(item.Tag?.ToString());
+        if (sender is not RadioButton { Tag: string tag })
+            return;
+
+        cmbBackdrop.Value = GeneralHelper.GetEnum<BackdropType>(tag);
     }
     private async void cmbTheme_ValueChanged(ChoiceOption sender, object value)
     {

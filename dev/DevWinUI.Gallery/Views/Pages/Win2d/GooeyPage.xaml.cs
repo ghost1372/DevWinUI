@@ -54,7 +54,7 @@ public sealed partial class GooeyPage : Page
             }
         }
 
-        Debug.WriteLine(args.Item.ToString());
+        Debug.WriteLine(args.Item?.ToString());
     }
 
     private void nbBubble_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)

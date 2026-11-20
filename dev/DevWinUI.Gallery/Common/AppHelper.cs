@@ -5,6 +5,7 @@ using Nucs.JsonSettings.Modulation;
 using Nucs.JsonSettings.Modulation.Recovery;
 
 namespace DevWinUIGallery.Common;
+
 public static partial class AppHelper
 {
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(AppConfig))]
@@ -25,16 +26,15 @@ public static partial class AppHelper
         if (dataGroup != null)
         {
             uniqueId = dataGroup.UniqueId;
-            sectionId = dataGroup.SectionId;
+            sectionId = dataGroup.SectionId ?? string.Empty;
         }
 
         if (dataItem != null)
         {
             uniqueId = dataItem.UniqueId;
-            sectionId = dataItem.SectionId;
+            sectionId = dataItem.SectionId ?? string.Empty;
         }
 
         return (uniqueId, sectionId);
     }
 }
-

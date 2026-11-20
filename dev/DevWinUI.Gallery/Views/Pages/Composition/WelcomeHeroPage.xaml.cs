@@ -2,7 +2,7 @@
 
 public sealed partial class WelcomeHeroPage : Page
 {
-    internal static WelcomeHeroPage Instance { get; private set; }
+    internal static WelcomeHeroPage? Instance { get; private set; }
     public static bool WelcomeIntroPlayed { get; set; }
     public WelcomeHeroPage()
     {

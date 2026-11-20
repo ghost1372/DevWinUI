@@ -8,15 +8,13 @@ public sealed partial class EyeDropperPage : Page
     {
         InitializeComponent();
     }
-
     private void BtnPick_Click(object sender, RoutedEventArgs e)
     {
         var eyeDropper = new EyeDropper();
-        eyeDropper.Start();
         eyeDropper.ColorPicked += EyeDropper_ColorPicked;
+        eyeDropper.Start();
     }
-
-    private void EyeDropper_ColorPicked(object sender, Windows.UI.Color e)
+    private void EyeDropper_ColorPicked(object? sender, Windows.UI.Color e)
     {
         DispatcherQueue.TryEnqueue(() =>
         {

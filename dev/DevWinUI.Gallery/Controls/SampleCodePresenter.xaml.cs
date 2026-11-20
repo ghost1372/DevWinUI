@@ -5,6 +5,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 
 namespace DevWinUIGallery;
+
 public enum SampleCodePresenterType
 {
     XAML,
@@ -131,8 +132,7 @@ public sealed partial class SampleCodePresenter : UserControl
         if (sourceRelativePath != null && sourceRelativePath.EndsWith("txt"))
         {
 
-            string sampleString = null;
-            StorageFile file = null;
+            StorageFile file;
             if (!PackageHelper.IsPackaged)
             {
                 var relativePath = GetDerivedSourceUnpackaged(sourceRelativePath);
@@ -144,7 +144,7 @@ public sealed partial class SampleCodePresenter : UserControl
                 Uri derivedSource = GetDerivedSource(sourceRelativePath);
                 file = await StorageFile.GetFileFromApplicationUriAsync(derivedSource);
             }
-            sampleString = await FileIO.ReadTextAsync(file);
+            var sampleString = await FileIO.ReadTextAsync(file);
 
             FormatAndRenderSampleFromString(sampleString, presenter, highlightLanguage);
         }
@@ -156,13 +156,13 @@ public sealed partial class SampleCodePresenter : UserControl
 
     private void FormatAndRenderSampleFromString(string sampleString, ContentPresenter presenter, ILanguage highlightLanguage)
     {
-        sampleString = sampleString?.Replace("#nl#", Environment.NewLine);
+        sampleString = sampleString.Replace("#nl#", Environment.NewLine);
 
         // Trim out stray blank lines at start and end.
-        sampleString = sampleString?.TrimStart('\n').TrimEnd();
+        sampleString = sampleString.TrimStart('\n').TrimEnd();
 
         // Also trim out spaces at the end of each line
-        sampleString = string.Join('\n', sampleString?.Split('\n').Select(s => s?.TrimEnd()));
+        sampleString = string.Join('\n', sampleString.Split('\n').Select(s => s.TrimEnd()));
 
         actualCode = sampleString;
 
