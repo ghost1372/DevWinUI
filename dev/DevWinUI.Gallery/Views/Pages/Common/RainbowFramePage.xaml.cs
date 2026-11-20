@@ -24,6 +24,11 @@ public sealed partial class RainbowFramePage : Page
 
     private void nbEffectSpeed_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
     {
+        if (rainbowFrameHelper is null || double.IsNaN(args.NewValue))
+        {
+            return;
+        }
+
         rainbowFrameHelper.UpdateEffectSpeed((int)args.NewValue);
     }
 
