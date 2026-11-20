@@ -15,42 +15,32 @@
                 <local:ControlExample.XamlCode>
                     <x:String>&lt;dev:StatusCenterButton x:Name="StatusCenterButtonSample" /&gt;</x:String>
                 </local:ControlExample.XamlCode>
-                <local:ControlExample.Options>
-                    <local:OptionPanel>
-                        <local:ChoiceOption x:Name="CmbFlyoutPlacement" Header="Flyout placement" Value="{x:Bind primitives:FlyoutPlacementMode.RightEdgeAlignedTop}" />
-                        <local:ChoiceOption x:Name="CmbSizeUnit" Header="Size unit" Value="{x:Bind dev:SizeUnitTypes.BinaryUnits}" />
-                        <Grid ColumnSpacing="8" RowSpacing="8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Button HorizontalAlignment="Stretch" Click="Copy_Click" Content="Copy" />
-                            <Button Grid.Column="1" HorizontalAlignment="Stretch" Click="Move_Click" Content="Move" />
-                            <Button Grid.Row="1" HorizontalAlignment="Stretch" Click="Delete_Click" Content="Delete" />
-                            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Click="Recycle_Click" Content="Recycle" />
-                            <Button Grid.Row="2" HorizontalAlignment="Stretch" Click="Compress_Click" Content="Compress" />
-                            <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Click="Extract_Click" Content="Extract" />
-                            <Button Grid.Row="3" HorizontalAlignment="Stretch" Click="InstallFont_Click" Content="Install font" />
-                            <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Click="EmptyRecycleBin_Click" Content="Recycle bin" />
-                            <Button Grid.Row="4" HorizontalAlignment="Stretch" Click="GitClone_Click" Content="Git clone" />
-                            <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" Click="GitFetch_Click" Content="Git fetch" />
-                            <Button Grid.Row="5" HorizontalAlignment="Stretch" Click="GitPull_Click" Content="Git pull" />
-                            <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Click="GitPush_Click" Content="Git push" />
-                            <Button Grid.Row="6" HorizontalAlignment="Stretch" Click="GitSync_Click" Content="Git sync" />
-                            <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Click="GitCheckout_Click" Content="Git checkout" />
-                        </Grid>
-                    </local:OptionPanel>
-                </local:ControlExample.Options>
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Operations">
+                        <local:OptionPanel>
+                            <Button Click="Copy_Click" Content="Copy" />
+                            <Button Click="Move_Click" Content="Move" />
+                            <Button Click="Delete_Click" Content="Delete" />
+                            <Button Click="Recycle_Click" Content="Recycle" />
+                            <Button Click="Compress_Click" Content="Compress" />
+                            <Button Click="Extract_Click" Content="Extract" />
+                            <Button Click="InstallFont_Click" Content="Install font" />
+                            <Button Click="EmptyRecycleBin_Click" Content="Recycle bin" />
+                            <Button Click="GitClone_Click" Content="Git clone" />
+                            <Button Click="GitFetch_Click" Content="Git fetch" />
+                            <Button Click="GitPull_Click" Content="Git pull" />
+                            <Button Click="GitPush_Click" Content="Git push" />
+                            <Button Click="GitSync_Click" Content="Git sync" />
+                            <Button Click="GitCheckout_Click" Content="Git checkout" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Display">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbFlyoutPlacement" Header="Flyout placement" Value="{x:Bind primitives:FlyoutPlacementMode.RightEdgeAlignedTop}" />
+                            <local:ChoiceOption x:Name="CmbSizeUnit" Header="Size unit" Value="{x:Bind dev:SizeUnitTypes.BinaryUnits}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
                 <Grid>
                     <dev:StatusCenterButton x:Name="StatusCenterButtonSample" HorizontalAlignment="Left" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
                 </Grid>
