@@ -60,7 +60,7 @@
                                 &lt;dev:FizzyCover Content="Follow" InvertedContent="Following" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
-                        <dev:FizzyCover Width="250" HorizontalAlignment="Left" Content="Follow" InvertedContent="Following" ParticleShape="Mixed" Trigger="Toggle" />
+                        <dev:FizzyCover Width="250" Height="50" HorizontalAlignment="Left" Content="Follow" InvertedContent="Following" ParticleShape="Mixed" Trigger="Toggle" />
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>
