@@ -11,6 +11,87 @@ public sealed partial class BorderBeam
     public static readonly DependencyProperty SizeProperty =
         DependencyProperty.Register(nameof(Size), typeof(double), typeof(BorderBeam), new PropertyMetadata(200.0, OnPaintChanged));
 
+    public BorderBeamMode Mode
+    {
+        get { return (BorderBeamMode)GetValue(ModeProperty); }
+        set { SetValue(ModeProperty, value); }
+    }
+
+    public static readonly DependencyProperty ModeProperty =
+        DependencyProperty.Register(nameof(Mode), typeof(BorderBeamMode), typeof(BorderBeam), new PropertyMetadata(BorderBeamMode.Chase, OnTimingChanged));
+
+    public BorderBeamOrigin MirrorOrigin
+    {
+        get { return (BorderBeamOrigin)GetValue(MirrorOriginProperty); }
+        set { SetValue(MirrorOriginProperty, value); }
+    }
+
+    public static readonly DependencyProperty MirrorOriginProperty =
+        DependencyProperty.Register(nameof(MirrorOrigin), typeof(BorderBeamOrigin), typeof(BorderBeam), new PropertyMetadata(BorderBeamOrigin.Top, OnGeometryChanged));
+
+    public BorderBeamEdge MirrorEdge
+    {
+        get { return (BorderBeamEdge)GetValue(MirrorEdgeProperty); }
+        set { SetValue(MirrorEdgeProperty, value); }
+    }
+
+    public static readonly DependencyProperty MirrorEdgeProperty =
+        DependencyProperty.Register(nameof(MirrorEdge), typeof(BorderBeamEdge), typeof(BorderBeam), new PropertyMetadata(BorderBeamEdge.Center, OnGeometryChanged));
+
+    public BorderBeamStart MirrorStart
+    {
+        get { return (BorderBeamStart)GetValue(MirrorStartProperty); }
+        set { SetValue(MirrorStartProperty, value); }
+    }
+
+    public static readonly DependencyProperty MirrorStartProperty =
+        DependencyProperty.Register(nameof(MirrorStart), typeof(BorderBeamStart), typeof(BorderBeam), new PropertyMetadata(BorderBeamStart.Both, OnTimingChanged));
+
+    public double MirrorLag
+    {
+        get { return (double)GetValue(MirrorLagProperty); }
+        set { SetValue(MirrorLagProperty, value); }
+    }
+
+    public static readonly DependencyProperty MirrorLagProperty =
+        DependencyProperty.Register(nameof(MirrorLag), typeof(double), typeof(BorderBeam), new PropertyMetadata(0.3, OnPaintChanged));
+
+    public BorderBeamOrigin ChaseOrigin
+    {
+        get { return (BorderBeamOrigin)GetValue(ChaseOriginProperty); }
+        set { SetValue(ChaseOriginProperty, value); }
+    }
+
+    public static readonly DependencyProperty ChaseOriginProperty =
+        DependencyProperty.Register(nameof(ChaseOrigin), typeof(BorderBeamOrigin), typeof(BorderBeam), new PropertyMetadata(BorderBeamOrigin.Top, OnGeometryChanged));
+
+    public BorderBeamEdge ChaseEdge
+    {
+        get { return (BorderBeamEdge)GetValue(ChaseEdgeProperty); }
+        set { SetValue(ChaseEdgeProperty, value); }
+    }
+
+    public static readonly DependencyProperty ChaseEdgeProperty =
+        DependencyProperty.Register(nameof(ChaseEdge), typeof(BorderBeamEdge), typeof(BorderBeam), new PropertyMetadata(BorderBeamEdge.LeftEdge, OnGeometryChanged));
+
+    public BorderBeamDirection ChaseDirection
+    {
+        get { return (BorderBeamDirection)GetValue(ChaseDirectionProperty); }
+        set { SetValue(ChaseDirectionProperty, value); }
+    }
+
+    public static readonly DependencyProperty ChaseDirectionProperty =
+        DependencyProperty.Register(nameof(ChaseDirection), typeof(BorderBeamDirection), typeof(BorderBeam), new PropertyMetadata(BorderBeamDirection.Clockwise, OnPaintChanged));
+
+    public int BeamCount
+    {
+        get { return (int)GetValue(BeamCountProperty); }
+        set { SetValue(BeamCountProperty, value); }
+    }
+
+    public static readonly DependencyProperty BeamCountProperty =
+        DependencyProperty.Register(nameof(BeamCount), typeof(int), typeof(BorderBeam), new PropertyMetadata(1, OnPaintChanged));
+
     public double Duration
     {
         get { return (double)GetValue(DurationProperty); }
@@ -19,6 +100,15 @@ public sealed partial class BorderBeam
 
     public static readonly DependencyProperty DurationProperty =
         DependencyProperty.Register(nameof(Duration), typeof(double), typeof(BorderBeam), new PropertyMetadata(15.0, OnTimingChanged));
+
+    public double Speed
+    {
+        get { return (double)GetValue(SpeedProperty); }
+        set { SetValue(SpeedProperty, value); }
+    }
+
+    public static readonly DependencyProperty SpeedProperty =
+        DependencyProperty.Register(nameof(Speed), typeof(double), typeof(BorderBeam), new PropertyMetadata(0.0, OnTimingChanged));
 
     public double Delay
     {
