@@ -49,7 +49,7 @@
     <LangVersion>Latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-    <NoWarn>WIN2D0001;WMC1510;WMC0001</NoWarn>
+    <NoWarn>WIN2D0001;WMC1510;WMC0001;IDE0130</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
