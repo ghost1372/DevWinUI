@@ -3,7 +3,7 @@
 
 namespace DevWinUI;
 
-internal sealed class IntervalSampler
+internal sealed partial class IntervalSampler
 {
 	private readonly TimeSpan sampleInterval;
 	private DateTime nextRecordPoint;

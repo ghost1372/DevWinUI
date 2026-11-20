@@ -3,7 +3,7 @@
 
 namespace DevWinUI;
 
-public static class StatusCenterStringExtensions
+public static partial class StatusCenterStringExtensions
 {
 	public static string ToSizeString(this double size, SizeUnitTypes format) => ToSizeString((long)size, format);
 	public static string ToSizeString(this long size, SizeUnitTypes format) => FileHelper.GetFileSize(size, format is SizeUnitTypes.BinaryUnits);
