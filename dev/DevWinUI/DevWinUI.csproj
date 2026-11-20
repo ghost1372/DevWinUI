@@ -28,7 +28,7 @@
       <TargetFile>Themes\Generic.xaml</TargetFile>
       <Visible>True</Visible>
     </XAMLCombineItems>
-    <XAMLCombineItems Include="Controls\Ported\**\*.xaml" Exclude="Controls\Ported\Sidebar\SidebarView.xaml;Controls\Ported\StatusCenter\Styles\StatusCenterStyles.xaml;Controls\Ported\StatusCenter\Styles\StatusCenterInfoBadgeStyles.xaml">
+    <XAMLCombineItems Include="Controls\Ported\**\*.xaml" Exclude="Controls\Ported\Sidebar\SidebarView.xaml;Controls\Ported\StatusCenter\Styles\StatusCenterStyles.xaml">
       <TargetFile>Themes\Generic.xaml</TargetFile>
       <Visible>True</Visible>
     </XAMLCombineItems>
