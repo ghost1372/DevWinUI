@@ -40,7 +40,7 @@
     <Win2dVersion>1.4.0</Win2dVersion>
     <ComputeSharpVersion>3.2.0</ComputeSharpVersion>
     <WASDKWinUIVersion>2.3.6</WASDKWinUIVersion>
-    <BuildToolsMSIXVersion>1.7.261102100</BuildToolsMSIXVersion>
+    <BuildToolsMSIXVersion>1.7.261119100</BuildToolsMSIXVersion>
   </PropertyGroup>
 
   <PropertyGroup>
