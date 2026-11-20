@@ -14,11 +14,11 @@
                 <local:ControlExample.Options>
                     <local:OptionPanel>
                         <Slider x:Name="SliderSpeed" Header="Speed" Maximum="4" Minimum="0" StepFrequency="0.1" Value="1" />
-                        <local:ColorOption x:Name="ParticleColorOption" Header="ParticleBrush" IsAlphaEnabled="True" Value="White" />
+                        <local:ColorOption Brush="{x:Bind Particles.ParticleBrush, Mode=TwoWay}" Header="ParticleBrush" />
                     </local:OptionPanel>
                 </local:ControlExample.Options>
                 <Grid MinHeight="360" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" CornerRadius="{StaticResource OverlayCornerRadius}">
-                    <dev:PlayStationParticles ParticleBrush="{x:Bind ParticleColorOption.Brush, Mode=OneWay}" Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" />
+                    <dev:PlayStationParticles x:Name="Particles" Speed="{x:Bind SliderSpeed.Value, Mode=OneWay}" />
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
                         <TextBlock HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Text="Welcome" />
                         <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Drifting, twinkling particles" />

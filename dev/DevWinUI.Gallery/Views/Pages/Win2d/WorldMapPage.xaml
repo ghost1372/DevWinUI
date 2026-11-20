@@ -18,6 +18,14 @@
                             <local:ChoiceOption x:Name="CmbHighlightColor" Header="Highlight Color" Value="{x:Bind dev:WorldMapHighlightColor.Cyan}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
+                    <local:OptionGroup Title="Colors">
+                        <local:OptionPanel>
+                            <local:ColorOption x:Name="ClrCountryFill" Header="Country Fill" Value="#FF64748B" />
+                            <local:ColorOption x:Name="ClrCountryHoverFill" Header="Country Hover Fill" Value="#FF94A3B8" />
+                            <local:ColorOption x:Name="ClrCountrySelectedFill" Header="Country Selected Fill" Value="#FF0078D4" />
+                            <local:ColorOption x:Name="ClrCountryStroke" Header="Country Stroke" Value="#FF94A3B8" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
                     <local:OptionGroup Title="Borders">
                         <local:OptionPanel>
                             <local:ChoiceOption x:Name="CmbBorderStyle" Header="Border Style" Value="{x:Bind dev:WorldMapBorderStyle.Dashed}" />
@@ -35,11 +43,11 @@
                 </local:ControlExample.OptionGroups>
                 <local:ControlExample.XamlCode>
                     <x:String>
-                        &lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" /&gt;
+                        &lt;dev:WorldMap Height="440" SelectionMode="Multiple" HighlightColor="Cyan" CountryBorderStyle="Dashed" ShowToolTip="True" ShowZoomControls="True" CountryFill="#64748B" CountryHoverFill="#94A3B8" CountrySelectedFill="#0078D4" CountryStroke="#94A3B8" /&gt;
                     </x:String>
                 </local:ControlExample.XamlCode>
                 <StackPanel Spacing="8">
-                    <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.Value), Mode=OneWay}" CountryClicked="OnMapCountryClicked" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.Value), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.Value), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" />
+                    <dev:WorldMap x:Name="Map" Height="440" CountryBorderStyle="{x:Bind ((dev:WorldMapBorderStyle)CmbBorderStyle.Value), Mode=OneWay}" CountryClicked="OnMapCountryClicked" CountryFill="{x:Bind ClrCountryFill.Brush, Mode=OneWay}" CountryHoverFill="{x:Bind ClrCountryHoverFill.Brush, Mode=OneWay}" CountrySelectedFill="{x:Bind ClrCountrySelectedFill.Brush, Mode=OneWay}" CountryStroke="{x:Bind ClrCountryStroke.Brush, Mode=OneWay}" CountryStrokeThickness="{x:Bind SliderStrokeThickness.Value, Mode=OneWay}" HighlightColor="{x:Bind ((dev:WorldMapHighlightColor)CmbHighlightColor.Value), Mode=OneWay}" IsPanEnabled="{x:Bind TglPan.IsOn, Mode=OneWay}" IsZoomEnabled="{x:Bind TglZoom.IsOn, Mode=OneWay}" MapLoaded="OnMapLoaded" SelectionChanged="OnMapSelectionChanged" SelectionMode="{x:Bind ((dev:WorldMapSelectionMode)CmbSelectionMode.Value), Mode=OneWay}" ShowToolTip="{x:Bind TglToolTip.IsOn, Mode=OneWay}" ShowZoomControls="{x:Bind TglZoomControls.IsOn, Mode=OneWay}" />
                     <TextBlock x:Name="MapStatusText" Text="Loading world map..." />
                 </StackPanel>
             </local:ControlExample>
