@@ -35,8 +35,9 @@ body:
     attributes:
       label: NuGet package version
       options:
-        - "DevWinUI 10.8.0"
-        - "DevWinUI 10.7.0"
+        - "DevWinUI 11.0.0"
+        - "DevWinUI 10.9.1"
+        - "DevWinUI 10.9.0"
         - "DevWinUI 9.9.4"
   - type: dropdown
     attributes:
