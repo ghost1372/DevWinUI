@@ -1,4 +1,4 @@
-﻿name: Bug report
+name: Bug report
 description: File a bug report.
 title: "[Bug]: "
 labels: []
@@ -31,14 +31,13 @@ body:
     attributes:
       label: Screenshots
       description: If applicable, add screenshots here to help explain your problem
-  - type: dropdown
+  - type: input
+    validations:
+      required: true
     attributes:
       label: NuGet package version
-      options:
-        - "DevWinUI 11.0.0"
-        - "DevWinUI 10.9.1"
-        - "DevWinUI 10.9.0"
-        - "DevWinUI 9.9.4"
+      description: Which DevWinUI NuGet package version are you using?
+      placeholder: "e.g. 11.0.0"
   - type: dropdown
     attributes:
       label: IDE
