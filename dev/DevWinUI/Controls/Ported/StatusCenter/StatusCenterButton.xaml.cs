@@ -137,16 +137,16 @@ public sealed partial class StatusCenterButton : Control
 			statusCenter.ViewModel = ViewModel;
 	}
 
-	private void StatusCenterFlyout_Opened(object sender, object e)
-	{
-		_isOpen = true;
-		ViewModel.OnStatusCenterFlyoutOpened();
-	}
+    private void StatusCenterFlyout_Opened(object? sender, object e)
+    {
+        _isOpen = true;
+        ViewModel.OnStatusCenterFlyoutOpened();
+    }
 
-	private void StatusCenterFlyout_Closed(object sender, object e)
-		=> _isOpen = false;
+    private void StatusCenterFlyout_Closed(object? sender, object e)
+        => _isOpen = false;
 
-	private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
 	{
 		switch (e.PropertyName)
 		{
