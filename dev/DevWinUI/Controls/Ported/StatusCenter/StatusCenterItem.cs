@@ -4,7 +4,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using Microsoft.UI.Xaml.Markup;
 
 namespace DevWinUI;
 
@@ -218,8 +217,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		get
 		{
 			if (_iconPathMarkup is { Length: > 0 } markup)
-				return XamlReader.Load(
-					$@"<PathIcon xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""{markup}"" />") as PathIcon;
+				return new PathIcon { Data = GeneralHelper.GetGeometryFromString(markup) };
 
 			return IconSource switch
 			{
@@ -353,8 +351,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		if (string.IsNullOrEmpty(pathMarkup))
 			return null;
 
-		return XamlReader.Load(
-			$@"<PathIconSource xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" Data=""{pathMarkup}"" />") as PathIconSource;
+		return new PathIconSource { Data = GeneralHelper.GetGeometryFromString(pathMarkup) };
 	}
 
 	private void ReportProgress(StatusCenterItemProgressModel value)
