@@ -125,6 +125,11 @@ public partial class JsonNavigationService
             }
         }
 
+        if (_navigationView == null)
+        {
+            return;
+        }
+
         foreach (var item in menuItems)
         {
             _navigationView.MenuItems.Add(item);
@@ -219,7 +224,7 @@ public partial class JsonNavigationService
         }
     }
 
-    private InfoBadge GetInfoBadge(BaseDataInfo item, string badgeString, string defaultBuiltInInfoBadgeStyle, bool useBuiltInStyle)
+    private InfoBadge? GetInfoBadge(BaseDataInfo item, string? badgeString, string defaultBuiltInInfoBadgeStyle, bool useBuiltInStyle)
     {
         if (item.DataInfoBadge == null)
         {
@@ -252,7 +257,7 @@ public partial class JsonNavigationService
 
         return null;
     }
-    private IconElement GetIcon(string imagePath, string iconGlyph)
+    private IconElement? GetIcon(string? imagePath, string? iconGlyph)
     {
         if (string.IsNullOrEmpty(imagePath) && string.IsNullOrEmpty(iconGlyph))
         {

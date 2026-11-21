@@ -6,7 +6,7 @@ namespace DevWinUI;
 public partial class WindowHelper
 {
     internal static List<Win32Window> processWindowList = new List<Win32Window>();
-    internal static Process currentProcess;
+    internal static Process currentProcess = Process.GetCurrentProcess();
     internal static List<Win32Window> topLevelWindowList = new List<Win32Window>();
 
     /// <summary>
@@ -46,10 +46,11 @@ public partial class WindowHelper
     public static void RemoveWindowFromTrack(Microsoft.UI.Xaml.Window window)
     {
         var item = ActiveWindows.FirstOrDefault(x => x.Window.Equals(window));
-        ActiveWindows.DeleteIfExists(item);
+        if (item != null)
+            ActiveWindows.DeleteIfExists(item);
     }
 
-    public static Microsoft.UI.Xaml.Window GetWindowForElement(UIElement element)
+    public static Microsoft.UI.Xaml.Window? GetWindowForElement(UIElement element)
     {
         if (element.XamlRoot != null)
         {
@@ -182,7 +183,7 @@ public partial class WindowHelper
     {
         unsafe
         {
-            topLevelWindowList?.Clear();
+            topLevelWindowList.Clear();
             delegate* unmanaged[Stdcall]<HWND, LPARAM, BOOL> callback = &EnumWindowsCallback;
 
             PInvoke.EnumWindows(callback, IntPtr.Zero);
@@ -207,7 +208,7 @@ public partial class WindowHelper
     {
         unsafe
         {
-            processWindowList?.Clear();
+            processWindowList.Clear();
             currentProcess = Process.GetCurrentProcess();
             delegate* unmanaged[Stdcall]<HWND, LPARAM, BOOL> callback = &EnumWindowsCallback;
 
@@ -263,7 +264,7 @@ public partial class WindowHelper
         var tops = GetProcessWindowList();
 
         var firstWinUI3 = tops.FirstOrDefault(w => w.ClassName == "WinUIDesktopWin32WindowClass" || w.ClassName == "Microsoft.UI.Windowing.Window");
-        var windowId = Win32Interop.GetWindowIdFromWindow(firstWinUI3.Handle);
+        var windowId = Win32Interop.GetWindowIdFromWindow((firstWinUI3 ?? throw new InvalidOperationException("Could not find a WinUI window in the current process.")).Handle);
 
         return AppWindow.GetFromWindowId(windowId);
     }
@@ -273,7 +274,7 @@ public partial class WindowHelper
     /// Retrieves the current AppWindow using XamlRoot method.
     /// </summary>
     /// <returns>An AppWindow instance representing the current window.</returns>
-    public static AppWindow GetAppWindow(UIElement uIElement)
+    public static AppWindow? GetAppWindow(UIElement uIElement)
     {
         if (uIElement == null)
         {
@@ -287,7 +288,7 @@ public partial class WindowHelper
     /// Retrieves the current AppWindow using Microsoft.UI.Composition.Visual method.
     /// </summary>
     /// <returns>An AppWindow instance representing the current window.</returns>
-    public static AppWindow GetAppWindow2(UIElement uIElement)
+    public static AppWindow? GetAppWindow2(UIElement uIElement)
     {
         if (uIElement == null)
             return null;

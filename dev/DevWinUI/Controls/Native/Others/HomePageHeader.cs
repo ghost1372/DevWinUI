@@ -7,8 +7,8 @@ public partial class HomePageHeader : Control
     private const string PART_HeroImage = "PART_HeroImage";
     private const string PART_HeroTile = "PART_HeroTile";
 
-    private Image heroImage;
-    private TileControl heroTile;
+    private Image heroImage = null!;
+    private TileControl heroTile = null!;
 
     public double HeaderImageHeight
     {
@@ -132,8 +132,8 @@ public partial class HomePageHeader : Control
     {
         base.OnApplyTemplate();
 
-        heroImage = GetTemplateChild(PART_HeroImage) as Image;
-        heroTile = GetTemplateChild(PART_HeroTile) as TileControl;
+        heroImage = (GetTemplateChild(PART_HeroImage) as Image)!;
+        heroTile = (GetTemplateChild(PART_HeroTile) as TileControl)!;
 
         ToggleTileOrImage();
     }

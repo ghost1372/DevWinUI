@@ -46,7 +46,7 @@ public static partial class CompositionProExtensions
     /// <param name="backdropBrush">Backdrop Brush (optional). If not provided, then compositor creates it.</param>
     /// <returns>CompositionEffectBrush</returns>
     public static CompositionEffectBrush CreateMaskedBackdropBrush(this Compositor compositor, IMaskSurface mask,
-        Color blendColor, float blurAmount, CompositionBackdropBrush backdropBrush = null)
+        Color blendColor, float blurAmount, CompositionBackdropBrush? backdropBrush = null)
     {
         return CreateBackdropBrush(compositor, mask, blendColor, blurAmount, backdropBrush);
     }
@@ -61,7 +61,7 @@ public static partial class CompositionProExtensions
     /// <param name="backdropBrush">Backdrop Brush (optional). If not provided, then compositor creates it.</param>
     /// <returns>CompositionEffectBrush</returns>
     public static CompositionEffectBrush CreateGaussianMaskedBackdropBrush(this Compositor compositor, IGaussianMaskSurface mask,
-        Color blendColor, float blurRadius, CompositionBackdropBrush backdropBrush = null)
+        Color blendColor, float blurRadius, CompositionBackdropBrush? backdropBrush = null)
     {
         return CreateBackdropBrush(compositor, mask, blendColor, blurRadius, backdropBrush);
     }
@@ -76,7 +76,7 @@ public static partial class CompositionProExtensions
     /// <param name="backdropBrush">Backdrop Brush (optional). If not provided, then compositor creates it.</param>
     /// <returns>CompositionEffectBrush</returns>
     internal static CompositionEffectBrush CreateBackdropBrush(Compositor compositor, IRenderSurface mask,
-        Color blendColor, float blurAmount, CompositionBackdropBrush backdropBrush = null)
+        Color blendColor, float blurAmount, CompositionBackdropBrush? backdropBrush = null)
     {
         // Blur Effect
         var blurEffect = new GaussianBlurEffect()
@@ -142,7 +142,7 @@ public static partial class CompositionProExtensions
     /// <param name="backdropAmount">Source2Amount of the ArithmeticCompositeEffect</param>
     /// <returns>CompositionEffectBrush</returns>
     public static CompositionEffectBrush CreateFrostedGlassBrush(this Compositor compositor, IMaskSurface mask,
-        Color blendColor, float blurAmount, CompositionBackdropBrush backdropBrush = null,
+        Color blendColor, float blurAmount, CompositionBackdropBrush? backdropBrush = null,
         float multiplyAmount = 0, float colorAmount = 0.5f, float backdropAmount = 0.5f)
     {
         // Create a frosty glass effect 
@@ -205,8 +205,8 @@ public static partial class CompositionProExtensions
     /// <param name="alignXAnimation">The animation to use to update the horizontal alignment of the surface brush</param>
     /// <param name="alignYAnimation">The animation to use to update the vertical alignment of the surface brush</param>
     public static void UpdateSurfaceBrushOptions(this CompositionSurfaceBrush surfaceBrush, Stretch stretch,
-        AlignmentX alignX, AlignmentY alignY, ScalarKeyFrameAnimation alignXAnimation = null,
-        ScalarKeyFrameAnimation alignYAnimation = null)
+        AlignmentX alignX, AlignmentY alignY, ScalarKeyFrameAnimation? alignXAnimation = null,
+        ScalarKeyFrameAnimation? alignYAnimation = null)
     {
         // Stretch Mode
         switch (stretch)

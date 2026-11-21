@@ -10,7 +10,7 @@ public sealed partial class EyeDropper
     private GlobalMouseHook hook = new GlobalMouseHook();
     private EyeDropperPreviewWindow? previewWindow;
 
-    public event EventHandler<Color> ColorPicked;
+    public event EventHandler<Color>? ColorPicked;
 
     private Color selectedColor;
     private int mouseX;

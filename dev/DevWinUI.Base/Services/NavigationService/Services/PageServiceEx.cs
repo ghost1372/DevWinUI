@@ -2,13 +2,13 @@
 
 public partial class PageServiceEx : IPageServiceEx
 {
-    public Dictionary<string, Type> _pageKeyToTypeMap;
+    public Dictionary<string, Type>? _pageKeyToTypeMap;
 
     public string DefaultPageKey { get; set; } = nameof(DefaultPageKey);
     public string SettingsPageKey { get; set; } = nameof(SettingsPageKey);
     internal string SectionPageKey { get; set; } = nameof(SectionPageKey);
 
-    public virtual Type GetPageType(string key)
+    public virtual Type? GetPageType(string key)
     {
         var pageMap = _pageKeyToTypeMap;
         if (key == null || pageMap == null)

@@ -40,17 +40,17 @@ public partial class CanvasRenderLayer : ICanvasRenderLayer
     /// Gets the CanvasGeometry to be rendered on
     /// this layer.
     /// </summary>
-    public CanvasGeometry Geometry { get; }
+    public CanvasGeometry? Geometry { get; }
     /// <summary>
     /// Gets the ICanvasBrush used to fill the 
     /// rendered geometry.
     /// </summary>
-    public ICanvasBrush Brush { get; }
+    public ICanvasBrush? Brush { get; }
     /// <summary>
     /// Gets the ICanvasStroke used to outline the
     /// rendered geometry.
     /// </summary>
-    public ICanvasStroke Stroke { get; }
+    public ICanvasStroke? Stroke { get; }
 
     #endregion
 

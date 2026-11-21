@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System.Diagnostics;
-using WinRT;
 
 namespace DevWinUI;
 
@@ -129,9 +128,9 @@ public sealed partial class SidebarItem : Control
     public static readonly DependencyProperty DisplayModeProperty =
         DependencyProperty.Register(nameof(DisplayMode), typeof(SidebarDisplayMode), typeof(SidebarItem), new PropertyMetadata(SidebarDisplayMode.Expanded, OnPropertyChanged));
 
-    public string Text
+    public string? Text
     {
-        get { return (string)GetValue(TextProperty); }
+        get { return (string?)GetValue(TextProperty); }
         set { SetValue(TextProperty, value); }
     }
 
@@ -140,8 +139,7 @@ public sealed partial class SidebarItem : Control
 
     private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = d as SidebarItem;
-        ctl.UpdateElementToolTip();
+        (d as SidebarItem)?.UpdateElementToolTip();
     }
 
     public object? ToolTip
@@ -155,8 +153,7 @@ public sealed partial class SidebarItem : Control
 
     private static void OnToolTipChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = d as SidebarItem;
-        ctl.UpdateElementToolTip();
+        (d as SidebarItem)?.UpdateElementToolTip();
     }
 
     public static void OnPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)

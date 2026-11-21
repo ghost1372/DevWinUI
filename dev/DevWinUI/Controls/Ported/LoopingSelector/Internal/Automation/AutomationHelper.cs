@@ -103,7 +103,7 @@ internal partial class AutomationHelper
 			return icpp.GetStringRepresentation();
 		}
 
-		return null;
+		return string.Empty;
 	}
 
 	public static void SetElementAutomationName(DependencyObject pDO, string name) =>

@@ -6,11 +6,11 @@ namespace DevWinUI;
 [ContentProperty(Name = nameof(Content))]
 public partial class ForegroundFocusEffects : Control
 {
-    private SpriteVisual _destinationSprite;
-    private Compositor _compositor;
-    private CompositionScopedBatch _scopeBatch;
-    private ManagedSurface _maskSurface;
-    private CompositionBackdropBrush _backdropBrush;
+    private SpriteVisual? _destinationSprite;
+    private Compositor _compositor = null!;
+    private CompositionScopedBatch? _scopeBatch;
+    private ManagedSurface? _maskSurface;
+    private CompositionBackdropBrush? _backdropBrush;
 
     public FrameworkElement Content
     {
@@ -186,7 +186,7 @@ public partial class ForegroundFocusEffects : Control
             {
                 case ForegroundFocusEffectTypes.Mask:
                     {
-                        if (_destinationSprite.Brush is CompositionEffectBrush brush && brush.GetSourceParameter("SecondSource") is CompositionSurfaceBrush surfaceBrush)
+                        if (_destinationSprite!.Brush is CompositionEffectBrush brush && brush.GetSourceParameter("SecondSource") is CompositionSurfaceBrush surfaceBrush)
                         {
                             surfaceBrush.CenterPoint = e.NewSize.ToVector2() * .5f;
                         }
@@ -245,9 +245,9 @@ public partial class ForegroundFocusEffects : Control
     {
         if (_compositor != null && _destinationSprite != null)
         {
-            IGraphicsEffect graphicsEffect = null;
-            CompositionBrush secondaryBrush = null;
-            string[] animatableProperties = null;
+            IGraphicsEffect? graphicsEffect = null;
+            CompositionBrush? secondaryBrush = null;
+            string[]? animatableProperties = null;
 
             //
             // Create the appropriate effect graph and resources
@@ -422,7 +422,7 @@ public partial class ForegroundFocusEffects : Control
             _effectFactory.Dispose();
 
             // Set the destination brush as the source of the image content
-            brush.SetSourceParameter("ImageSource", _backdropBrush);
+            brush.SetSourceParameter("ImageSource", _backdropBrush!);
 
             // If his effect uses a secondary brush, set it now
             if (secondaryBrush != null)
@@ -490,12 +490,12 @@ public partial class ForegroundFocusEffects : Control
         {
             case ForegroundFocusEffectTypes.Mask:
                 {
-                    CompositionSurfaceBrush brush = ((CompositionEffectBrush)_destinationSprite.Brush).GetSourceParameter("SecondSource") as CompositionSurfaceBrush;
+                    CompositionSurfaceBrush? brush = ((CompositionEffectBrush)_destinationSprite.Brush).GetSourceParameter("SecondSource") as CompositionSurfaceBrush;
                     Vector2KeyFrameAnimation scaleAnimation = _compositor.CreateVector2KeyFrameAnimation();
                     scaleAnimation.InsertKeyFrame(0f, new Vector2(1.25f, 1.25f));
                     scaleAnimation.InsertKeyFrame(1f, new Vector2(0f, 0f));
                     scaleAnimation.Duration = ApplyEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(2000) : ApplyEffectDuration;
-                    brush.StartAnimation("Scale", scaleAnimation);
+                    brush!.StartAnimation("Scale", scaleAnimation);
                     break;
                 }
             case ForegroundFocusEffectTypes.VividLight:
@@ -563,11 +563,11 @@ public partial class ForegroundFocusEffects : Control
         {
             case ForegroundFocusEffectTypes.Mask:
                 {
-                    CompositionSurfaceBrush brush = ((CompositionEffectBrush)_destinationSprite.Brush).GetSourceParameter("SecondSource") as CompositionSurfaceBrush;
+                    CompositionSurfaceBrush? brush = ((CompositionEffectBrush)_destinationSprite.Brush).GetSourceParameter("SecondSource") as CompositionSurfaceBrush;
                     Vector2KeyFrameAnimation scaleAnimation = _compositor.CreateVector2KeyFrameAnimation();
                     scaleAnimation.InsertKeyFrame(1f, new Vector2(2.0f, 2.0f));
                     scaleAnimation.Duration = RemoveEffectDuration.TotalMilliseconds == 0 ? TimeSpan.FromMilliseconds(1000) : RemoveEffectDuration;
-                    brush.StartAnimation("Scale", scaleAnimation);
+                    brush!.StartAnimation("Scale", scaleAnimation);
                     break;
                 }
             case ForegroundFocusEffectTypes.VividLight:

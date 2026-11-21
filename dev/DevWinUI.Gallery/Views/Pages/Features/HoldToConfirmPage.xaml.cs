@@ -14,7 +14,7 @@ public sealed partial class HoldToConfirmPage : Page
         StatusText.Text = $"Confirmed at {DateTime.Now:T}";
     }
 
-    private void ResetButton_Click(object sender, RoutedEventArgs e)
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
     {
         Sample.Reset();
         StatusText.Text = "Press and hold the button";

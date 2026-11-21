@@ -12,14 +12,14 @@ public partial class HeaderCarousel : ItemsControl
     private readonly DispatcherTimer deselectionTimer = new();
     private readonly List<int> numbers = [];
 
-    private ScrollViewer scrollViewer;
-    private AnimatedImage backDropImage;
-    private BlurEffectManager _blurManager;
+    private ScrollViewer scrollViewer = null!;
+    private AnimatedImage backDropImage = null!;
+    private BlurEffectManager? _blurManager;
     private HeaderCarouselItem? selectedTile;
     private int currentIndex;
     private bool _isSelecting;
 
-    public event EventHandler<HeaderCarouselEventArgs> ItemClick;
+    public event EventHandler<HeaderCarouselEventArgs>? ItemClick;
 
     public HeaderCarousel()
     {
@@ -38,8 +38,8 @@ public partial class HeaderCarousel : ItemsControl
         selectionTimer.Interval = SelectionDuration;
         deselectionTimer.Interval = DeSelectionDuration;
 
-        scrollViewer = GetTemplateChild(PART_ScrollViewer) as ScrollViewer;
-        backDropImage = GetTemplateChild(PART_BackDropImage) as AnimatedImage;
+        scrollViewer = (GetTemplateChild(PART_ScrollViewer) as ScrollViewer)!;
+        backDropImage = (GetTemplateChild(PART_BackDropImage) as AnimatedImage)!;
 
         _blurManager = backDropImage != null ? new BlurEffectManager(backDropImage) : null;
         ApplyBackdropBlur();

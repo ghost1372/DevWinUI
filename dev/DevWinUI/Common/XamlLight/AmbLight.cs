@@ -2,7 +2,7 @@
 
 public partial class AmbLight : XamlLight
 {
-    private static readonly string Id = typeof(AmbLight).FullName;
+    private static readonly string Id = typeof(AmbLight).FullName!;
 
     public Color Color
     {

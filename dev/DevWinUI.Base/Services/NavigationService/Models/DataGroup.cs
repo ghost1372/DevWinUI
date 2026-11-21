@@ -16,6 +16,6 @@ public partial class DataGroup : BaseDataInfo
     public ObservableCollection<DataItem> Items { get; set; } = new();
     public override string ToString()
     {
-        return Title;
+        return Title ?? string.Empty;
     }
 }

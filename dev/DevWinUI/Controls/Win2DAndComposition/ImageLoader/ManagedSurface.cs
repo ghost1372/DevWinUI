@@ -18,9 +18,9 @@ namespace DevWinUI;
 
 public partial class ManagedSurface
 {
-    private CompositionDrawingSurface   _surface;
-    private IContentDrawer               _drawer;
-    private CompositionSurfaceBrush     _brush;
+    private CompositionDrawingSurface _surface;
+    private IContentDrawer? _drawer;
+    private CompositionSurfaceBrush? _brush;
 
     public ManagedSurface(CompositionDrawingSurface surface)
     {
@@ -35,7 +35,7 @@ public partial class ManagedSurface
         if (_surface != null)
         {
             _surface.Dispose();
-            _surface = null;
+            _surface = null!;
         }
 
         if (_brush != null)
@@ -74,7 +74,7 @@ public partial class ManagedSurface
             return (_surface != null) ? _surface.Size : Size.Empty;
         }
     }
-    
+
     public async Task Draw(CompositionGraphicsDevice device, Object drawingLock, IContentDrawer drawer)
     {
         Debug.Assert(_surface != null);
@@ -83,7 +83,7 @@ public partial class ManagedSurface
         await _drawer.Draw(device, drawingLock, _surface, _surface.Size);
     }
 
-    public async void OnDeviceReplaced(object sender, object e)
+    public async void OnDeviceReplaced(object? sender, object e)
     {
         DeviceReplacedEventArgs args = (DeviceReplacedEventArgs)e;
         await ReloadContent(args.GraphicsDevce, args.DrawingLock);
@@ -91,6 +91,11 @@ public partial class ManagedSurface
 
     private async Task ReloadContent(CompositionGraphicsDevice device, Object drawingLock)
     {
+        if (_drawer == null)
+        {
+            return;
+        }
+
         await _drawer.Draw(device, drawingLock, _surface, _surface.Size);
     }
 }

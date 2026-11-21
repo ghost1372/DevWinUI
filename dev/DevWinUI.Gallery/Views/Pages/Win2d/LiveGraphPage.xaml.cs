@@ -7,7 +7,7 @@ public sealed partial class LiveGraphPage : Page
 {
     private Random random = new Random();
 
-    private string liveGraphKey;
+    private string liveGraphKey = string.Empty;
     private (CanvasLinearGradientBrush Brush, CanvasLinearGradientBrush OpacityBrush, CanvasSolidColorBrush BorderBrush) brush;
 
     public LiveGraphPage()
@@ -48,7 +48,7 @@ public sealed partial class LiveGraphPage : Page
             brush.BorderBrush?.Dispose();
         }
 
-        liveGraphKey = LiveGraphSample.RegisterGraphBrush(null);
+        liveGraphKey = LiveGraphSample.RegisterGraphBrush(null!);
         UpdateBrush();
     }
 
@@ -63,7 +63,7 @@ public sealed partial class LiveGraphPage : Page
             Brush = brush.Brush,
             OpacityBrush = brush.OpacityBrush,
             BorderBrush = brush.BorderBrush,
-            StrokeWidth = (float)NBStrokeWidth?.Value,
+            StrokeWidth = (float)NBStrokeWidth.Value,
         };
 
         if (!TGBorderLess.IsOn)
@@ -74,7 +74,7 @@ public sealed partial class LiveGraphPage : Page
 
         if (TGFillLess.IsOn)
         {
-            data.Brush = null;
+            data.Brush = null!;
             data.OpacityBrush = null;
             data.BorderBrush = brush.BorderBrush;
         }
@@ -93,25 +93,33 @@ public sealed partial class LiveGraphPage : Page
 
     private void BtnPurple_Click(object sender, RoutedEventArgs e)
     {
-        brush = LiveGraphSample.GetPurpleBrush(LiveGraphSample.GetCanvasAnimatedControl());
-        UpdateBrush();
+        SetBrush(LiveGraphSample.GetPurpleBrush);
     }
 
     private void BtnRed_Click(object sender, RoutedEventArgs e)
     {
-        brush = LiveGraphSample.GetRedBrush(LiveGraphSample.GetCanvasAnimatedControl());
-        UpdateBrush();
+        SetBrush(LiveGraphSample.GetRedBrush);
     }
 
     private void BtnBlue_Click(object sender, RoutedEventArgs e)
     {
-        brush = LiveGraphSample.GetBlueBrush(LiveGraphSample.GetCanvasAnimatedControl());
-        UpdateBrush();
+        SetBrush(LiveGraphSample.GetBlueBrush);
     }
 
     private void BtnGreen_Click(object sender, RoutedEventArgs e)
     {
-        brush = LiveGraphSample.GetGreenBrush(LiveGraphSample.GetCanvasAnimatedControl());
+        SetBrush(LiveGraphSample.GetGreenBrush);
+    }
+
+    private void SetBrush(Func<Microsoft.Graphics.Canvas.ICanvasResourceCreator, (CanvasLinearGradientBrush Brush, CanvasLinearGradientBrush OpacityBrush, CanvasSolidColorBrush BorderBrush)> createBrush)
+    {
+        var canvas = LiveGraphSample.GetCanvasAnimatedControl();
+        if (canvas == null)
+        {
+            return;
+        }
+
+        brush = createBrush(canvas);
         UpdateBrush();
     }
 

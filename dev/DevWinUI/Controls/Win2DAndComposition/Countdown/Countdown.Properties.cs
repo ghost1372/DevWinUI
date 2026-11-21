@@ -1,13 +1,11 @@
-﻿
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class Countdown
 {
     private int _countdownSeconds = 0;
-    private string _text;
+    private string? _text;
     private CountdownState _state = CountdownState.Normal;
-    private CanvasTextFormat _textFormat;
+    private CanvasTextFormat _textFormat = CreateDefaultTextFormat();
     private int _maxSeconds = 30;
     private Color _textForeground = Colors.White;
 
@@ -18,24 +16,25 @@ public partial class Countdown
     }
 
     public static readonly DependencyProperty TextForegroundProperty =
-        DependencyProperty.Register(nameof(TextForeground), typeof(Color), typeof(Countdown), new PropertyMetadata(Colors.White, (s, e) => (s as Countdown)._textForeground = (Color)e.NewValue));
+        DependencyProperty.Register(nameof(TextForeground), typeof(Color), typeof(Countdown), new PropertyMetadata(Colors.White, (s, e) => ((Countdown)s)._textForeground = (Color)e.NewValue));
 
     public int CountdownSeconds
     {
         get => (int)GetValue(CountdownSecondsProperty);
         set => SetValue(CountdownSecondsProperty, value);
     }
-    public static readonly DependencyProperty CountdownSecondsProperty =
-        DependencyProperty.Register(nameof(CountdownSeconds), typeof(int), typeof(Countdown), new PropertyMetadata(0, (s, e) => (s as Countdown)._countdownSeconds = (int)e.NewValue));
 
-    public string Text
+    public static readonly DependencyProperty CountdownSecondsProperty =
+        DependencyProperty.Register(nameof(CountdownSeconds), typeof(int), typeof(Countdown), new PropertyMetadata(0, (s, e) => ((Countdown)s)._countdownSeconds = (int)e.NewValue));
+
+    public string? Text
     {
-        get => (string)GetValue(TextProperty);
+        get => (string?)GetValue(TextProperty);
         set => SetValue(TextProperty, value);
     }
 
     public static readonly DependencyProperty TextProperty =
-        DependencyProperty.Register(nameof(Text), typeof(string), typeof(Countdown), new PropertyMetadata(null, (s, e) => (s as Countdown)._text = (string)e.NewValue));
+        DependencyProperty.Register(nameof(Text), typeof(string), typeof(Countdown), new PropertyMetadata(null, (s, e) => ((Countdown)s)._text = (string?)e.NewValue));
 
     public CountdownState State
     {
@@ -44,16 +43,16 @@ public partial class Countdown
     }
 
     public static readonly DependencyProperty AnswerStateProperty =
-        DependencyProperty.Register(nameof(State), typeof(CountdownState), typeof(Countdown), new PropertyMetadata(CountdownState.Normal, (s, e) => (s as Countdown)._state = (CountdownState)e.NewValue));
+        DependencyProperty.Register(nameof(State), typeof(CountdownState), typeof(Countdown), new PropertyMetadata(CountdownState.Normal, (s, e) => ((Countdown)s)._state = (CountdownState)e.NewValue));
 
-    public CanvasTextFormat TextFormat
+    public CanvasTextFormat? TextFormat
     {
-        get { return (CanvasTextFormat)GetValue(TextFormatProperty); }
+        get { return (CanvasTextFormat?)GetValue(TextFormatProperty); }
         set { SetValue(TextFormatProperty, value); }
     }
 
     public static readonly DependencyProperty TextFormatProperty =
-        DependencyProperty.Register(nameof(TextFormat), typeof(CanvasTextFormat), typeof(Countdown), new PropertyMetadata(null, (s, e) => (s as Countdown)._textFormat = (CanvasTextFormat)e.NewValue));
+        DependencyProperty.Register(nameof(TextFormat), typeof(CanvasTextFormat), typeof(Countdown), new PropertyMetadata(null, (s, e) => ((Countdown)s)._textFormat = e.NewValue as CanvasTextFormat ?? CreateDefaultTextFormat()));
 
     public int MaxSeconds
     {
@@ -62,11 +61,11 @@ public partial class Countdown
     }
 
     public static readonly DependencyProperty MaxSecondsProperty =
-        DependencyProperty.Register(nameof(MaxSeconds), typeof(int), typeof(Countdown), new PropertyMetadata(30, (s, e) => (s as Countdown)._maxSeconds = (int)e.NewValue));
+        DependencyProperty.Register(nameof(MaxSeconds), typeof(int), typeof(Countdown), new PropertyMetadata(30, (s, e) => ((Countdown)s)._maxSeconds = (int)e.NewValue));
 
-    public CanvasLinearGradientBrush BorderStrokeGradiantBrush
+    public CanvasLinearGradientBrush? BorderStrokeGradiantBrush
     {
-        get { return (CanvasLinearGradientBrush)GetValue(BorderStrokeGradiantBrushProperty); }
+        get { return (CanvasLinearGradientBrush?)GetValue(BorderStrokeGradiantBrushProperty); }
         set { SetValue(BorderStrokeGradiantBrushProperty, value); }
     }
 
@@ -138,19 +137,11 @@ public partial class Countdown
 
     private static void OnClearColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (Countdown)d;
-        if (ctl != null)
-        {
-            ctl.UpdateClearColor();
-        }
+        ((Countdown)d).UpdateClearColor();
     }
 
     private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ctl = (Countdown)d;
-        if (ctl != null)
-        {
-            ctl.UpdateCanvas();
-        }
+        ((Countdown)d).UpdateCanvas();
     }
 }

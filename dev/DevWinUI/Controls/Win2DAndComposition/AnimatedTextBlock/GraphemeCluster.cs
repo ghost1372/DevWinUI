@@ -5,7 +5,7 @@ public partial class GraphemeCluster : IEquatable<GraphemeCluster>
     /// <summary>
     /// The content of the cluster.
     /// </summary>
-    public string Characters { get; set; }
+    public string Characters { get; set; } = string.Empty;
 
     /// <summary>
     /// Start index of the first character in the cluster.
@@ -39,12 +39,12 @@ public partial class GraphemeCluster : IEquatable<GraphemeCluster>
 
     public bool IsAnimationFinished { get; internal set; }
 
-    public bool Equals(GraphemeCluster other)
+    public bool Equals(GraphemeCluster? other)
     {
         return other != null && string.Equals(this.Characters, other.Characters, StringComparison.Ordinal);
     }
 
-    public override bool Equals(object obj) => this.Equals(obj as GraphemeCluster);
+    public override bool Equals(object? obj) => this.Equals(obj as GraphemeCluster);
     public override int GetHashCode()
     {
         return Characters?.GetHashCode() ?? 0;

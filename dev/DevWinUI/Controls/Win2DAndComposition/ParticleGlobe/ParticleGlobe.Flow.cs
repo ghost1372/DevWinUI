@@ -1,4 +1,4 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
@@ -85,8 +85,8 @@ public sealed partial class ParticleGlobe
     private const float FlowTrailStep = 0.05f;   // seconds between trail samples
     private const float FlowTimeScale = 30000f;  // m/s of data -> simulated metres per real second
 
-    private volatile ParticleGlobeFlowGrid _flowGrid;
-    private ParticleGlobeFlowGrid _demoFlow;
+    private volatile ParticleGlobeFlowGrid? _flowGrid;
+    private ParticleGlobeFlowGrid? _demoFlow;
 
     private bool _showFlow;
     private int _flowWanted = 2500, _flowTrail = 10;

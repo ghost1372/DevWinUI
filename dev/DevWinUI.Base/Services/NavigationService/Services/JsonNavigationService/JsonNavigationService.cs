@@ -51,7 +51,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
         _navigationView.IsBackEnabled = CanGoBack;
 
-        if (_isTitlebarConfigured && _autoManageBackButtonVisibility)
+        if (_isTitlebarConfigured && _autoManageBackButtonVisibility && _titleBar != null)
         {
             _titleBar.IsBackButtonVisible = Frame.CanGoBack;
         }
@@ -116,6 +116,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     }
     public void ReInitialize()
     {
+        if (_navigationView == null || Frame == null || _pageKeyToTypeMap == null)
+        {
+            throw new InvalidOperationException("The navigation service must be initialized before calling ReInitialize.");
+        }
+
         InitializeBase(_navigationView, Frame, _pageKeyToTypeMap);
 
         InternalLocalizationHelper.InitializeInternalLocalization(_resourceManager, _resourceContext);
@@ -137,7 +142,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             var item = SettingsItem as NavigationViewItem;
             if (item != null && item.Content != null)
             {
-                pageTitle = item.Content.ToString();
+                pageTitle = item.Content.ToString() ?? string.Empty;
             }
             DeferNavigation(sender, SettingsItem, () => NavigateTo(SettingsPageKey, pageTitle));
         }
@@ -214,6 +219,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
         {
+            if (_autoSuggestBox == null)
+            {
+                return;
+            }
+
             var query = sender.Text.Trim();
             if (query.Length == 0)
             {
@@ -256,7 +266,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
             }
             if (suggestions.Count > 0)
             {
-                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(query, StringComparison.OrdinalIgnoreCase)).ThenBy(i => i.Title, StringComparer.CurrentCulture).ToList();
+                _autoSuggestBox.ItemsSource = suggestions.OrderByDescending(i => i.Title?.StartsWith(query, StringComparison.OrdinalIgnoreCase) ?? false).ThenBy(i => i.Title, StringComparer.CurrentCulture).ToList();
             }
             else
             {
@@ -275,7 +285,7 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
     {
         await DataSource.Instance.GetGroupsAsync(jsonFilePath, pathType);
     }
-    public void EnsureNavigationSelection(string id)
+    public void EnsureNavigationSelection(string? id)
     {
         if (string.IsNullOrEmpty(id) || _navigationView == null || !_itemMap.TryGetValue(id, out var entry))
         {
@@ -362,6 +372,11 @@ public partial class JsonNavigationService : PageServiceEx, IJsonNavigationServi
 
     private bool SelectNavigationItemByName(NavigationViewItem item, string name)
     {
+        if (_navigationView == null)
+        {
+            return false;
+        }
+
         if (string.Equals(item.Content as string, name, StringComparison.Ordinal))
         {
             _navigationView.SelectedItem = item;

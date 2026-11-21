@@ -69,8 +69,7 @@ public static partial class PersianUtil
     }
     private static string GetNumDicValue(long key)
     {
-        string TempValue;
-        return numDic.TryGetValue(key, out TempValue) ? TempValue : String.Empty;
+        return numDic.TryGetValue(key, out var tempValue) ? tempValue : String.Empty;
     }
     private static string ConvertToText(int id, long number)
     {

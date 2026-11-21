@@ -105,7 +105,7 @@ public abstract partial class VisualTemplate : ExpressionTemplate
     /// <summary>
     /// The internal PropertySet of the Visual
     /// </summary>
-    public CompositionPropertySet Properties { get; }
+    public CompositionPropertySet Properties { get; } = null!;
 }
 
 /// <summary>

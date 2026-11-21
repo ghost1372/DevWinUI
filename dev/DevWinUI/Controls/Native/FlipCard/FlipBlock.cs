@@ -7,14 +7,14 @@
 [TemplatePart(Name = "PART_TextFlipBottom", Type = typeof(TextBlock))]
 public partial class FlipBlock : Control
 {
-    private Grid blockFlip;
-    private TextBlock textTop;
-    private TextBlock textBottom;
-    private TextBlock textFlipTop;
-    private TextBlock textFlipBottom;
+    private Grid blockFlip = null!;
+    private TextBlock textTop = null!;
+    private TextBlock textBottom = null!;
+    private TextBlock textFlipTop = null!;
+    private TextBlock textFlipBottom = null!;
 
-    private Storyboard FlipAnimation;
-    private string _from;
+    private Storyboard FlipAnimation = null!;
+    private string _from = null!;
 
     public string Value
     {
@@ -42,11 +42,11 @@ public partial class FlipBlock : Control
     {
         base.OnApplyTemplate();
 
-        blockFlip = GetTemplateChild("PART_BlockFlip") as Grid;
-        textTop = GetTemplateChild("PART_TextTop") as TextBlock;
-        textBottom = GetTemplateChild("PART_TextBottom") as TextBlock;
-        textFlipTop = GetTemplateChild("PART_TextFlipTop") as TextBlock;
-        textFlipBottom = GetTemplateChild("PART_TextFlipBottom") as TextBlock;
+        blockFlip = (GetTemplateChild("PART_BlockFlip") as Grid)!;
+        textTop = (GetTemplateChild("PART_TextTop") as TextBlock)!;
+        textBottom = (GetTemplateChild("PART_TextBottom") as TextBlock)!;
+        textFlipTop = (GetTemplateChild("PART_TextFlipTop") as TextBlock)!;
+        textFlipBottom = (GetTemplateChild("PART_TextFlipBottom") as TextBlock)!;
 
         InitializeFlipAnimation();
 
@@ -110,7 +110,7 @@ public partial class FlipBlock : Control
 
         _from = value;
     }
-    private void FlipAnimation_Completed(object sender, object e)
+    private void FlipAnimation_Completed(object? sender, object e)
     {
         textBottom.Text = _from;
     }

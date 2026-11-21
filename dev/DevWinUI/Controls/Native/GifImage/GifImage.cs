@@ -6,10 +6,10 @@ namespace DevWinUI;
 public partial class GifImage : Control
 {
     private const string PART_Image = "PART_Image";
-    private Image _image = null;
+    private Image _image = null!;
 
-    public event RoutedEventHandler ImageOpened;
-    public event EventHandler<Exception> ImageFailed;
+    public event RoutedEventHandler? ImageOpened;
+    public event EventHandler<Exception>? ImageFailed;
 
     private bool _isInitialized = false;
     private bool _isPlaying = false;
@@ -24,11 +24,11 @@ public partial class GifImage : Control
         DependencyProperty.Register(nameof(Source), typeof(Uri), typeof(GifImage), new PropertyMetadata(null, SourceChanged));
     private static void SourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as GifImage;
+        var control = (d as GifImage)!;
         control.SetSource(e.NewValue as Uri);
     }
 
-    public async void SetSource(Uri uri)
+    public async void SetSource(Uri? uri)
     {
         if (_isInitialized)
         {
@@ -63,7 +63,7 @@ public partial class GifImage : Control
 
     private static void AutoPlayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as GifImage;
+        var control = (d as GifImage)!;
         control.SetAutoPlay((bool)e.NewValue);
     }
 
@@ -106,7 +106,7 @@ public partial class GifImage : Control
 
     private static void NineGridChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as GifImage;
+        var control = (d as GifImage)!;
         control.SetNineGrid((Thickness)e.NewValue);
     }
 
@@ -128,7 +128,7 @@ public partial class GifImage : Control
 
     protected override void OnApplyTemplate()
     {
-        _image = base.GetTemplateChild(PART_Image) as Image;
+        _image = (base.GetTemplateChild(PART_Image) as Image)!;
 
         _isInitialized = true;
 
@@ -172,7 +172,7 @@ public partial class GifImage : Control
         _isPlaying = false;
     }
 
-    public CastingSource GetAsCastingSource()
+    public CastingSource? GetAsCastingSource()
     {
         if (_isInitialized)
         {

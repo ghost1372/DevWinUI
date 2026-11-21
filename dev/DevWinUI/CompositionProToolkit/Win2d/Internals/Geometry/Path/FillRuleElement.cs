@@ -80,7 +80,7 @@ internal partial class FillRuleElement : AbstractPathElement
     /// commands, used for creating the CanvasGeometry, in string format.</param>
     /// <returns>The latest location in the Path after adding the Path Element</returns>
     public override Vector2 CreatePath(CanvasPathBuilder pathBuilder, Vector2 currentPoint,
-        ref ICanvasPathElement lastElement, StringBuilder logger)
+        ref ICanvasPathElement? lastElement, StringBuilder? logger)
     {
         // Execute command
         pathBuilder.SetFilledRegionDetermination(_fillValue);
@@ -102,7 +102,7 @@ internal partial class FillRuleElement : AbstractPathElement
     /// Get the Regex for extracting Path Element Attributes
     /// </summary>
     /// <returns></returns>
-    protected override Regex GetAttributesRegex()
+    protected override Regex? GetAttributesRegex()
     {
         // Not applicable for this Path Element
         return null;

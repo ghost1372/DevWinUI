@@ -5,9 +5,8 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class CompositionShadowPage : Page
 {
-    private Compositor _compositor;
-    private ManagedSurface _imageMaskSurface;
-    private CompositionMaskBrush _maskBrush;
+    private ManagedSurface? _imageMaskSurface;
+    private CompositionMaskBrush? _maskBrush;
     public CompositionShadowPage()
     {
         InitializeComponent();
@@ -17,27 +16,29 @@ public sealed partial class CompositionShadowPage : Page
 
     private void CompositionShadowPage_Unloaded(object sender, RoutedEventArgs e)
     {
-        if (_imageMaskSurface != null)
-        {
-            _imageMaskSurface.Dispose();
-        }
+        _imageMaskSurface?.Dispose();
     }
 
     private void CompositionShadowPage_Loaded(object sender, RoutedEventArgs e)
     {
-        _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+        var compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
         _imageMaskSurface = ImageLoader.Instance.LoadCircle(200, Colors.White);
 
-        CompositionSurfaceBrush source = ComImage.SurfaceBrush as CompositionSurfaceBrush;
+        CompositionSurfaceBrush? source = ComImage.SurfaceBrush as CompositionSurfaceBrush;
 
-        _maskBrush = _compositor.CreateMaskBrush();
+        _maskBrush = compositor.CreateMaskBrush();
         _maskBrush.Mask = _imageMaskSurface.Brush;
         _maskBrush.Source = source;
     }
 
     private void TGMask_Toggled(object sender, RoutedEventArgs e)
     {
+        if (_maskBrush is null)
+        {
+            return;
+        }
+
         if (TGMask.IsOn)
         {
             ComImage.Brush = _maskBrush;

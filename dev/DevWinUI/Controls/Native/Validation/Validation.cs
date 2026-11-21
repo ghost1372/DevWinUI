@@ -11,8 +11,8 @@ public sealed partial class Validation : DependencyObject
 {
     private sealed partial class ValidationBindingState
     {
-        public INotifyDataErrorInfo Provider;
-        public EventHandler<DataErrorsChangedEventArgs> ErrorsChangedHandler;
+        public INotifyDataErrorInfo Provider = null!;
+        public EventHandler<DataErrorsChangedEventArgs> ErrorsChangedHandler = null!;
         public bool LoadedHooked;
     }
 
@@ -98,8 +98,8 @@ public sealed partial class Validation : DependencyObject
         if (state.Provider != null && state.ErrorsChangedHandler != null)
         {
             state.Provider.ErrorsChanged -= state.ErrorsChangedHandler;
-            state.Provider = null;
-            state.ErrorsChangedHandler = null;
+            state.Provider = null!;
+            state.ErrorsChangedHandler = null!;
         }
 
         sender.SetValue(ErrorsProperty, null);
@@ -187,7 +187,7 @@ public sealed partial class Validation : DependencyObject
     {
         if (root == null)
         {
-            return null;
+            return null!;
         }
 
         int childCount = VisualTreeHelper.GetChildrenCount(root);
@@ -207,6 +207,6 @@ public sealed partial class Validation : DependencyObject
             }
         }
 
-        return null;
+        return null!;
     }
 }

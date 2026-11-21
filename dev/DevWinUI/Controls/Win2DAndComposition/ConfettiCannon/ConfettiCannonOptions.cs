@@ -35,8 +35,7 @@ public partial class ConfettiCannonOptions
 
     public List<string> Shapes { get; set; } = new() { "square", "circle" };
 
-    public List<Color> Colors { get; set; }
-
+    public List<Color>? Colors { get; set; }
     public double Scalar { get; set; } = 1;
 
     public bool Flat { get; set; }

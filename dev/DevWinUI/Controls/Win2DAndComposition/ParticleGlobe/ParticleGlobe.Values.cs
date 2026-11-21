@@ -1,16 +1,16 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
     private const int MaxBarParticles = 56;
 
     private readonly object _valLock = new();
-    private Dictionary<string, double> _valRaw;
+    private Dictionary<string, double>? _valRaw;
     private Color _valLowColor, _valHighColor;
     private bool _valDirty;
-    private object _valResolvedFor;
+    private object? _valResolvedFor;
 
-    private volatile ParticleGlobeValueSet _values;
+    private volatile ParticleGlobeValueSet? _values;
     private float _heatAmt, _barAmt;
     private bool _showBars;
     private float _barMaxHeight = 0.3f;
@@ -65,7 +65,7 @@ public sealed partial class ParticleGlobe
 
     private void ResolveValues()
     {
-        Dictionary<string, double> raw;
+        Dictionary<string, double>? raw;
         Color lowC, highC;
         lock (_valLock)
         {

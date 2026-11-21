@@ -2,7 +2,7 @@
 
 public partial class WindowedExtendedContentDialog
 {
-    private DragMoveHelper dragMoveHelper;
+    private DragMoveHelper? dragMoveHelper;
     public bool HasTitleBar
     {
         get => (bool)GetValue(HasTitleBarProperty);
@@ -15,7 +15,7 @@ public partial class WindowedExtendedContentDialog
     private static void OnHasTitleBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (WindowedExtendedContentDialog)d;
-        if (ctl != null && ctl._window != null)
+        if (ctl._window != null && ctl.dragMoveHelper != null && ctl._view != null)
         {
             ctl._window?.HasTitleBar = (bool)e.NewValue;
         }
@@ -69,7 +69,7 @@ public partial class WindowedExtendedContentDialog
     private static void OnCanDragMoveWindowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (WindowedExtendedContentDialog)d;
-        if (ctl != null && ctl._window != null)
+        if (ctl._window != null && ctl.dragMoveHelper != null && ctl._view != null)
         {
             if ((bool)e.NewValue)
             {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Ratish Philip 
+// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -58,7 +58,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// <summary>
     /// Gets the Geometry of the MaskSurface
     /// </summary>
-    public CanvasGeometry Geometry { get; private set; }
+    public CanvasGeometry? Geometry { get; private set; }
     
     /// <summary>
     /// Gets the Size of the MaskSurface
@@ -83,7 +83,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// <param name="geometry">Geometry of the MaskSurface</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    public MaskSurface(ICompositionGeneratorInternal generator, Size size, CanvasGeometry geometry, Vector2 offset)
+    public MaskSurface(ICompositionGeneratorInternal generator, Size size, CanvasGeometry? geometry, Vector2 offset)
     {
         _generator = generator ?? throw new ArgumentNullException(nameof(generator), "CompositionGenerator cannot be null!");
         _surfaceLock = new object();
@@ -92,7 +92,7 @@ internal sealed partial class MaskSurface : IMaskSurface
         // Create Mask Surface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
         // Set the size
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         // Subscribe to DeviceReplaced event
         _generator.DeviceReplaced += OnDeviceReplaced;
     }
@@ -114,7 +114,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// Redraws the MaskSurface with the new geometry
     /// </summary>
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
-    public void Redraw(CanvasGeometry geometry)
+    public void Redraw(CanvasGeometry? geometry)
     {
         Redraw(Size, geometry, Offset);
     }
@@ -125,7 +125,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// <param name="geometry">New CanvasGeometry to be applied to the IMaskSurface</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    public void Redraw(CanvasGeometry geometry, Vector2 offset)
+    public void Redraw(CanvasGeometry? geometry, Vector2 offset)
     {
         Redraw(Size, geometry, offset);
     }
@@ -138,7 +138,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// </summary>
     /// <param name="size">New size of the mask</param>
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
-    public void Redraw(Size size, CanvasGeometry geometry)
+    public void Redraw(Size size, CanvasGeometry? geometry)
     {
         Redraw(size, geometry, Offset);
     }
@@ -151,7 +151,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// <param name="geometry">New CanvasGeometry to be applied to the IMaskSurface</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    public void Redraw(Size size, CanvasGeometry geometry, Vector2 offset)
+    public void Redraw(Size size, CanvasGeometry? geometry, Vector2 offset)
     {
         if (Size != size)
         {
@@ -193,8 +193,8 @@ internal sealed partial class MaskSurface : IMaskSurface
         Geometry = null;
         if (_generator != null)
             _generator.DeviceReplaced -= OnDeviceReplaced;
-        _surface = null;
-        _generator = null;
+        _surface = null!;
+        _generator = null!;
     }
 
     #endregion
@@ -206,7 +206,7 @@ internal sealed partial class MaskSurface : IMaskSurface
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">object</param>
-    private void OnDeviceReplaced(object sender, object e)
+    private void OnDeviceReplaced(object? sender, object e)
     {
         // Recreate the MaskSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, Size);

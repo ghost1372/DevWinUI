@@ -2,7 +2,7 @@
 
 public interface IPageServiceEx
 {
-    Type GetPageType(string key);
+    Type? GetPageType(string key);
 
     string DefaultPageKey { get; set; }
     string SettingsPageKey { get; set; }

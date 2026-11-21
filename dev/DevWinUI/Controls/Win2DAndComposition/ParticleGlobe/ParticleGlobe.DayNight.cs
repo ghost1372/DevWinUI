@@ -49,7 +49,7 @@ public sealed partial class ParticleGlobe
     private Vector3 _sunDir = new(0f, 0f, 1f);
 
     private float[] _plight = Array.Empty<float>();
-    private float[] _lightSrc;
+    private float[]? _lightSrc;
 
     private void SyncSunSettings()
     {

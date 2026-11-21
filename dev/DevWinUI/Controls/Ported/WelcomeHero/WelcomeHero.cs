@@ -14,9 +14,9 @@ public partial class WelcomeHero : Control
     private const string PART_LabelPill = "PART_LabelPill";
     private const string PART_LabelText = "PART_LabelText";
 
-    private Grid sceneHost;
-    private Border labelPill;
-    private TextBlock labelText;
+    private Grid sceneHost = null!;
+    private Border labelPill = null!;
+    private TextBlock labelText = null!;
 
     private const float LabelGap = 6f;
 
@@ -34,11 +34,11 @@ public partial class WelcomeHero : Control
     private readonly List<LoadedImageSurface> _iconSurfaces = [];
     private readonly UISettings _uiSettings = new();
 
-    private WelcomeHeroLayout _layout;
-    private WelcomeHeroScene _scene;
-    private LoadedImageSurface _logoSurface;
-    private DispatcherQueueTimer _loadTimeout;
-    private InputCursor _handCursor;
+    private WelcomeHeroLayout _layout = null!;
+    private WelcomeHeroScene? _scene;
+    private LoadedImageSurface? _logoSurface;
+    private DispatcherQueueTimer? _loadTimeout;
+    private InputCursor? _handCursor;
     private WelcomeHeroPlayback _activePlayback;
     private int _pendingLoads;
     private bool _started;
@@ -48,7 +48,7 @@ public partial class WelcomeHero : Control
     /// <summary>
     /// Raised with the OOBE navigation tag of a tool when its tile is clicked.
     /// </summary>
-    public event EventHandler<string> ModuleInvoked;
+    public event EventHandler<string>? ModuleInvoked;
 
     /// <summary>
     /// Identifies the <see cref="Modules"/> dependency property.
@@ -101,9 +101,9 @@ public partial class WelcomeHero : Control
     {
         base.OnApplyTemplate();
 
-        sceneHost = GetTemplateChild(PART_SceneHost) as Grid;
-        labelPill = GetTemplateChild(PART_LabelPill) as Border;
-        labelText = GetTemplateChild(PART_LabelText) as TextBlock;
+        sceneHost = (Grid)GetTemplateChild(PART_SceneHost);
+        labelPill = (Border)GetTemplateChild(PART_LabelPill);
+        labelText = (TextBlock)GetTemplateChild(PART_LabelText);
 
         Height = WelcomeHeroLayout.DefaultHeroHeight;
 
@@ -375,7 +375,7 @@ public partial class WelcomeHero : Control
 
     private (int Tile, bool Logo) HitTest(Point position)
     {
-        var fromApex = new Vector2((float)position.X, (float)position.Y) - _scene.Apex;
+        var fromApex = new Vector2((float)position.X, (float)position.Y) - (_scene?.Apex ?? Vector2.Zero);
         var tile = _layout.HitTestSlot(fromApex, IconTileCount);
         return (tile, tile < 0 && WelcomeHeroLayout.HitTestLogo(fromApex));
     }
@@ -412,6 +412,11 @@ public partial class WelcomeHero : Control
     }
     private void ShowLabel(int tile)
     {
+        if (_scene is null)
+        {
+            return;
+        }
+
         var module = Modules[tile];
         var name = module.Title;
         labelText.Text = string.IsNullOrEmpty(name) ? module.Asset : name;

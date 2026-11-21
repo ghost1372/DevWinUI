@@ -95,7 +95,7 @@ public static partial class TextBlockHelper
         storyboard.Children.Add(xAnim);
         storyboard.Children.Add(yAnim);
 
-        EventHandler<object> completedHandler = null;
+        EventHandler<object>? completedHandler = null;
         completedHandler = (_, _) =>
         {
             storyboard.Completed -= completedHandler;

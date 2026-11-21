@@ -9,14 +9,14 @@ public partial class HeaderCarouselItem : Button
     private const string PART_TextPanel = "PART_TextPanel";
     private const string PART_ShadowHost = "PART_ShadowHost";
 
-    private StackPanel _textPanel;
-    private DropShadow _cardShadow;
-    private DropShadow _dropShadow;
-    private SpriteVisual _cardShadowVisual;
-    private FrameworkElement _shadowHost;
-    private Visual _textPanelVisual;
-    private Visual visual;
-    private Compositor compositor;
+    private StackPanel _textPanel = null!;
+    private DropShadow _cardShadow = null!;
+    private DropShadow _dropShadow = null!;
+    private SpriteVisual _cardShadowVisual = null!;
+    private FrameworkElement _shadowHost = null!;
+    private Visual _textPanelVisual = null!;
+    private Visual visual = null!;
+    private Compositor compositor = null!;
 
     public HeaderCarouselItem()
     {
@@ -33,8 +33,8 @@ public partial class HeaderCarouselItem : Button
         visual = ElementCompositionPreview.GetElementVisual(this);
         compositor = visual.Compositor;
 
-        _textPanel = GetTemplateChild(PART_TextPanel) as StackPanel;
-        _shadowHost = GetTemplateChild(PART_ShadowHost) as FrameworkElement;
+        _textPanel = (GetTemplateChild(PART_TextPanel) as StackPanel)!;
+        _shadowHost = (GetTemplateChild(PART_ShadowHost) as FrameworkElement)!;
 
         if (_textPanel is not null)
         {

@@ -24,7 +24,7 @@ namespace DevWinUI;
 [TemplatePart(Name = PartRingOffset, Type = typeof(Border))]
 [TemplateVisualState(GroupName = ToneStates, Name = SoftState)]
 [TemplateVisualState(GroupName = ToneStates, Name = OutlineState)]
-public sealed partial class FillButton : Button
+public sealed partial class FillButton : Button, ICommandBarElement
 {
     private const string PartRoot = "PART_Root";
     private const string PartSurface = "PART_Surface";
@@ -49,6 +49,7 @@ public sealed partial class FillButton : Button
 
     private const float PressScale = 0.97f;
     private const double LabelInset = 4;
+    private const double LayerInset = 4;
     private const double RingOffsetGrowth = 2;
     private const double RingGrowth = 4;
 
@@ -83,6 +84,7 @@ public sealed partial class FillButton : Button
     private Compositor _compositor = null!;
     private CubicBezierEasingFunction _ease = null!;
     private Visual _rootVisual = null!;
+    private Visual _fillVisual = null!;
     private Visual _trackVisual = null!;
     private Visual _labelVisual = null!;
     private Visual _fillLabelVisual = null!;
@@ -96,11 +98,18 @@ public sealed partial class FillButton : Button
     private bool _pressed;
     private bool _keyboardFocus;
     private bool _filled;
+    private bool _labelShown = true;
+
+    private CommandBar? _commandBar;
+    private long _defaultLabelPositionToken;
+    private bool _ownsToolTip;
 
     public FillButton()
     {
         DefaultStyleKey = typeof(FillButton);
         Click += OnClickInternal;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     protected override void OnApplyTemplate()
@@ -140,7 +149,7 @@ public sealed partial class FillButton : Button
         _compositor = _rootVisual.Compositor;
         _ease = _compositor.CreateCubicBezierEasingFunction(EaseP1, EaseP2);
 
-        var fillVisual = ElementCompositionPreview.GetElementVisual(_fill);
+        _fillVisual = ElementCompositionPreview.GetElementVisual(_fill);
         _trackVisual = ElementCompositionPreview.GetElementVisual(_track);
         _labelVisual = ElementCompositionPreview.GetElementVisual(_label);
         _fillLabelVisual = ElementCompositionPreview.GetElementVisual(_fillLabel);
@@ -149,7 +158,7 @@ public sealed partial class FillButton : Button
         ElementCompositionPreview.SetIsTranslationEnabled(_fillLabel, true);
 
         _fillGeometry = _compositor.CreateRoundedRectangleGeometry();
-        fillVisual.Clip = _compositor.CreateGeometricClip(_fillGeometry);
+        _fillVisual.Clip = _compositor.CreateGeometricClip(_fillGeometry);
 
         _clipHost.Clip = _clipGeometry;
 
@@ -166,6 +175,7 @@ public sealed partial class FillButton : Button
         ApplyIcon();
         ApplyLinkBehavior();
         ApplySize();
+        UpdateLabelVisibility();
         UpdateRing();
     }
 
@@ -256,6 +266,94 @@ public sealed partial class FillButton : Button
 
         icon.Width = _metrics.Icon;
         icon.Height = _metrics.Icon;
+    }
+
+    protected override void OnContentChanged(object oldContent, object newContent)
+    {
+        base.OnContentChanged(oldContent, newContent);
+        UpdateLabelVisibility();
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        AttachCommandBar(FindCommandBar());
+        IsInOverflow = _commandBar?.SecondaryCommands.Contains(this) ?? false;
+        UpdateLabelVisibility();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e) => AttachCommandBar(null);
+
+    private CommandBar? FindCommandBar()
+    {
+        DependencyObject? current = VisualTreeHelper.GetParent(this);
+        while (current is not null)
+        {
+            if (current is CommandBar bar) return bar;
+            current = VisualTreeHelper.GetParent(current);
+        }
+
+        return null;
+    }
+
+    private void AttachCommandBar(CommandBar? bar)
+    {
+        if (ReferenceEquals(bar, _commandBar)) return;
+
+        _commandBar?.UnregisterPropertyChangedCallback(CommandBar.DefaultLabelPositionProperty, _defaultLabelPositionToken);
+        _commandBar = bar;
+
+        if (bar is not null)
+        {
+            _defaultLabelPositionToken = bar.RegisterPropertyChangedCallback(
+                CommandBar.DefaultLabelPositionProperty, OnBarDefaultLabelPositionChanged);
+        }
+    }
+
+    private void OnBarDefaultLabelPositionChanged(DependencyObject sender, DependencyProperty dp) =>
+        UpdateLabelVisibility();
+
+    private bool ShouldShowLabel()
+    {
+        if (IsInOverflow) return true;
+        if (LabelPosition == CommandBarLabelPosition.Collapsed) return false;
+        if (_commandBar is null) return !IsCompact;
+
+        return _commandBar.DefaultLabelPosition switch
+        {
+            CommandBarDefaultLabelPosition.Collapsed => false,
+            CommandBarDefaultLabelPosition.Right => true,
+            _ => !IsCompact,
+        };
+    }
+
+    private void UpdateLabelVisibility()
+    {
+        bool show = ShouldShowLabel();
+        _labelShown = show;
+        UpdateToolTip(show);
+
+        if (!_templated) return;
+
+        var visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        _label.Visibility = visibility;
+        _fillLabel.Visibility = visibility;
+        ApplyFillState(animate: false);
+    }
+
+    private void UpdateToolTip(bool showLabel)
+    {
+        string? text = showLabel ? null : Label ?? Content as string;
+
+        if (text is not null && (_ownsToolTip || ToolTipService.GetToolTip(this) is null))
+        {
+            ToolTipService.SetToolTip(this, text);
+            _ownsToolTip = true;
+        }
+        else if (_ownsToolTip)
+        {
+            ToolTipService.SetToolTip(this, null);
+            _ownsToolTip = false;
+        }
     }
 
     private void UpdateRing()
@@ -364,6 +462,15 @@ public sealed partial class FillButton : Button
         float tile = (float)_metrics.Tile;
         float labelWidth = (float)_label.ActualWidth;
         float fillLabelWidth = (float)_fillLabel.ActualWidth;
+
+        bool grow = _filled && !_labelShown && IsIconOnlyFillEnabled;
+        float scaleX = grow ? (width + 2f * (float)LayerInset) / width : 1f;
+        float scaleY = grow ? (height + 2f * (float)LayerInset) / height : 1f;
+        float fillRadius = grow ? (float)_metrics.Radius / scaleX : (float)_metrics.FillRadius;
+
+        _fillVisual.CenterPoint = new Vector3(width / 2f, height / 2f, 0f);
+        StartVector3(_fillVisual, "Scale", new Vector3(scaleX, scaleY, 1f), duration);
+        StartVector2(_fillGeometry, "CornerRadius", new Vector2(fillRadius), duration);
 
         StartVector2(_fillGeometry, "Size", _filled ? new Vector2(width, height) : new Vector2(tile, height), duration);
         StartVector3(_trackVisual, "Translation", new Vector3(_filled ? width - tile : 0f, 0f, 0f), duration);

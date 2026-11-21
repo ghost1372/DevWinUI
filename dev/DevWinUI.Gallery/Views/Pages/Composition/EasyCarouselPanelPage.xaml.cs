@@ -13,6 +13,6 @@ public sealed partial class EasyCarouselPanelPage : Page
 
     private async void EasyCarouselPanelSample_ItemTapped(object sender, FrameworkElement e)
     {
-        await MessageBox.ShowInfoAsync((e?.DataContext as SampleItemModel)?.Title);
+        await MessageBox.ShowInfoAsync((e?.DataContext as SampleItemModel)?.Title ?? string.Empty);
     }
 }

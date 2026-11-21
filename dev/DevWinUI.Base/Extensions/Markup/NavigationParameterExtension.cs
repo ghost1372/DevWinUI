@@ -2,8 +2,8 @@
 public partial class NavigationParameterExtension : MarkupExtension
 {
     public NavigationTransitionInfo NavigationTransitionInfo { get; set; } = new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight };
-    public Type PageType { get; set; }
-    public string BreadCrumbHeader { get; set; }
+    public Type PageType { get; set; } = null!;
+    public string? BreadCrumbHeader { get; set; }
 
     public NavigationParameterExtension() { }
 
@@ -16,12 +16,12 @@ public partial class NavigationParameterExtension : MarkupExtension
         PageType = pageType;
         NavigationTransitionInfo = navigationTransitionInfo;
     }
-    public NavigationParameterExtension(Type pageType, string header)
+    public NavigationParameterExtension(Type pageType, string? header)
     {
         PageType = pageType;
         BreadCrumbHeader = header;
     }
-    public NavigationParameterExtension(Type pageType, NavigationTransitionInfo navigationTransitionInfo, string header)
+    public NavigationParameterExtension(Type pageType, NavigationTransitionInfo navigationTransitionInfo, string? header)
     {
         PageType = pageType;
         BreadCrumbHeader = header;

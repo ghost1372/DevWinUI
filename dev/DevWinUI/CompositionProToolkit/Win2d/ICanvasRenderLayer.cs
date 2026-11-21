@@ -40,17 +40,17 @@ public interface ICanvasRenderLayer
     /// Gets the CanvasGeometry to be rendered on
     /// this layer.
     /// </summary>
-    CanvasGeometry Geometry { get; }
+    CanvasGeometry? Geometry { get; }
     /// <summary>
     /// Gets the ICanvasBrush used to fill the 
     /// rendered geometry.
     /// </summary>
-    ICanvasBrush Brush { get; }
+    ICanvasBrush? Brush { get; }
     /// <summary>
     /// Gets the ICanvasStroke used to outline the
     /// rendered geometry.
     /// </summary>
-    ICanvasStroke Stroke { get; }
+    ICanvasStroke? Stroke { get; }
 
     #endregion
 }

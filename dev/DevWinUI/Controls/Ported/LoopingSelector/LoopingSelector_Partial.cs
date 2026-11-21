@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Input;
+﻿#nullable disable
+#pragma warning disable IDE0028, IDE0059, CA1510, CA2208, IDE0270, IDE0018, IDE0007, IDE0054  
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Input;
@@ -59,7 +61,7 @@ public partial class LoopingSelector
         ItemTemplate = Resources["LoopingSelectorItemDefaultTemplate"] as DataTemplate;
     }
 
-    void InitializeImpl()
+    private void InitializeImpl()
     {
         //IControlFactory spInnerFactory;
         //IControl spInnerInstance;
@@ -219,7 +221,7 @@ public partial class LoopingSelector
 
     #endregion
 
-    void OnUpButtonClicked(
+    private void OnUpButtonClicked(
         object pSender,
         RoutedEventArgs pEventArgs)
     {
@@ -229,7 +231,7 @@ public partial class LoopingSelector
         SelectPreviousItem();
     }
 
-    void OnDownButtonClicked(
+    private void OnDownButtonClicked(
         object pSender,
         RoutedEventArgs pEventArgs)
     {
@@ -331,7 +333,7 @@ public partial class LoopingSelector
         }
     }
 
-    void HandlePageDownKeyPress()
+    private void HandlePageDownKeyPress()
     {
         var viewportHeight = _unpaddedExtentBottom - _unpaddedExtentTop;
         var pixelsToMove = viewportHeight / 2;
@@ -339,7 +341,7 @@ public partial class LoopingSelector
         RequestInteractionSound(ElementSoundKind.Focus);
     }
 
-    void HandlePageUpKeyPress()
+    private void HandlePageUpKeyPress()
     {
         var viewportHeight = _unpaddedExtentBottom - _unpaddedExtentTop;
         var pixelsToMove = -1 * viewportHeight / 2;
@@ -347,7 +349,7 @@ public partial class LoopingSelector
         RequestInteractionSound(ElementSoundKind.Focus);
     }
 
-    void HandleHomeKeyPress()
+    private void HandleHomeKeyPress()
     {
         var pixelsToMove = -1 * _realizedMidpointIdx * _scaledItemHeight;
         SetScrollPosition(_unpaddedExtentTop + pixelsToMove, false /* use animation */);
@@ -355,7 +357,7 @@ public partial class LoopingSelector
         RequestInteractionSound(ElementSoundKind.Focus);
     }
 
-    void HandleEndKeyPress()
+    private void HandleEndKeyPress()
     {
         var idxMovement = (int)_itemCount - 1 - _realizedMidpointIdx;
         var pixelsToMove = idxMovement * _scaledItemHeight;
@@ -364,7 +366,7 @@ public partial class LoopingSelector
         RequestInteractionSound(ElementSoundKind.Focus);
     }
 
-    void OnViewChanged(
+    private void OnViewChanged(
         object pSender,
         ScrollViewerViewChangedEventArgs pEventArgs)
     {
@@ -415,7 +417,7 @@ public partial class LoopingSelector
         DispatcherQueue.TryEnqueue(ProcessEvent);
     }
 
-    void OnViewChanging(
+    private void OnViewChanging(
         object pSender,
         ScrollViewerViewChangingEventArgs pEventArgs)
     {
@@ -460,7 +462,7 @@ public partial class LoopingSelector
         }
     }
 
-    void OnPointerEntered(
+    private void OnPointerEntered(
         object pSender,
         PointerRoutedEventArgs pEventArgs)
     {
@@ -482,7 +484,7 @@ public partial class LoopingSelector
         }
     }
 
-    void OnPointerExited(
+    private void OnPointerExited(
         object pSender,
         PointerRoutedEventArgs pEventArgs)
     {
@@ -493,7 +495,7 @@ public partial class LoopingSelector
         TransitionItemsState(_itemState);
     }
 
-    void GoToState(string strState, bool useTransitions)
+    private void GoToState(string strState, bool useTransitions)
     {
         //VisualStateManagerStatics spVSMStatics;
         //Control spThisAsControl;
@@ -509,7 +511,7 @@ public partial class LoopingSelector
         VisualStateManager.GoToState(this, strState, useTransitions);
     }
 
-    void OnPressed(
+    private void OnPressed(
         object pSender,
         PointerRoutedEventArgs pEventArgs)
     {
@@ -528,7 +530,7 @@ public partial class LoopingSelector
         pEventArgs.Handled = true;
     }
 
-    void OnLostFocus(
+    private void OnLostFocus(
         object pSender,
         RoutedEventArgs pEventArgs)
     {
@@ -557,7 +559,7 @@ public partial class LoopingSelector
         }
     }
 
-    void OnGotFocus(
+    private void OnGotFocus(
         object pSender,
         RoutedEventArgs pEventArgs)
     {
@@ -570,7 +572,7 @@ public partial class LoopingSelector
         }
     }
 
-    void OnItemTapped(
+    private void OnItemTapped(
         object pSender,
         TappedRoutedEventArgs pArgs)
     {
@@ -607,7 +609,7 @@ public partial class LoopingSelector
         }
     }
 
-    void OnPropertyChanged(DependencyPropertyChangedEventArgs pArgs)
+    private void OnPropertyChanged(DependencyPropertyChangedEventArgs pArgs)
     {
         DependencyProperty spPropertyInfo;
 
@@ -660,7 +662,7 @@ public partial class LoopingSelector
         }
     }
 
-    void IsTemplateAndItemsAttached(out bool result)
+    private void IsTemplateAndItemsAttached(out bool result)
     {
         IList<object> spItems;
 
@@ -688,14 +690,14 @@ public partial class LoopingSelector
         }
     }
 
-    void IsSetupForAutomation(out bool isSetup)
+    private void IsSetupForAutomation(out bool isSetup)
     {
         var isTemplateAndItemsAttached = false;
         IsTemplateAndItemsAttached(out isTemplateAndItemsAttached);
         isSetup = isTemplateAndItemsAttached && _isSized && !_isSetupPending;
     }
 
-    void Balance(bool isOnSnapPoint)
+    private void Balance(bool isOnSnapPoint)
     {
         var isTemplateAndItemsAttached = false;
         var abortBalance = false;
@@ -805,7 +807,7 @@ public partial class LoopingSelector
         }
     }
 
-    void Normalize()
+    private void Normalize()
     {
         var shouldLoop = false;
 
@@ -846,7 +848,7 @@ public partial class LoopingSelector
         }
     }
 
-    void EnsureSetup()
+    private void EnsureSetup()
     {
         var selectedIdx = 0;
 
@@ -935,7 +937,7 @@ public partial class LoopingSelector
         }
     }
 
-    void SetSelectedIndex(int oldIdx, int newIdx)
+    private void SetSelectedIndex(int oldIdx, int newIdx)
     {
         var pixelsToMove = 0.0;
         var isTemplateAndItemsAttached = false;
@@ -951,7 +953,7 @@ public partial class LoopingSelector
         }
     }
 
-    void Trim(ListEnd end)
+    private void Trim(ListEnd end)
     {
         LoopingListSelectorInfo spChildAsLSI;
 
@@ -991,7 +993,7 @@ public partial class LoopingSelector
         RecycleItem(spChildAsLSI);
     }
 
-    void Add(ListEnd end)
+    private void Add(ListEnd end)
     {
         LoopingListSelectorInfo spChild;
         UIElement spChildAsUI;
@@ -1018,7 +1020,7 @@ public partial class LoopingSelector
         }
     }
 
-    void GetMaximumAddIndexPosition(out int headIdx, out int tailIdx)
+    private void GetMaximumAddIndexPosition(out int headIdx, out int tailIdx)
     {
         bool shouldLoop;
         shouldLoop = ShouldLoop;
@@ -1037,7 +1039,7 @@ public partial class LoopingSelector
     // In cases where we're directly setting the selected item (e.g., via UIA),
     // we don't care whether we're in the middle of scrolling.
     // We'll use ignoreScrollingState to flag such scenarios.
-    void UpdateSelectedItem(bool ignoreScrollingState = false)
+    private void UpdateSelectedItem(bool ignoreScrollingState = false)
     {
         IList<object> spItemsCollection;
         DependencyObject spSelectedItem;
@@ -1091,7 +1093,7 @@ public partial class LoopingSelector
 
 
     // NOTE: Only called when the ScrollViewer is done Running (e.g. no scrolling is happening).
-    void UpdateVisualSelectedItem(uint oldIdx, uint newIdx)
+    private void UpdateVisualSelectedItem(uint oldIdx, uint newIdx)
     {
         if (oldIdx == newIdx)
         {
@@ -1141,7 +1143,7 @@ public partial class LoopingSelector
         itemIndex = PositiveMod((int)visualIndex, itemCount);
     }
 
-    void RealizeItem(uint itemIdxToRealize, out LoopingListSelectorInfo ppItem)
+    private void RealizeItem(uint itemIdxToRealize, out LoopingListSelectorInfo ppItem)
     {
         LoopingListSelectorInfo spLoopingSelectorItem;
         ContentControl spLoopingSelectorItemAsCC;
@@ -1279,7 +1281,7 @@ public partial class LoopingSelector
         ppItem = spLoopingSelectorItem;
     }
 
-    void RecycleItem(LoopingListSelectorInfo pItem)
+    private void RecycleItem(LoopingListSelectorInfo pItem)
     {
         LoopingListSelectorInfo spItemAsLSI;
         UIElement spItemAsUI;
@@ -1298,7 +1300,7 @@ public partial class LoopingSelector
 
     #region Sound Helpers
 
-    void RequestInteractionSound(ElementSoundKind soundKind)
+    private void RequestInteractionSound(ElementSoundKind soundKind)
     {
         DependencyObject thisAsDO;
 
@@ -1606,7 +1608,7 @@ public partial class LoopingSelector
 
     #region Helpers
 
-    void HasFocus(out bool pHasFocus)
+    private void HasFocus(out bool pHasFocus)
     {
         DependencyObject spFocusedElt;
         DependencyObject spFocusedEltAsDO;
@@ -1639,7 +1641,7 @@ public partial class LoopingSelector
         }
     }
 
-    void IsAscendantOfTarget(DependencyObject pChild, out bool pIsChildOfTarget)
+    private void IsAscendantOfTarget(DependencyObject pChild, out bool pIsChildOfTarget)
     {
         var spCurrentDO = pChild;
         DependencyObject spParentDO;
@@ -1671,7 +1673,7 @@ public partial class LoopingSelector
         pIsChildOfTarget = isFound;
     }
 
-    void ShiftChildren(double delta)
+    private void ShiftChildren(double delta)
     {
         if (delta == 0)
         {
@@ -1700,7 +1702,7 @@ public partial class LoopingSelector
         }
     }
 
-    void MeasureExtent(out double extentTop, out double extentBottom)
+    private void MeasureExtent(out double extentTop, out double extentBottom)
     {
         var viewportHeight = 0.0;
         var verticalOffset = 0.0;
@@ -1711,7 +1713,7 @@ public partial class LoopingSelector
         extentBottom = verticalOffset + viewportHeight;
     }
 
-    void ClearAllItems()
+    private void ClearAllItems()
     {
         IList<object> spItems;
         //LoopingSelectorItem.iterator iter;
@@ -1746,7 +1748,7 @@ public partial class LoopingSelector
         }
     }
 
-    void GetPanelChildren(out IList<UIElement> ppChildren, out uint count)
+    private void GetPanelChildren(out IList<UIElement> ppChildren, out uint count)
     {
         Panel spPanel;
         IList<UIElement> spChildren;
@@ -1759,7 +1761,7 @@ public partial class LoopingSelector
         ppChildren = spChildren; //.Detach();
     }
 
-    void SizePanel()
+    private void SizePanel()
     {
         FrameworkElement spPanelAsFE;
         UIElement spThisAsUI;
@@ -1806,7 +1808,7 @@ public partial class LoopingSelector
         spPanelAsFE.Height = _panelSize;
     }
 
-    void SetScrollPosition(double offset, bool useAnimation)
+    private void SetScrollPosition(double offset, bool useAnimation)
     {
         //DependencyObject spVerticalOffsetAsInspectable;
         double spVerticalOffset;
@@ -1847,7 +1849,7 @@ public partial class LoopingSelector
         }
     }
 
-    void SetupSnapPoints(double offset, double size)
+    private void SetupSnapPoints(double offset, double size)
     {
         LoopingSelectorPanel lsp = null;
         lsp = _tpPanel;
@@ -1856,7 +1858,7 @@ public partial class LoopingSelector
         lsp.SetSizeInPixels((float)size);
     }
 
-    void SetPosition(UIElement pitem, double offset)
+    private void SetPosition(UIElement pitem, double offset)
     {
         //NT_global.System.Diagnostics.Debug.Assert(_spCanvasStatics);
         //_spCanvasStatics.SetTop(pitem, offset);
@@ -1867,7 +1869,7 @@ public partial class LoopingSelector
         Canvas.SetLeft(pitem, 0.0d);
     }
 
-    void ExpandIfNecessary()
+    private void ExpandIfNecessary()
     {
         if (_itemState != ItemState.Expanded)
         {
@@ -1876,7 +1878,7 @@ public partial class LoopingSelector
         }
     }
 
-    void TransitionItemsState(ItemState state)
+    private void TransitionItemsState(ItemState state)
     {
         uint childIdx = 0;
         //LoopingSelectorItem.iterator iter;
@@ -1947,7 +1949,7 @@ public partial class LoopingSelector
         }
     }
 
-    void RetreiveItemFromAPRealizedItems(uint moddeItemdIdx, out LoopingListSelectorInfo ppItem)
+    private void RetreiveItemFromAPRealizedItems(uint moddeItemdIdx, out LoopingListSelectorInfo ppItem)
     {
         ppItem = null;
         //map<int, LoopingSelectorItem>>.iterator iter;
@@ -2169,7 +2171,7 @@ public partial class LoopingSelector
         }
     }
 
-    void AutomationRaiseSelectionChanged()
+    private void AutomationRaiseSelectionChanged()
     {
         UIElement spThisAsUI;
         //ScrollPatternIdentifiersStatics spScrollPatternStatics;
@@ -2224,7 +2226,7 @@ public partial class LoopingSelector
         _tpPreviousScrollPosition = scrollPercent;
     }
 
-    void AutomationRaiseExpandCollapse()
+    private void AutomationRaiseExpandCollapse()
     {
         UIElement spThisAsUI;
         //ExpandCollapsePatternIdentifiersStatics spExpandCollapsePatternStatics;
@@ -2259,7 +2261,7 @@ public partial class LoopingSelector
             spNewValueAsPV);
     }
 
-    void AutomationRaiseStructureChanged()
+    private void AutomationRaiseStructureChanged()
     {
         UIElement spThisAsUI;
         //(QueryInterface(

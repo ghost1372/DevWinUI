@@ -97,7 +97,7 @@ public static partial class OSVersionHelper
         int revisionNumber = 0;
         if (useRegistryForRevision)
         {
-            RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+            RegistryKey? registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
             if (registryKey != null)
             {
                 var ubr = registryKey.GetValue("UBR");

@@ -119,7 +119,7 @@ public sealed partial class CollectionOption : ExampleOption
     private readonly ListView _list = new() { MaxHeight = 140 };
     private readonly TextBox _input = new() { PlaceholderText = "New item" };
     private List<object> _default = new();
-    private INotifyCollectionChanged _observed;
+    private INotifyCollectionChanged? _observed;
     private bool _suppress;
 
     public CollectionOption()
@@ -153,11 +153,11 @@ public sealed partial class CollectionOption : ExampleOption
         set => SetValue(SourceProperty, value);
     }
 
-    public event TypedEventHandler<CollectionOption, IList> ValueChanged;
+    public event TypedEventHandler<CollectionOption, IList?>? ValueChanged;
 
-    public Func<int, object> ItemFactory { get; set; }
+    public Func<int, object>? ItemFactory { get; set; }
 
-    private IList Items => Source as IList;
+    private IList? Items => Source as IList;
 
     protected override void CaptureDefault()
     {
@@ -209,7 +209,7 @@ public sealed partial class CollectionOption : ExampleOption
         RaiseValueChanged();
     }
 
-    private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if (!_suppress)
         {
@@ -307,7 +307,7 @@ public sealed partial class ColorOption : ExampleOption
         });
     }
 
-    public event TypedEventHandler<ColorOption, Color> ValueChanged;
+    public event TypedEventHandler<ColorOption, Color>? ValueChanged;
 
     public Color Value
     {
@@ -427,7 +427,7 @@ public sealed partial class BrushOption : ExampleOption
     private bool _fromEditor;
     private bool _syncIndex;
     private bool _tracking;
-    private Brush _default;
+    private Brush? _default;
 
     public BrushOption()
     {
@@ -452,11 +452,11 @@ public sealed partial class BrushOption : ExampleOption
         SetEditor(_editor);
     }
 
-    public event TypedEventHandler<BrushOption, Brush> ValueChanged;
+    public event TypedEventHandler<BrushOption, Brush?>? ValueChanged;
 
-    public Brush Value
+    public Brush? Value
     {
-        get => (Brush)GetValue(ValueProperty);
+        get => (Brush?)GetValue(ValueProperty);
         set
         {
             if (Same((Brush)GetValue(ValueProperty), value))
@@ -565,7 +565,7 @@ public sealed partial class BrushOption : ExampleOption
         option.ValueChanged?.Invoke(option, e.NewValue as Brush);
     }
 
-    private static bool Same(Brush a, Brush b)
+    private static bool Same(Brush? a, Brush? b)
     {
         return ReferenceEquals(a, b) || (a is SolidColorBrush x && b is SolidColorBrush y && x.Color == y.Color);
     }
@@ -654,12 +654,12 @@ public sealed partial class ChoiceOption : ExampleOption
         DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(ChoiceOption), new PropertyMetadata(null, OnItemTemplateChanged));
 
     private readonly ComboBox _editor = new() { HorizontalAlignment = HorizontalAlignment.Stretch };
-    private Type _enumType;
+    private Type? _enumType;
     private bool _sync;
     private bool _fromEditor;
     private bool _syncIndex;
     private bool _tracking;
-    private object _default;
+    private object? _default;
 
     public ChoiceOption()
     {
@@ -683,9 +683,9 @@ public sealed partial class ChoiceOption : ExampleOption
         SetEditor(_editor);
     }
 
-    public event TypedEventHandler<ChoiceOption, object> ValueChanged;
+    public event TypedEventHandler<ChoiceOption, object?>? ValueChanged;
 
-    public object Value
+    public object? Value
     {
         get => GetValue(ValueProperty);
         set

@@ -45,7 +45,7 @@ public partial class TextToBrushWrapper : Control
             new PropertyMetadata(default(string), OnTextChanged));
 
     private readonly CompositionGraphicsDevice _graphicsDevice;
-    private Compositor _compositor;
+    private Compositor? _compositor;
 
     public TextToBrushWrapper()
     {

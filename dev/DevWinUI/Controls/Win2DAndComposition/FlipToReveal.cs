@@ -4,21 +4,21 @@
 public partial class FlipToReveal : Control
 {
     private const string PART_MainPanel = "PART_MainPanel";
-    private Grid _mainPanel;
+    private Grid? _mainPanel;
     private Boolean IsFlipped = false;
 
-    public FrameworkElement PrimaryContent
+    public FrameworkElement? PrimaryContent
     {
-        get { return (FrameworkElement)GetValue(PrimaryContentProperty); }
+        get { return (FrameworkElement?)GetValue(PrimaryContentProperty); }
         set { SetValue(PrimaryContentProperty, value); }
     }
 
     public static readonly DependencyProperty PrimaryContentProperty =
         DependencyProperty.Register(nameof(PrimaryContent), typeof(FrameworkElement), typeof(FlipToReveal), new PropertyMetadata(null));
 
-    public FrameworkElement SecondaryContent
+    public FrameworkElement? SecondaryContent
     {
-        get { return (FrameworkElement)GetValue(SecondaryContentProperty); }
+        get { return (FrameworkElement?)GetValue(SecondaryContentProperty); }
         set { SetValue(SecondaryContentProperty, value); }
     }
 
@@ -38,35 +38,44 @@ public partial class FlipToReveal : Control
     {
         base.OnApplyTemplate();
         _mainPanel = GetTemplateChild(PART_MainPanel) as Grid;
-        _mainPanel.Tapped -= OnMainPanelTapped;
-        _mainPanel.Tapped += OnMainPanelTapped;
+        if (_mainPanel != null)
+        {
+            _mainPanel.Tapped -= OnMainPanelTapped;
+            _mainPanel.Tapped += OnMainPanelTapped;
+        }
         SizeChanged -= FlipToReveal_SizeChanged;
         SizeChanged += FlipToReveal_SizeChanged;
     }
 
     private void OnMainPanelTapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
     {
-        Visual visual = ElementCompositionPreview.GetElementVisual(SecondaryContent);
+        Flip();
+    }
+
+    private void Flip()
+    {
+        var secondary = SecondaryContent;
+        if (secondary == null)
+            return;
+
+        Visual visual = ElementCompositionPreview.GetElementVisual(secondary);
         Compositor compositor = visual.Compositor;
 
-        visual.Size = new Vector2((float)SecondaryContent.ActualWidth / 2, (float)SecondaryContent.ActualHeight / 2);
+        visual.Size = new Vector2((float)secondary.ActualWidth / 2, (float)secondary.ActualHeight / 2);
 
-        // Rotate around the X-axis
         visual.RotationAxis = new Vector3(1, 0, 0);
 
-        // Start the rotation animation
         LinearEasingFunction linear = compositor.CreateLinearEasingFunction();
         ScalarKeyFrameAnimation rotationAnimation = compositor.CreateScalarKeyFrameAnimation();
-        if (!IsFlipped) // default
+        if (!IsFlipped)
         {
             rotationAnimation.InsertKeyFrame(0, 0, linear);
-            rotationAnimation.InsertKeyFrame(1, 250f, linear); // flip over
+            rotationAnimation.InsertKeyFrame(1, 250f, linear);
         }
         else
         {
             rotationAnimation.InsertKeyFrame(0, 250f, linear);
-            rotationAnimation.InsertKeyFrame(1, 0f, linear);   // flip back
-
+            rotationAnimation.InsertKeyFrame(1, 0f, linear);
         }
         rotationAnimation.Duration = RotationDuration;
 
@@ -74,7 +83,7 @@ public partial class FlipToReveal : Control
         transaction.Completed += Animation_Completed;
 
         if (IsFlipped)
-            SecondaryContent.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+            secondary.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
 
         visual.StartAnimation("RotationAngleInDegrees", rotationAnimation);
 
@@ -90,25 +99,25 @@ public partial class FlipToReveal : Control
     {
         IsFlipped = !IsFlipped;
 
-        if (IsFlipped)
+        if (IsFlipped && SecondaryContent != null)
             SecondaryContent.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
     }
 
     private void UpdatePerspective()
     {
+        if (_mainPanel == null)
+            return;
+
         Visual visual = ElementCompositionPreview.GetElementVisual(_mainPanel);
 
-        // Get the size of the area we are enabling perspective for
         Vector2 sizeList = new Vector2((float)_mainPanel.ActualWidth, (float)_mainPanel.ActualHeight);
 
-        // Setup the perspective transform.
         Matrix4x4 perspective = new Matrix4x4(
                     1.0f, 0.0f, 0.0f, 0.0f,
                     0.0f, 1.0f, 0.0f, 0.0f,
                     0.0f, 0.0f, 1.0f, -1.0f / sizeList.X,
                     0.0f, 0.0f, 0.0f, 1.0f);
 
-        // Set the parent transform to apply perspective to all children
         visual.TransformMatrix =
                            Matrix4x4.CreateTranslation(-sizeList.X / 2, -sizeList.Y / 2, 0f) *      // Translate to origin
                            perspective *                                                            // Apply perspective at origin
@@ -117,6 +126,6 @@ public partial class FlipToReveal : Control
     }
     public void SimulateFlip()
     {
-        OnMainPanelTapped(_mainPanel, null);
+        Flip();
     }
 }

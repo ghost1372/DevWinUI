@@ -23,14 +23,14 @@ public sealed partial class FluidBanner : Panel
 
     #region Fields
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private ContainerVisual _rootContainer;
-    private LayerVisual _bgLayer;
-    private LayerVisual _topLayer;
-    private ImplicitAnimationCollection _implicitAnimationCollection;
-    private ContainerVisual _selectedVisual;
-    private ContainerVisual _hoverVisual;
+    private Compositor _compositor = null!;
+    private ICompositionGenerator _generator = null!;
+    private ContainerVisual _rootContainer = null!;
+    private LayerVisual _bgLayer = null!;
+    private LayerVisual _topLayer = null!;
+    private ImplicitAnimationCollection _implicitAnimationCollection = null!;
+    private ContainerVisual? _selectedVisual;
+    private ContainerVisual? _hoverVisual;
     private Dictionary<IImageSurface, SpriteVisual> _surfaceVisuals;
     private Dictionary<ContainerVisual, Rect> _fluidItems;
     private List<IImageSurface> _surfaceImages;
@@ -44,12 +44,12 @@ public sealed partial class FluidBanner : Panel
     private bool _isCollapsing;
     private bool _surfaceImagesCreated;
     // Animations
-    private ScalarKeyFrameAnimation _expandLeftInset;
-    private ScalarKeyFrameAnimation _expandRightInset;
-    private ScalarKeyFrameAnimation _expandInsetClip;
-    private ScalarKeyFrameAnimation _collapseLeftInset;
-    private ScalarKeyFrameAnimation _collapseRightInset;
-    private ScalarKeyFrameAnimation _collapseInsetClip;
+    private ScalarKeyFrameAnimation _expandLeftInset = null!;
+    private ScalarKeyFrameAnimation _expandRightInset = null!;
+    private ScalarKeyFrameAnimation _expandInsetClip = null!;
+    private ScalarKeyFrameAnimation _collapseLeftInset = null!;
+    private ScalarKeyFrameAnimation _collapseRightInset = null!;
+    private ScalarKeyFrameAnimation _collapseInsetClip = null!;
 
     #endregion
 
@@ -58,11 +58,11 @@ public sealed partial class FluidBanner : Panel
     /// <summary>
     /// Event which indicates that the items in the ItemsSource have started loading
     /// </summary>
-    public event EventHandler ItemsLoading;
+    public event EventHandler? ItemsLoading;
     /// <summary>
     /// Event which indicates that the items in the ItemsSource have completed loading
     /// </summary>
-    public event EventHandler ItemsLoaded;
+    public event EventHandler? ItemsLoaded;
 
     #endregion
 
@@ -269,7 +269,7 @@ public sealed partial class FluidBanner : Panel
     {
         _surfaceImagesCreated = false;
 
-        ItemsLoading?.Invoke(this, null);
+        ItemsLoading?.Invoke(this, EventArgs.Empty);
 
         // Create SurfaceImages
         await CreateSurfaceImagesAsync();
@@ -277,7 +277,7 @@ public sealed partial class FluidBanner : Panel
         // Refresh Layout
         InvalidateArrange();
 
-        ItemsLoaded?.Invoke(this, null);
+        ItemsLoaded?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion
@@ -762,7 +762,7 @@ public sealed partial class FluidBanner : Panel
     /// Handles the Hover animation for the given visual
     /// </summary>
     /// <param name="visual">Visual to animate</param>
-    private void Hover(ContainerVisual visual)
+    private void Hover(ContainerVisual? visual)
     {
         if (visual == null)
             return;
@@ -779,7 +779,7 @@ public sealed partial class FluidBanner : Panel
     /// Handles the Reset Hover animation for the given visual
     /// </summary>
     /// <param name="visual">Visual to animate</param>
-    private void ResetHover(ContainerVisual visual)
+    private void ResetHover(ContainerVisual? visual)
     {
         if (visual == null)
             return;
@@ -798,13 +798,14 @@ public sealed partial class FluidBanner : Panel
     /// <returns>Task</returns>
     private async Task SelectBannerItem()
     {
-        if (_selectedVisual == null)
+        var selected = _selectedVisual;
+        if (selected == null)
             return;
         _isExpanding = true;
 
         // Bring the selected visual from background layer to the top layer
-        _bgLayer.Children.Remove(_selectedVisual);
-        _topLayer.Children.InsertAtTop(_selectedVisual);
+        _bgLayer.Children.Remove(selected);
+        _topLayer.Children.InsertAtTop(selected);
 
         // Scale back and fade the remaining visuals in the banner
         foreach (var child in _bgLayer.Children)
@@ -815,7 +816,7 @@ public sealed partial class FluidBanner : Panel
 
         // If the first visual is selected, then no need to move it to the leftmost
         // position as it is already there. Just do the expand animation.
-        if (ReferenceEquals(_selectedVisual, _fluidItems.Keys.ElementAt(0)))
+        if (ReferenceEquals(selected, _fluidItems.Keys.ElementAt(0)))
         {
             // Delay the expand animation by the DefaultScaleAnimationDuration 
             // so that the other visuals in the Banner scale down
@@ -825,7 +826,7 @@ public sealed partial class FluidBanner : Panel
                 () =>
                 {
                     // Expand the visual to occupy the full size of the banner
-                    _selectedVisual.Clip.StartAnimation("RightInset", _expandInsetClip);
+                    selected.Clip.StartAnimation("RightInset", _expandInsetClip);
                 },
                 () =>
                 {
@@ -839,8 +840,8 @@ public sealed partial class FluidBanner : Panel
                 () =>
                 {
                     // Animate the visual to move to the left most position
-                    _selectedVisual.Clip.StartAnimation("LeftInset", _expandLeftInset);
-                    _selectedVisual.Clip.StartAnimation("RightInset", _expandRightInset);
+                    selected.Clip.StartAnimation("LeftInset", _expandLeftInset);
+                    selected.Clip.StartAnimation("RightInset", _expandRightInset);
                 },
                 () =>
                 {
@@ -848,7 +849,7 @@ public sealed partial class FluidBanner : Panel
                         () =>
                         {
                             // Expand the visual to occupy the full size of the banner
-                            _selectedVisual.Clip.StartAnimation("RightInset", _expandInsetClip);
+                            selected.Clip.StartAnimation("RightInset", _expandInsetClip);
                         },
                         () =>
                         {
@@ -864,17 +865,18 @@ public sealed partial class FluidBanner : Panel
     /// </summary>
     private void ResetBannerItems(Point point)
     {
-        if (_selectedVisual == null)
+        var selected = _selectedVisual;
+        if (selected == null)
             return;
 
         _isCollapsing = true;
 
         // Get the value to set for the LeftInset of the InsetClip
-        _selectedVisual.Properties.TryGetScalar("LeftInset", out var left);
+        selected.Properties.TryGetScalar("LeftInset", out var left);
         _collapseLeftInset.InsertKeyFrame(1f, left);
 
         // Get the value to set for the RightInset of the InsetClip
-        _selectedVisual.Properties.TryGetScalar("RightInset", out var right);
+        selected.Properties.TryGetScalar("RightInset", out var right);
         _collapseRightInset.InsertKeyFrame(1f, right);
 
         // Use a scoped batch helper to queue up animations one after the other
@@ -882,17 +884,17 @@ public sealed partial class FluidBanner : Panel
         () =>
         {
             // Collapse the visual
-            _selectedVisual.Clip.StartAnimation("RightInset", _collapseInsetClip);
+            selected.Clip.StartAnimation("RightInset", _collapseInsetClip);
         },
         async () =>
         {
             // If the first visual is selected, then no need to move it to the leftmost
             // position as it is already there.
-            if (!ReferenceEquals(_selectedVisual, _fluidItems.Keys.ElementAt(0)))
+            if (!ReferenceEquals(selected, _fluidItems.Keys.ElementAt(0)))
             {
                 // Move the visual back to its original location in the banner
-                _selectedVisual.Clip.StartAnimation("LeftInset", _collapseLeftInset);
-                _selectedVisual.Clip.StartAnimation("RightInset", _collapseRightInset);
+                selected.Clip.StartAnimation("LeftInset", _collapseLeftInset);
+                selected.Clip.StartAnimation("RightInset", _collapseRightInset);
             }
 
             // Fade in the other visuals and scale them to normal size
@@ -908,8 +910,8 @@ public sealed partial class FluidBanner : Panel
             await Task.Delay((int)DefaultScaleAnimationDuration.TotalMilliseconds);
 
             // Bring the selected visual from top layer to the background layer
-            _topLayer.Children.Remove(_selectedVisual);
-            _bgLayer.Children.InsertAtTop(_selectedVisual);
+            _topLayer.Children.Remove(selected);
+            _bgLayer.Children.InsertAtTop(selected);
 
             _selectedVisual = null;
             _isCollapsing = false;

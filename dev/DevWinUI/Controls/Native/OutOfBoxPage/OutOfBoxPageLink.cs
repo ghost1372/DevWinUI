@@ -2,7 +2,7 @@
 
 public partial class OutOfBoxPageLink
 {
-    public string Text { get; set; }
+    public string Text { get; set; } = null!;
 
-    public Uri Link { get; set; }
+    public Uri Link { get; set; } = null!;
 }

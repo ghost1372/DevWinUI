@@ -1,9 +1,10 @@
 ﻿using Serilog;
 
 namespace DevWinUIGallery.Common;
+
 public static class LoggerSetup
 {
-    public static ILogger Logger { get; private set; }
+    public static ILogger Logger { get; private set; } = Serilog.Core.Logger.None;
 
     public static void ConfigureLogger()
     {
@@ -19,4 +20,3 @@ public static class LoggerSetup
             .CreateLogger();
     }
 }
-

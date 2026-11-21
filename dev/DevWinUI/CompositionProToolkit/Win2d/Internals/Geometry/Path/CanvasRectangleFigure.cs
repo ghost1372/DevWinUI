@@ -71,7 +71,7 @@ internal sealed partial class CanvasRectangleFigure : AbstractPathElement
     /// commands, used for creating the CanvasGeometry, in string format.</param>
     /// <returns>The latest location in the Path after adding the PolygonFigure</returns>
     public override Vector2 CreatePath(CanvasPathBuilder pathBuilder, Vector2 currentPoint,
-        ref ICanvasPathElement lastElement, StringBuilder logger)
+        ref ICanvasPathElement? lastElement, StringBuilder? logger)
     {
         // Calculate coordinates
         var topLeft = new Vector2(_x, _y);
@@ -100,7 +100,7 @@ internal sealed partial class CanvasRectangleFigure : AbstractPathElement
     /// Get the Regex for extracting Path Element Attributes
     /// </summary>
     /// <returns></returns>
-    protected override Regex GetAttributesRegex()
+    protected override Regex? GetAttributesRegex()
     {
         return RegexFactory.GetAttributesRegex(PathFigureType.RectangleFigure);
     }

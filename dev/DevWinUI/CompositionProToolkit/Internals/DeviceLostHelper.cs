@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using Windows.Graphics.DirectX.Direct3D11;
 using WinRT;
 
@@ -30,15 +30,15 @@ internal sealed unsafe partial class DeviceLostHelper : IDisposable
     private const int UnregisterDeviceRemovedIndex = 66;
 
     private readonly object _lock = new();
-    private IDirect3DDevice _device;
+    private IDirect3DDevice? _device;
     private nint _d3dDevice4;
     private uint _cookie;
-    private ManualResetEvent _removedEvent;
-    private RegisteredWaitHandle _waitHandle;
+    private ManualResetEvent? _removedEvent;
+    private RegisteredWaitHandle? _waitHandle;
 
-    public event DeviceLostEventHandler DeviceLost;
+    public event DeviceLostEventHandler? DeviceLost;
 
-    public IDirect3DDevice CurrentlyWatchedDevice => _device;
+    public IDirect3DDevice? CurrentlyWatchedDevice => _device;
 
     public void WatchDevice(IDirect3DDevice device)
     {
@@ -47,7 +47,7 @@ internal sealed unsafe partial class DeviceLostHelper : IDisposable
             StopWatchingCurrentDevice();
 
             nint abi = 0, access = 0, d3d = 0;
-            ManualResetEvent removedEvent = null;
+            ManualResetEvent? removedEvent = null;
 
             try
             {
@@ -73,7 +73,7 @@ internal sealed unsafe partial class DeviceLostHelper : IDisposable
 
                 _waitHandle = ThreadPool.RegisterWaitForSingleObject(
                     _removedEvent,
-                    static (state, _) => ((DeviceLostHelper)state).OnDeviceLost(),
+                    static (state, _) => ((DeviceLostHelper)state!).OnDeviceLost(),
                     this,
                     Timeout.Infinite,
                     true);
@@ -121,7 +121,7 @@ internal sealed unsafe partial class DeviceLostHelper : IDisposable
 
     private void OnDeviceLost()
     {
-        IDirect3DDevice oldDevice;
+        IDirect3DDevice? oldDevice;
 
         lock (_lock)
         {

@@ -1,4 +1,4 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 internal sealed partial class ImageMaskSurface : IImageMaskSurface
 {
@@ -6,8 +6,8 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
 
     private ICompositionGeneratorInternal _generator;
     private CompositionDrawingSurface _surface;
-    private Uri _uri;
-    private CanvasBitmap _canvasBitmap;
+    private Uri? _uri;
+    private CanvasBitmap? _canvasBitmap;
     private readonly object _surfaceLock;
     private bool _raiseLoadCompletedEvent;
 
@@ -20,7 +20,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// decoded and loaded to the underlying IImageSurface. This
     /// event fires regardless of success or failure.
     /// </summary>
-    public event TypedEventHandler<IImageSurface, ImageSurfaceLoadStatus> LoadCompleted;
+    public event TypedEventHandler<IImageSurface, ImageSurfaceLoadStatus>? LoadCompleted;
 
     #endregion
 
@@ -39,12 +39,12 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <summary>
     /// Gets the Uri of the image to be loaded onto the IImageSurface
     /// </summary>
-    public Uri Uri => _uri;
+    public Uri? Uri => _uri;
 
     /// <summary>
     /// The CanvasBitmap representing the loaded image
     /// </summary>
-    public CanvasBitmap SurfaceBitmap => _canvasBitmap;
+    public CanvasBitmap? SurfaceBitmap => _canvasBitmap;
 
     /// <summary>
     /// Gets the IImageMaskSurface Size
@@ -98,7 +98,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
         _surfaceLock = new object();
         // Create the Surface of the IImageMaskSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         _uri = uri;
         _raiseLoadCompletedEvent = _uri != null;
         _canvasBitmap = null;
@@ -119,7 +119,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <param name="padding">The padding between the IImageMaskSurface outer bounds and the bounds of the area where
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="options">The image's resize, alignment options and blur radius in the allocated space.</param>
-    public ImageMaskSurface(ICompositionGeneratorInternal generator, CanvasBitmap surfaceBitmap, Size size,
+    public ImageMaskSurface(ICompositionGeneratorInternal generator, CanvasBitmap? surfaceBitmap, Size size,
         Thickness padding, ImageSurfaceOptions options)
     {
         _generator = generator ??
@@ -127,7 +127,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
         _surfaceLock = new object();
         // Create the Surface of the IImageMaskSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         _uri = null;
         _raiseLoadCompletedEvent = false;
         if (surfaceBitmap != null)
@@ -365,7 +365,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// Redraws the IImageMaskSurface using the given CanvasBitmap's alpha values.
     /// </summary>
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap)
+    public void Redraw(CanvasBitmap? surfaceBitmap)
     {
         Redraw(surfaceBitmap, Size, MaskPadding, Options);
     }
@@ -376,7 +376,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
     /// <param name="padding">The padding between the IImageMaskSurface outer bounds and the bounds of the area where
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, Thickness padding)
+    public void Redraw(CanvasBitmap? surfaceBitmap, Thickness padding)
     {
         Redraw(surfaceBitmap, Size, padding, Options);
     }
@@ -386,7 +386,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// </summary>
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
     /// <param name="options">The image's resize, alignment options and blur radius in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, ImageSurfaceOptions options)
     {
         Redraw(surfaceBitmap, Size, MaskPadding, options);
     }
@@ -397,7 +397,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <param name="surfaceBitmap">Image whose alpha values are to be used to create the mask.</param>
     /// <param name="size">New size of the IImageMaskSurface.</param>
     /// <param name="options">The image's resize, alignment options and blur radius in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, Size size, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, Size size, ImageSurfaceOptions options)
     {
         Redraw(surfaceBitmap, size, MaskPadding, options);
     }
@@ -410,7 +410,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <param name="padding">The padding between the IImageMaskSurface outer bounds and the bounds of the area where
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="options">The image's resize, alignment options and blur radius in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, Thickness padding, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, Thickness padding, ImageSurfaceOptions options)
     {
         Redraw(surfaceBitmap, Size, padding, options);
     }
@@ -424,7 +424,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// <param name="padding">The padding between the IImageMaskSurface outer bounds and the bounds of the area where
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="options">The image's resize, alignment and blur radius options in the allocated space.</param>
-    public void Redraw(CanvasBitmap surfaceBitmap, Size size, Thickness padding, ImageSurfaceOptions options)
+    public void Redraw(CanvasBitmap? surfaceBitmap, Size size, Thickness padding, ImageSurfaceOptions options)
     {
         if (_canvasBitmap != surfaceBitmap)
         {
@@ -616,10 +616,10 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
             _generator.DeviceReplaced -= OnDeviceReplaced;
         _canvasBitmap?.Dispose();
         _canvasBitmap = null;
-        _surface = null;
-        _generator = null;
+        _surface = null!;
+        _generator = null!;
         _uri = null;
-        Options = null;
+        Options = null!;
     }
 
     #endregion
@@ -645,7 +645,7 @@ internal sealed partial class ImageMaskSurface : IImageMaskSurface
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">object</param>
-    private async void OnDeviceReplaced(object sender, object e)
+    private async void OnDeviceReplaced(object? sender, object e)
     {
         // Recreate the ImageSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, Size);

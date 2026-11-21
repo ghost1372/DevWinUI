@@ -26,6 +26,14 @@
                             <Slider x:Name="SliderThickness" Header="Ring Thickness" Maximum="8" Minimum="0.5" StepFrequency="0.5" Value="1.5" />
                         </local:OptionPanel>
                     </local:OptionGroup>
+                    <local:OptionGroup Title="Colors">
+                        <local:OptionPanel>
+                            <local:ColorOption Brush="{x:Bind GlowingBorderSample.GlowBrush1, Mode=TwoWay}" Header="Glow Brush 1" />
+                            <local:ColorOption Brush="{x:Bind GlowingBorderSample.GlowBrush2, Mode=TwoWay}" Header="Glow Brush 2" />
+                            <local:ColorOption Brush="{x:Bind GlowingBorderSample.GlowBrush3, Mode=TwoWay}" Header="Glow Brush 3" />
+                            <local:ColorOption Brush="{x:Bind GlowingBorderSample.GlowBrush4, Mode=TwoWay}" Header="Glow Brush 4" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
                     <local:OptionGroup Title="Glow">
                         <local:OptionPanel>
                             <Slider x:Name="SliderGlow" Header="Glow" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.6" />

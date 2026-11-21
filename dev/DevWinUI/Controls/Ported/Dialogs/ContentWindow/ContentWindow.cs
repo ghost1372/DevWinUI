@@ -893,7 +893,7 @@ public partial class ContentWindow : ContentControl
 
     private int DipToPixel(double dip) => (int)Math.Ceiling(dip * DpiScale);
 
-    private void OnWindowMessageReceived(object sender, WindowMessageEventArgs e)
+    private void OnWindowMessageReceived(object? sender, WindowMessageEventArgs e)
     {
         CancelEventArgs cancelEventArg;
         switch (e.MessageType)

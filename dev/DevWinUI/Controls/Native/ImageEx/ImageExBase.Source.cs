@@ -13,9 +13,9 @@ public partial class ImageExBase
     public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(nameof(Source), typeof(object), typeof(ImageExBase), new PropertyMetadata(null, SourceChanged));
 
     //// Used to track if we get a new request, so we can cancel any potential custom cache loading.
-    private CancellationTokenSource _tokenSource;
+    private CancellationTokenSource _tokenSource = null!;
 
-    private object _lazyLoadingSource;
+    private object? _lazyLoadingSource;
 
     /// <summary>
     /// Gets or sets the source used by the image
@@ -58,7 +58,7 @@ public partial class ImageExBase
     /// Method to call to assign an <see cref="ImageSource"/> value to the underlying <see cref="Image"/> powering <see cref="ImageExBase"/>.
     /// </summary>
     /// <param name="source"><see cref="ImageSource"/> to assign to the image.</param>
-    private void AttachSource(ImageSource source)
+    private void AttachSource(ImageSource? source)
     {
         // Setting the source at this point should call ImageExOpened/VisualStateManager.GoToState
         // as we register to both the ImageOpened/ImageFailed events of the underlying control.
@@ -83,7 +83,7 @@ public partial class ImageExBase
         }
     }
 
-    private async void SetSource(object source)
+    private async void SetSource(object? source)
     {
         if (!IsInitialized)
         {

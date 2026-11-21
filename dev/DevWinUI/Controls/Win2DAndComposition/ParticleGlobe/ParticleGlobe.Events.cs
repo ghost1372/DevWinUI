@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 namespace DevWinUI;
 
@@ -46,7 +46,7 @@ public sealed partial class ParticleGlobe
 
     #region API
 
-    public void AddEvent(double latitude, double longitude, double magnitude = 5.0, Color? color = null, string label = null)
+    public void AddEvent(double latitude, double longitude, double magnitude = 5.0, Color? color = null, string? label = null)
     {
         var marker = new ParticleGlobeMarker(latitude, longitude);
         var ev = new ParticleGlobeEvent
@@ -74,7 +74,7 @@ public sealed partial class ParticleGlobe
     private readonly List<ParticleGlobeEvent> _events = new();
     private bool _evClear, _showEvents = true, _evRipple = true, _evLabels = true;
     private float _evDuration = 4.5f;
-    private CanvasTextFormat _eventFormat;
+    private CanvasTextFormat? _eventFormat;
 
     private void SyncEventSettings()
     {

@@ -39,11 +39,11 @@ public interface IGeometrySurface : IRenderSurface
     /// <summary>
     /// Gets the Surface Geometry
     /// </summary>
-    CanvasGeometry Geometry { get; }
+    CanvasGeometry? Geometry { get; }
     /// <summary>
     /// Gets the Stroke with which the Geometry is outlined.
     /// </summary>
-    ICanvasStroke Stroke { get; }
+    ICanvasStroke? Stroke { get; }
     /// <summary>
     /// Gets the Brush with which the Geometry is filled.
     /// </summary>

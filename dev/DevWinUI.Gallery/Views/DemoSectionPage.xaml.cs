@@ -1,5 +1,4 @@
-﻿using DevWinUI;
-using Microsoft.UI.Xaml.Media.Imaging;
+﻿using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace DevWinUIGallery.Views;
 
@@ -7,8 +6,8 @@ public sealed partial class DemoSectionPage : Page
 {
     public string WASDKVersion { get; } = "Windows App SDK 2.2+";
 
-    private string _uniqueId;
-    private string _sectionId;
+    private string? _uniqueId;
+    private string? _sectionId;
 
     public DemoSectionPage()
     {
@@ -42,7 +41,7 @@ public sealed partial class DemoSectionPage : Page
         DataSource.Instance.ParsingCompleted -= OnParsingCompleted;
     }
 
-    private void OnParsingCompleted(object sender, EventArgs e)
+    private void OnParsingCompleted(object? sender, EventArgs e)
     {
         if (DispatcherQueue.HasThreadAccess)
         {
@@ -93,9 +92,9 @@ public sealed partial class DemoSectionPage : Page
     }
 
     // Same matching rules as SectionPage: the group must be unique.
-    private static DataGroup FindUniqueGroup(string uniqueId, string sectionId)
+    private static DataGroup? FindUniqueGroup(string uniqueId, string sectionId)
     {
-        DataGroup match = null;
+        DataGroup? match = null;
         foreach (var group in DataSource.Instance.Groups)
         {
             if (string.IsNullOrEmpty(group.UniqueId) || string.IsNullOrEmpty(group.SectionId) ||

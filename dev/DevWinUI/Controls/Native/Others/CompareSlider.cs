@@ -98,7 +98,7 @@ public partial class CompareSlider : Control
             _ => Template
         };
     }
-    public event EventHandler<double> ValueChanged;
+    public event EventHandler<double>? ValueChanged;
     public ControlTemplate? HorizontalTemplate { get; set; }
     public ControlTemplate? VerticalTemplate { get; set; }
 
@@ -106,14 +106,14 @@ public partial class CompareSlider : Control
     private const string RectangleElement = "PART_Rectangle";
     private const string PART_Line = "PART_Line";
     private const string PART_Thumb = "PART_Thumb";
-    private Image beforeImage;
-    private Rectangle rectangle;
-    private Thumb thumb;
-    private Line line;
+    private Image beforeImage = null!;
+    private Rectangle rectangle = null!;
+    private Thumb thumb = null!;
+    private Line line = null!;
     private double _currentOffsetX;
     private double _currentOffsetY;
 
-    private TranslateTransform translateTransform;
+    private TranslateTransform translateTransform = null!;
 
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ControlTemplate))]
     public CompareSlider()
@@ -131,10 +131,10 @@ public partial class CompareSlider : Control
     {
         base.OnApplyTemplate();
 
-        line = GetTemplateChild(PART_Line) as Line;
-        thumb = GetTemplateChild(PART_Thumb) as Thumb;
-        beforeImage = GetTemplateChild(BeforeImageElement) as Image;
-        rectangle = GetTemplateChild(RectangleElement) as Rectangle;
+        line = (GetTemplateChild(PART_Line) as Line)!;
+        thumb = (GetTemplateChild(PART_Thumb) as Thumb)!;
+        beforeImage = (GetTemplateChild(BeforeImageElement) as Image)!;
+        rectangle = (GetTemplateChild(RectangleElement) as Rectangle)!;
 
         beforeImage.SizeChanged -= OnSizeChanged;
         beforeImage.SizeChanged += OnSizeChanged;

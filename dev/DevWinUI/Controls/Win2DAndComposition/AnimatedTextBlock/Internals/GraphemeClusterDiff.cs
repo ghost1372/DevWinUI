@@ -60,10 +60,8 @@ internal partial class GraphemeClusterDiff
 
         for (int i = 0; i < na.Length - 1; i++)
         {
-            if (na[i].HasValue)
+            if (na[i] is int j)
             {
-                var j = na[i].Value;
-
                 if ((j < oa.Length - 1) &&
                     !na[i + 1].HasValue &&
                     !oa[j + 1].HasValue &&
@@ -77,10 +75,8 @@ internal partial class GraphemeClusterDiff
 
         for (int i = na.Length - 1; i > 0; i--)
         {
-            if (na[i].HasValue)
+            if (na[i] is int j)
             {
-                var j = na[i].Value;
-
                 if (j > 0 &&
                     !na[i - 1].HasValue &&
                     !oa[j - 1].HasValue &&
@@ -111,9 +107,8 @@ internal partial class GraphemeClusterDiff
 
         for (int i = 0; i < na.Length; i++)
         {
-            if (na[i].HasValue)
+            if (na[i] is int j)
             {
-                var j = na[i].Value;
                 if (!Equals(oldClusters[j], newClusters[i]))
                 {
                     var updateOp = new TextDiffResult(AnimatedTextBlockDiffOperationType.Update, i, i);

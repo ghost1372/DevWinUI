@@ -1,4 +1,4 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 public sealed partial class ParticleGlobe
 {
@@ -272,18 +272,18 @@ public sealed partial class ParticleGlobe
     public static readonly DependencyProperty ShowCountryTooltipProperty =
         DependencyProperty.Register(nameof(ShowCountryTooltip), typeof(bool), typeof(ParticleGlobe), new PropertyMetadata(true, OnSettingsPropertyChanged));
 
-    public string SelectedCountryCode
+    public string? SelectedCountryCode
     {
-        get { return (string)GetValue(SelectedCountryCodeProperty); }
+        get { return (string?)GetValue(SelectedCountryCodeProperty); }
         set { SetValue(SelectedCountryCodeProperty, value); }
     }
 
     public static readonly DependencyProperty SelectedCountryCodeProperty =
         DependencyProperty.Register(nameof(SelectedCountryCode), typeof(string), typeof(ParticleGlobe), new PropertyMetadata(null, OnSelectedCountryCodeChanged));
 
-    public string HoveredCountryCode
+    public string? HoveredCountryCode
     {
-        get { return (string)GetValue(HoveredCountryCodeProperty); }
+        get { return (string?)GetValue(HoveredCountryCodeProperty); }
         private set { SetValue(HoveredCountryCodeProperty, value); }
     }
 

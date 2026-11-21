@@ -78,7 +78,7 @@ internal partial class CubicBezierElement : AbstractPathElement
     /// commands, used for creating the CanvasGeometry, in string format.</param>
     /// <returns>The latest location in the Path after adding the Path Element</returns>
     public override Vector2 CreatePath(CanvasPathBuilder pathBuilder, Vector2 currentPoint, 
-        ref ICanvasPathElement lastElement, StringBuilder logger)
+        ref ICanvasPathElement? lastElement, StringBuilder? logger)
     {
         // Calculate coordinates
         var controlPoint1 = new Vector2(_x1, _y1);
@@ -127,7 +127,7 @@ internal partial class CubicBezierElement : AbstractPathElement
     /// Get the Regex for extracting Path Element Attributes
     /// </summary>
     /// <returns></returns>
-    protected override Regex GetAttributesRegex()
+    protected override Regex? GetAttributesRegex()
     {
         return RegexFactory.GetAttributesRegex(PathElementType.CubicBezier);
     }

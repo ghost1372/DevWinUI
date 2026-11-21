@@ -2,7 +2,7 @@
 
 internal sealed partial class VisualReferenceNode : ReferenceNode
 {
-    internal VisualReferenceNode(string paramName, Visual? v = null)
+    internal VisualReferenceNode(string? paramName, Visual? v = null)
         : base(paramName, v)
     {
     }

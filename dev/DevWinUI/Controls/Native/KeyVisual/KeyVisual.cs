@@ -13,8 +13,8 @@ namespace DevWinUI;
 public sealed partial class KeyVisual : Control
 {
     private const string KeyPresenter = "KeyPresenter";
-    private KeyVisual _keyVisual;
-    private ContentPresenter _keyPresenter;
+    private KeyVisual _keyVisual = null!;
+    private ContentPresenter _keyPresenter = null!;
 
     public object Content
     {
@@ -86,7 +86,7 @@ public sealed partial class KeyVisual : Control
             VirtualKey key = VirtualKey.None;
 
             var content = _keyVisual.Content;
-            string keyName = null;
+            string? keyName = null;
 
             if (content is string strContent)
             {
@@ -95,11 +95,11 @@ public sealed partial class KeyVisual : Control
             }
             else if (content is KeyVisualInfo keyVisualInfo)
             {
-                key = (VirtualKey)keyVisualInfo.Key;
+                key = (VirtualKey)keyVisualInfo.Key!;
                 keyName = keyVisualInfo.KeyName;
             }
 
-            if (TryGetIconForKey((int)key, out object iconContent))
+            if (TryGetIconForKey((int)key, out object? iconContent))
             {
                 _keyVisual.Style = GetStyleSize("IconKeyVisualStyle");
                 _keyVisual._keyPresenter.Content = iconContent;
@@ -111,7 +111,7 @@ public sealed partial class KeyVisual : Control
             }
         }
     }
-    private bool TryGetIconForKey(int keyCode, out object content)
+    private bool TryGetIconForKey(int keyCode, out object? content)
     {
         content = null;
 

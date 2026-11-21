@@ -89,7 +89,7 @@ internal interface ICanvasPathElement
     /// commands, used for creating the CanvasGeometry, in string format.</param>
     /// <returns>The current point on the path after the path element is added</returns>
     Vector2 CreatePath(CanvasPathBuilder pathBuilder, Vector2 currentPoint, 
-        ref ICanvasPathElement lastElement, StringBuilder logger);
+        ref ICanvasPathElement? lastElement, StringBuilder? logger);
 
     #endregion
 }

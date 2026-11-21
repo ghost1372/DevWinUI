@@ -19,7 +19,7 @@ public sealed partial class ParticleGlobe
 
     private float[] _olX = Array.Empty<float>(), _olY = Array.Empty<float>(), _olZ = Array.Empty<float>(), _olSeed = Array.Empty<float>();
     private int _olCount, _olId;
-    private int[] _olRef;
+    private int[]? _olRef;
 
     public void FlyTo(double latitude, double longitude, double zoom = 0)
     {
@@ -125,7 +125,7 @@ public sealed partial class ParticleGlobe
         return _focused;
     }
 
-    private void BuildOutline(int id, int[] border)
+    private void BuildOutline(int id, int[]? border)
     {
         _olId = id;
         _olRef = border;

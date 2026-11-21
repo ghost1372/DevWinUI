@@ -90,7 +90,7 @@ internal static partial class PathElementFactory
     internal static ICanvasPathElement CreatePathFigure(PathFigureType figureType, Match match, int index)
     {
         var element = CreatePathElement(figureType);
-        element?.Initialize(match, index);
+        element.Initialize(match, index);
         return element;
     }
 
@@ -106,7 +106,7 @@ internal static partial class PathElementFactory
         int index, bool isRelative)
     {
         var element = CreatePathElement(figureType);
-        element?.InitializeAdditional(capture, index, isRelative);
+        element.InitializeAdditional(capture, index, isRelative);
         return element;
     }
 
@@ -120,7 +120,7 @@ internal static partial class PathElementFactory
     internal static ICanvasPathElement CreatePathElement(PathElementType elementType, Match match, int index)
     {
         var element = CreatePathElement(elementType);
-        element?.Initialize(match, index);
+        element.Initialize(match, index);
         return element;
     }
 
@@ -143,7 +143,7 @@ internal static partial class PathElementFactory
         }
 
         var element = CreatePathElement(elementType);
-        element?.InitializeAdditional(capture, index, isRelative);
+        element.InitializeAdditional(capture, index, isRelative);
         return element;
     }
 
@@ -158,7 +158,7 @@ internal static partial class PathElementFactory
     /// <returns>ICanvasPathElement</returns>
     private static ICanvasPathElement CreatePathElement(PathFigureType figureType)
     {
-        ICanvasPathElement result = null;
+        ICanvasPathElement result;
 
         switch (figureType)
         {
@@ -180,6 +180,8 @@ internal static partial class PathElementFactory
             case PathFigureType.RoundedRectangleFigure:
                 result = new CanvasRoundRectangleFigure();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(figureType), figureType, null);
         }
 
         return result;
@@ -192,7 +194,7 @@ internal static partial class PathElementFactory
     /// <returns>ICanvasPathElement</returns>
     private static ICanvasPathElement CreatePathElement(PathElementType elementType)
     {
-        ICanvasPathElement result = null;
+        ICanvasPathElement result;
 
         switch (elementType)
         {
@@ -226,6 +228,8 @@ internal static partial class PathElementFactory
             case PathElementType.ClosePath:
                 result = new ClosePathElement();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(elementType), elementType, null);
         }
 
         return result;

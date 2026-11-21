@@ -28,9 +28,10 @@ public partial class OutlineTextControl : Control
         ElementCompositionPreview.SetElementChildVisual(this, spriteTextVisual);
         SizeChanged += (s, e) =>
         {
-            DrawingSurface = graphicsDevice.CreateDrawingSurface(e.NewSize, DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
+            var surface = graphicsDevice.CreateDrawingSurface(e.NewSize, DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
+            DrawingSurface = surface;
             DrawSurface();
-            UpdateSpriteVisual(spriteTextVisual, DrawingSurface);
+            UpdateSpriteVisual(spriteTextVisual, surface);
             spriteTextVisual.Size = e.NewSize.ToVector2();
         };
         RegisterPropertyChangedCallback(FontSizeProperty, new DependencyPropertyChangedCallback((s, e) =>
@@ -75,7 +76,7 @@ public partial class OutlineTextControl : Control
         set => SetValue(TextProperty, value);
     }
 
-    protected CompositionDrawingSurface DrawingSurface { get; private set; }
+    protected CompositionDrawingSurface? DrawingSurface { get; private set; }
     private Compositor Compositor => ElementCompositionPreview.GetElementVisual(this).Compositor;
 
     protected void DrawSurface()
@@ -159,7 +160,7 @@ public partial class OutlineTextControl : Control
 
     protected virtual void UpdateSpriteVisual(SpriteVisual spriteVisual, CompositionDrawingSurface drawingSurface)
     {
-        var maskSurfaceBrush = Compositor.CreateSurfaceBrush(DrawingSurface);
+        var maskSurfaceBrush = Compositor.CreateSurfaceBrush(drawingSurface);
         spriteVisual.Brush = maskSurfaceBrush;
     }
 

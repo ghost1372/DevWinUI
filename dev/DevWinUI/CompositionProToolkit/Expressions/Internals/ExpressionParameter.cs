@@ -40,7 +40,7 @@ internal struct ExpressionParameter
     /// <summary>
     /// Reference to the object used in the Expression
     /// </summary>
-    public object Reference;
+    public object? Reference;
     /// <summary>
     /// The type (or super-type i.e. the type from which the 
     /// object's type is derived) of the object reference.
@@ -57,7 +57,7 @@ internal struct ExpressionParameter
     /// <param name="reference">Reference to the Object used in the expression</param>
     /// <param name="type">The type (or super-type i.e. the type from which the 
     /// object's type is derived) of the object reference. </param>
-    public ExpressionParameter(object reference, Type type)
+    public ExpressionParameter(object? reference, Type type)
     {
         Reference = reference;
         Type = type;

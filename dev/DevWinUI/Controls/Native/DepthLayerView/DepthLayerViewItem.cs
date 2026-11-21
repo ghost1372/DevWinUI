@@ -2,7 +2,7 @@
 
 public partial class DepthLayerViewItem : IDepthLayerViewItem
 {
-    internal ContainerVisual ItemContainerVisual { get; set; }
-    internal LayerVisual LayerVisual { get; set; }
-    public Uri ImageUri { get; set; }
+    internal ContainerVisual ItemContainerVisual { get; set; } = null!;
+    internal LayerVisual LayerVisual { get; set; } = null!;
+    public Uri ImageUri { get; set; } = null!;
 }

@@ -60,7 +60,7 @@ public static partial class CompositionPropertySetExtensions
         TryGetMethods = typeof(CompositionPropertySet)
             .GetMethods(BindingFlags.Public | BindingFlags.Instance)
             .Where(m => m.Name.StartsWith("TryGet"))
-            .ToDictionary(m => m.GetParameters()[1].ParameterType.GetElementType(),
+            .ToDictionary(m => m.GetParameters()[1].ParameterType.GetElementType()!,
                 m => m);
     }
 
@@ -118,7 +118,7 @@ public static partial class CompositionPropertySetExtensions
         var type = typeof(T);
         while (!type.IsPublic())
         {
-            type = type.BaseType();
+            type = type.BaseType() ?? typeof(object);
         }
 
         // Find matching TryGetXXX method for the given type or if there
@@ -134,10 +134,10 @@ public static partial class CompositionPropertySetExtensions
                                         $"for the key '{key}' in the CompositionPropertySet!");
         }
 
-        var result = default(T);
+        var result = default(T)!;
         // Once a matching TryGetXXX method is found, Invoke it!
         var methodResult =
-            (CompositionGetValueStatusEx)TryGetMethods[methodKey].Invoke(propertySet, new object[] { key, result });
+            (CompositionGetValueStatusEx)TryGetMethods[methodKey].Invoke(propertySet, new object[] { key, result! })!;
 
         switch (methodResult)
         {

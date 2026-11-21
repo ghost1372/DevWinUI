@@ -48,7 +48,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 	internal void UpdateEventSource()
 	{
-		LoopingSelectorItemDataAutomationPeer spLSIDAP;
+		LoopingSelectorItemDataAutomationPeer? spLSIDAP;
 
 		GetDataAutomationPeer(out spLSIDAP);
 
@@ -62,7 +62,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 	internal void UpdateItemIndex(int itemIndex)
 	{
-		LoopingSelectorItemDataAutomationPeer spLSIDAP;
+		LoopingSelectorItemDataAutomationPeer? spLSIDAP;
 
 		GetDataAutomationPeer(out spLSIDAP);
 
@@ -89,93 +89,43 @@ internal partial class LoopingSelectorItemAutomationPeer
 	}
 
 	void GetDataAutomationPeer(
-		out LoopingSelectorItemDataAutomationPeer ppLSIDAP)
+		out LoopingSelectorItemDataAutomationPeer? ppLSIDAP)
 	{
-		LoopingListSelectorInfo pOwnerNoRef = null;
-		LoopingSelector pLoopingSelectorNoRef = null;
-		//FrameworkElementAutomationPeerStatics spFEAPStatics;
-		UIElement spLSAsUIE;
-		AutomationPeer spLSAPAsAP;
-		LoopingSelectorAutomationPeer spLSAP;
-		LoopingSelectorAutomationPeer pLoopingSelectorAPNoRef = null;
-		DependencyObject spItem;
-		ContentControl spLSIAsCC;
-
 		ppLSIDAP = null;
-
-		GetOwnerAsInternalPtrNoRef(out pOwnerNoRef);
-
-		if (pOwnerNoRef is { })
+		if (Owner is not LoopingListSelectorInfo owner || owner.Content is not DependencyObject item)
 		{
-			//(pOwnerNoRef.QueryInterface(
-			//	__uuidof(IContentControl),
-			//	&spLSIAsCC));
-			spLSIAsCC = pOwnerNoRef;
-			spItem = spLSIAsCC.Content as DependencyObject;
-
-			// If we don't have an item yet, then we don't want to generate a data automation peer yet.
-			// Otherwise, we'll insert an entry into our LoopingSelector's automation peer map
-			// corresponding to a null item, which gets us into a bad state.
-			// See LoopingSelectorAutomationPeer.GetDataAutomationPeerForItem().
-			if (spItem is { })
-			{
-				pOwnerNoRef.GetParentNoRef(out pLoopingSelectorNoRef);
-
-				//NT_global.System.Diagnostics.Debug.Assert(pLoopingSelectorNoRef);
-
-				//(wf.GetActivationFactory(
-				//	wrl_wrappers.Hstring(
-				//		RuntimeClass_Microsoft_UI_Xaml_Automation_Peers_FrameworkElementAutomationPeer),
-				//	&spFEAPStatics));
-				//(pLoopingSelectorNoRef.QueryInterface(
-				//	__uuidof(UIElement),
-				//	&spLSAsUIE));
-				spLSAsUIE = pLoopingSelectorNoRef;
-				//spFEAPStatics.CreatePeerForElement(spLSAsUIE, &spLSAPAsAP);
-				spLSAPAsAP = FrameworkElementAutomationPeer.CreatePeerForElement(spLSAsUIE);
-
-				//spLSAPAsAP.As(spLSAP);
-				spLSAP = spLSAPAsAP as LoopingSelectorAutomationPeer;
-				pLoopingSelectorAPNoRef = (LoopingSelectorAutomationPeer)(spLSAP);
-
-				pLoopingSelectorAPNoRef.GetDataAutomationPeerForItem(spItem, out ppLSIDAP);
-			}
+			return;
 		}
 
-		return;
+		owner.GetParentNoRef(out var loopingSelector);
+		if (loopingSelector is null)
+		{
+			return;
+		}
+
+		if (FrameworkElementAutomationPeer.CreatePeerForElement(loopingSelector) is LoopingSelectorAutomationPeer parentPeer)
+		{
+			parentPeer.GetDataAutomationPeerForItem(item, out ppLSIDAP);
+		}
 	}
 
 	void GetOwnerAsInternalPtrNoRef(
-		out LoopingListSelectorInfo ppOwnerNoRef)
+		out LoopingListSelectorInfo? ppOwnerNoRef)
 	{
-
-		UIElement spOwnerAsUIElement;
-		LoopingListSelectorInfo spOwner;
-		FrameworkElementAutomationPeer spThisAsFEAP;
-
 		ppOwnerNoRef = null;
-
-		//(QueryInterface(
-		//	__uuidof(FrameworkElementAutomationPeer),
-		//	&spThisAsFEAP));
-		spThisAsFEAP = this;
-		spOwnerAsUIElement = spThisAsFEAP.Owner;
-		if (spOwnerAsUIElement is { })
+		if (Owner is LoopingListSelectorInfo owner)
 		{
-			//spOwnerAsUIElement.As(spOwner);
-			spOwner = spOwnerAsUIElement as LoopingListSelectorInfo;
-			// No is passed back to the caller.
-			ppOwnerNoRef = (LoopingListSelectorInfo)(spOwner);
+			ppOwnerNoRef = owner;
 		}
 
 	}
 
 	#region AutomationPeerOverrides
 
-	protected override object GetPatternCore(PatternInterface patternInterface)
+	protected override object? GetPatternCore(PatternInterface patternInterface)
 	{
 
-		DependencyObject returnValue = default;
+		DependencyObject? returnValue = default;
 		if (patternInterface == PatternInterface.ScrollItem ||
 			patternInterface == PatternInterface.SelectionItem)
 		{
@@ -212,7 +162,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 	protected override bool IsKeyboardFocusableCore()
 	{
 		bool returnValue = default;
-		AutomationPeer loopingSelectorAP;
+		AutomationPeer? loopingSelectorAP;
 
 		returnValue = false;
 
@@ -235,7 +185,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 	protected override bool HasKeyboardFocusCore()
 	{
-		AutomationPeer loopingSelectorAP;
+		AutomationPeer? loopingSelectorAP;
 
 		bool returnValue = false;
 
@@ -267,25 +217,22 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 	public void ScrollIntoView()
 	{
-		LoopingListSelectorInfo pOwnerNoRef = null;
+		LoopingListSelectorInfo? pOwnerNoRef = null;
 
 		GetOwnerAsInternalPtrNoRef(out pOwnerNoRef);
 
 		if (pOwnerNoRef is { })
 		{
-			LoopingSelector pOwnerParentNoRef = null;
+			LoopingSelector? pOwnerParentNoRef = null;
 
 			pOwnerNoRef.GetParentNoRef(out pOwnerParentNoRef);
 
 			if (pOwnerParentNoRef is { })
 			{
-				ContentControl spOwnerAsContentControl;
-				DependencyObject spContent;
-
-				//pOwnerNoRef.QueryInterface(__uuidof(IContentControl), &spOwnerAsContentControl);
-				spOwnerAsContentControl = pOwnerNoRef;
-				spContent = spOwnerAsContentControl.Content as DependencyObject;
-				pOwnerParentNoRef.AutomationTryScrollItemIntoView(spContent);
+				if (pOwnerNoRef.Content is DependencyObject content)
+				{
+					pOwnerParentNoRef.AutomationTryScrollItemIntoView(content);
+				}
 			}
 		}
 
@@ -301,7 +248,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 		get
 		{
 			bool value = default;
-			LoopingListSelectorInfo pOwnerNoRef = null;
+			LoopingListSelectorInfo? pOwnerNoRef = null;
 			GetOwnerAsInternalPtrNoRef(out pOwnerNoRef);
 			if (pOwnerNoRef is { })
 			{
@@ -316,30 +263,20 @@ internal partial class LoopingSelectorItemAutomationPeer
 	{
 		get
 		{
-			IRawElementProviderSimple ppValue;
-
-			LoopingListSelectorInfo pOwnerNoRef = null;
-			AutomationPeer spAutomationPeer;
-
-			ppValue = null;
-
+			LoopingListSelectorInfo? pOwnerNoRef = null;
 			GetOwnerAsInternalPtrNoRef(out pOwnerNoRef);
-			if (pOwnerNoRef is { })
+			if (pOwnerNoRef is null)
 			{
-				pOwnerNoRef.AutomationGetSelectionContainerUIAPeer(out spAutomationPeer);
-				if (spAutomationPeer is { })
-				{
-					//AutomationPeer spAutomationPeerAsProtected;
-					IRawElementProviderSimple spProvider = default;
-
-					//spAutomationPeer.As(spAutomationPeerAsProtected);
-					//spAutomationPeerAsProtected = spAutomationPeer;
-					//spProvider = spAutomationPeerAsProtected.ProviderFromPeer(spAutomationPeer);
-					ppValue = spProvider; //.Detach();
-				}
+				throw new InvalidOperationException("The owning LoopingSelector is unavailable.");
 			}
 
-			return ppValue;
+			pOwnerNoRef.AutomationGetSelectionContainerUIAPeer(out AutomationPeer? spAutomationPeer);
+			if (spAutomationPeer is null)
+			{
+				throw new InvalidOperationException("The selection container automation peer is unavailable.");
+			}
+
+			return ProviderFromPeer(spAutomationPeer);
 		}
 	}
 
@@ -358,7 +295,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 	public void Select()
 	{
 
-		LoopingListSelectorInfo pOwnerNoRef = null;
+		LoopingListSelectorInfo? pOwnerNoRef = null;
 		GetOwnerAsInternalPtrNoRef(out pOwnerNoRef);
 		if (pOwnerNoRef is { })
 		{
@@ -373,9 +310,9 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 	void
 		GetParentAutomationPeer(
-			out AutomationPeer parentAutomationPeer)
+			out AutomationPeer? parentAutomationPeer)
 	{
-		LoopingListSelectorInfo pOwnerNoRef = null;
+		LoopingListSelectorInfo? pOwnerNoRef = null;
 
 		parentAutomationPeer = null;
 
@@ -383,7 +320,7 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 		if (pOwnerNoRef is { })
 		{
-			LoopingSelector pLoopingSelectorNoRef = null;
+			LoopingSelector? pLoopingSelectorNoRef = null;
 
 			pOwnerNoRef.GetParentNoRef(out pLoopingSelectorNoRef);
 
@@ -397,14 +334,14 @@ internal partial class LoopingSelectorItemAutomationPeer
 
 				if (loopingSelectorAsUIE is { })
 				{
-					AutomationPeer loopingSelectorAP;
+		AutomationPeer? loopingSelectorAP;
 
 					//(Private.AutomationHelper.CreatePeerForElement(
 					//	loopingSelectorAsUIE,
 					//	&loopingSelectorAP));
 					loopingSelectorAP = AutomationHelper.CreatePeerForElement(loopingSelectorAsUIE);
 
-					parentAutomationPeer = loopingSelectorAP; //.Detach();
+					parentAutomationPeer = loopingSelectorAP;
 				}
 			}
 		}

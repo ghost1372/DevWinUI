@@ -1,4 +1,5 @@
-﻿global using CommunityToolkit.Mvvm.ComponentModel;
+﻿global using System.Collections.ObjectModel;
+global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using DevWinUI;
 global using DevWinUIGallery.Common;
@@ -11,4 +12,3 @@ global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Navigation;
 global using static DevWinUIGallery.Common.AppHelper;
 global using static DevWinUIGallery.Common.LoggerSetup;
-global using System.Collections.ObjectModel;

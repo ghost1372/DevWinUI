@@ -39,8 +39,8 @@ internal sealed partial class CanvasStrokeElement : AbstractCanvasStrokeElement
     #region Fields
 
     private float _width;
-    private ICanvasBrushElement _brush;
-    private ICanvasStrokeStyleElement _style;
+    private ICanvasBrushElement? _brush;
+    private ICanvasStrokeStyleElement? _style;
     private int _widthValidationCount;
 
     #endregion
@@ -71,6 +71,11 @@ internal sealed partial class CanvasStrokeElement : AbstractCanvasStrokeElement
     /// <returns>ICanvasStroke</returns>
     public override ICanvasStroke CreateStroke(ICanvasResourceCreator resourceCreator)
     {
+        if (_brush == null || _style == null)
+        {
+            throw new InvalidOperationException("The Stroke Element has not been initialized with a valid Brush and Style.");
+        }
+
         return new CanvasStroke(_brush.CreateBrush(resourceCreator), _width, _style.Style);
     }
 

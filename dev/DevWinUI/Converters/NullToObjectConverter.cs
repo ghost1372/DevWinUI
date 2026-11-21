@@ -38,7 +38,7 @@ public partial class NullToObjectConverter : DependencyObject, IValueConverter
         return ConverterTools.Convert(isNull ? NullValue : NotNullValue, targetType);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    public object? ConvertBack(object value, Type targetType, object parameter, string language)
     {
         bool result = Equals(value, ConverterTools.Convert(NullValue, value.GetType()));
 

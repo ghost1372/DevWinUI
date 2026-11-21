@@ -13,23 +13,23 @@ public partial class CoverFlowItem : ContentControl
     private const string PART_ScaleXKeyFrame = "PART_ScaleXKeyFrame";
     private const string PART_ScaleYKeyFrame = "PART_ScaleYKeyFrame";
     private const string PART_ScaleTransform = "PART_ScaleTransform";
-    public event EventHandler ItemSelected;
+    public event EventHandler? ItemSelected;
 
-    private Grid layoutRoot;
-    private PlaneProjection planeProjection;
-    private Storyboard animation;
-    private ScaleTransform scaleTransform;
-    private EasingDoubleKeyFrame rotationKeyFrame, offsetZKeyFrame, scaleXKeyFrame, scaleYKeyFrame;
+    private Grid layoutRoot = null!;
+    private PlaneProjection planeProjection = null!;
+    private Storyboard animation = null!;
+    private ScaleTransform scaleTransform = null!;
+    private EasingDoubleKeyFrame rotationKeyFrame = null!, offsetZKeyFrame = null!, scaleXKeyFrame = null!, scaleYKeyFrame = null!;
 
     private double yRotation;
     private double zOffset;
     private double scale;
     private double x;
     private bool isAnimating;
-    private ContentControl contentPresenter;
+    private ContentControl contentPresenter = null!;
     private Duration duration;
-    private EasingFunctionBase easingFunction;
-    private DoubleAnimation xAnimation;
+    private EasingFunctionBase easingFunction = null!;
+    private DoubleAnimation xAnimation = null!;
 
     public CoverFlowItem()
     {
@@ -145,16 +145,16 @@ public partial class CoverFlowItem : ContentControl
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        contentPresenter = GetTemplateChild(PART_ContentPresenter) as ContentControl;
-        planeProjection = GetTemplateChild(PART_Rotator) as PlaneProjection;
-        layoutRoot = GetTemplateChild(PART_LayoutRoot) as Grid;
+        contentPresenter = (GetTemplateChild(PART_ContentPresenter) as ContentControl)!;
+        planeProjection = (GetTemplateChild(PART_Rotator) as PlaneProjection)!;
+        layoutRoot = (GetTemplateChild(PART_LayoutRoot) as Grid)!;
 
-        animation = GetTemplateChild(PART_Animation) as Storyboard;
-        rotationKeyFrame = GetTemplateChild(PART_RotationKeyFrame) as EasingDoubleKeyFrame;
-        offsetZKeyFrame = GetTemplateChild(PART_OffsetZKeyFrame) as EasingDoubleKeyFrame;
-        scaleXKeyFrame = GetTemplateChild(PART_ScaleXKeyFrame) as EasingDoubleKeyFrame;
-        scaleYKeyFrame = GetTemplateChild(PART_ScaleYKeyFrame) as EasingDoubleKeyFrame;
-        scaleTransform = GetTemplateChild(PART_ScaleTransform) as ScaleTransform;
+        animation = (GetTemplateChild(PART_Animation) as Storyboard)!;
+        rotationKeyFrame = (GetTemplateChild(PART_RotationKeyFrame) as EasingDoubleKeyFrame)!;
+        offsetZKeyFrame = (GetTemplateChild(PART_OffsetZKeyFrame) as EasingDoubleKeyFrame)!;
+        scaleXKeyFrame = (GetTemplateChild(PART_ScaleXKeyFrame) as EasingDoubleKeyFrame)!;
+        scaleYKeyFrame = (GetTemplateChild(PART_ScaleYKeyFrame) as EasingDoubleKeyFrame)!;
+        scaleTransform = (GetTemplateChild(PART_ScaleTransform) as ScaleTransform)!;
 
         if (planeProjection != null)
         {
@@ -181,7 +181,7 @@ public partial class CoverFlowItem : ContentControl
         }
     }
 
-    private void Animation_Completed(object sender, object e)
+    private void Animation_Completed(object? sender, object e)
     {
         isAnimating = false;
     }
@@ -189,6 +189,6 @@ public partial class CoverFlowItem : ContentControl
     private void ContentPresenter_Tapped(object sender, TappedRoutedEventArgs e)
     {
         if (ItemSelected != null)
-            ItemSelected(this, null);
+            ItemSelected(this, null!);
     }
 }

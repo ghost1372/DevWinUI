@@ -2,10 +2,10 @@
 public partial class WndProcHelper
 {
     private IntPtr Handle { get; set; }
-    private NativeValues.WNDPROC newMainWindowWndProc = null;
+    private NativeValues.WNDPROC? newMainWindowWndProc = null;
     private IntPtr oldMainWindowWndProc = IntPtr.Zero;
 
-    private NativeValues.WNDPROC newInputNonClientPointerSourceWndProc = null;
+    private NativeValues.WNDPROC? newInputNonClientPointerSourceWndProc = null;
     private IntPtr oldInputNonClientPointerSourceWndProc = IntPtr.Zero;
 
     public WndProcHelper(Microsoft.UI.Xaml.Window window)

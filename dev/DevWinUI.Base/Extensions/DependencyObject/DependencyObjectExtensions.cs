@@ -4,7 +4,7 @@ public static partial class DependencyObjectExtensions
 {
     extension(DependencyObject target)
     {
-        public Task AnimateDoublePropertyAsync(string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Task AnimateDoublePropertyAsync(string property, double from, double to, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
@@ -14,7 +14,7 @@ public static partial class DependencyObjectExtensions
             };
             return tcs.Task;
         }
-        public Storyboard AnimateDoubleProperty(string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard AnimateDoubleProperty(string property, double from, double to, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             var storyboard = new Storyboard();
             var animation = new DoubleAnimation
@@ -38,7 +38,7 @@ public static partial class DependencyObjectExtensions
         }
 
         public void Animate(double? from, double to, string propertyPath, int duration = 400, int startTime = 0,
-        EasingFunctionBase easing = null, Action completed = null, bool enableDependentAnimation = false)
+        EasingFunctionBase? easing = null, Action? completed = null, bool enableDependentAnimation = false)
         {
             if (easing == null)
             {

@@ -1,10 +1,10 @@
 ﻿namespace DevWinUI;
 internal partial class TextBlockTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate TextBlockTemplate { get; set; }
+    public DataTemplate TextBlockTemplate { get; set; } = null!;
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
-        if (item == null) return null;
+        if (item == null) return null!;
 
         if (item is string)
         {

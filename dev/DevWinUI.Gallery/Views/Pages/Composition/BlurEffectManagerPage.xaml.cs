@@ -20,7 +20,7 @@ public sealed partial class BlurEffectManagerPage : Page
 
     private void BlurEffectManagerPage_Loaded(object sender, RoutedEventArgs e)
     {
-        TGIsBlurEnabled_Toggled(null, null);
+        TGIsBlurEnabled_Toggled(this, e);
     }
 
     private void TGIsBlurEnabled_Toggled(object sender, RoutedEventArgs e)

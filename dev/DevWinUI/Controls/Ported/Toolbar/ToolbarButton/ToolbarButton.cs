@@ -57,7 +57,7 @@ public partial class ToolbarButton : Button, IToolbarItemSet
 
 
 
-	private void UpdateContent(object newContent)
+	private void UpdateContent(object? newContent)
 	{
 		if (CheckHasContent() == false)
 		{

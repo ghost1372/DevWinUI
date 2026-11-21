@@ -7,7 +7,7 @@ public partial class MenuFlyoutAttach
     private static readonly DependencyProperty AutoCloseHandlerProperty =
         DependencyProperty.RegisterAttached("AutoCloseHandler", typeof(RoutedEventHandler), typeof(MenuFlyoutAttach), new PropertyMetadata(null));
 
-    private static void SetAutoCloseHandler(ButtonBase button, RoutedEventHandler handler) =>
+    private static void SetAutoCloseHandler(ButtonBase button, RoutedEventHandler? handler) =>
         button.SetValue(AutoCloseHandlerProperty, handler);
 
     private static RoutedEventHandler? GetAutoCloseHandler(ButtonBase button) =>
@@ -71,7 +71,7 @@ public partial class MenuFlyoutAttach
     }
     private static void WaitForTemplateParts(MenuFlyoutPresenter presenter, Action<StackPanel, ItemsRepeater, ItemsPresenter> onReady)
     {
-        void handler(object s, object e)
+        void handler(object? s, object e)
         {
             var rootStack = DependencyObjectExtensions.FindDescendant(presenter, "RootStack") as StackPanel;
             var secondaryRepeater = DependencyObjectExtensions.FindDescendant(presenter, "SecondaryItemsHost") as ItemsRepeater;
@@ -87,7 +87,7 @@ public partial class MenuFlyoutAttach
         presenter.LayoutUpdated += handler;
     }
 
-    private static void OnFlyoutOpened(object sender, object e)
+    private static void OnFlyoutOpened(object? sender, object e)
     {
         if (sender is not MenuFlyout flyout)
             return;

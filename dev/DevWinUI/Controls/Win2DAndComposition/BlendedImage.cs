@@ -1,18 +1,18 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 [TemplatePart(Name = nameof(PART_ImageGrid), Type = typeof(Grid))]
 public partial class BlendedImage : Control
 {
     private const string PART_ImageGrid = "PART_ImageGrid";
-    private Grid grid;
+    private Grid? grid;
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private CanvasGeometry _leftGeometry;
-    private CanvasGeometry _rightGeometry;
+    private Compositor? _compositor;
+    private ICompositionGenerator? _generator;
+    private CanvasGeometry? _leftGeometry;
+    private CanvasGeometry? _rightGeometry;
     private float _topOffset;
-    private IGaussianMaskSurface _leftGaussianSurface;
-    private IGaussianMaskSurface _rightGaussianSurface;
+    private IGaussianMaskSurface? _leftGaussianSurface;
+    private IGaussianMaskSurface? _rightGaussianSurface;
     private float _currentWidth;
     private float _currentHeight;
     private int _rebuildVersion;
@@ -44,18 +44,18 @@ public partial class BlendedImage : Control
         }
     }
 
-    public object PrimaryImageSource
+    public object? PrimaryImageSource
     {
-        get { return (object)GetValue(PrimaryImageSourceProperty); }
+        get { return GetValue(PrimaryImageSourceProperty); }
         set { SetValue(PrimaryImageSourceProperty, value); }
     }
 
     public static readonly DependencyProperty PrimaryImageSourceProperty =
         DependencyProperty.Register(nameof(PrimaryImageSource), typeof(object), typeof(BlendedImage), new PropertyMetadata(null, OnSourceChanged));
 
-    public object SecondaryImageSource
+    public object? SecondaryImageSource
     {
-        get { return (object)GetValue(SecondaryImageSourceProperty); }
+        get { return GetValue(SecondaryImageSourceProperty); }
         set { SetValue(SecondaryImageSourceProperty, value); }
     }
 
@@ -70,6 +70,7 @@ public partial class BlendedImage : Control
             ctl.RebuildSurfaces();
         }
     }
+
     public BlendedImage()
     {
         DefaultStyleKey = typeof(BlendedImage);
@@ -113,23 +114,23 @@ public partial class BlendedImage : Control
 
     private async void RebuildSurfaces()
     {
-        if (grid == null || _generator == null || PrimaryImageSource == null || SecondaryImageSource == null || _currentWidth <= 0 || _currentHeight <= 0)
+        var host = grid;
+        var compositor = _compositor;
+        var generator = _generator;
+
+        if (host == null || compositor == null || generator == null || PrimaryImageSource == null || SecondaryImageSource == null || _currentWidth <= 0 || _currentHeight <= 0)
+            return;
+
+        var primaryUri = GeneralHelper.GetUriFromObjectSource(PrimaryImageSource);
+        var secondaryUri = GeneralHelper.GetUriFromObjectSource(SecondaryImageSource);
+        if (primaryUri == null || secondaryUri == null)
             return;
 
         var version = ++_rebuildVersion;
         var size = new Vector2(_currentWidth, _currentHeight);
 
-        var leftImageTask = _generator.CreateImageSurfaceAsync(
-            GeneralHelper.GetUriFromObjectSource(PrimaryImageSource),
-            size.ToSize(),
-            ImageSurfaceOptions.Default
-        );
-
-        var rightImageTask = _generator.CreateImageSurfaceAsync(
-            GeneralHelper.GetUriFromObjectSource(SecondaryImageSource),
-            size.ToSize(),
-            ImageSurfaceOptions.Default
-        );
+        var leftImageTask = generator.CreateImageSurfaceAsync(primaryUri, size.ToSize(), ImageSurfaceOptions.Default);
+        var rightImageTask = generator.CreateImageSurfaceAsync(secondaryUri, size.ToSize(), ImageSurfaceOptions.Default);
 
         var leftImageSurface = await leftImageTask;
         var rightImageSurface = await rightImageTask;
@@ -141,52 +142,50 @@ public partial class BlendedImage : Control
         var blurRadius = GetBlurRadius();
         _topOffset = -_currentHeight / 2f;
 
-        // Create visuals again
-        var leftImageVisual = _compositor.CreateSpriteVisual();
+        var leftImageVisual = compositor.CreateSpriteVisual();
         leftImageVisual.Size = size;
 
         _leftGeometry?.Dispose();
         _leftGeometry = CanvasGeometry.CreateRectangle(
-            _generator.Device,
+            generator.Device,
             new Rect(0f, 0f, 2f * (_currentWidth * splitValue) / 100f, 2f * _currentHeight)
         );
 
         var leftOffset = -(_currentWidth * splitValue) / 100f;
 
-        var leftMaskedBrush = _compositor.CreateMaskBrush();
-        leftMaskedBrush.Source = _compositor.CreateSurfaceBrush(leftImageSurface);
-        _leftGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _leftGeometry, new Vector2(leftOffset, _topOffset), blurRadius);
-        leftMaskedBrush.Mask = _compositor.CreateSurfaceBrush(_leftGaussianSurface);
+        var leftMaskedBrush = compositor.CreateMaskBrush();
+        leftMaskedBrush.Source = compositor.CreateSurfaceBrush(leftImageSurface);
+        _leftGaussianSurface = generator.CreateGaussianMaskSurface(size.ToSize(), _leftGeometry, new Vector2(leftOffset, _topOffset), blurRadius);
+        leftMaskedBrush.Mask = compositor.CreateSurfaceBrush(_leftGaussianSurface);
         leftImageVisual.Brush = leftMaskedBrush;
 
-        // Right side
-        var rightImageVisual = _compositor.CreateSpriteVisual();
+        var rightImageVisual = compositor.CreateSpriteVisual();
         rightImageVisual.Size = size;
 
         _rightGeometry?.Dispose();
         _rightGeometry = CanvasGeometry.CreateRectangle(
-            _generator.Device,
+            generator.Device,
             new Rect(0, 0, 2f * (_currentWidth * (100f - splitValue)) / 100f, 2f * _currentHeight)
         );
 
-        var rightMaskedBrush = _compositor.CreateMaskBrush();
-        rightMaskedBrush.Source = _compositor.CreateSurfaceBrush(rightImageSurface);
-        _rightGaussianSurface = _generator.CreateGaussianMaskSurface(size.ToSize(), _rightGeometry, new Vector2(-leftOffset, _topOffset), blurRadius);
-        rightMaskedBrush.Mask = _compositor.CreateSurfaceBrush(_rightGaussianSurface);
+        var rightMaskedBrush = compositor.CreateMaskBrush();
+        rightMaskedBrush.Source = compositor.CreateSurfaceBrush(rightImageSurface);
+        _rightGaussianSurface = generator.CreateGaussianMaskSurface(size.ToSize(), _rightGeometry, new Vector2(-leftOffset, _topOffset), blurRadius);
+        rightMaskedBrush.Mask = compositor.CreateSurfaceBrush(_rightGaussianSurface);
         rightImageVisual.Brush = rightMaskedBrush;
 
-        // Replace child visual
-        var container = _compositor.CreateContainerVisual();
+        var container = compositor.CreateContainerVisual();
         container.Size = size;
         container.Children.InsertAtTop(leftImageVisual);
         container.Children.InsertAtTop(rightImageVisual);
 
-        ElementCompositionPreview.SetElementChildVisual(grid, container);
+        ElementCompositionPreview.SetElementChildVisual(host, container);
     }
 
     private void Redraw()
     {
-        if (_leftGeometry == null || _rightGeometry == null)
+        var generator = _generator;
+        if (generator == null || _leftGeometry == null || _rightGeometry == null || _leftGaussianSurface == null || _rightGaussianSurface == null)
         {
             return;
         }
@@ -196,10 +195,10 @@ public partial class BlendedImage : Control
         var leftOffset = -(_currentWidth * splitValue) / 100f;
 
         _leftGeometry.Dispose();
-        _leftGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0f, 0f, 2f * (_currentWidth * splitValue) / 100f, 2f * _currentHeight));
+        _leftGeometry = CanvasGeometry.CreateRectangle(generator.Device, new Rect(0f, 0f, 2f * (_currentWidth * splitValue) / 100f, 2f * _currentHeight));
         _leftGaussianSurface.Redraw(_leftGeometry, new Vector2(leftOffset, _topOffset), blurRadius);
         _rightGeometry.Dispose();
-        _rightGeometry = CanvasGeometry.CreateRectangle(_generator.Device, new Rect(0, 0, 2f * (_currentWidth * (100f - splitValue)) / 100, 2f * _currentHeight));
+        _rightGeometry = CanvasGeometry.CreateRectangle(generator.Device, new Rect(0, 0, 2f * (_currentWidth * (100f - splitValue)) / 100, 2f * _currentHeight));
         _rightGaussianSurface.Redraw(_rightGeometry, new Vector2(-leftOffset, _topOffset), blurRadius);
     }
 }

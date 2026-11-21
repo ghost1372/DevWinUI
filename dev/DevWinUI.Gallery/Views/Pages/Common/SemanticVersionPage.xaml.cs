@@ -17,7 +17,7 @@ public sealed partial class SemanticVersionPage : Page
         }
 
         var item = SampleComboBox.SelectedItem as ComboBoxItem;
-        ParseVersion(item?.Content?.ToString());
+        ParseVersion(item?.Content?.ToString() ?? string.Empty);
     }
 
     private void SampleTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -27,7 +27,7 @@ public sealed partial class SemanticVersionPage : Page
 
     private void ParseVersion(string stringVersion)
     {
-        if (SemanticVersion.TryParse(stringVersion, out SemanticVersion version))
+        if (SemanticVersion.TryParse(stringVersion, out SemanticVersion? version) && version is not null)
         {
             SampleTextBlock1.Text = $"{version.HasMetadata}";
 

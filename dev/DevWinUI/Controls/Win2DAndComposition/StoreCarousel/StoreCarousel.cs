@@ -47,68 +47,74 @@ public partial class StoreCarousel : Control
     private static readonly TimeSpan ArcFadeDuration = TimeSpan.FromMilliseconds(200);
     private static readonly TimeSpan ArcPostImageDelay = TimeSpan.FromMilliseconds(900);
 
-    private CompositionShadow primaryBox;
-    private CompositionShadow secondaryBox;
-    private CompositionShadow tertiaryBox;
+    // Template parts: assigned in OnApplyTemplate (which throws if a part is missing),
+    // so they are safe to treat as non-null once the template has been applied.
+    private CompositionShadow primaryBox = null!;
+    private CompositionShadow secondaryBox = null!;
+    private CompositionShadow tertiaryBox = null!;
 
-    private ImageFrame image;
-    private Grid sliderGrid;
-    private PipsPager pipsPager;
-    private ArcProgress arc;
-    private Button nextButton;
-    private Button previousButton;
-    private StackPanel actionPanel;
-    private Rectangle fadeRectangle;
+    private ImageFrame image = null!;
+    private Grid sliderGrid = null!;
+    private PipsPager pipsPager = null!;
+    private ArcProgress arc = null!;
+    private Button nextButton = null!;
+    private Button previousButton = null!;
+    private StackPanel actionPanel = null!;
+    private Rectangle fadeRectangle = null!;
 
-    private Rectangle nextBtnRectangle;
-    private Rectangle previousBtnRectangle;
+    private Rectangle nextBtnRectangle = null!;
+    private Rectangle previousBtnRectangle = null!;
 
-    private Button actionButton;
+    private Button actionButton = null!;
 
-    private TextBlock titleTextBlock;
-    private TextBlock descriptionTextBlock;
-    private TextBlock actionButtonTextBlock;
+    private TextBlock titleTextBlock = null!;
+    private TextBlock descriptionTextBlock = null!;
+    private TextBlock actionButtonTextBlock = null!;
 
     private readonly List<StoreCarouselItem> imageList = new();
     private int _index = 0;
-    private PausableDispatcherTimer timer;
+    private PausableDispatcherTimer? timer;
     private bool isUpdatingPager;
     private int arcAnimationVersion;
-    private Storyboard textStoryboard;
+    private Storyboard? textStoryboard;
     private Duration textStoryboardDuration;
-    private Storyboard arcFadeOutStoryboard;
-    private Storyboard arcFadeInStoryboard;
+    private Storyboard? arcFadeOutStoryboard;
+    private Storyboard? arcFadeInStoryboard;
 
-    public event EventHandler<int> SelectedIndexChanged;
-    public event EventHandler<StoreCarouselEventArgs> ItemClick;
+    public event EventHandler<int>? SelectedIndexChanged;
+    public event EventHandler<StoreCarouselEventArgs>? ItemClick;
     public StoreCarousel()
     {
         DefaultStyleKey = typeof(StoreCarousel);
     }
 
+    private T GetRequiredTemplateChild<T>(string name) where T : DependencyObject
+        => GetTemplateChild(name) as T
+           ?? throw new InvalidOperationException($"Template part '{name}' of type {typeof(T).Name} was not found in the StoreCarousel template.");
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        image = GetTemplateChild(PART_Image) as ImageFrame;
-        sliderGrid = GetTemplateChild(PART_SliderGrid) as Grid;
-        pipsPager = GetTemplateChild(PART_PipsPager) as PipsPager;
-        arc = GetTemplateChild(PART_Arc) as ArcProgress;
-        nextButton = GetTemplateChild(PART_NextBtn) as Button;
-        previousButton = GetTemplateChild(PART_PreviousBtn) as Button;
-        actionPanel = GetTemplateChild(PART_ActionPanel) as StackPanel;
-        fadeRectangle = GetTemplateChild(PART_FadeRectangle) as Rectangle;
-        actionButton = GetTemplateChild(PART_ActionButton) as Button;
-        nextBtnRectangle = GetTemplateChild(PART_NextBtnRectangle) as Rectangle;
-        previousBtnRectangle = GetTemplateChild(PART_PreviousBtnRectangle) as Rectangle;
+        image = GetRequiredTemplateChild<ImageFrame>(PART_Image);
+        sliderGrid = GetRequiredTemplateChild<Grid>(PART_SliderGrid);
+        pipsPager = GetRequiredTemplateChild<PipsPager>(PART_PipsPager);
+        arc = GetRequiredTemplateChild<ArcProgress>(PART_Arc);
+        nextButton = GetRequiredTemplateChild<Button>(PART_NextBtn);
+        previousButton = GetRequiredTemplateChild<Button>(PART_PreviousBtn);
+        actionPanel = GetRequiredTemplateChild<StackPanel>(PART_ActionPanel);
+        fadeRectangle = GetRequiredTemplateChild<Rectangle>(PART_FadeRectangle);
+        actionButton = GetRequiredTemplateChild<Button>(PART_ActionButton);
+        nextBtnRectangle = GetRequiredTemplateChild<Rectangle>(PART_NextBtnRectangle);
+        previousBtnRectangle = GetRequiredTemplateChild<Rectangle>(PART_PreviousBtnRectangle);
 
-        primaryBox = GetTemplateChild(PART_PrimaryCompositionShadow) as CompositionShadow;
-        secondaryBox = GetTemplateChild(PART_SecondaryCompositionShadow) as CompositionShadow;
-        tertiaryBox = GetTemplateChild(PART_TertiaryCompositionShadow) as CompositionShadow;
+        primaryBox = GetRequiredTemplateChild<CompositionShadow>(PART_PrimaryCompositionShadow);
+        secondaryBox = GetRequiredTemplateChild<CompositionShadow>(PART_SecondaryCompositionShadow);
+        tertiaryBox = GetRequiredTemplateChild<CompositionShadow>(PART_TertiaryCompositionShadow);
 
-        titleTextBlock = GetTemplateChild(PART_TitleBlock) as TextBlock;
-        descriptionTextBlock = GetTemplateChild(PART_DescriptionBlock) as TextBlock;
-        actionButtonTextBlock = GetTemplateChild(PART_ActionButtonTextBlock) as TextBlock;
+        titleTextBlock = GetRequiredTemplateChild<TextBlock>(PART_TitleBlock);
+        descriptionTextBlock = GetRequiredTemplateChild<TextBlock>(PART_DescriptionBlock);
+        actionButtonTextBlock = GetRequiredTemplateChild<TextBlock>(PART_ActionButtonTextBlock);
 
         textStoryboard = null;
         arcFadeOutStoryboard = null;
@@ -205,7 +211,7 @@ public partial class StoreCarousel : Control
     }
     private void ClearLights(FrameworkElement element)
     {
-        element?.Lights.Clear();
+        element.Lights.Clear();
     }
     private void OnActionButtonClick(object sender, RoutedEventArgs e)
     {
@@ -213,7 +219,8 @@ public partial class StoreCarousel : Control
             return;
 
         var item = imageList[_index];
-        item?.RaiseAction(this, new StoreCarouselEventArgs(item.Title, item.Description, item.ImageSource, false, item.Parameter));
+        // StoreCarouselEventArgs currently declares a non-nullable 'parameter'; consider making it object?.
+        item.RaiseAction(this, new StoreCarouselEventArgs(item.Title, item.Description, item.ImageSource, false, item.Parameter!));
     }
 
     private void AddLights(FrameworkElement element)
@@ -245,7 +252,7 @@ public partial class StoreCarousel : Control
     private void OnSliderPointerExited(object sender, PointerRoutedEventArgs e)
     {
         arc.ResumeFillAnimation();
-        timer.Resume();
+        timer?.Resume();
 
         nextButton.Visibility = Visibility.Collapsed;
         previousButton.Visibility = Visibility.Collapsed;
@@ -254,7 +261,7 @@ public partial class StoreCarousel : Control
     private void OnSliderPointerEntered(object sender, PointerRoutedEventArgs e)
     {
         arc.PauseFillAnimation();
-        timer.Pause();
+        timer?.Pause();
 
         nextButton.Visibility = Visibility.Visible;
         previousButton.Visibility = Visibility.Visible;
@@ -265,8 +272,7 @@ public partial class StoreCarousel : Control
             return;
 
         var item = imageList[_index];
-        if (item != null)
-            RaiseItemClick(e, item.Title, item.Description, item.ImageSource, false, item.Parameter);
+        RaiseItemClick(e, item.Title, item.Description, item.ImageSource, false, item.Parameter);
     }
     private void RaiseItemClick(PointerRoutedEventArgs e, string? title, string? description, object? imageSource, bool isThumbnail, object? parameter = null)
     {
@@ -274,7 +280,9 @@ public partial class StoreCarousel : Control
         if (e.Pointer.PointerDeviceType != Microsoft.UI.Input.PointerDeviceType.Mouse ||
             properties.PointerUpdateKind == Microsoft.UI.Input.PointerUpdateKind.LeftButtonReleased)
         {
-            ItemClick?.Invoke(this, new StoreCarouselEventArgs(title, description, imageSource?.ToString() ?? "", isThumbnail, parameter));
+            // StoreCarouselEventArgs currently declares non-nullable title/description/parameter;
+            // consider making them nullable there and dropping the '!' below.
+            ItemClick?.Invoke(this, new StoreCarouselEventArgs(title!, description!, imageSource?.ToString() ?? "", isThumbnail, parameter!));
         }
     }
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -311,7 +319,7 @@ public partial class StoreCarousel : Control
         GoToNextPrev(true);
     }
 
-    private void OnTimerTick(object sender, object e)
+    private void OnTimerTick(object? sender, object? e)
     {
         GoToNextPrev(true);
     }
@@ -325,7 +333,7 @@ public partial class StoreCarousel : Control
 
     private void StartTransition(int index, ImageFrameTransitionMode transitionMode)
     {
-        timer.Stop();
+        timer?.Stop();
 
         _index = index;
         UpdatePager();
@@ -339,7 +347,7 @@ public partial class StoreCarousel : Control
 
         if (AutoShuffle)
         {
-            timer.Start();
+            timer?.Start();
         }
     }
 
@@ -395,7 +403,7 @@ public partial class StoreCarousel : Control
         StartTransition(index, index > _index ? ImageFrameTransitionMode.SlideLeft : ImageFrameTransitionMode.SlideRight);
     }
 
-    private void OnItemsSourceChanged(IList<StoreCarouselItem> newList)
+    private void OnItemsSourceChanged(IList<StoreCarouselItem>? newList)
     {
         imageList.Clear();
 
@@ -411,11 +419,12 @@ public partial class StoreCarousel : Control
         ApplyItem(imageList.Count > 0 ? imageList[0] : null);
     }
 
-    private void ApplyItem(StoreCarouselItem item)
+    private void ApplyItem(StoreCarouselItem? item)
     {
         if (item == null)
         {
-            image.Source = null;
+            // ImageFrame.Source is non-nullable; consider declaring it as nullable in ImageFrame.
+            image.Source = null!;
             titleTextBlock.Text = string.Empty;
             descriptionTextBlock.Text = string.Empty;
             actionButtonTextBlock.Text = string.Empty;
@@ -424,7 +433,7 @@ public partial class StoreCarousel : Control
         }
 
         image.useImageEdgeOverContentColor = UseImageEdgeOverContentColor;
-        image.Source = Uri.TryCreate(item.ImageSource, UriKind.Absolute, out var uri) ? uri : null;
+        image.Source = (Uri.TryCreate(item.ImageSource, UriKind.Absolute, out var uri) ? uri : null)!;
         titleTextBlock.Text = item.Title;
         descriptionTextBlock.Text = item.Description;
         actionButtonTextBlock.Text = item.ActionButtonText;

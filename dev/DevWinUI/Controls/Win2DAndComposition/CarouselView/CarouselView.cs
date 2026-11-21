@@ -15,33 +15,36 @@ public sealed partial class CarouselView : Control
     private const string PART_CarouselViewItem4 = "PART_CarouselViewItem4";
     private const string PART_CarouselViewItem5 = "PART_CarouselViewItem5";
 
-    private Grid rootGrid;
-    private Grid canvas;
-    private PipsPager pipsPager;
-    private CarouselViewItem carouselViewItem1;
-    private CarouselViewItem carouselViewItem2;
-    private CarouselViewItem carouselViewItem3;
-    private CarouselViewItem carouselViewItem4;
-    private CarouselViewItem carouselViewItem5;
+    // Template parts, assigned in OnApplyTemplate().
+    private Grid rootGrid = null!;
+    private Grid canvas = null!;
+    private PipsPager pipsPager = null!;
+    private CarouselViewItem carouselViewItem1 = null!;
+    private CarouselViewItem carouselViewItem2 = null!;
+    private CarouselViewItem carouselViewItem3 = null!;
+    private CarouselViewItem carouselViewItem4 = null!;
+    private CarouselViewItem carouselViewItem5 = null!;
 
     public delegate void CarouselViewItemClickEventHandler(object sender, CarouselViewItemClickEventArgs e);
-    public event CarouselViewItemClickEventHandler ItemClick;
+    public event CarouselViewItemClickEventHandler? ItemClick;
 
-    private Compositor compositor;
-    private Visual touchAreaVisual, indicatorVisual;
-    private List<Visual> itemVisualList;
-    private ExpressionAnimation animation;
-    private ExpressionAnimation animation_0;
-    private ExpressionAnimation animation_1;
-    private ExpressionAnimation animation_2;
-    private ExpressionAnimation animation_3;
-    private ExpressionAnimation animation_4;
-    private ScalarKeyFrameAnimation _indicatorAnimation;
+    // Assigned in OnApplyTemplate() before any use.
+    private Compositor compositor = null!;
+    private Visual touchAreaVisual = null!;
+    private Visual indicatorVisual = null!;
+    private List<Visual> itemVisualList = new();
+    private ExpressionAnimation? animation;
+    private ExpressionAnimation? animation_0;
+    private ExpressionAnimation? animation_1;
+    private ExpressionAnimation? animation_2;
+    private ExpressionAnimation? animation_3;
+    private ExpressionAnimation? animation_4;
+    private ScalarKeyFrameAnimation? _indicatorAnimation;
     private float _x;
     private int _selectedIndex;
-    private DispatcherTimer _dispatcherTimer;
+    private DispatcherTimer? _dispatcherTimer;
     private bool _isAnimationRunning = false;
-    private List<CarouselViewItem> carouselViewItems;
+    private List<CarouselViewItem> carouselViewItems = new();
     private bool ignorePipsChange;
     public CarouselView()
     {
@@ -56,14 +59,14 @@ public sealed partial class CarouselView : Control
     {
         base.OnApplyTemplate();
 
-        rootGrid = GetTemplateChild(PART_RootGrid) as Grid;
-        canvas = GetTemplateChild(PART_Canvas) as Grid;
-        pipsPager = GetTemplateChild(PART_PipsPager) as PipsPager;
-        carouselViewItem1 = GetTemplateChild(PART_CarouselViewItem1) as CarouselViewItem;
-        carouselViewItem2 = GetTemplateChild(PART_CarouselViewItem2) as CarouselViewItem;
-        carouselViewItem3 = GetTemplateChild(PART_CarouselViewItem3) as CarouselViewItem;
-        carouselViewItem4 = GetTemplateChild(PART_CarouselViewItem4) as CarouselViewItem;
-        carouselViewItem5 = GetTemplateChild(PART_CarouselViewItem5) as CarouselViewItem;
+        rootGrid = (Grid)GetTemplateChild(PART_RootGrid);
+        canvas = (Grid)GetTemplateChild(PART_Canvas);
+        pipsPager = (PipsPager)GetTemplateChild(PART_PipsPager);
+        carouselViewItem1 = (CarouselViewItem)GetTemplateChild(PART_CarouselViewItem1);
+        carouselViewItem2 = (CarouselViewItem)GetTemplateChild(PART_CarouselViewItem2);
+        carouselViewItem3 = (CarouselViewItem)GetTemplateChild(PART_CarouselViewItem3);
+        carouselViewItem4 = (CarouselViewItem)GetTemplateChild(PART_CarouselViewItem4);
+        carouselViewItem5 = (CarouselViewItem)GetTemplateChild(PART_CarouselViewItem5);
 
         carouselViewItems = new List<CarouselViewItem>();
 
@@ -83,7 +86,7 @@ public sealed partial class CarouselView : Control
         foreach (var item in carouselViewItems)
         {
             itemVisualList.Add(ElementCompositionPreview.GetElementVisual(item));
-            item.Tapped += (s, e) => { OnItemClick((s as CarouselViewItem).ItemSource); };
+            item.Tapped += (s, e) => { OnItemClick((s as CarouselViewItem)?.ItemSource); };
         }
 
         this.canvas.ManipulationMode = ManipulationModes.TranslateX;
@@ -111,7 +114,7 @@ public sealed partial class CarouselView : Control
 
         if (this.IsAutoSwitchEnabled)
         {
-            _dispatcherTimer.Start();
+            _dispatcherTimer?.Start();
         }
 
         Unloaded -= OnUnloaded;
@@ -146,7 +149,7 @@ public sealed partial class CarouselView : Control
         canvas.Clip = new RectangleGeometry() { Rect = RectHelper.FromCoordinatesAndDimensions(0, 0, (float)e.NewSize.Width, (float)e.NewSize.Height) };
     }
 
-    private void OnItemClick(ICarouselViewItemSource e)
+    private void OnItemClick(ICarouselViewItemSource? e)
     {
         if (e == null) return;
         ItemClick?.Invoke(this, new CarouselViewItemClickEventArgs(e));
@@ -252,7 +255,7 @@ public sealed partial class CarouselView : Control
 
     private void Canvas_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
     {
-        _dispatcherTimer.Stop();
+        _dispatcherTimer?.Stop();
         itemVisualList[0].StopAnimation("Offset.X");
         itemVisualList[1].StopAnimation("Offset.X");
         itemVisualList[2].StopAnimation("Offset.X");
@@ -306,7 +309,7 @@ public sealed partial class CarouselView : Control
 
         MeasureItemsPosition(_selectedIndex, oldSelectedIndex);
         if (IsAutoSwitchEnabled)
-            _dispatcherTimer.Start();
+            _dispatcherTimer?.Start();
     }
 
 
@@ -426,11 +429,11 @@ public sealed partial class CarouselView : Control
         // set the dispatcherTimer
         if (IsAutoSwitchEnabled)
         {
-            _dispatcherTimer.Start();
+            _dispatcherTimer?.Start();
         }
-        else if (_dispatcherTimer.IsEnabled)
+        else if (_dispatcherTimer?.IsEnabled == true)
         {
-            _dispatcherTimer.Stop();
+            _dispatcherTimer?.Stop();
         }
     }
 
@@ -497,7 +500,7 @@ public sealed partial class CarouselView : Control
         MeasureItemsPosition(newindex, oldindex);
     }
 
-    private void _dispatcherTimer_Tick(object sender, object e)
+    private void _dispatcherTimer_Tick(object? sender, object e)
     {
         // Implement autoswitch
         if (this.IsAutoSwitchEnabled)
@@ -506,7 +509,7 @@ public sealed partial class CarouselView : Control
         }
         else
         {
-            _dispatcherTimer.Stop();
+            _dispatcherTimer?.Stop();
         }
     }
 

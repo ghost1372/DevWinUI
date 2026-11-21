@@ -555,7 +555,7 @@ public static partial class CompositorExtensions
     /// <param name="action">Action to perform within the scoped batch</param>
     /// <param name="postAction">Action to perform once the batch completes</param>
     public static void CreateScopedBatch(this Compositor compositor, CompositionBatchTypes batchType,
-        Action action, Action postAction = null)
+        Action action, Action? postAction = null)
     {
         if (action == null)
             throw new ArgumentException("Cannot create a scoped batch on an action with null value!", nameof(action));
@@ -616,7 +616,7 @@ public static partial class CompositorExtensions
     /// <param name="action">Action to perform within the scoped batch</param>
     /// <param name="postAction">Action to perform once the batch completes</param>
     public static void CreateScopedBatch(this Compositor compositor, CompositionBatchTypes batchType,
-        Action<CompositionScopedBatch> action, Action<CompositionScopedBatch> postAction = null)
+        Action<CompositionScopedBatch> action, Action<CompositionScopedBatch>? postAction = null)
     {
         if (action == null)
             throw new ArgumentException("Cannot create a scoped batch on an action with null value!", nameof(action));
@@ -638,7 +638,7 @@ public static partial class CompositorExtensions
             try
             {
                 // Invoke the post action
-                postAction?.Invoke(scopedBatch);
+                postAction?.Invoke(scopedBatch!);
             }
             finally
             {

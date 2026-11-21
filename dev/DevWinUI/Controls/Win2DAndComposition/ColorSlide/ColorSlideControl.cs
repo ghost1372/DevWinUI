@@ -3,9 +3,9 @@
 namespace DevWinUI;
 public partial class ColorSlideControl : ContentControl
 {
-    private Panel panel;
-    public event EventHandler<Color> ColorSlideTransitionCompleted;
-    private ColorSlideTransitionHelper _transition;
+    private Panel? panel;
+    public event EventHandler<Color>? ColorSlideTransitionCompleted;
+    private ColorSlideTransitionHelper? _transition;
 
     public static readonly DependencyProperty ColorProperty =
         DependencyProperty.Register(nameof(Color), typeof(Color), typeof(ColorSlideControl), new PropertyMetadata(Colors.Transparent));
@@ -38,6 +38,11 @@ public partial class ColorSlideControl : ContentControl
 
     public void StartTransition(FrameworkElement element, Size containerSize)
     {
+        if (panel == null || _transition == null)
+        {
+            return;
+        }
+
         var origin = element.TransformToVisual(panel).TransformPoint(new Point(0, 0));
         var initialBounds = new Rect(origin, element.RenderSize);
 
@@ -51,19 +56,23 @@ public partial class ColorSlideControl : ContentControl
 
         _transition.Start(Color, finalBounds);
     }
-    private void OnTransitionCompleted(object sender, EventArgs e)
+
+    private void OnTransitionCompleted(object? sender, EventArgs e)
     {
         ColorSlideTransitionCompleted?.Invoke(this, Color);
     }
 
     public void ApplyClipping(Size newSize)
     {
-        var clip = new RectangleGeometry
+        if (panel == null)
+        {
+            return;
+        }
+
+        panel.Clip = new RectangleGeometry
         {
             Rect = new Rect(0, 0, newSize.Width, newSize.Height)
         };
-
-        panel.Clip = clip;
     }
 }
 

@@ -12,16 +12,17 @@ public partial class BannerView : FlipView
     private const string RotationExpression = $"0.2 * Pi * {ClampedDistanceNode}";
 
     private readonly DispatcherTimer timer = new();
-    private ScrollViewer scrollingHost;
+    private ScrollViewer? scrollingHost;
 
-    internal Compositor Compositor;
+    // Assigned in InitComposition() (Loaded) before any use.
+    internal Compositor Compositor = null!;
 
-    private CompositionPropertySet scrollProps;
-    private CompositionPropertySet props;
-    private Visual thisVisual;
-    private Visual panelVisual;
-    private ExpressionAnimation perspectiveMatrixExp;
-    private ExpressionAnimation panelPerspectiveExp;
+    private CompositionPropertySet? scrollProps;
+    private CompositionPropertySet? props;
+    private Visual? thisVisual;
+    private Visual? panelVisual;
+    private ExpressionAnimation? perspectiveMatrixExp;
+    private ExpressionAnimation? panelPerspectiveExp;
     private CycleSelectionState CycleSelectionState;
 
     public BannerView()
@@ -175,7 +176,7 @@ public partial class BannerView : FlipView
         }
     }
 
-    private void Timer_Tick(object sender, object e)
+    private void Timer_Tick(object? sender, object e)
     {
         int count = Items.Count;
         if (count == 0)
@@ -194,7 +195,7 @@ public partial class BannerView : FlipView
         SelectedIndex = next;
     }
 
-    private void ScrollingHost_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    private void ScrollingHost_ViewChanged(object? sender, ScrollViewerViewChangedEventArgs e)
     {
         if (e.IsIntermediate || !IsLoaded || !IsCycleEnable())
             return;
@@ -422,7 +423,7 @@ public partial class BannerView : FlipView
 
     private void UpdatePerspective()
     {
-        if (props == null || ItemsPanelRoot == null)
+        if (props == null || panelVisual == null || ItemsPanelRoot == null)
             return;
 
         if (IsPerspectiveEnable)
@@ -474,7 +475,7 @@ public partial class BannerView : FlipView
         }
     }
 
-    public event SelectionChangedEventHandler CycleSelectionChanged;
+    public event SelectionChangedEventHandler? CycleSelectionChanged;
 
     protected void OnCycleSelectionChanged(SelectionChangedEventArgs e)
     {

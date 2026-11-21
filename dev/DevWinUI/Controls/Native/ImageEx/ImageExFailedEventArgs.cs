@@ -27,10 +27,10 @@ public partial class ImageExFailedEventArgs : EventArgs
     /// <summary>
     /// Gets the exception that caused the error condition.
     /// </summary>
-    public Exception ErrorException { get; private set; }
+    public Exception ErrorException { get; private set; } = null!;
 
     /// <summary>
     /// Gets the reason for the error condition.
     /// </summary>
-    public string ErrorMessage { get; private set; }
+    public string? ErrorMessage { get; private set; }
 }

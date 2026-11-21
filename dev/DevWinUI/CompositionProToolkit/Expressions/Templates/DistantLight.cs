@@ -62,7 +62,7 @@ public abstract partial class DistantLightTemplate : ExpressionTemplate
     /// <summary>
     /// Gets the CoordinateSpace Visual
     /// </summary>
-    public Visual CoordinateSpace { get; }
+    public Visual CoordinateSpace { get; } = null!;
 }
 
 /// <summary>

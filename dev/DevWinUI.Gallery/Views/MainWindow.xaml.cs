@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Input;
-using Microsoft.UI.Windowing;
+﻿using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Input;
 using WinRT;
 
@@ -8,8 +7,8 @@ namespace DevWinUIGallery.Views;
 public sealed partial class MainWindow : Window
 {
     public MainViewModel ViewModel { get; }
-    internal static MainWindow Instance { get; private set; }
-    public SystemTrayIcon TrayIcon { get; set; }
+    internal static MainWindow Instance { get; private set; } = null!;
+    public SystemTrayIcon? TrayIcon { get; set; }
     public MainWindow()
     {
         ViewModel = App.GetService<MainViewModel>();
@@ -132,4 +131,3 @@ public sealed partial class MainWindow : Window
         WindowHelper.SetForegroundWindow(this);
     }
 }
-

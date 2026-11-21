@@ -10,13 +10,13 @@ public partial class ContentSlider : ItemsControl
     private const string PART_Next = "PART_Next";
     private const string PART_Prev = "PART_Prev";
 
-    private PipsPager pipsPager;
-    private ContentPresenter oldPresenter;
-    private ContentPresenter newPresenter;
-    private Button nextBtn;
-    private Button prevBtn;
+    private PipsPager? pipsPager;
+    private ContentPresenter? oldPresenter;
+    private ContentPresenter? newPresenter;
+    private Button? nextBtn;
+    private Button? prevBtn;
 
-    private CubicBezierEasingFunction _easing;
+    private CubicBezierEasingFunction? _easing;
 
     private List<object> itemCache = new();
     private int selectedIndex = 0;
@@ -43,7 +43,7 @@ public partial class ContentSlider : ItemsControl
     public static readonly DependencyProperty SelectedItemProperty =
         DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(ContentSlider), new PropertyMetadata(default(object)));
 
-    public object SelectedItem
+    public object? SelectedItem
     {
         get => GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
@@ -158,7 +158,10 @@ public partial class ContentSlider : ItemsControl
     }
     public void SlideTo(int direction)
     {
-        if (direction == 0 || isAnimating || itemCache.Count < 2 || pipsPager == null || oldPresenter == null || newPresenter == null)
+        var oldP = oldPresenter;
+        var newP = newPresenter;
+
+        if (direction == 0 || isAnimating || itemCache.Count < 2 || pipsPager == null || oldP == null || newP == null)
             return;
 
         isAnimating = true;
@@ -168,13 +171,13 @@ public partial class ContentSlider : ItemsControl
 
         object nextItem = itemCache[selectedIndex];
 
-        newPresenter.Content = nextItem;
-        newPresenter.Visibility = Visibility.Visible;
+        newP.Content = nextItem;
+        newP.Visibility = Visibility.Visible;
 
         var compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
-        var oldVisual = ElementCompositionPreview.GetElementVisual(oldPresenter);
-        var newVisual = ElementCompositionPreview.GetElementVisual(newPresenter);
+        var oldVisual = ElementCompositionPreview.GetElementVisual(oldP);
+        var newVisual = ElementCompositionPreview.GetElementVisual(newP);
 
         float width = (float)ViewportWidth;
         float from = direction > 0 ? width : -width;
@@ -219,12 +222,11 @@ public partial class ContentSlider : ItemsControl
             newVisual.StopAnimation("Offset.X");
             newVisual.Offset = Vector3.Zero;
 
-            var temp = oldPresenter;
-            oldPresenter = newPresenter;
-            newPresenter = temp;
+            oldPresenter = newP;
+            newPresenter = oldP;
 
-            newPresenter.Content = null;
-            newPresenter.Visibility = Visibility.Collapsed;
+            oldP.Content = null;
+            oldP.Visibility = Visibility.Collapsed;
 
             isAnimating = false;
         };

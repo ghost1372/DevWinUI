@@ -3,14 +3,14 @@ using Microsoft.UI.Xaml.Shapes;
 namespace DevWinUI;
 public partial class ClockRadioButton : RadioButton
 {
-    private Ellipse _focusRing;
+    private Ellipse _focusRing = null!;
 
     public int Num { get; set; }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _focusRing = GetTemplateChild("FocusRing") as Ellipse;
+        _focusRing = (GetTemplateChild("FocusRing") as Ellipse)!;
     }
 
     protected override void OnGotFocus(RoutedEventArgs e)

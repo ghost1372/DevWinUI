@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 public sealed partial class AllLandingPage : ItemsPageBase
 {
-    internal static AllLandingPage Instance { get; private set; }
+    internal static AllLandingPage? Instance { get; private set; }
 
     public AllLandingPage()
     {
@@ -52,7 +52,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
 
         if (CanExecuteInternalCommand)
         {
-            GetData(i => i.Title);
+            GetData(i => i.Title ?? string.Empty);
 
             if (!IsEmpty)
             {
@@ -95,7 +95,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
         Items = GetAllItems().ToList();
     }
 
-    public void OrderBy(Func<DataItem, object> orderby = null)
+    public void OrderBy(Func<DataItem, object>? orderby = null)
     {
         if (orderby != null)
         {
@@ -107,7 +107,7 @@ public sealed partial class AllLandingPage : ItemsPageBase
         }
     }
 
-    public void OrderByDescending(Func<DataItem, object> orderByDescending = null)
+    public void OrderByDescending(Func<DataItem, object>? orderByDescending = null)
     {
         if (orderByDescending != null)
         {

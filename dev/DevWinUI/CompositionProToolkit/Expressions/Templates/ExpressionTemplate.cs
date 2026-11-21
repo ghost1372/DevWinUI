@@ -41,7 +41,7 @@ public abstract partial class ExpressionTemplate
     /// <summary>
     /// The base type of the Target/Reference Template
     /// </summary>
-    public Type Type { get; protected set; }
+    public Type Type { get; protected set; } = null!;
     /// <summary>
     /// The name associated with this template
     /// </summary>

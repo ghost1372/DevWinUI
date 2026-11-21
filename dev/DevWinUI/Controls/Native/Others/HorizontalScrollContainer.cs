@@ -12,9 +12,9 @@ public partial class HorizontalScrollContainer : Control
     private const string PART_ScrollBackBtn = "PART_ScrollBackBtn";
     private const string PART_ScrollForwardBtn = "PART_ScrollForwardBtn";
 
-    private ScrollViewer scroller;
-    private Button ScrollBackBtn;
-    private Button ScrollForwardBtn;
+    private ScrollViewer scroller = null!;
+    private Button ScrollBackBtn = null!;
+    private Button ScrollForwardBtn = null!;
 
     public string ScrollBackButtonToolTipText
     {
@@ -50,9 +50,9 @@ public partial class HorizontalScrollContainer : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        scroller = GetTemplateChild(PART_Scroller) as ScrollViewer;
-        ScrollBackBtn = GetTemplateChild(PART_ScrollBackBtn) as Button;
-        ScrollForwardBtn = GetTemplateChild(PART_ScrollForwardBtn) as Button;
+        scroller = (GetTemplateChild(PART_Scroller) as ScrollViewer)!;
+        ScrollBackBtn = (GetTemplateChild(PART_ScrollBackBtn) as Button)!;
+        ScrollForwardBtn = (GetTemplateChild(PART_ScrollForwardBtn) as Button)!;
 
         scroller.SizeChanged -= OnScrollerSizeChanged;
         scroller.SizeChanged += OnScrollerSizeChanged;
@@ -83,7 +83,7 @@ public partial class HorizontalScrollContainer : Control
         ScrollForwardBtn.Focus(FocusState.Programmatic);
     }
 
-    private void OnScrollerViewChanging(object sender, ScrollViewerViewChangingEventArgs e)
+    private void OnScrollerViewChanging(object? sender, ScrollViewerViewChangingEventArgs e)
     {
         if (ScrollBackBtn == null || ScrollForwardBtn == null)
             return;

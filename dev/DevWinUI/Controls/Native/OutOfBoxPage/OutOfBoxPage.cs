@@ -29,15 +29,15 @@ public partial class OutOfBoxPage : Control
     private static readonly DataTemplate DefaultLinksItemTemplate =
         (DataTemplate)DefaultItemTemplateResources["OutOfBoxLinksItemTemplate"];
 
-    private ContentPresenter titlePresenter;
-    private TextBlock titleTextBlock;
-    private ContentPresenter descriptionPresenter;
-    private TextBlock descriptionTextBlock;
-    private ContentPresenter heroImagePresenter;
-    private Border heroImageBorder;
-    private Image heroImageImage;
-    private ContentPresenter secondaryLinksHeaderPresenter;
-    private TextBlock secondaryLinksHeaderTextBlock;
+    private ContentPresenter titlePresenter = null!;
+    private TextBlock titleTextBlock = null!;
+    private ContentPresenter descriptionPresenter = null!;
+    private TextBlock descriptionTextBlock = null!;
+    private ContentPresenter heroImagePresenter = null!;
+    private Border heroImageBorder = null!;
+    private Image heroImageImage = null!;
+    private ContentPresenter secondaryLinksHeaderPresenter = null!;
+    private TextBlock secondaryLinksHeaderTextBlock = null!;
     public object Title
     {
         get { return (object)GetValue(TitleProperty); }
@@ -252,15 +252,15 @@ public partial class OutOfBoxPage : Control
     {
         base.OnApplyTemplate();
 
-        titlePresenter = GetTemplateChild(PART_TitlePresenter) as ContentPresenter;
-        titleTextBlock = GetTemplateChild(PART_TitleTextBlock) as TextBlock;
-        descriptionPresenter = GetTemplateChild(PART_DescriptionPresenter) as ContentPresenter;
-        descriptionTextBlock = GetTemplateChild(PART_DescriptionTextBlock) as TextBlock;
-        heroImagePresenter = GetTemplateChild(PART_HeroImagePresenter) as ContentPresenter;
-        heroImageBorder = GetTemplateChild(PART_HeroImageBorder) as Border;
-        heroImageImage = GetTemplateChild(PART_HeroImageImage) as Image;
-        secondaryLinksHeaderPresenter = GetTemplateChild(PART_SecondaryLinksHeaderPresenter) as ContentPresenter;
-        secondaryLinksHeaderTextBlock = GetTemplateChild(PART_SecondaryLinksHeaderTextBlock) as TextBlock;
+        titlePresenter = (GetTemplateChild(PART_TitlePresenter) as ContentPresenter)!;
+        titleTextBlock = (GetTemplateChild(PART_TitleTextBlock) as TextBlock)!;
+        descriptionPresenter = (GetTemplateChild(PART_DescriptionPresenter) as ContentPresenter)!;
+        descriptionTextBlock = (GetTemplateChild(PART_DescriptionTextBlock) as TextBlock)!;
+        heroImagePresenter = (GetTemplateChild(PART_HeroImagePresenter) as ContentPresenter)!;
+        heroImageBorder = (GetTemplateChild(PART_HeroImageBorder) as Border)!;
+        heroImageImage = (GetTemplateChild(PART_HeroImageImage) as Image)!;
+        secondaryLinksHeaderPresenter = (GetTemplateChild(PART_SecondaryLinksHeaderPresenter) as ContentPresenter)!;
+        secondaryLinksHeaderTextBlock = (GetTemplateChild(PART_SecondaryLinksHeaderTextBlock) as TextBlock)!;
 
         UpdateTemplate();
 

@@ -19,10 +19,10 @@ public partial class LoadingIndicator : Control
     private readonly List<Rectangle> _rects = new();
     private readonly List<Ellipse> _ellipses = new();
 
-    protected Border PART_Border;
+    protected Border PART_Border = null!;
 
-    private Canvas _root;
-    private Storyboard _storyboard;
+    private Canvas _root = null!;
+    private Storyboard _storyboard = null!;
     private bool _loaded;
     private bool _built;
 
@@ -151,7 +151,7 @@ public partial class LoadingIndicator : Control
 
         _storyboard?.Stop();
         PART_Border = (Border)GetTemplateChild(TemplateBorderName);
-        _root = GetTemplateChild(TemplateRootName) as Canvas;
+        _root = (GetTemplateChild(TemplateRootName) as Canvas)!;
 
         if (PART_Border == null)
         {
@@ -176,7 +176,7 @@ public partial class LoadingIndicator : Control
         PART_Border.SetValue(VisibilityProperty, IsActive ? Visibility.Visible : Visibility.Collapsed);
     }
 
-    public string GetLoadingIndicatorModeDescription(LoadingIndicatorMode value)
+    public string? GetLoadingIndicatorModeDescription(LoadingIndicatorMode value)
     {
         return
             value
@@ -831,12 +831,12 @@ public partial class LoadingIndicator : Control
 
     private static readonly double[][] RingSplines =
     {
-        null,
+        null!,
         new[] { 0.02, 0.33, 0.38, 0.77 },
-        null,
+        null!,
         new[] { 0.57, 0.17, 0.95, 0.75 },
         new[] { 0, 0.19, 0.07, 0.72 },
-        null,
+        null!,
         new[] { 0, 0, 0.95, 0.37 },
     };
 

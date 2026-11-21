@@ -1,8 +1,8 @@
 ﻿namespace DevWinUI;
 public partial class TransitioningContentControl : ContentControl
 {
-    private FrameworkElement _contentPresenter;
-    private Storyboard _storyboardBuildIn;
+    private FrameworkElement _contentPresenter = null!;
+    private Storyboard _storyboardBuildIn = null!;
     private long _visibilityToken;
 
     public TransitioningContentControl()
@@ -85,7 +85,7 @@ public partial class TransitioningContentControl : ContentControl
     {
         base.OnApplyTemplate();
 
-        _contentPresenter = VisualTreeHelper.GetChild(this, 0) as FrameworkElement;
+        _contentPresenter = (VisualTreeHelper.GetChild(this, 0) as FrameworkElement)!;
         if (_contentPresenter != null)
         {
             _contentPresenter.RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
@@ -120,6 +120,6 @@ public partial class TransitioningContentControl : ContentControl
         {
             return typedResource;
         }
-        return null;
+        return null!;
     }
 }

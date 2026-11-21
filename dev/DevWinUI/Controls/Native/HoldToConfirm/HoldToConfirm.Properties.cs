@@ -3,6 +3,7 @@
 public sealed partial class HoldToConfirm
 {
     public event TypedEventHandler<HoldToConfirm, object?>? Confirm;
+    public event TypedEventHandler<HoldToConfirm, object?>? Canceled;
 
     public string Label
     {
@@ -75,6 +76,18 @@ public sealed partial class HoldToConfirm
 
     public static readonly DependencyProperty IsAnimationEnabledProperty =
         DependencyProperty.Register(nameof(IsAnimationEnabled), typeof(bool), typeof(HoldToConfirm), new PropertyMetadata(true));
+
+    public bool CanBeCanceled
+    {
+        get { return (bool)GetValue(CanBeCanceledProperty); }
+        set { SetValue(CanBeCanceledProperty, value); }
+    }
+
+    public static readonly DependencyProperty CanBeCanceledProperty =
+        DependencyProperty.Register(nameof(CanBeCanceled), typeof(bool), typeof(HoldToConfirm), new PropertyMetadata(false, OnCanBeCanceledChanged));
+
+    private static void OnCanBeCanceledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
+        ((HoldToConfirm)d).UpdateAutomation();
 
     private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
         ((HoldToConfirm)d).UpdateText();

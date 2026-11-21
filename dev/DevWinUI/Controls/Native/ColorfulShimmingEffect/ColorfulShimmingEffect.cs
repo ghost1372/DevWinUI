@@ -7,7 +7,7 @@ namespace DevWinUI;
 public partial class ColorfulShimmingEffect : ContentControl
 {
     private const string PART_Root = "PART_Root";
-    private StackPanel _rootPanel;
+    private StackPanel _rootPanel = null!;
     private readonly List<PointLight> _lights = new();
     public List<ColorfulShimmingEffectItem> ColorfulShimmingEffectItems
     {
@@ -31,7 +31,7 @@ public partial class ColorfulShimmingEffect : ContentControl
     {
         base.OnApplyTemplate();
 
-        _rootPanel = GetTemplateChild(PART_Root) as StackPanel;
+        _rootPanel = (GetTemplateChild(PART_Root) as StackPanel)!;
         if (ColorfulShimmingEffectItems == null || ColorfulShimmingEffectItems.Count == 0)
         {
             ColorfulShimmingEffectItems = new List<ColorfulShimmingEffectItem>
@@ -122,7 +122,7 @@ public partial class ColorfulShimmingEffect : ContentControl
         }
     }
 
-    public PointLight CreatePointAndStartAnimation(Color color, TimeSpan delay, TimeSpan duration, double z)
+    public PointLight? CreatePointAndStartAnimation(Color color, TimeSpan delay, TimeSpan duration, double z)
     {
         if (_rootPanel == null)
         {

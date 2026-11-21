@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.Win32.UI.WindowsAndMessaging;
+﻿using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace DevWinUI;
 

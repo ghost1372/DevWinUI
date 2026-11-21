@@ -10,7 +10,7 @@ public partial class PackageHelper
     /// Retrieves the full name of the current package.
     /// </summary>
     /// <returns>Returns the package full name as a string or null if an error occurs.</returns>
-    public static string GetCurrentPackageName()
+    public static string? GetCurrentPackageName()
     {
         unsafe
         {

@@ -4,15 +4,15 @@
 public partial class GooeyEffect : Control
 {
     private string PART_Canvas = "PART_Canvas";
-    private CanvasControl _Canvas;
+    private CanvasControl? _Canvas;
 
-    private GaussianBlurEffect _blurEffect;
+    private GaussianBlurEffect? _blurEffect;
     private Vector2 _centerPoint;
-    private ICanvasImage _image;
-    private ICanvasBrush _leftBrush;
-    private Vector2Timeline _leftTimeline;
-    private ICanvasBrush _rightBrush;
-    private Vector2Timeline _rightTimeline;
+    private ICanvasImage? _image;
+    private ICanvasBrush? _leftBrush;
+    private Vector2Timeline? _leftTimeline;
+    private ICanvasBrush? _rightBrush;
+    private Vector2Timeline? _rightTimeline;
     private DateTime _startTime;
 
     private static void OnPropertyValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -54,7 +54,7 @@ public partial class GooeyEffect : Control
         UpdateAnimation();
     }
 
-    public CanvasControl GetCanvas()
+    public CanvasControl? GetCanvas()
     {
         return _Canvas;
     }
@@ -70,7 +70,10 @@ public partial class GooeyEffect : Control
 
     private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        _centerPoint = _Canvas.ActualSize / 2;
+        if (_Canvas != null)
+        {
+            _centerPoint = _Canvas.ActualSize / 2;
+        }
     }
 
     private void OnCreateResource(CanvasControl sender, CanvasCreateResourcesEventArgs args)
@@ -114,6 +117,13 @@ public partial class GooeyEffect : Control
 
     private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
+        if (_leftTimeline == null || _rightTimeline == null ||
+            _leftBrush == null || _rightBrush == null ||
+            _blurEffect == null || _image == null)
+        {
+            return;
+        }
+
         var source = new CanvasCommandList(sender);
         var totalTime = DateTime.Now - _startTime;
         using (var drawingSession = source.CreateDrawingSession())
@@ -124,6 +134,6 @@ public partial class GooeyEffect : Control
 
         _blurEffect.Source = source;
         args.DrawingSession.DrawImage(_image);
-        _Canvas.Invalidate();
+        sender.Invalidate();
     }
 }

@@ -33,7 +33,7 @@ public static partial class MaterialAttach
         popup.Opened -= Popup_Opened;
         popup.Opened += Popup_Opened;
 
-        void Popup_Opened(object s, object args)
+        void Popup_Opened(object? s, object args)
         {
             var popupInstance = s as Popup;
             if (popupInstance?.Child == null) return;

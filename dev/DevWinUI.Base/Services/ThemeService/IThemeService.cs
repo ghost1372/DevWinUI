@@ -14,9 +14,9 @@ public interface IThemeService
     Task<bool> SetBackdropTypeWithoutSaveAsync(BackdropType backdropType);
     Task<bool> SetBackdropTypeWithoutSaveAsync();
 
-    AcrylicSystemBackdrop GetAcrylicSystemBackdrop();
-    MicaSystemBackdrop GetMicaSystemBackdrop();
-    SystemBackdrop GetSystemBackdrop();
+    AcrylicSystemBackdrop? GetAcrylicSystemBackdrop();
+    MicaSystemBackdrop? GetMicaSystemBackdrop();
+    SystemBackdrop? GetSystemBackdrop();
 
     event EventHandler<ElementTheme> ThemeChanged;
     event EventHandler<BackdropType> BackdropChanged;

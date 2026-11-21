@@ -18,6 +18,7 @@
                     <local:OptionGroup Title="Appearance">
                         <local:OptionPanel>
                             <local:ChoiceOption Header="Direction" Value="{x:Bind Preview.Direction, Mode=TwoWay}" />
+                            <local:ColorOption Header="Square Color" Value="{x:Bind Preview.SquareColor, Mode=TwoWay}" />
                             <Slider x:Name="SldGridSize" Header="Grid Size" Maximum="100" Minimum="8" StepFrequency="1" Value="52" />
                             <Slider x:Name="SldSquareDensity" Header="Square Density" Maximum="1" Minimum="0" StepFrequency="0.05" Value="0.9" />
                             <Slider x:Name="SldIntensity" Header="Intensity" Maximum="2" Minimum="0" StepFrequency="0.1" Value="1" />

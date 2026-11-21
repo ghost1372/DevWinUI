@@ -1,8 +1,8 @@
 ﻿namespace DevWinUI;
 public partial class BlurEffectBrush : XamlCompositionBrushBase
 {
-    private BlurEffectManager _manager;
-    private FrameworkElement _dummyElement;
+    private BlurEffectManager? _manager;
+    private FrameworkElement? _dummyElement;
 
     #region Dependency Properties
     public bool IsBlurEnabled

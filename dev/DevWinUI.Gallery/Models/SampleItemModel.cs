@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace DevWinUIGallery.Models;
+﻿namespace DevWinUIGallery.Models;
 
 public partial class SampleItemModel : DepthLayerViewItem
 {
@@ -11,8 +9,8 @@ public partial class SampleItemModel : DepthLayerViewItem
     public string IntValueString => IntValue.ToString();
     public bool BoolValue { get; set; }
     public double DoubleValue { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
     public string ImagePath { get; set; }
 
     public SampleItemModel(string imagePath)
@@ -52,7 +50,7 @@ public partial class SampleItemModel : DepthLayerViewItem
         this.IntValue = year;
     }
 
-    public override string ToString()
+    public override string? ToString()
     {
         return Title;
     }

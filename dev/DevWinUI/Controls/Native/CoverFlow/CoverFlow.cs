@@ -7,14 +7,14 @@ namespace DevWinUI;
 public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 {
     private const string PART_ItemsPresenter = "PART_ItemsPresenter";
-    private ItemsPresenter itemsPresenter;
+    private ItemsPresenter itemsPresenter = null!;
 
     public delegate void SelectedItemChangedEvent(CoverFlowEventArgs e);
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    public event SelectedItemChangedEvent SelectedItemChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
+    public event SelectedItemChangedEvent? SelectedItemChanged;
 
-    private Dictionary<object, CoverFlowItem> _objectToItemContainer;
+    private Dictionary<object, CoverFlowItem> _objectToItemContainer = null!;
     private List<CoverFlowItem> items;
     private readonly HashSet<CoverFlowItem> _itemSet = new();
 
@@ -56,7 +56,7 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
         set { IndexSelected(value); }
     }
 
-    public object SelectedItem
+    public object? SelectedItem
     {
         get
         {
@@ -64,15 +64,15 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
         }
         set
         {
-            CoverFlowItem o = GetItemContainerForObject(value);
+            CoverFlowItem? o = GetItemContainerForObject(value);
             if (o != null)
                 SelectedIndex = items.IndexOf(o);
         }
     }
 
-    protected void OnItemSelected(object sender, EventArgs e)
+    protected void OnItemSelected(object? sender, EventArgs e)
     {
-        CoverFlowItem item = sender as CoverFlowItem;
+        CoverFlowItem? item = sender as CoverFlowItem;
         if (item == null)
             return;
         int index = items.IndexOf(item);
@@ -112,9 +112,9 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     private double z { get { return ZDistance; } }
 
-    protected CoverFlowItem GetItemContainerForObject(object value)
+    protected CoverFlowItem? GetItemContainerForObject(object? value)
     {
-        CoverFlowItem item = value as CoverFlowItem;
+        CoverFlowItem? item = value as CoverFlowItem;
         if (item == null && value != null)
         {
             this.ObjectToItemContainer.TryGetValue(value, out item);
@@ -147,14 +147,14 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     private static void OnValuesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        (d as CoverFlow).LayoutChildren();
+        (d as CoverFlow)!.LayoutChildren();
     }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        itemsPresenter = GetTemplateChild(PART_ItemsPresenter) as ItemsPresenter;
+        itemsPresenter = (GetTemplateChild(PART_ItemsPresenter) as ItemsPresenter)!;
 
         this.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateRailsX;
 
@@ -259,7 +259,7 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     protected void OnItemSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        CoverFlowItem item = sender as CoverFlowItem;
+        CoverFlowItem item = (sender as CoverFlowItem)!;
         int index = items.IndexOf(item);
         if (index < 0)
             return;
@@ -481,7 +481,7 @@ public partial class CoverFlow : ItemsControl, INotifyPropertyChanged
 
     public void UpdatePositions(object value)
     {
-        CoverFlowItem item = GetItemContainerForObject(value);
+        CoverFlowItem? item = GetItemContainerForObject(value);
         if (item == null)
             return;
 

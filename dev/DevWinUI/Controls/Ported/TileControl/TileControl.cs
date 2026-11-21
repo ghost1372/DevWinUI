@@ -15,25 +15,25 @@ public partial class TileControl : ContentControl
     private readonly List<SpriteVisual> _compositionChildren = new List<SpriteVisual>(50);
     private readonly object _lockerOffset = new object();
 
-    private FrameworkElement _rootElement;
+    private FrameworkElement? _rootElement;
 
-    private ContainerVisual _containerVisual;
-    private CompositionSurfaceBrush _brushVisual;
-    private LoadedImageSurface _imageSurface;
+    private ContainerVisual _containerVisual = null!;
+    private CompositionSurfaceBrush? _brushVisual;
+    private LoadedImageSurface? _imageSurface;
 
     private Size _imageSize = Size.Empty;
 
-    private DispatcherQueueTimer _timerAnimation;
+    private DispatcherQueueTimer _timerAnimation = null!;
 
     /// <summary>
     /// A ScrollViewer used for synchronized the move of the <see cref="TileControl"/>
     /// </summary>
-    private ScrollViewer _scrollViewer;
+    private ScrollViewer? _scrollViewer;
 
     private bool _isImageSourceLoaded;
     private bool _isRootElementSizeChanged;
 
-    private CompositionPropertySet _propertySetModulo;
+    private CompositionPropertySet? _propertySetModulo;
 
     private double _animationX;
     private double _animationY;
@@ -41,7 +41,7 @@ public partial class TileControl : ContentControl
     /// <summary>
     /// The image loaded event.
     /// </summary>
-    public event EventHandler ImageLoaded;
+    public event EventHandler? ImageLoaded;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TileControl"/> class.
@@ -59,7 +59,7 @@ public partial class TileControl : ContentControl
     /// <param name="oldScrollViewerContainer">the old ScrollViewerContainer</param>
     /// <param name="newScrollViewerContainer">the new ScrollViewerContainer</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    private Task InitializeScrollViewerContainer(FrameworkElement oldScrollViewerContainer, FrameworkElement newScrollViewerContainer)
+    private Task InitializeScrollViewerContainer(FrameworkElement? oldScrollViewerContainer, FrameworkElement? newScrollViewerContainer)
     {
         if (oldScrollViewerContainer != null)
         {
@@ -92,14 +92,14 @@ public partial class TileControl : ContentControl
     /// </summary>
     /// <param name="scrollViewerContainer">A ScrollViewer or a container of a ScrollViewer</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    private async Task AttachScrollViewer(DependencyObject scrollViewerContainer)
+    private async Task AttachScrollViewer(DependencyObject? scrollViewerContainer)
     {
         if (scrollViewerContainer == null)
         {
             return;
         }
 
-        ScrollViewer newScrollViewer = scrollViewerContainer.FindDescendant<ScrollViewer>();
+        ScrollViewer? newScrollViewer = scrollViewerContainer.FindDescendant<ScrollViewer>();
 
         if (newScrollViewer != _scrollViewer)
         {
@@ -115,7 +115,7 @@ public partial class TileControl : ContentControl
     /// </summary>
     /// <param name="uri">the uri of the image to load</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    private async Task<bool> LoadImageBrushAsync(Uri uri)
+    private async Task<bool> LoadImageBrushAsync(Uri? uri)
     {
         if (DesignTimeHelpers.IsRunningInLegacyDesignerMode)
         {
@@ -300,7 +300,7 @@ public partial class TileControl : ContentControl
         int offsetVerticalAlignment = 0;
 
         var clip = new RectangleGeometry { Rect = new Rect(0, 0, width, height) };
-        _rootElement.Clip = clip;
+        _rootElement?.Clip = clip;
 
         var imageAlignment = ImageAlignment;
 
@@ -368,8 +368,11 @@ public partial class TileControl : ContentControl
         for (int x = 0; x < count - numberSpriteToInstantiate; x++)
         {
             var element = _containerVisual.Children.FirstOrDefault() as SpriteVisual;
-            _containerVisual.Children.Remove(element);
-            _compositionChildren.Remove(element);
+            if (element != null)
+            {
+                _containerVisual.Children.Remove(element);
+                _compositionChildren.Remove(element);
+            }
         }
 
         // Change positions+brush for all actives elements
@@ -393,7 +396,7 @@ public partial class TileControl : ContentControl
     /// Create the modulo expression and apply it to the ContainerVisual element
     /// </summary>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    private async Task CreateModuloExpression(ScrollViewer scrollViewer = null)
+    private async Task CreateModuloExpression(ScrollViewer? scrollViewer = null)
     {
         await _flag.WaitAsync();
 
@@ -423,7 +426,7 @@ public partial class TileControl : ContentControl
     /// <param name="imageWidth">Width of the image</param>
     /// <param name="imageHeight">Height of the image</param>
     /// <param name="scrollOrientation">The ScrollOrientation</param>
-    private void CreateModuloExpression(ScrollViewer scrollViewer, double imageWidth, double imageHeight, ScrollOrientation scrollOrientation)
+    private void CreateModuloExpression(ScrollViewer? scrollViewer, double imageWidth, double imageHeight, ScrollOrientation scrollOrientation)
     {
         const string propSetParam = "p";
         const string offsetXParam = nameof(OffsetX);

@@ -17,34 +17,34 @@ public sealed partial class ProfileControl : Control
 
     #region Fields
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private CompositionBackdropBrush _backdropBrush;
+    private Compositor _compositor = null!;
+    private ICompositionGenerator _generator = null!;
+    private CompositionBackdropBrush _backdropBrush = null!;
 
-    private SpriteVisual _bgVisual;
-    private LayerVisual _clipVisual;
-    private SpriteVisual _imageVisual;
+    private SpriteVisual _bgVisual = null!;
+    private LayerVisual _clipVisual = null!;
+    private SpriteVisual _imageVisual = null!;
 
-    private IMaskSurface _bgMask;
-    private IMaskSurface _clipMask;
+    private IMaskSurface _bgMask = null!;
+    private IMaskSurface _clipMask = null!;
 
-    private IImageSurface _imageSurface;
-    private IMaskSurface _imageMaskSurface;
-    private CompositionSurfaceBrush _imageMaskSurfaceBrush;
+    private IImageSurface _imageSurface = null!;
+    private IMaskSurface _imageMaskSurface = null!;
+    private CompositionSurfaceBrush _imageMaskSurfaceBrush = null!;
 
-    private CompositionEffectBrush _bgBrush;
-    private ColorKeyFrameAnimation _tintAnimation;
-    private ScalarKeyFrameAnimation _blurAnimation;
+    private CompositionEffectBrush _bgBrush = null!;
+    private ColorKeyFrameAnimation _tintAnimation = null!;
+    private ScalarKeyFrameAnimation _blurAnimation = null!;
 
-    private Vector2KeyFrameAnimation _revealAnimation;
+    private Vector2KeyFrameAnimation _revealAnimation = null!;
     private readonly ImageSurfaceOptions _imageOptions;
 
-    private ScalarKeyFrameAnimation _fadeInAnimation;
+    private ScalarKeyFrameAnimation _fadeInAnimation = null!;
 
     private bool _isLoaded;
     private bool _revealOnLoad;
 
-    private Border _outerBorder;
+    private Border? _outerBorder;
 
     #endregion
 
@@ -528,12 +528,12 @@ public sealed partial class ProfileControl : Control
         _clipVisual = _compositor.CreateLayerVisual();
         _imageVisual = _compositor.CreateSpriteVisual();
 
-        _bgMask = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null);
+        _bgMask = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null!);
         _bgBrush = _compositor.CreateMaskedBackdropBrush(_bgMask, Tint, (float)BlurRadius, _backdropBrush);
         _bgVisual.Brush = _bgBrush;
 
         // Clip Layer
-        _clipMask = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null);
+        _clipMask = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null!);
         var clipEffect = new CompositeEffect
         {
             Mode = CanvasComposite.DestinationIn,
@@ -563,8 +563,8 @@ public sealed partial class ProfileControl : Control
 
         // If autoReveal is enabled load the image onto the surface only after the control is loaded
         _imageSurface =
-            await _generator.CreateImageSurfaceAsync(autoReveal ? null : Source, Vector2.Zero.ToSize(), _imageOptions);
-        _imageMaskSurface = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null);
+            await _generator.CreateImageSurfaceAsync((autoReveal ? null : Source)!, Vector2.Zero.ToSize(), _imageOptions);
+        _imageMaskSurface = _generator.CreateMaskSurface(Vector2.Zero.ToSize(), null!);
         _imageMaskSurfaceBrush = _compositor.CreateSurfaceBrush(_imageMaskSurface);
 
         var maskBrush = _compositor.CreateMaskBrush();

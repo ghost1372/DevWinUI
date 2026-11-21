@@ -41,7 +41,7 @@ internal abstract partial class AbstractCanvasStrokeElement : ICanvasStrokeEleme
     /// <summary>
     /// Gets the Stroke data defining the Brush Element
     /// </summary>
-    public string Data { get; protected set; }
+    public string Data { get; protected set; } = string.Empty;
     /// <summary>
     /// Gets the number of non-whitespace characters in 
     /// the Stroke Data

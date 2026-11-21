@@ -48,8 +48,8 @@ public partial class LoopingSelectorPanel : Canvas, Microsoft.UI.Xaml.Controls.P
 	//EventHandler<DependencyObject> _snapPointsChangedEventSource;
 
 #pragma warning disable CS0067
-	public event EventHandler<object> HorizontalSnapPointsChanged;
-	public event EventHandler<object> VerticalSnapPointsChanged;
+	public event EventHandler<object>? HorizontalSnapPointsChanged;
+	public event EventHandler<object>? VerticalSnapPointsChanged;
 
 	//void RaiseSnapPointsChangedEvents();
 }

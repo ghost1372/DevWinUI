@@ -92,7 +92,7 @@ public static partial class CompositionAnimationExtensions
     /// <param name="easingFunction">Easing Function (optional)</param>
     /// <returns>KeyFrameAnimation</returns>
     public static KeyFrameAnimation InsertExpressionKeyFrame<T>(this KeyFrameAnimation animation, float normalizedProgressKey,
-        Expression<CompositionExpression<T>> expression, CompositionEasingFunction easingFunction = null)
+        Expression<CompositionExpression<T>> expression, CompositionEasingFunction? easingFunction = null)
     {
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         var result = CompositionExpressionEngine.CreateCompositionExpression(expression);
@@ -176,7 +176,7 @@ public static partial class CompositionAnimationExtensions
             // Since we cannot modify the parameters dictionary while we are inside the loop, add the key and the
             // CompositionPropertySet to the newParameters dictionary, so that the parameters dictionary can be updated 
             // once the loop completes
-            newParameters[key] = new ExpressionParameter(CompositionPropertySetExtensions.ToPropertySet(parameters[key].Reference,
+            newParameters[key] = new ExpressionParameter(CompositionPropertySetExtensions.ToPropertySet(parameters[key].Reference!,
                     animation.Compositor),
                 typeof(CompositionPropertySet));
         }
@@ -188,7 +188,7 @@ public static partial class CompositionAnimationExtensions
             {
                 parameters[item.Key] = item.Value;
                 // Set item.Value as the Reference Parameter for the animation
-                animation.SetReferenceParameter(item.Key, (CompositionObject)item.Value.Reference);
+                animation.SetReferenceParameter(item.Key, (CompositionObject)item.Value.Reference!);
             }
             // Clean up newParameters dictionary
             newParameters.Clear();

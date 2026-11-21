@@ -17,6 +17,6 @@ public partial class LoopingListEventArgs : EventArgs
 public partial class LoopingListInfo
 {
     public bool LoopingSelectorHasValue { get; set; }
-    public string SelectedItem { get; set; }
+    public string? SelectedItem { get; set; }
     public bool SelectedItemHasValue => !string.IsNullOrEmpty(SelectedItem);
 }

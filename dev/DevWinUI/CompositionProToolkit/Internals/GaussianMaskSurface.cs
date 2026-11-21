@@ -1,4 +1,4 @@
-﻿// Copyright (c) Ratish Philip 
+// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -59,7 +59,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <summary>
     /// Gets the Geometry of the GaussianMaskSurface
     /// </summary>
-    public CanvasGeometry Geometry { get; private set; }
+    public CanvasGeometry? Geometry { get; private set; }
 
     /// <summary>
     /// Gets the Size of the GaussianMaskSurface
@@ -90,7 +90,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied on the GaussianMaskSurface</param>
-    public GaussianMaskSurface(ICompositionGeneratorInternal generator, Size size, CanvasGeometry geometry, Vector2 offset, float blurRadius)
+    public GaussianMaskSurface(ICompositionGeneratorInternal generator, Size size, CanvasGeometry? geometry, Vector2 offset, float blurRadius)
     {
         _generator = generator ?? throw new ArgumentNullException(nameof(generator), "CompositionGenerator cannot be null!");
         _surfaceLock = new object();
@@ -100,7 +100,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
         // Create Mask Surface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, size);
         // Set the size
-        Size = _surface?.Size ?? new Size(0, 0);
+        Size = _surface.Size;
         // Subscribe to DeviceReplaced event
         _generator.DeviceReplaced += OnDeviceReplaced;
     }
@@ -131,7 +131,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// Redraws the GaussianMaskSurface with the new geometry
     /// </summary>
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
-    public void Redraw(CanvasGeometry geometry)
+    public void Redraw(CanvasGeometry? geometry)
     {
         Redraw(Size, geometry, Offset, BlurRadius);
     }
@@ -142,7 +142,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    public void Redraw(CanvasGeometry geometry, Vector2 offset)
+    public void Redraw(CanvasGeometry? geometry, Vector2 offset)
     {
         Redraw(Size, geometry, offset, BlurRadius);
     }
@@ -155,7 +155,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied on the IGaussianMaskSurface</param>
-    public void Redraw(CanvasGeometry geometry, Vector2 offset, float blurRadius)
+    public void Redraw(CanvasGeometry? geometry, Vector2 offset, float blurRadius)
     {
         Redraw(Size, geometry, offset, blurRadius);
     }
@@ -167,7 +167,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// </summary>
     /// <param name="size">New size of the mask</param>
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
-    public void Redraw(Size size, CanvasGeometry geometry)
+    public void Redraw(Size size, CanvasGeometry? geometry)
     {
         Redraw(size, geometry, Offset, BlurRadius);
     }
@@ -181,7 +181,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <param name="geometry">New CanvasGeometry to be applied to the mask</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    public void Redraw(Size size, CanvasGeometry geometry, Vector2 offset)
+    public void Redraw(Size size, CanvasGeometry? geometry, Vector2 offset)
     {
         Redraw(size, geometry, offset, BlurRadius);
     }
@@ -196,7 +196,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied on the GaussianMaskSurface</param>
-    public void Redraw(Size size, CanvasGeometry geometry, Vector2 offset, float blurRadius)
+    public void Redraw(Size size, CanvasGeometry? geometry, Vector2 offset, float blurRadius)
     {
         // Resize the mask surface
         _generator.ResizeDrawingSurface(_surfaceLock, _surface, size);
@@ -235,8 +235,8 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
         Geometry?.Dispose();
         if (_generator != null)
             _generator.DeviceReplaced -= OnDeviceReplaced;
-        _surface = null;
-        _generator = null;
+        _surface = null!;
+        _generator = null!;
         Geometry = null;
     }
 
@@ -249,7 +249,7 @@ internal sealed partial class GaussianMaskSurface : IGaussianMaskSurface
     /// </summary>
     /// <param name="sender">Sender</param>
     /// <param name="e">object</param>
-    private void OnDeviceReplaced(object sender, object e)
+    private void OnDeviceReplaced(object? sender, object e)
     {
         // Recreate the GaussianMaskSurface
         _surface = _generator.CreateDrawingSurface(_surfaceLock, Size);

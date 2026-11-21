@@ -7,10 +7,10 @@ public partial class RichButton : Control
     private const string PART_Button = "PART_Button";
     private const string PART_TitleStackPanel = "PART_TitleStackPanel";
 
-    private Button button;
-    private StackPanel stackPanel;
+    private Button button = null!;
+    private StackPanel stackPanel = null!;
 
-    public event EventHandler<RoutedEventArgs> Click;
+    public event EventHandler<RoutedEventArgs>? Click;
 
     public ICommand Command
     {
@@ -116,8 +116,8 @@ public partial class RichButton : Control
     {
         base.OnApplyTemplate();
 
-        button = GetTemplateChild(PART_Button) as Button;
-        stackPanel = GetTemplateChild(PART_TitleStackPanel) as StackPanel;
+        button = (GetTemplateChild(PART_Button) as Button)!;
+        stackPanel = (GetTemplateChild(PART_TitleStackPanel) as StackPanel)!;
 
         button.Click -= OnClick;
         button.Click += OnClick;

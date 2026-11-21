@@ -45,7 +45,7 @@ public static partial class TypeExtensions
     /// <param name="type">Type</param>
     /// <param name="propertyName">The name of the property.</param>
     /// <returns>An object that represents the specified property, if found; otherwise, null.</returns>
-    public static PropertyInfo GetProperty(this Type type, string propertyName)
+    public static PropertyInfo? GetProperty(this Type type, string propertyName)
     {
         return type.GetTypeInfo()?.GetDeclaredProperty(propertyName);
     }
@@ -57,7 +57,7 @@ public static partial class TypeExtensions
     /// <param name="type">Type</param>
     /// <param name="methodName">The name of the method.</param>
     /// <returns></returns>
-    public static MethodInfo GetMethod(this Type type, string methodName)
+    public static MethodInfo? GetMethod(this Type type, string methodName)
     {
         return type.GetTypeInfo()?.GetDeclaredMethod(methodName);
     }
@@ -108,7 +108,7 @@ public static partial class TypeExtensions
     /// </summary>
     /// <param name="type">Type</param>
     /// <returns>An object from which the current type is derived</returns>
-    public static Type BaseType(this Type type)
+    public static Type? BaseType(this Type type)
     {
         return type.GetTypeInfo()?.BaseType;
     }
@@ -138,7 +138,7 @@ public static partial class TypeExtensions
     /// </summary>
     /// <param name="type">Type</param>
     /// <returns>Array of types of the generic arguments for the current type</returns>
-    public static Type[] GetGenericArguments(this Type type)
+    public static Type[]? GetGenericArguments(this Type type)
     {
         return type.GetTypeInfo()?.GenericTypeArguments;
     }
@@ -150,7 +150,7 @@ public static partial class TypeExtensions
     /// <param name="instance">Object</param>
     /// <param name="propertyValue">The name of the property.</param>
     /// <returns>The property value of the specified object.</returns>
-    public static object GetPropertyValue(this object instance, string propertyValue)
+    public static object? GetPropertyValue(this object instance, string propertyValue)
     {
         return instance.GetType().GetTypeInfo()?.GetDeclaredProperty(propertyValue)?.GetValue(instance);
     }
@@ -165,7 +165,7 @@ public static partial class TypeExtensions
     /// <param name="indices">Optional index values for indexed properties. The indexes of indexed properties
     /// are zero-based. This value should be null for non-indexed properties.</param>
     /// <returns>The property value of the specified object.</returns>
-    public static object GetPropertyValue(this object instance, string propertyValue, object[] indices)
+    public static object? GetPropertyValue(this object instance, string propertyValue, object?[] indices)
     {
         return instance.GetType().GetTypeInfo()?.GetDeclaredProperty(propertyValue)?.GetValue(instance, indices);
     }
@@ -177,8 +177,7 @@ public static partial class TypeExtensions
     /// <returns>An object that represents this type</returns>
     public static TypeInfo GetTypeInfo(this Type type)
     {
-        var reflectableType = type as IReflectableType;
-        return reflectableType?.GetTypeInfo();
+        return IntrospectionExtensions.GetTypeInfo(type);
     }
 
     /// <summary>
@@ -216,7 +215,7 @@ public static partial class TypeExtensions
     /// <returns>Formatted name string</returns>
     internal static string FormattedName(this Type t, bool fullname = false)
     {
-        return fullname ? t.FullName : t.Name;
+        return fullname ? t.FullName ?? t.Name : t.Name;
     }
 }
 #pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.

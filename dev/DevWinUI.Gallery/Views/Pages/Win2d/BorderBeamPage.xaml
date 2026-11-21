@@ -15,16 +15,35 @@
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Beam">
                         <local:OptionPanel>
-                            <local:ChoiceOption x:Name="CmbPreset" Header="Colors" ItemsSource="{x:Bind Presets}" SelectedIndex="0">
+                            <local:ChoiceOption x:Name="CmbMode" Header="Mode" Value="{x:Bind dev:BorderBeamMode.Chase}" />
+                            <local:ChoiceOption x:Name="CmbPreset" Header="Color Preset" ItemsSource="{x:Bind Presets}" SelectedIndex="0">
                                 <local:ChoiceOption.ItemTemplate>
                                     <DataTemplate x:DataType="views:BeamPreset">
                                         <TextBlock Text="{x:Bind Name}" />
                                     </DataTemplate>
                                 </local:ChoiceOption.ItemTemplate>
                             </local:ChoiceOption>
+                            <local:ColorOption x:Name="ClrFrom" Header="Color From" Value="{x:Bind ((views:BeamPreset)CmbPreset.Value).From, Mode=OneWay}" />
+                            <local:ColorOption x:Name="ClrTo" Header="Color To" Value="{x:Bind ((views:BeamPreset)CmbPreset.Value).To, Mode=OneWay}" />
                             <Slider x:Name="SliderSize" Header="Size" Maximum="600" Minimum="20" Value="200" />
+                            <Slider x:Name="SliderBeamCount" Header="Beam Count" Maximum="6" Minimum="1" StepFrequency="1" Value="1" />
                             <Slider x:Name="SliderDuration" Header="Duration (seconds)" Maximum="30" Minimum="1" StepFrequency="0.5" Value="15" />
                             <Slider x:Name="SliderDelay" Header="Delay (seconds)" Maximum="10" Minimum="0" StepFrequency="0.5" Value="0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Chase">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbChaseOrigin" Header="Origin" Value="{x:Bind dev:BorderBeamOrigin.Top}" />
+                            <local:ChoiceOption x:Name="CmbChaseEdge" Header="Edge" Value="{x:Bind dev:BorderBeamEdge.LeftEdge}" />
+                            <local:ChoiceOption x:Name="CmbChaseDirection" Header="Direction" Value="{x:Bind dev:BorderBeamDirection.Clockwise}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Mirror">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbMirrorOrigin" Header="Origin" Value="{x:Bind dev:BorderBeamOrigin.Top}" />
+                            <local:ChoiceOption x:Name="CmbMirrorEdge" Header="Edge" Value="{x:Bind dev:BorderBeamEdge.Center}" />
+                            <local:ChoiceOption x:Name="CmbMirrorStart" Header="Start" Value="{x:Bind dev:BorderBeamStart.Both}" />
+                            <Slider x:Name="SliderMirrorLag" Header="Lag (seconds)" Maximum="2" Minimum="0" StepFrequency="0.1" Value="0.3" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Shape">
@@ -38,13 +57,13 @@
                     <local:Sample Title="Card">
                         <local:Sample.XamlCode>
                             <x:String>
-                                &lt;dev:BorderBeam /&gt;
+                                &lt;dev:BorderBeam ColorFrom="#FFFFAA40" ColorTo="#FF9C40FF" /&gt;
                             </x:String>
                         </local:Sample.XamlCode>
                         <Grid Width="360" Height="200" HorizontalAlignment="Center">
-                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" />
+                            <dev:BorderBeam BeamCount="{x:Bind (x:Int32)SliderBeamCount.Value, Mode=OneWay}" BorderWidth="{x:Bind SliderBorderWidth.Value, Mode=OneWay}" ChaseDirection="{x:Bind (dev:BorderBeamDirection)CmbChaseDirection.Value, Mode=OneWay}" ChaseEdge="{x:Bind (dev:BorderBeamEdge)CmbChaseEdge.Value, Mode=OneWay}" ChaseOrigin="{x:Bind (dev:BorderBeamOrigin)CmbChaseOrigin.Value, Mode=OneWay}" ColorFrom="{x:Bind ClrFrom.Value, Mode=OneWay}" ColorTo="{x:Bind ClrTo.Value, Mode=OneWay}" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" MirrorEdge="{x:Bind (dev:BorderBeamEdge)CmbMirrorEdge.Value, Mode=OneWay}" MirrorLag="{x:Bind SliderMirrorLag.Value, Mode=OneWay}" MirrorOrigin="{x:Bind (dev:BorderBeamOrigin)CmbMirrorOrigin.Value, Mode=OneWay}" MirrorStart="{x:Bind (dev:BorderBeamStart)CmbMirrorStart.Value, Mode=OneWay}" Mode="{x:Bind (dev:BorderBeamMode)CmbMode.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" Visibility="Collapsed" />
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Border Beam" />
-                            <dev:BorderBeam BorderWidth="{x:Bind SliderBorderWidth.Value, Mode=OneWay}" ColorFrom="{x:Bind ((views:BeamPreset)CmbPreset.Value).From, Mode=OneWay}" ColorTo="{x:Bind ((views:BeamPreset)CmbPreset.Value).To, Mode=OneWay}" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
                         </Grid>
                     </local:Sample>
                     <local:Sample Title="Search box">

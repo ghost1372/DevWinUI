@@ -2,13 +2,13 @@
 
 public partial class OrbitLoadingIndicator : Control
 {
-    private Compositor compositor;
-    private SpriteVisual ellipse_0;
-    private SpriteVisual ellipse_1;
-    private SpriteVisual ellipse_2;
-    private SpriteVisual ellipse_3;
-    private ICompositionGenerator generator;
-    private ContainerVisual container;
+    private Compositor compositor = null!;
+    private SpriteVisual ellipse_0 = null!;
+    private SpriteVisual ellipse_1 = null!;
+    private SpriteVisual ellipse_2 = null!;
+    private SpriteVisual ellipse_3 = null!;
+    private ICompositionGenerator generator = null!;
+    private ContainerVisual container = null!;
     private List<CompositionAnimation> animations = new List<CompositionAnimation>();
 
     public bool IsReady = false;
@@ -20,7 +20,7 @@ public partial class OrbitLoadingIndicator : Control
     }
 
     public static readonly DependencyProperty IsBusyProperty =
-        DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(OrbitLoadingIndicator), new PropertyMetadata(false, (d, e) => (d as OrbitLoadingIndicator).Invalidate()));
+        DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(OrbitLoadingIndicator), new PropertyMetadata(false, (d, e) => (d as OrbitLoadingIndicator)?.Invalidate()));
     public Color? IndicatorColor
     {
         get => (Color?)GetValue(IndicatorColorProperty);
@@ -35,7 +35,7 @@ public partial class OrbitLoadingIndicator : Control
         var control = (OrbitLoadingIndicator)d;
         control.UpdateIndicatorColor(e.NewValue);
     }
-    private void UpdateIndicatorColor(object newColor)
+    private void UpdateIndicatorColor(object? newColor)
     {
         if (!IsReady) return;
 

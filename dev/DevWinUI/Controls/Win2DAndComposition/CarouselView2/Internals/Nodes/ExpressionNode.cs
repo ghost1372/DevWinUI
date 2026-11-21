@@ -126,7 +126,7 @@ internal abstract partial class ExpressionNode : IDisposable
             _objRefList = new List<ReferenceInfo>();
             foreach (var refNode in referenceNodes)
             {
-                string nodeName = refNode.GetReferenceNodeString();
+                string? nodeName = refNode.GetReferenceNodeString();
 
                 if ((refNode.Reference == null) && (nodeName == null))
                 {
@@ -282,7 +282,7 @@ internal abstract partial class ExpressionNode : IDisposable
 
     private string ToExpressionStringInternal()
     {
-        string ret;
+        string? ret = null;
 
         // Do a recursive depth-first traversal of the node tree to print out the full expression string
         switch (GetOperationKind())
@@ -415,7 +415,7 @@ internal abstract partial class ExpressionNode : IDisposable
                 throw new Exception($"Unexpected operation type ({GetOperationKind()}), nodeType = {NodeType}");
         }
 
-        return ret;
+        return ret ?? throw new InvalidOperationException("The expression node did not produce a string.");
     }
 
 
@@ -432,17 +432,17 @@ internal abstract partial class ExpressionNode : IDisposable
         public CompositionObject CompObject { get; set; }
     }
 
-    internal string PropertyName { get; set; }
+    internal string? PropertyName { get; set; }
 
     internal ExpressionNodeType NodeType { get; set; }
 
     internal List<ExpressionNode> Children { get; set; } = new List<ExpressionNode>();
 
-    internal string ParamName { get; set; }
+    internal string? ParamName { get; set; }
 
-    internal string NodeName { get; set; }
+    internal string? NodeName { get; set; }
 
-    internal ExpressionAnimation ExpressionAnimation { get; set; }
+    internal ExpressionAnimation? ExpressionAnimation { get; set; }
 
     protected internal string[]? Subchannels { get; set; }
 }

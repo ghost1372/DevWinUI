@@ -28,30 +28,30 @@ public partial class LoopingList : Control
     private const string PART_FirstTextBlock = "PART_FirstTextBlock";
     private const string PART_HeaderContentPresenter = "PART_HeaderContentPresenter";
 
-    private LoopingListFlyout flyout;
+    private LoopingListFlyout flyout = null!;
 
-    private ColumnDefinition gridFirstColumn;
-    private ColumnDefinition gridSecondColumn;
-    private ColumnDefinition gridThirdColumn;
+    private ColumnDefinition gridFirstColumn = null!;
+    private ColumnDefinition gridSecondColumn = null!;
+    private ColumnDefinition gridThirdColumn = null!;
 
-    private TextBlock primaryTextBlock;
-    private TextBlock secondaryTextBlock;
-    private TextBlock tertiaryTextBlock;
+    private TextBlock primaryTextBlock = null!;
+    private TextBlock secondaryTextBlock = null!;
+    private TextBlock tertiaryTextBlock = null!;
 
-    private Rectangle firstColumnDivider;
-    private Rectangle secondColumnDivider;
+    private Rectangle firstColumnDivider = null!;
+    private Rectangle secondColumnDivider = null!;
 
-    private Border secondPickerHost;
-    private Border thirdPickerHost;
+    private Border secondPickerHost = null!;
+    private Border thirdPickerHost = null!;
 
-    private ContentPresenter headerContentPresenter;
+    private ContentPresenter headerContentPresenter = null!;
 
-    private LoopingSelector primarySelector = null;
-    private LoopingSelector secondarySelector = null;
-    private LoopingSelector tertiarySelector = null;
+    private LoopingSelector primarySelector = null!;
+    private LoopingSelector secondarySelector = null!;
+    private LoopingSelector tertiarySelector = null!;
 
-    public event EventHandler<LoopingListEventArgs> Accepted;
-    public event EventHandler<RoutedEventArgs> Dismissed;
+    public event EventHandler<LoopingListEventArgs>? Accepted;
+    public event EventHandler<RoutedEventArgs>? Dismissed;
 
     private bool HasValue;
     public LoopingList()
@@ -63,19 +63,20 @@ public partial class LoopingList : Control
     {
         base.OnApplyTemplate();
 
-        primaryTextBlock = GetTemplateChild(PART_FirstTextBlock) as TextBlock;
-        secondaryTextBlock = GetTemplateChild(PART_SecondTextBlock) as TextBlock;
-        tertiaryTextBlock = GetTemplateChild(PART_ThirdTextBlock) as TextBlock;
-        gridFirstColumn = GetTemplateChild(PART_FirstTextBlockColumn) as ColumnDefinition;
-        gridSecondColumn = GetTemplateChild(PART_SecondTextBlockColumn) as ColumnDefinition;
-        gridThirdColumn = GetTemplateChild(PART_ThirdTextBlockColumn) as ColumnDefinition;
-        firstColumnDivider = GetTemplateChild(PART_FirstColumnDivider) as Rectangle;
-        secondColumnDivider = GetTemplateChild(PART_SecondColumnDivider) as Rectangle;
-        secondPickerHost = GetTemplateChild(PART_SecondPickerHost) as Border;
-        thirdPickerHost = GetTemplateChild(PART_ThirdPickerHost) as Border;
-        headerContentPresenter = GetTemplateChild(PART_HeaderContentPresenter) as ContentPresenter;
+        primaryTextBlock = (GetTemplateChild(PART_FirstTextBlock) as TextBlock)!;
+        secondaryTextBlock = (GetTemplateChild(PART_SecondTextBlock) as TextBlock)!;
+        tertiaryTextBlock = (GetTemplateChild(PART_ThirdTextBlock) as TextBlock)!;
+        gridFirstColumn = (GetTemplateChild(PART_FirstTextBlockColumn) as ColumnDefinition)!;
+        gridSecondColumn = (GetTemplateChild(PART_SecondTextBlockColumn) as ColumnDefinition)!;
+        gridThirdColumn = (GetTemplateChild(PART_ThirdTextBlockColumn) as ColumnDefinition)!;
+        firstColumnDivider = (GetTemplateChild(PART_FirstColumnDivider) as Rectangle)!;
+        secondColumnDivider = (GetTemplateChild(PART_SecondColumnDivider) as Rectangle)!;
+        secondPickerHost = (GetTemplateChild(PART_SecondPickerHost) as Border)!;
+        thirdPickerHost = (GetTemplateChild(PART_ThirdPickerHost) as Border)!;
+        headerContentPresenter = (GetTemplateChild(PART_HeaderContentPresenter) as ContentPresenter)!;
 
-        var btnFlyout = GetTemplateChild(PART_FlyoutButton) as Button;
+        var btnFlyout = GetTemplateChild(PART_FlyoutButton) as Button
+            ?? throw new InvalidOperationException($"The template must contain a Button named '{PART_FlyoutButton}'.");
         
         var selectors = CreateLoopingSelectors();
 
@@ -171,7 +172,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = PrimaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = PrimaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void PrimaySelectorChanged(object sender, SelectionChangedEventArgs args)
@@ -193,7 +194,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = SecondaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = SecondaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void SecondarySelectorChanged(object sender, SelectionChangedEventArgs args)
@@ -215,7 +216,7 @@ public partial class LoopingList : Control
                 ItemHeight = 40,
                 Padding = new Thickness(0, 3, 0, 6),
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Items = TertiaryItems.Select(x => new LoopingSelectorItem { PrimaryText = x } as object).ToList()
+                Items = TertiaryItems.Select(x => (object)new LoopingSelectorItem { PrimaryText = x }).ToList()
             };
 
             void TertiarySelectorChanged(object sender, SelectionChangedEventArgs args)
@@ -303,7 +304,7 @@ public partial class LoopingList : Control
                 var item = PrimaryItems.Where(x => x.ToLower().Equals(PrimarySelectedItem.ToLower())).FirstOrDefault();
                 primaryTextBlock.Text = item;
 
-                primarySelector.SelectedIndex = PrimaryItems.IndexOf(item);
+                primarySelector.SelectedIndex = PrimaryItems.IndexOf(item!);
             }
             else
             {
@@ -322,7 +323,7 @@ public partial class LoopingList : Control
             {
                 var item = SecondaryItems.Where(x => x.ToLower().Equals(SecondarySelectedItem.ToLower())).FirstOrDefault();
                 secondaryTextBlock.Text = item;
-                secondarySelector.SelectedIndex = SecondaryItems.IndexOf(item);
+                secondarySelector.SelectedIndex = SecondaryItems.IndexOf(item!);
             }
             else
             {
@@ -341,7 +342,7 @@ public partial class LoopingList : Control
             {
                 var item = TertiaryItems.Where(x => x.ToLower().Equals(TertiarySelectedItem.ToLower())).FirstOrDefault();
                 tertiaryTextBlock.Text = item;
-                tertiarySelector.SelectedIndex = TertiaryItems.IndexOf(item);
+                tertiarySelector.SelectedIndex = TertiaryItems.IndexOf(item!);
             }
             else
             {
@@ -351,13 +352,13 @@ public partial class LoopingList : Control
         }
     }
 
-    private void OnDismissButton(object sender, RoutedEventArgs e)
+    private void OnDismissButton(object? sender, RoutedEventArgs e)
     {
         Dismissed?.Invoke(this, e);
         flyout.Hide();
     }
 
-    private void OnAcceptButton(object sender, LoopingListEventArgs e)
+    private void OnAcceptButton(object? sender, LoopingListEventArgs e)
     {
         Accepted?.Invoke(this, e);
 

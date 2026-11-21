@@ -4,7 +4,7 @@
 public partial class AccordionItem : ContentControl
 {
     private const string PART_Header = "PART_Header";
-    private ContentControl _header = null;
+    private ContentControl? _header = null;
     public int Index { get; set; }
     public bool IsUp { get; set; }
     public double HeaderHeight
@@ -26,9 +26,9 @@ public partial class AccordionItem : ContentControl
 
     public static readonly DependencyProperty HeaderProperty =
         DependencyProperty.Register(nameof(Header), typeof(object), typeof(AccordionItem), new PropertyMetadata(null));
-    public DataTemplate HeaderTemplate
+    public DataTemplate? HeaderTemplate
     {
-        get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+        get { return GetValue(HeaderTemplateProperty) as DataTemplate; }
         set { SetValue(HeaderTemplateProperty, value); }
     }
 

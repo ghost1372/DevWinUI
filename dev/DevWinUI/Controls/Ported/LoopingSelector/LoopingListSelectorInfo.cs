@@ -48,7 +48,7 @@ internal partial class LoopingListSelectorInfo : ContentControl
 
     // The parent is used by the AutomationPeer for ScrollIntoView
     // and Selection. We don't keep a strong to prevent cycles.
-    private LoopingSelector _pParentNoRef;
+    private LoopingSelector _pParentNoRef = null!;
 
     // There's no way to know if an AP has been created except to
     // keep track with an internal boolean.
@@ -57,7 +57,6 @@ internal partial class LoopingListSelectorInfo : ContentControl
 	{
 		_state = State.Normal;
 		_visualIndex = 0;
-		_pParentNoRef = null;
 		_hasPeerBeenCreated = false;
 
 		InitializeImpl();
@@ -169,7 +168,7 @@ internal partial class LoopingListSelectorInfo : ContentControl
 
 	void GoToState(State newState, bool useTransitions)
 	{
-		string strState = null;
+		string strState = string.Empty;
 
 		switch (newState)
 		{
@@ -219,36 +218,23 @@ internal partial class LoopingListSelectorInfo : ContentControl
 
 	internal void AutomationSelect()
 	{
-		LoopingSelector pLoopingSelectorNoRef = null;
+		LoopingSelector pLoopingSelectorNoRef;
 		GetParentNoRef(out pLoopingSelectorNoRef);
 		pLoopingSelectorNoRef.AutomationScrollToVisualIdx(_visualIndex, true /* ignoreScrollingState */);
 	}
 
-	internal void AutomationGetSelectionContainerUIAPeer(out AutomationPeer ppPeer)
+	internal void AutomationGetSelectionContainerUIAPeer(out AutomationPeer? ppPeer)
 	{
-		//wrl.ComPtr<xaml.Automation.Peers.FrameworkElementAutomationPeerStatics> spAutomationPeerStatics;
-		AutomationPeer spAutomationPeer;
-		UIElement spLoopingSelectorAsUI;
-		LoopingSelector pLoopingSelectorNoRef = null;
+		ppPeer = null;
+		LoopingSelector pLoopingSelectorNoRef;
 
 		GetParentNoRef(out pLoopingSelectorNoRef);
-		//(pLoopingSelectorNoRef.QueryInterface(
-		//	__uuidof(UIElement),
-		//	&spLoopingSelectorAsUI));
-		spLoopingSelectorAsUI = this;
-
-		//(wf.GetActivationFactory(
-		//	  wrl_wrappers.Hstring(RuntimeClass_Microsoft_UI_Xaml_Automation_Peers_FrameworkElementAutomationPeer),
-		//	  &spAutomationPeerStatics));
-		//spAutomationPeerStatics.CreatePeerForElement(spLoopingSelectorAsUI, &spAutomationPeer);
-		spAutomationPeer = FrameworkElementAutomationPeer.CreatePeerForElement(spLoopingSelectorAsUI);
-		//spAutomationPeer.CopyTo(ppPeer);
-		ppPeer = spAutomationPeer;
+		ppPeer = FrameworkElementAutomationPeer.CreatePeerForElement(pLoopingSelectorNoRef);
 	}
 
 	internal void AutomationGetIsSelected(out bool value)
 	{
-		LoopingSelector loopingSelectorNoRef = null;
+		LoopingSelector loopingSelectorNoRef;
 		int selectedIdx;
 
 		GetParentNoRef(out loopingSelectorNoRef);
@@ -265,8 +251,8 @@ internal partial class LoopingListSelectorInfo : ContentControl
 		if (_hasPeerBeenCreated)
 		{
 			AutomationPeer spAutomationPeer;
-			LoopingSelectorItemAutomationPeer spLSIAP;
-			LoopingSelectorItemAutomationPeer pLSIAP;
+			LoopingSelectorItemAutomationPeer? spLSIAP;
+			LoopingSelectorItemAutomationPeer? pLSIAP;
 			UIElement spThisAsUI;
 			//wrl.ComPtr<xaml_automation_peers.FrameworkElementAutomationPeerStatics> spAutomationPeerStatics;
 
@@ -283,8 +269,8 @@ internal partial class LoopingListSelectorInfo : ContentControl
 			spLSIAP = spAutomationPeer as LoopingSelectorItemAutomationPeer;
 			pLSIAP = spLSIAP;
 
-			pLSIAP.UpdateEventSource();
-			pLSIAP.UpdateItemIndex(itemIndex);
+			pLSIAP?.UpdateEventSource();
+			pLSIAP?.UpdateItemIndex(itemIndex);
 		}
 	}
 }

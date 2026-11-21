@@ -8,7 +8,6 @@ using Microsoft.UI.Xaml.Markup;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
-using WinRT;
 
 namespace DevWinUI;
 

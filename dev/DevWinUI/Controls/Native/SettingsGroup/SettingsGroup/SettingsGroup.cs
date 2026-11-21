@@ -16,11 +16,11 @@ public partial class SettingsGroup : Control
     private const string PartHeaderPresenter = "PART_HeaderPresenter";
     private const string PartDescriptionPresenter = "PART_DescriptionPresenter";
     private const string PartRootGrid = "PART_RootGrid";
-    private ContentPresenter _contentPresenter;
-    private ContentPresenter _descriptionPresenter;
-    private ContentPresenter _headerPresenter;
-    private Grid _rootGrid;
-    private SettingsGroup _settingsGroup;
+    private ContentPresenter _contentPresenter = null!;
+    private ContentPresenter _descriptionPresenter = null!;
+    private ContentPresenter _headerPresenter = null!;
+    private Grid _rootGrid = null!;
+    private SettingsGroup _settingsGroup = null!;
 
     public SettingsGroup()
     {
@@ -29,7 +29,7 @@ public partial class SettingsGroup : Control
         Items.CollectionChanged += Items_CollectionChanged;
     }
 
-    private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private void Items_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         OnItemsChanged();
     }

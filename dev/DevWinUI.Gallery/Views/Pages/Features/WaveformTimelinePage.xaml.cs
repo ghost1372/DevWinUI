@@ -5,7 +5,7 @@ namespace DevWinUIGallery.Views;
 
 public sealed partial class WaveformTimelinePage : Page
 {
-    private AudioGraphEngine soundEngine;
+    private readonly AudioGraphEngine soundEngine;
     public WaveformTimelinePage()
     {
         InitializeComponent();
@@ -53,7 +53,7 @@ public sealed partial class WaveformTimelinePage : Page
 
     private async void BtnOpenBuiltIn_Click(object sender, RoutedEventArgs e)
     {
-        StorageFile sampleStorageFile = null;
+        StorageFile sampleStorageFile;
 
         WaveformTimelineSample.RegisterSoundPlayer(soundEngine);
 

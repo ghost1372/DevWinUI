@@ -6,15 +6,15 @@ public partial class Bubble : IDisposable
 {
     private static readonly Random rnd = new();
 
-    private static CompositionEasingFunction easing;
-    private CompositionAnimationGroup _animations;
-    private CompositionSurfaceBrush _brush;
+    private static CompositionEasingFunction? easing;
+    private CompositionAnimationGroup? _animations;
+    private CompositionSurfaceBrush? _brush;
     private CanvasDevice _canvasDevice;
 
     private readonly Compositor _compositor;
     private readonly CompositionGraphicsDevice _graphicsDevice;
-    private CompositionDrawingSurface _surface;
-    private SpriteVisual _visual;
+    private CompositionDrawingSurface? _surface;
+    private SpriteVisual? _visual;
     private readonly Vector3 Offset;
     private readonly Vector2 Size;
 
@@ -80,7 +80,9 @@ public partial class Bubble : IDisposable
         }
 
         _brush = _compositor.CreateSurfaceBrush(_surface);
-        _visual.Brush = _brush;
+
+        if (_visual != null)
+            _visual.Brush = _brush;
     }
 
     private void CreateAnimation(Size TargetSize, Vector3 StartOffset, bool OnTop, TimeSpan Duration)
@@ -118,11 +120,15 @@ public partial class Bubble : IDisposable
 
     public void AddTo(ContainerVisual container)
     {
-        container.Children.InsertAtBottom(_visual);
+        if (_visual != null)
+            container.Children.InsertAtBottom(_visual);
     }
 
     public void Start()
     {
+        if (_visual == null || _animations == null)
+            return;
+
         _visual.StopAnimationGroup(_animations);
         _visual.StartAnimationGroup(_animations);
     }

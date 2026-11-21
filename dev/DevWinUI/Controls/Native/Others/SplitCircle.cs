@@ -11,10 +11,10 @@ public sealed partial class SplitCircle : Control
     private const string PART_SecondFigure = "PART_SecondFigure";
     private const string PART_SecondArc = "PART_SecondArc";
 
-    private PathFigure firstFigure;
-    private PathFigure secondFigure;
-    private ArcSegment firstArc;
-    private ArcSegment secondArc;
+    private PathFigure firstFigure = null!;
+    private PathFigure secondFigure = null!;
+    private ArcSegment firstArc = null!;
+    private ArcSegment secondArc = null!;
 
     public bool ShowMicaLayer
     {
@@ -104,11 +104,11 @@ public sealed partial class SplitCircle : Control
     {
         base.OnApplyTemplate();
 
-        firstFigure = GetTemplateChild(PART_FirstFigure) as PathFigure;
-        firstArc = GetTemplateChild(PART_FirstArc) as ArcSegment;
+        firstFigure = (GetTemplateChild(PART_FirstFigure) as PathFigure)!;
+        firstArc = (GetTemplateChild(PART_FirstArc) as ArcSegment)!;
 
-        secondFigure = GetTemplateChild(PART_SecondFigure) as PathFigure;
-        secondArc = GetTemplateChild(PART_SecondArc) as ArcSegment;
+        secondFigure = (GetTemplateChild(PART_SecondFigure) as PathFigure)!;
+        secondArc = (GetTemplateChild(PART_SecondArc) as ArcSegment)!;
 
         UpdateSplitOrientation();
     }

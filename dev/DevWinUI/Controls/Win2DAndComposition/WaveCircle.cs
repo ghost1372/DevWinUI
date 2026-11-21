@@ -62,9 +62,9 @@ public partial class WaveCircle : FrameworkElement
         }
     }
 
-    private ContainerVisual _containerVisual;
-    private CompositionColorBrush _colorBrush;
-    private Visual _visual;
+    private ContainerVisual? _containerVisual;
+    private CompositionColorBrush? _colorBrush;
+    private Visual? _visual;
     public WaveCircle()
     {
         SizeChanged -= OnSizeChanged;
@@ -103,7 +103,7 @@ public partial class WaveCircle : FrameworkElement
         }
     }
 
-    public Visual GetVisual()
+    public Visual? GetVisual()
     {
         return _visual;
     }

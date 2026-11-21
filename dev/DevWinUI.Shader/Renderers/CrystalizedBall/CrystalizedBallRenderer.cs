@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using ComputeSharp;
 using ComputeSharp.D2D1.WinUI;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;

@@ -77,16 +77,16 @@ public partial class LoopingSelector : Control
 	private static int c_automationSmallIncrement = 1;
 	//private static double c_targetScreenWidth;
 
-	private LoopingSelectorPanel _tpPanel;
-	private ScrollViewer _tpScrollViewer;
+	private LoopingSelectorPanel? _tpPanel;
+	private ScrollViewer? _tpScrollViewer;
 	//private ScrollViewerPrivate _tpScrollViewerPrivate;
-	private ScrollViewer _tpScrollViewerPrivate;
-	private Microsoft.UI.Xaml.Controls.Primitives.ButtonBase _tpUpButton;
-	private Microsoft.UI.Xaml.Controls.Primitives.ButtonBase _tpDownButton;
+	private ScrollViewer? _tpScrollViewerPrivate;
+	private Microsoft.UI.Xaml.Controls.Primitives.ButtonBase? _tpUpButton;
+	private Microsoft.UI.Xaml.Controls.Primitives.ButtonBase? _tpDownButton;
 
 	// We keep a weak to the AP when it is created in order to be able
 	// to update the map of items to data automation peers it maintains.
-	private WeakReference<LoopingSelectorAutomationPeer> _wrAP;
+	private WeakReference<LoopingSelectorAutomationPeer>? _wrAP;
 
 	// We subscribe to the routed Got/LostFocus events. Focus moving between
 	// subelements generates both a Lost and Got event. This boolean

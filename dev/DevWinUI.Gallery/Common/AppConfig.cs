@@ -12,5 +12,5 @@ public partial class AppConfig : NotifiyingJsonSettings, IVersionable
 
     public override string FileName { get; set; } = Constants.AppConfigPath;
     public bool UseDeveloperMode { get; set; } = true;
-    public string LastUpdateCheck { get; set; }
+    public string? LastUpdateCheck { get; set; }
 }

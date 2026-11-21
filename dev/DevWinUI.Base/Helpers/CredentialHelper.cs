@@ -86,7 +86,7 @@ public static partial class CredentialHelper
     /// <param name="resource">Specifies the resource for which the password credential is being retrieved.</param>
     /// <param name="username">Indicates the user for whom the password credential is being fetched.</param>
     /// <returns>Returns the password credential if found, otherwise returns null.</returns>
-    public static PasswordCredential GetPasswordCredential(string resource, string username)
+    public static PasswordCredential? GetPasswordCredential(string resource, string username)
     {
         if (string.IsNullOrEmpty(resource) || string.IsNullOrEmpty(username))
         {

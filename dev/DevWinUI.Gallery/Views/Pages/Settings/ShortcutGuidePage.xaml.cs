@@ -3,7 +3,7 @@
 public sealed partial class ShortcutGuidePage : Page
 {
     private Shortcut c = new Shortcut();
-    private ContentDialog shortcutDialog;
+    private ContentDialog? shortcutDialog;
     bool canClose = false;
     public ShortcutGuidePage()
     {
@@ -58,12 +58,12 @@ public sealed partial class ShortcutGuidePage : Page
     }
     private void EnableKeys()
     {
-        shortcutDialog.IsPrimaryButtonEnabled = true;
+        shortcutDialog?.IsPrimaryButtonEnabled = true;
         c.IsError = false;
     }
     private void DisableKeys()
     {
-        shortcutDialog.IsPrimaryButtonEnabled = false;
+        shortcutDialog?.IsPrimaryButtonEnabled = false;
         c.IsError = true;
     }
 }

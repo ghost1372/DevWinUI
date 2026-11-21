@@ -13,7 +13,7 @@ public partial class SettingsGroup : Control
         DependencyProperty.Register(nameof(RootGridCornerRadius), typeof(CornerRadius), typeof(SettingsGroup), new PropertyMetadata(new CornerRadius(0)));
     private CornerRadius GetRootGridCornerRadius()
     {
-        return (CornerRadius)new Bool2CornerRadiusConverter().Convert(Items?.Count, null, null, null);
+        return (CornerRadius)new Bool2CornerRadiusConverter().Convert(Items?.Count!, null!, null!, null!);
     }
     public ObservableCollection<object> Items
     {

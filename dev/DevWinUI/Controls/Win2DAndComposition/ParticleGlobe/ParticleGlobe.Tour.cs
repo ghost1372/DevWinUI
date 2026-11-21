@@ -10,9 +10,9 @@ public sealed partial class ParticleGlobe
     private float _tourDwell = 3f, _tourZoom = 1.8f, _tourDim = 0.65f, _tourSweep = 0.6f;
     private bool _tourOrbit = true, _tourDof = true, _tourLoop = true;
 
-    public event EventHandler<ParticleGlobeMarkerEventArgs> TourMarkerReached;
+    public event EventHandler<ParticleGlobeMarkerEventArgs>? TourMarkerReached;
 
-    public event EventHandler TourEnded;
+    public event EventHandler? TourEnded;
 
     public bool IsTourActive => _tourActive;
 

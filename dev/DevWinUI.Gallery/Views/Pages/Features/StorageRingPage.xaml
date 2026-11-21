@@ -27,7 +27,7 @@
                         &lt;dev:StorageRing Value="25" /&gt;
                     </x:String>
                 </local:ControlExample.XamlCode>
-                <dev:StorageRing MaxAngle="{x:Bind SlMaxAngle.Value, Mode=OneWay}" MinAngle="{x:Bind SlMinAngle.Value, Mode=OneWay}" PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackRingThickness="{x:Bind SlTrackRingThickness.Value, Mode=OneWay}" ValueRingThickness="{x:Bind SlValueRingThickness.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
+                <dev:StorageRing Width="150" Height="150" MaxAngle="{x:Bind SlMaxAngle.Value, Mode=OneWay}" MinAngle="{x:Bind SlMinAngle.Value, Mode=OneWay}" PercentCaution="{x:Bind SlPercentCaution.Value, Mode=OneWay}" PercentCritical="{x:Bind SlPercentCritical.Value, Mode=OneWay}" TrackRingThickness="{x:Bind SlTrackRingThickness.Value, Mode=OneWay}" ValueRingThickness="{x:Bind SlValueRingThickness.Value, Mode=OneWay}" Value="{x:Bind SlValue.Value, Mode=OneWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>

@@ -11,15 +11,15 @@ public partial class TextGlitchEffect2 : Control
     private static readonly List<(double, double)> SecondaryHeightKeyFrames = new() { (0, 110), (20, 112.5), (35, 30), (50, 100), (60, 50), (70, 85), (80, 55), (100, 1) };
 
     private string PART_TextBackground = "PART_TextBackground";
-    private Rectangle _rectangle;
-    private Compositor _compositor;
+    private Rectangle? _rectangle;
+    private Compositor? _compositor;
     private Compositor Compositor => _compositor ??= ElementCompositionPreview.GetElementVisual(this).Compositor;
-    private TextToBrushWrapper primaryWrapper;
-    private TextToBrushWrapper secondaryWrapper;
-    private TextToBrushWrapper tertiaryWrapper;
-    private SpriteVisual lineVisual;
-    private Storyboard _storyboard1;
-    private Storyboard _storyboard2;
+    private TextToBrushWrapper? primaryWrapper;
+    private TextToBrushWrapper? secondaryWrapper;
+    private TextToBrushWrapper? tertiaryWrapper;
+    private SpriteVisual? lineVisual;
+    private Storyboard? _storyboard1;
+    private Storyboard? _storyboard2;
     private Size _lastSize;
     private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -71,7 +71,7 @@ public partial class TextGlitchEffect2 : Control
         }
     }
 
-    public Rectangle GetRectangle()
+    public Rectangle? GetRectangle()
     {
         return _rectangle;
     }
@@ -228,7 +228,7 @@ public partial class TextGlitchEffect2 : Control
         visual.StartAnimation(nameof(CompositionSurfaceBrush.Offset), offsetAnimation);
     }
 
-    private void StopAnimation(SpriteVisual visual)
+    private void StopAnimation(SpriteVisual? visual)
     {
         if (visual != null)
         {

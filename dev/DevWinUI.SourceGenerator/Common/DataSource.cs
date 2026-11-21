@@ -5,7 +5,7 @@ namespace DevWinUI;
 
 internal partial class Root
 {
-    public ObservableCollection<DataGroup> Groups { get; set; }
+    public ObservableCollection<DataGroup> Groups { get; set; } = new();
 }
 [JsonSourceGenerationOptions(PropertyNameCaseInsensitive = true)]
 [JsonSerializable(typeof(Root))]

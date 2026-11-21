@@ -7,11 +7,11 @@ public partial class AnimatedImage : Control
     private const string PART_BottomImage = "PART_BottomImage";
     private const string PART_TopImage = "PART_TopImage";
 
-    private Image _bottomImage;
-    private Image _topImage;
-    private Compositor _compositor;
-    private ScalarKeyFrameAnimation _opacityAnimation;
-    private CompositionScopedBatch _currentBatch;
+    private Image _bottomImage = null!;
+    private Image _topImage = null!;
+    private Compositor _compositor = null!;
+    private ScalarKeyFrameAnimation _opacityAnimation = null!;
+    private CompositionScopedBatch? _currentBatch;
 
     public Uri ImageUrl
     {
@@ -58,8 +58,8 @@ public partial class AnimatedImage : Control
     {
         base.OnApplyTemplate();
 
-        _bottomImage = GetTemplateChild(PART_BottomImage) as Image;
-        _topImage = GetTemplateChild(PART_TopImage) as Image;
+        _bottomImage = (GetTemplateChild(PART_BottomImage) as Image)!;
+        _topImage = (GetTemplateChild(PART_TopImage) as Image)!;
 
         if (_bottomImage == null || _topImage == null)
             return;

@@ -10,11 +10,11 @@ namespace DevWinUIGallery.Common;
 
 public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDisposable
 {
-    public event Action<float[]> SpectrumDataUpdated;
+    public event Action<float[]>? SpectrumDataUpdated;
 
-    private AudioGraph _graph;
-    private AudioDeviceInputNode _input;
-    private AudioFrameOutputNode _output;
+    private AudioGraph? _graph;
+    private AudioDeviceInputNode? _input;
+    private AudioFrameOutputNode? _output;
 
     private const int FftLength = 2048;
 
@@ -23,20 +23,23 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
     private readonly Complex[] _fftL = new Complex[FftLength];
     private readonly Complex[] _fftR = new Complex[FftLength];
 
-    private float[] _window;
+    private static readonly float[] Window = CreateWindow();
 
     private int _sampleRate;
     private bool _running;
 
     public int Gain { get; set; } = 1;
 
-    private float[] _bufferA;
-    private float[] _bufferB;
-
     private float[] _writeBuffer;
     private float[] _readBuffer;
 
     private readonly object _swapLock = new();
+
+    public AudioGraphSpectrumAnalyzer()
+    {
+        _writeBuffer = new float[FftLength];
+        _readBuffer = new float[FftLength];
+    }
 
     /// <summary>
     /// Always safe snapshot for UI (Canvas Draw/Update polling).
@@ -68,15 +71,20 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
         void GetBuffer(out byte* buffer, out uint capacity);
     }
 
+    private static float[] CreateWindow()
+    {
+        var window = new float[FftLength];
+
+        for (int i = 0; i < FftLength; i++)
+            window[i] = (float)(0.54 - 0.46 * Math.Cos(2 * Math.PI * i / (FftLength - 1)));
+
+        return window;
+    }
+
     private async Task StartInternalAsync()
     {
         if (_running)
             return;
-
-        _window = new float[FftLength];
-
-        for (int i = 0; i < FftLength; i++)
-            _window[i] = (float)(0.54 - 0.46 * Math.Cos(2 * Math.PI * i / (FftLength - 1)));
 
         var settings = new AudioGraphSettings(AudioRenderCategory.Media)
         {
@@ -88,33 +96,39 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
         if (graphResult.Status != AudioGraphCreationStatus.Success)
             return;
 
-        _graph = graphResult.Graph;
-        _sampleRate = (int)_graph.EncodingProperties.SampleRate;
+        var graph = graphResult.Graph;
+        _graph = graph;
+        _sampleRate = (int)graph.EncodingProperties.SampleRate;
 
-        var inputResult = await _graph.CreateDeviceInputNodeAsync(
+        var inputResult = await graph.CreateDeviceInputNodeAsync(
             MediaCategory.Other,
-            _graph.EncodingProperties);
+            graph.EncodingProperties);
 
         if (inputResult.Status != AudioDeviceNodeCreationStatus.Success)
             return;
 
-        _input = inputResult.DeviceInputNode;
+        var input = inputResult.DeviceInputNode;
+        var output = graph.CreateFrameOutputNode();
 
-        _output = _graph.CreateFrameOutputNode();
-        _input.AddOutgoingConnection(_output);
+        _input = input;
+        _output = output;
 
-        _graph.QuantumProcessed += OnQuantumProcessed;
+        input.AddOutgoingConnection(output);
+
+        graph.QuantumProcessed += OnQuantumProcessed;
 
         _running = true;
-        _graph.Start();
+        graph.Start();
     }
 
     private unsafe void OnQuantumProcessed(AudioGraph sender, object args)
     {
-        if (!_running)
+        var output = _output;
+
+        if (!_running || output is null)
             return;
 
-        using var frame = _output.GetFrame();
+        using var frame = output.GetFrame();
         using var buffer = frame.LockBuffer(AudioBufferAccessMode.Read);
         using var reference = buffer.CreateReference();
 
@@ -134,7 +148,7 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
 
         for (int i = 0; i < FftLength; i++)
         {
-            float w = (float)_window[i];
+            float w = Window[i];
             _fftL[i] = new Complex(_left[i] * w, 0);
             _fftR[i] = new Complex(_right[i] * w, 0);
         }
@@ -143,8 +157,6 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
         FFT(_fftR);
 
         int bins = FftLength / 2;
-
-        EnsureBuffers(bins);
 
         var write = _writeBuffer;
 
@@ -167,24 +179,9 @@ public sealed partial class AudioGraphSpectrumAnalyzer : ISpectrumAnalyzer, IDis
         SpectrumDataUpdated?.Invoke(_readBuffer);
     }
 
-    private void EnsureBuffers(int size)
-    {
-        int len = size * 2;
-
-        if (_bufferA == null || _bufferA.Length != len)
-        {
-            _bufferA = new float[len];
-            _bufferB = new float[len];
-
-            _writeBuffer = _bufferA;
-            _readBuffer = _bufferB;
-        }
-    }
-
     private static void FFT(Complex[] buffer)
     {
         int n = buffer.Length;
-        int bits = (int)Math.Log2(n);
 
         for (int j = 1, i = 0; j < n; j++)
         {

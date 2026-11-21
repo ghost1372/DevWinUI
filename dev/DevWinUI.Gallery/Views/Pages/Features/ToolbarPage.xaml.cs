@@ -8,20 +8,20 @@ public sealed partial class ToolbarPage : Page
         {
             Label = "Cut",
             ItemType = ToolbarItemTypes.Button,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Cut"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Cut"]
         },
         new ToolbarItem()
         {
             Label = "Copy",
             ItemType = ToolbarItemTypes.Button,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Copy"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Copy"]
         },
         new ToolbarItem()
         {
             Label = "Paste",
             ItemType = ToolbarItemTypes.Button,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Paste"] as Style
-        },        
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Paste"]
+        },
          new ToolbarItem()
         {
             ItemType = ToolbarItemTypes.Separator,
@@ -30,13 +30,13 @@ public sealed partial class ToolbarPage : Page
         {
             Label = "Rename",
             ItemType = ToolbarItemTypes.Button,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Rename"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Rename"]
         },
          new ToolbarItem()
         {
             Label = "Refresh",
             ItemType = ToolbarItemTypes.Button,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Refresh"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Refresh"]
         },
          new ToolbarItem()
         {
@@ -46,19 +46,19 @@ public sealed partial class ToolbarPage : Page
         {
             Label = "Cut",
             ItemType = ToolbarItemTypes.ToggleButton,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Cut"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Cut"]
         },
         new ToolbarItem()
         {
             Label = "Copy",
             ItemType = ToolbarItemTypes.ToggleButton,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Copy"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Copy"]
         },
         new ToolbarItem()
         {
             Label = "Paste",
             ItemType = ToolbarItemTypes.ToggleButton,
-            ThemedIcon = Application.Current.Resources["App.ThemedIcons.Paste"] as Style
+            ThemedIcon = (Style)Application.Current.Resources["App.ThemedIcons.Paste"]
         },
     };
     public ToolbarPage()

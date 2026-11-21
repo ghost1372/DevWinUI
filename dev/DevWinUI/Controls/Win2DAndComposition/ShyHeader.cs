@@ -21,19 +21,19 @@ public partial class ShyHeader : Control
     private const string PART_TextContainer = "PART_TextContainer";
     private const string PART_Footer = "PART_Footer";
 
-    private Grid _headerGrid;
-    private Rectangle _backgroundRectangle;
-    private Rectangle _overlayRectangle;
-    private ContentPresenter _profilePresenter;
-    private ContentPresenter _subtitlePresenter;
-    private ContentPresenter _descriptionPresenter;
-    private StackPanel _textContainer;
-    private ContentPresenter _footerPresenter;
+    private Grid? _headerGrid;
+    private Rectangle? _backgroundRectangle;
+    private Rectangle? _overlayRectangle;
+    private ContentPresenter? _profilePresenter;
+    private ContentPresenter? _subtitlePresenter;
+    private ContentPresenter? _descriptionPresenter;
+    private StackPanel? _textContainer;
+    private ContentPresenter? _footerPresenter;
 
-    private SpriteVisual _blurredBackgroundImageVisual;
-    private CompositionPropertySet _props;
-    private CompositionPropertySet _scrollerPropertySet;
-    private Compositor _compositor;
+    private SpriteVisual? _blurredBackgroundImageVisual;
+    private CompositionPropertySet? _props;
+    private CompositionPropertySet? _scrollerPropertySet;
+    private Compositor? _compositor;
 
     public Brush OverlayBrush
     {
@@ -162,13 +162,21 @@ public partial class ShyHeader : Control
         var scrollViewer = this.FindAscendant<ScrollViewer>();
         if (scrollViewer == null) return;
 
-        _scrollerPropertySet = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollViewer);
-        _compositor = _scrollerPropertySet.Compositor;
+        if (_headerGrid == null || _backgroundRectangle == null || _overlayRectangle == null ||
+            _profilePresenter == null || _subtitlePresenter == null || _descriptionPresenter == null ||
+            _textContainer == null || _footerPresenter == null)
+            return;
 
-        _props = _compositor.CreatePropertySet();
-        _props.InsertScalar("progress", 0);
-        _props.InsertScalar("clampSize", 150);
-        _props.InsertScalar("scaleFactor", 0.7f);
+        var scrollerPropertySet = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollViewer);
+        var compositor = scrollerPropertySet.Compositor;
+        _scrollerPropertySet = scrollerPropertySet;
+        _compositor = compositor;
+
+        var props = compositor.CreatePropertySet();
+        _props = props;
+        props.InsertScalar("progress", 0);
+        props.InsertScalar("clampSize", 150);
+        props.InsertScalar("scaleFactor", 0.7f);
 
         var blurEffect = new GaussianBlurEffect
         {
@@ -178,51 +186,52 @@ public partial class ShyHeader : Control
             Source = new CompositionEffectSourceParameter("source")
         };
 
-        var blurBrush = _compositor.CreateEffectFactory(blurEffect, new[] { "blur.BlurAmount" }).CreateBrush();
-        blurBrush.SetSourceParameter("source", _compositor.CreateBackdropBrush());
+        var blurBrush = compositor.CreateEffectFactory(blurEffect, new[] { "blur.BlurAmount" }).CreateBrush();
+        blurBrush.SetSourceParameter("source", compositor.CreateBackdropBrush());
 
-        _blurredBackgroundImageVisual = _compositor.CreateSpriteVisual();
-        _blurredBackgroundImageVisual.Brush = blurBrush;
-        _blurredBackgroundImageVisual.Size = new Vector2((float)_overlayRectangle.ActualWidth, (float)_overlayRectangle.ActualHeight);
-        ElementCompositionPreview.SetElementChildVisual(_overlayRectangle, _blurredBackgroundImageVisual);
+        var blurredVisual = compositor.CreateSpriteVisual();
+        blurredVisual.Brush = blurBrush;
+        blurredVisual.Size = new Vector2((float)_overlayRectangle.ActualWidth, (float)_overlayRectangle.ActualHeight);
+        _blurredBackgroundImageVisual = blurredVisual;
+        ElementCompositionPreview.SetElementChildVisual(_overlayRectangle, blurredVisual);
 
-        var progressAnimation = _compositor.CreateExpressionAnimation("Clamp(-scroll.Translation.Y / props.clampSize, 0, 1)");
-        progressAnimation.SetReferenceParameter("scroll", _scrollerPropertySet);
-        progressAnimation.SetReferenceParameter("props", _props);
-        _props.StartAnimation("progress", progressAnimation);
+        var progressAnimation = compositor.CreateExpressionAnimation("Clamp(-scroll.Translation.Y / props.clampSize, 0, 1)");
+        progressAnimation.SetReferenceParameter("scroll", scrollerPropertySet);
+        progressAnimation.SetReferenceParameter("props", props);
+        props.StartAnimation("progress", progressAnimation);
 
-        var blurAnimation = _compositor.CreateExpressionAnimation("Lerp(0, 15, props.progress)");
-        blurAnimation.SetReferenceParameter("props", _props);
-        _blurredBackgroundImageVisual.Brush.Properties.StartAnimation("blur.BlurAmount", blurAnimation);
+        var blurAnimation = compositor.CreateExpressionAnimation("Lerp(0, 15, props.progress)");
+        blurAnimation.SetReferenceParameter("props", props);
+        blurBrush.Properties.StartAnimation("blur.BlurAmount", blurAnimation);
 
         var headerVisual = ElementCompositionPreview.GetElementVisual(_headerGrid);
-        var headerTranslationAnimation = _compositor.CreateExpressionAnimation("props.progress < 1 ? 0 : -scroll.Translation.Y - props.clampSize");
-        headerTranslationAnimation.SetReferenceParameter("scroll", _scrollerPropertySet);
-        headerTranslationAnimation.SetReferenceParameter("props", _props);
+        var headerTranslationAnimation = compositor.CreateExpressionAnimation("props.progress < 1 ? 0 : -scroll.Translation.Y - props.clampSize");
+        headerTranslationAnimation.SetReferenceParameter("scroll", scrollerPropertySet);
+        headerTranslationAnimation.SetReferenceParameter("props", props);
         headerVisual.StartAnimation("Offset.Y", headerTranslationAnimation);
 
-        var headerScaleAnimation = _compositor.CreateExpressionAnimation("Lerp(1, 1.25, Clamp(scroll.Translation.Y / 50, 0, 1))");
-        headerScaleAnimation.SetReferenceParameter("scroll", _scrollerPropertySet);
+        var headerScaleAnimation = compositor.CreateExpressionAnimation("Lerp(1, 1.25, Clamp(scroll.Translation.Y / 50, 0, 1))");
+        headerScaleAnimation.SetReferenceParameter("scroll", scrollerPropertySet);
         headerVisual.StartAnimation("Scale.X", headerScaleAnimation);
         headerVisual.StartAnimation("Scale.Y", headerScaleAnimation);
         headerVisual.CenterPoint = new Vector3((float)(_headerGrid.ActualWidth / 2), (float)_headerGrid.ActualHeight, 0);
 
         var photoVisual = ElementCompositionPreview.GetElementVisual(_backgroundRectangle);
-        var photoOpacityAnimation = _compositor.CreateExpressionAnimation("1 - props.progress");
-        photoOpacityAnimation.SetReferenceParameter("props", _props);
+        var photoOpacityAnimation = compositor.CreateExpressionAnimation("1 - props.progress");
+        photoOpacityAnimation.SetReferenceParameter("props", props);
         photoVisual.StartAnimation("Opacity", photoOpacityAnimation);
 
         var profileVisual = ElementCompositionPreview.GetElementVisual(_profilePresenter);
-        var profileScaleAnimation = _compositor.CreateExpressionAnimation("Lerp(1, props.scaleFactor, props.progress)");
-        profileScaleAnimation.SetReferenceParameter("props", _props);
+        var profileScaleAnimation = compositor.CreateExpressionAnimation("Lerp(1, props.scaleFactor, props.progress)");
+        profileScaleAnimation.SetReferenceParameter("props", props);
         profileVisual.StartAnimation("Scale.X", profileScaleAnimation);
         profileVisual.StartAnimation("Scale.Y", profileScaleAnimation);
 
         var descriptionVisual = ElementCompositionPreview.GetElementVisual(_descriptionPresenter);
         var subtitleVisual = ElementCompositionPreview.GetElementVisual(_subtitlePresenter);
 
-        var textOpacityAnimation = _compositor.CreateExpressionAnimation("Clamp(1 - (props.progress * 2), 0, 1)");
-        textOpacityAnimation.SetReferenceParameter("props", _props);
+        var textOpacityAnimation = compositor.CreateExpressionAnimation("Clamp(1 - (props.progress * 2), 0, 1)");
+        textOpacityAnimation.SetReferenceParameter("props", props);
         descriptionVisual.StartAnimation("Opacity", textOpacityAnimation);
         subtitleVisual.StartAnimation("Opacity", textOpacityAnimation);
 
@@ -234,12 +243,12 @@ public partial class ShyHeader : Control
         var textVisual = ElementCompositionPreview.GetElementVisual(_textContainer);
         var footerVisual = ElementCompositionPreview.GetElementVisual(_footerPresenter);
 
-        var textOffsetAnimation = _compositor.CreateExpressionAnimation("props.progress * 100");
-        textOffsetAnimation.SetReferenceParameter("props", _props);
+        var textOffsetAnimation = compositor.CreateExpressionAnimation("props.progress * 100");
+        textOffsetAnimation.SetReferenceParameter("props", props);
         textVisual.StartAnimation("Offset.Y", textOffsetAnimation);
 
-        var footerOffsetAnimation = _compositor.CreateExpressionAnimation("props.progress * -100");
-        footerOffsetAnimation.SetReferenceParameter("props", _props);
+        var footerOffsetAnimation = compositor.CreateExpressionAnimation("props.progress * -100");
+        footerOffsetAnimation.SetReferenceParameter("props", props);
         footerVisual.StartAnimation("Offset.Y", footerOffsetAnimation);
     }
 }

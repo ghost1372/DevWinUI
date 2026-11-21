@@ -42,7 +42,7 @@ public sealed partial class TextBlockHelperPage : Page
 
         while (!token.IsCancellationRequested)
         {
-            var direction = (TextBlockSlideDirection)CmbType.Value;
+            var direction = (TextBlockSlideDirection)CmbType.Value!;
             await TextBlockHelper.AnimateTextChangeAsync(TextBlockSample, _demoTexts[index], direction);
             index = (index + 1) % _demoTexts.Length;
 

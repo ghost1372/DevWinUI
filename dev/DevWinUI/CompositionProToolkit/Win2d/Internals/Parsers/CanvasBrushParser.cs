@@ -63,7 +63,7 @@ internal static partial class CanvasBrushParser
 
         // There should be only one match
         var match = matches[0];
-        AbstractCanvasBrushElement brushElement = null;
+        AbstractCanvasBrushElement? brushElement = null;
         if (match.Groups["SolidColorBrush"].Success)
         {
             brushElement = new SolidColorBrushElement(match.Groups["SolidColorBrush"].Captures[0]);
@@ -87,7 +87,7 @@ internal static partial class CanvasBrushParser
 
         if (brushElement == null)
         {
-            return null;
+            throw new ArgumentException($"Unrecognized Brush data!\nBrush Data: {brushData}", nameof(brushData));
         }
 
         // Perform validation to check if there are any invalid characters in the brush data that were not captured

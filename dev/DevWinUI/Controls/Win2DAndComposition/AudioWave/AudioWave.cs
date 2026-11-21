@@ -7,8 +7,8 @@ public partial class AudioWave : Control
     private const string PART_Canvas = "PART_Canvas";
 
     private readonly object sync = new();
-    private CanvasAnimatedControl canvas;
-    private float[] waveData;
+    private CanvasAnimatedControl? canvas;
+    private float[]? waveData;
 
     private double elapsedMs;
     private double duration = TimeSpan.FromSeconds(4).TotalMilliseconds;
@@ -18,17 +18,17 @@ public partial class AudioWave : Control
     private float barRadiusY = 3f;
     private Color barBackground = Colors.Gray;
     private Color barForeground = Colors.DeepPink;
-    private CanvasGradientStop[] backgroundStops;
-    private CanvasGradientStop[] foregroundStops;
-    private CanvasLinearGradientBrush backgroundBrush;
-    private CanvasLinearGradientBrush foregroundBrush;
+    private CanvasGradientStop[]? backgroundStops;
+    private CanvasGradientStop[]? foregroundStops;
+    private CanvasLinearGradientBrush? backgroundBrush;
+    private CanvasLinearGradientBrush? foregroundBrush;
     private volatile AudioWaveState state = AudioWaveState.Stopped;
     private volatile bool isDragging;
     private bool isSyncingProgress;
     private int lastProgress = -1;
 
-    public Func<float[]> WaveDataProvider { get; set; }
-    public event EventHandler<int> ProgressChanged;
+    public Func<float[]>? WaveDataProvider { get; set; }
+    public event EventHandler<int>? ProgressChanged;
 
     public AudioWave()
     {
@@ -100,7 +100,7 @@ public partial class AudioWave : Control
 
     private void OnCanvasPointerPressed(object sender, PointerRoutedEventArgs e)
     {
-        if (!CanSelectedByMouse || !canvas.CapturePointer(e.Pointer))
+        if (!CanSelectedByMouse || canvas == null || !canvas.CapturePointer(e.Pointer))
             return;
 
         isDragging = true;
@@ -119,19 +119,22 @@ public partial class AudioWave : Control
             return;
 
         SeekToPointer(e);
-        canvas.ReleasePointerCapture(e.Pointer);
+        canvas?.ReleasePointerCapture(e.Pointer);
     }
 
     private void OnCanvasPointerCanceled(object sender, PointerRoutedEventArgs e)
     {
         if (isDragging)
-            canvas.ReleasePointerCapture(e.Pointer);
+            canvas?.ReleasePointerCapture(e.Pointer);
     }
 
     private void OnCanvasPointerCaptureLost(object sender, PointerRoutedEventArgs e) => CompleteDrag();
 
     private void SeekToPointer(PointerRoutedEventArgs e)
     {
+        if (canvas == null)
+            return;
+
         double width = canvas.ActualWidth;
         if (width <= 0)
             return;
@@ -213,7 +216,7 @@ public partial class AudioWave : Control
         }
     }
 
-    private static CanvasLinearGradientBrush GetBrush(ref CanvasLinearGradientBrush brush, CanvasGradientStop[] stops, ICanvasResourceCreator creator)
+    private static CanvasLinearGradientBrush? GetBrush(ref CanvasLinearGradientBrush? brush, CanvasGradientStop[]? stops, ICanvasResourceCreator creator)
         => stops == null ? null : brush ??= new CanvasLinearGradientBrush(creator, stops);
 
     private void OnCanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
@@ -299,7 +302,7 @@ public partial class AudioWave : Control
         canvas?.Invalidate();
     }
 
-    private void ApplyBackgroundGradientStops(List<CanvasGradientStop> stops)
+    private void ApplyBackgroundGradientStops(List<CanvasGradientStop>? stops)
     {
         lock (sync)
         {
@@ -311,7 +314,7 @@ public partial class AudioWave : Control
         canvas?.Invalidate();
     }
 
-    private void ApplyForegroundGradientStops(List<CanvasGradientStop> stops)
+    private void ApplyForegroundGradientStops(List<CanvasGradientStop>? stops)
     {
         lock (sync)
         {

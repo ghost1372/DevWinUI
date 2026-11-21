@@ -10,7 +10,7 @@ public sealed partial class ParticleGlobe
     private bool _showReticle = true, _cursorOn;
     private float _cursorLat, _cursorLon, _reticleAmt, _lockAmt;
 
-    private CanvasTextFormat _readoutFormat;
+    private CanvasTextFormat? _readoutFormat;
     private Vector2 _readoutSize;
 
     private static string FormatLatLon(float lat, float lon)
@@ -26,14 +26,15 @@ public sealed partial class ParticleGlobe
     {
         if (_readoutFormat != null && _readoutSize.X > 0f) return;
 
-        _readoutFormat = new CanvasTextFormat
+        var format = new CanvasTextFormat
         {
             FontFamily = "Consolas",
             FontSize = 11f,
             WordWrapping = CanvasWordWrapping.NoWrap
         };
+        _readoutFormat = format;
 
-        using var layout = new CanvasTextLayout(ds, FormatLatLon(0f, 0f), _readoutFormat, 600f, 40f);
+        using var layout = new CanvasTextLayout(ds, FormatLatLon(0f, 0f), format, 600f, 40f);
         _readoutSize = new Vector2((float)layout.LayoutBounds.Width, (float)layout.LayoutBounds.Height);
     }
 

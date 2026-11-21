@@ -5,10 +5,10 @@ namespace DevWinUI;
 [ContentProperty(Name = nameof(Content))]
 public partial class ShimmerTextBlock : Control
 {
-    private Compositor _compositor;
-    private PointLight _pointLight;
-    private Visual _textVisual;
-    private ScalarKeyFrameAnimation _animation;
+    private Compositor? _compositor;
+    private PointLight? _pointLight;
+    private Visual? _textVisual;
+    private ScalarKeyFrameAnimation? _animation;
 
     public ShimmerTextBlock()
     {
@@ -19,9 +19,9 @@ public partial class ShimmerTextBlock : Control
         DependencyProperty.Register(nameof(Content), typeof(TextBlock), typeof(ShimmerTextBlock),
             new PropertyMetadata(null, OnContentChanged));
 
-    public TextBlock Content
+    public TextBlock? Content
     {
-        get => (TextBlock)GetValue(ContentProperty);
+        get => (TextBlock?)GetValue(ContentProperty);
         set => SetValue(ContentProperty, value);
     }
 
@@ -80,21 +80,24 @@ public partial class ShimmerTextBlock : Control
 
     public void Setup()
     {
-        if (Content == null) return;
+        var content = Content;
+        if (content == null) return;
 
-        _textVisual = ElementCompositionPreview.GetElementVisual(Content);
-        _compositor = _textVisual.Compositor;
+        var textVisual = ElementCompositionPreview.GetElementVisual(content);
+        var compositor = textVisual.Compositor;
+        _textVisual = textVisual;
+        _compositor = compositor;
 
         if (_pointLight == null)
         {
-            _pointLight = _compositor.CreatePointLight();
+            _pointLight = compositor.CreatePointLight();
             _pointLight.Color = Colors.White;
-            _pointLight.CoordinateSpace = _textVisual;
-            _pointLight.Targets.Add(_textVisual);
+            _pointLight.CoordinateSpace = textVisual;
+            _pointLight.Targets.Add(textVisual);
         }
 
-        Content.SizeChanged -= (s, e) => StartAnimation();
-        Content.SizeChanged += (s, e) => StartAnimation();
+        content.SizeChanged -= OnContentSizeChanged;
+        content.SizeChanged += OnContentSizeChanged;
 
         if (AutoStart)
         {
@@ -102,22 +105,31 @@ public partial class ShimmerTextBlock : Control
         }
     }
 
+    private void OnContentSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        StartAnimation();
+    }
+
     public void StartAnimation()
     {
-        if (_pointLight == null || Content == null) return;
+        var content = Content;
+        var compositor = _compositor;
+        var pointLight = _pointLight;
+        if (pointLight == null || compositor == null || content == null) return;
 
-        float width = (float)Content.ActualWidth;
-        float height = (float)Content.ActualHeight;
-        float fontSize = (float)Content.FontSize;
+        float width = (float)content.ActualWidth;
+        float height = (float)content.ActualHeight;
+        float fontSize = (float)content.FontSize;
 
-        _pointLight.Offset = new Vector3(-width, height / 2, fontSize);
+        pointLight.Offset = new Vector3(-width, height / 2, fontSize);
 
-        _animation = _compositor.CreateScalarKeyFrameAnimation();
-        _animation.InsertKeyFrame(1.0f, 2 * width);
-        _animation.Duration = Duration;
-        _animation.IterationBehavior = IterationBehavior;
+        var animation = compositor.CreateScalarKeyFrameAnimation();
+        animation.InsertKeyFrame(1.0f, 2 * width);
+        animation.Duration = Duration;
+        animation.IterationBehavior = IterationBehavior;
+        _animation = animation;
 
-        _pointLight.StartAnimation("Offset.X", _animation);
+        pointLight.StartAnimation("Offset.X", animation);
     }
     public void StopAnimation()
     {

@@ -169,11 +169,11 @@ public static partial class StartupHelper
     /// <param name="taskId">Set a TaskId for a packaged application.</param>
     /// <param name="registryKey">Define registry scope (CurrentUser or LocalMachine) for UnPackaged App</param>
     /// <returns></returns>
-    public static async Task<bool> IsAppStartupWithWindowsEnabledAsync(string taskId, RegistryKey registryKey)
+    public static async Task<bool> IsAppStartupWithWindowsEnabledAsync(string? taskId, RegistryKey registryKey)
     {
         if (PackageHelper.IsPackaged)
         {
-            StartupTask startupTask = null;
+            StartupTask? startupTask = null;
             if (string.IsNullOrEmpty(taskId))
             {
                 var taskList = await StartupTask.GetForCurrentPackageAsync();
@@ -200,11 +200,11 @@ public static partial class StartupHelper
         }
     }
 
-    private static async Task<bool> SetStartupAsync(bool startup, string taskId, RegistryKey registryKey)
+    private static async Task<bool> SetStartupAsync(bool startup, string? taskId, RegistryKey registryKey)
     {
         if (PackageHelper.IsPackaged)
         {
-            StartupTask startupTask = null;
+            StartupTask? startupTask = null;
             if (string.IsNullOrEmpty(taskId))
             {
                 var taskList = await StartupTask.GetForCurrentPackageAsync();

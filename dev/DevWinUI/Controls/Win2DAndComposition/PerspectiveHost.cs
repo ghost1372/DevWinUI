@@ -5,11 +5,10 @@ namespace DevWinUI;
 [ContentProperty(Name = nameof(Content))]
 public partial class PerspectiveHost : Control
 {
-    private Compositor m_compositor;
-    private Visual m_rootVisual;
-    private ExpressionAnimation m_matrixExpression;
+    private Visual? m_rootVisual;
+    private ExpressionAnimation? m_matrixExpression;
     private bool m_setUpExpressions;
-    public object Content
+    public object? Content
     {
         get => GetValue(ContentProperty);
         set => SetValue(ContentProperty, value);
@@ -30,7 +29,7 @@ public partial class PerspectiveHost : Control
     private static void OnPerspectiveDepthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var control = (PerspectiveHost)d;
-        control.m_rootVisual?.Properties.InsertScalar(nameof(PerspectiveDepth), (float)(double)e.NewValue);
+        control.EnsureVisual().Properties.InsertScalar(nameof(PerspectiveDepth), (float)(double)e.NewValue);
         control.UpdatePerspectiveMatrix();
     }
 
@@ -46,7 +45,7 @@ public partial class PerspectiveHost : Control
     private static void OnPerspectiveOriginPercentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var control = (PerspectiveHost)d;
-        control.m_rootVisual?.Properties.InsertVector2(nameof(PerspectiveOriginPercent), (Vector2)e.NewValue);
+        control.EnsureVisual().Properties.InsertVector2(nameof(PerspectiveOriginPercent), (Vector2)e.NewValue);
         control.UpdatePerspectiveMatrix();
     }
     public PerspectiveHost()
@@ -58,23 +57,28 @@ public partial class PerspectiveHost : Control
     {
         base.OnApplyTemplate();
 
-        m_rootVisual = ElementCompositionPreview.GetElementVisual(this);
-        m_compositor = m_rootVisual.Compositor;
+        EnsureVisual();
 
         this.SizeChanged -= OnSizeChanged;
         this.SizeChanged += OnSizeChanged;
+    }
+
+    private Visual EnsureVisual()
+    {
+        return m_rootVisual ??= ElementCompositionPreview.GetElementVisual(this);
     }
 
     public CompositionPropertySet VisualProperties
     {
         get
         {
+            var visual = EnsureVisual();
             if (!m_setUpExpressions)
             {
                 m_setUpExpressions = true;
                 UpdatePerspectiveMatrix();
             }
-            return m_rootVisual.Properties;
+            return visual.Properties;
         }
     }
 
@@ -96,38 +100,41 @@ public partial class PerspectiveHost : Control
 
     private void UpdatePerspectiveMatrix()
     {
+        var rootVisual = EnsureVisual();
+        var compositor = rootVisual.Compositor;
+
         if (!m_setUpExpressions)
         {
-            Vector3 perspectiveOrigin = new Vector3(PerspectiveOriginPercent * m_rootVisual.Size, 0);
+            Vector3 perspectiveOrigin = new Vector3(PerspectiveOriginPercent * rootVisual.Size, 0);
 
             Matrix4x4 transform =
                 Matrix4x4.CreateTranslation(-perspectiveOrigin) *
                 new Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -1 / (float)PerspectiveDepth, 0, 0, 0, 1) *
                 Matrix4x4.CreateTranslation(perspectiveOrigin);
 
-            m_rootVisual.TransformMatrix = transform;
+            rootVisual.TransformMatrix = transform;
         }
         else if (m_matrixExpression == null)
         {
-            m_matrixExpression = m_compositor.CreateExpressionAnimation();
-            m_matrixExpression.Properties.InsertVector3("LayoutSize", new Vector3(m_rootVisual.Size, 0));
+            var matrixExpression = compositor.CreateExpressionAnimation();
+            m_matrixExpression = matrixExpression;
+            matrixExpression.Properties.InsertVector3("LayoutSize", new Vector3(rootVisual.Size, 0));
 
-            // Expressions don't have an easy way to convert vector2 to vector3. But having this intermediate expression makes the below expression cleaner anyway.
-            var perspectiveOriginExpression = m_compositor.CreateExpressionAnimation(
+            var perspectiveOriginExpression = compositor.CreateExpressionAnimation(
                 "Vector3(publicProps.PerspectiveOriginPercent.x, publicProps.PerspectiveOriginPercent.y, 0) * props.LayoutSize");
-            perspectiveOriginExpression.SetReferenceParameter("publicProps", m_rootVisual.Properties);
-            perspectiveOriginExpression.SetReferenceParameter("props", m_matrixExpression.Properties);
-            m_matrixExpression.Properties.InsertVector3("PerspectiveOrigin", Vector3.Zero);
-            m_matrixExpression.Properties.StartAnimation("PerspectiveOrigin", perspectiveOriginExpression);
+            perspectiveOriginExpression.SetReferenceParameter("publicProps", rootVisual.Properties);
+            perspectiveOriginExpression.SetReferenceParameter("props", matrixExpression.Properties);
+            matrixExpression.Properties.InsertVector3("PerspectiveOrigin", Vector3.Zero);
+            matrixExpression.Properties.StartAnimation("PerspectiveOrigin", perspectiveOriginExpression);
 
-            m_matrixExpression.Expression =
+            matrixExpression.Expression =
                 "Matrix4x4.CreateFromTranslation(-props.PerspectiveOrigin) * " +
                 "Matrix4x4(1,0,0,0,  0,1,0,0,  0,0,1,-1/publicProps.PerspectiveDepth,  0,0,0,1) * " +
                 "Matrix4x4.CreateFromTranslation( props.PerspectiveOrigin)";
-            m_matrixExpression.SetReferenceParameter("publicProps", m_rootVisual.Properties);
-            m_matrixExpression.SetReferenceParameter("props", m_matrixExpression.Properties);
+            matrixExpression.SetReferenceParameter("publicProps", rootVisual.Properties);
+            matrixExpression.SetReferenceParameter("props", matrixExpression.Properties);
 
-            m_rootVisual.StartAnimation("TransformMatrix", m_matrixExpression);
+            rootVisual.StartAnimation("TransformMatrix", matrixExpression);
         }
     }
 }

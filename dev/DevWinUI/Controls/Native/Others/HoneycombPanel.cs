@@ -3,7 +3,7 @@ public partial class HoneycombPanel : Panel
 {
     private double _unitLength;
 
-    private HoneycombStuffer _stuffer;
+    private HoneycombStuffer _stuffer = null!;
 
     private static int GetXCount(int count)
     {

@@ -3,14 +3,14 @@
 namespace DevWinUI;
 internal static class InternalLocalizationHelper
 {
-    internal static ResourceManager _resourceManager;
-    internal static ResourceContext _resourceContext;
-    internal static void InitializeInternalLocalization(ResourceManager resourceManager, ResourceContext resourceContext)
+    internal static ResourceManager? _resourceManager;
+    internal static ResourceContext? _resourceContext;
+    internal static void InitializeInternalLocalization(ResourceManager? resourceManager, ResourceContext? resourceContext)
     {
         _resourceManager = resourceManager;
         _resourceContext = resourceContext;
     }
-    internal static string GetLocalizedText(string resourceId, ResourceType resourceType)
+    internal static string GetLocalizedText(string? resourceId, ResourceType resourceType)
     {
         if (string.IsNullOrEmpty(resourceId))
             return "{LocalizeId}";

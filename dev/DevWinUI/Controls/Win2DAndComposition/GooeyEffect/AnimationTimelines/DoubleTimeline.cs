@@ -5,7 +5,7 @@ public partial class DoubleTimeline
     private readonly TimelineProgresser _progresser;
 
     public DoubleTimeline(double from = 0, double to = 1, double seconds = 1, TimeSpan? beginTime = null,
-        bool autoReverse = true, bool forever = true, EasingFunctionBase easingFunction = null)
+        bool autoReverse = true, bool forever = true, EasingFunctionBase? easingFunction = null)
     {
         _progresser = new TimelineProgresser(seconds, autoReverse)
         { EasingFunction = easingFunction, BeginTime = beginTime, Forever = forever };

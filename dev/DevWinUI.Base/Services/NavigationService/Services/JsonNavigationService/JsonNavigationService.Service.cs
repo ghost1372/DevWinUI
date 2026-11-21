@@ -45,7 +45,7 @@ public partial class JsonNavigationService
         {
             var frameContentBeforeNavigationAOTSafe = Frame?.Content;
 
-            Frame.GoBack();
+            Frame?.GoBack();
 
             if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
@@ -58,7 +58,7 @@ public partial class JsonNavigationService
         return false;
     }
 
-    public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
+    public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null)
     {
         var pageType = GetPageType(pageKey);
 
@@ -80,12 +80,12 @@ public partial class JsonNavigationService
         }
     }
 
-    public bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
+    public bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null)
     {
         return Navigate(pageType, parameter, clearNavigation, transitionInfo);
     }
 
-    public bool Navigate(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
+    public bool Navigate(Type? pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null)
     {
         if (pageType == null)
         {
@@ -111,7 +111,7 @@ public partial class JsonNavigationService
                 {
                     if (_useBreadcrumbBar)
                     {
-                        _mainBreadcrumb.AddNewItem(pageType, parameter);
+                        _mainBreadcrumb?.AddNewItem(pageType, parameter);
                     }
 
                     _lastParameterUsed = parameter;

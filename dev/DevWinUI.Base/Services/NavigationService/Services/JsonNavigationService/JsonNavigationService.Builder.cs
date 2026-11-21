@@ -35,7 +35,7 @@ public partial class JsonNavigationService
         }
     }
 
-    private JsonNavigationService ConfigureJsonCore(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, ResourceManager resourceManager = null, ResourceContext resourceContext = null)
+    private JsonNavigationService ConfigureJsonCore(string jsonFilePath, bool useTaskForDeserialization, PathType pathType, OrderItemsType orderItems, ResourceManager? resourceManager = null, ResourceContext? resourceContext = null)
     {
         EnsureInitialized();
         if (resourceManager == null || resourceContext == null)
@@ -139,7 +139,7 @@ public partial class JsonNavigationService
         return this;
     }
 
-    private void ConfigureAutoSuggestBoxBase(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string autoSuggestBoxNotFoundString = null, string autoSuggestBoxNotFoundImagePath = null)
+    private void ConfigureAutoSuggestBoxBase(AutoSuggestBox autoSuggestBox, bool useItemTemplate = true, string? autoSuggestBoxNotFoundString = null, string? autoSuggestBoxNotFoundImagePath = null)
     {
         if (_autoSuggestBox != null)
         {
@@ -198,13 +198,14 @@ public partial class JsonNavigationService
         {
             _mainBreadcrumb.Visibility = Visibility.Collapsed;
             _mainBreadcrumb.SettingsPageType = _settingsPage;
-            _mainBreadcrumb.Initialize(Frame, _navigationView, pageDictionary);
+            var frame = Frame ?? throw new InvalidOperationException("The navigation service must be initialized with a Frame before configuring the breadcrumb bar.");
+            _mainBreadcrumb.Initialize(frame, _navigationView, pageDictionary);
 
             _useBreadcrumbBar = true;
             _mainBreadcrumb.ChangeBreadcrumbVisibility(false);
         }
     }
-    private JsonNavigationService ConfigureBreadcrumbBarCore(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions? headerVisibilityOptions = null, NavigationTransitionInfo navigationTransitionInfo = null)
+    private JsonNavigationService ConfigureBreadcrumbBarCore(BreadcrumbNavigator breadcrumbNavigator, Dictionary<Type, BreadcrumbPageConfig> pageDictionary, BreadcrumbNavigatorHeaderVisibilityOptions? headerVisibilityOptions = null, NavigationTransitionInfo? navigationTransitionInfo = null)
     {
         EnsureInitialized();
         if (headerVisibilityOptions.HasValue)
@@ -246,14 +247,17 @@ public partial class JsonNavigationService
         _autoManageBackButtonVisibility = autoManageBackButtonVisibility;
         if (_autoManageBackButtonVisibility)
         {
-            _titleBar.IsBackButtonVisible = Frame.CanGoBack;
+            _titleBar.IsBackButtonVisible = Frame?.CanGoBack ?? false;
         }
 
         _isTitlebarConfigured = true;
     }
     private void OnPaneToggleRequested(TitleBar sender, object args)
     {
-        _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+        if (_navigationView != null)
+        {
+            _navigationView.IsPaneOpen = !_navigationView.IsPaneOpen;
+        }
     }
 
     private void OnBackRequested(TitleBar sender, object args)

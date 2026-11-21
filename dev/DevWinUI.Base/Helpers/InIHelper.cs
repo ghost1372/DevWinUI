@@ -29,7 +29,7 @@ public partial class InIHelper
     /// <param name="key">must be unique</param>
     /// <param name="section"></param>
     /// <returns></returns>
-    public string ReadValue(string key, string section)
+    public string ReadValue(string key, string? section)
     {
         return ReadValue(key, section, 1024);
     }
@@ -41,7 +41,7 @@ public partial class InIHelper
     /// <param name="section"></param>
     /// <param name="maxLength">512 - 1024 chars (~1 KB - 2 KB) → Very safe, 2048 - 4096 chars (~4 KB - 8 KB) → Generally safe, but risky in deep call stacks</param>
     /// <returns></returns>
-    public string ReadValue(string key, string section, int maxLength)
+    public string ReadValue(string key, string? section, int maxLength)
     {
         Span<char> buffer = stackalloc char[maxLength];
 
@@ -55,7 +55,7 @@ public partial class InIHelper
     /// </summary>
     /// <param name="key"></param>
     /// <param name="value"></param>
-    public bool AddValue(string key, string value)
+    public bool AddValue(string key, string? value)
     {
         return AddValue(key, value, null);
     }
@@ -66,7 +66,7 @@ public partial class InIHelper
     /// <param name="key"></param>
     /// <param name="value"></param>
     /// <param name="section"></param>
-    public bool AddValue(string key, string value, string section)
+    public bool AddValue(string key, string? value, string? section)
     {
         return PInvoke.WritePrivateProfileString(section ?? GetProductName(), key, value, FilePath);
     }
@@ -85,7 +85,7 @@ public partial class InIHelper
     /// </summary>
     /// <param name="key"></param>
     /// <param name="section"></param>
-    public bool DeleteKey(string key, string section)
+    public bool DeleteKey(string key, string? section)
     {
         return AddValue(key, null, section);
     }
@@ -94,7 +94,7 @@ public partial class InIHelper
     /// Delete Section from INI File
     /// </summary>
     /// <param name="section"></param>
-    public bool DeleteSection(string section)
+    public bool DeleteSection(string? section)
     {
         return PInvoke.WritePrivateProfileString(section ?? GetProductName(), null, null, FilePath);
     }
@@ -115,7 +115,7 @@ public partial class InIHelper
     /// <param name="key"></param>
     /// <param name="section"></param>
     /// <returns></returns>
-    public bool IsKeyExists(string key, string section)
+    public bool IsKeyExists(string key, string? section)
     {
         return !string.IsNullOrEmpty(ReadValue(key, section));
     }

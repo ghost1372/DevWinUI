@@ -6,12 +6,12 @@ namespace DevWinUI;
 public partial class Magnifier : Control
 {
     private const string PART_MagnifierHost = "PART_MagnifierHost";
-    private CompositionVisualSurface _visualSurface;
-    private SpriteVisual _magnifierVisual;
-    private Compositor _compositor;
+    private CompositionVisualSurface _visualSurface = null!;
+    private SpriteVisual _magnifierVisual = null!;
+    private Compositor _compositor = null!;
 
-    private FrameworkElement _target;
-    private Border _magnifierHost;
+    private FrameworkElement _target = null!;
+    private Border _magnifierHost = null!;
 
     private TranslateTransform _translateTransform;
     private Point _lastPointerPosition;
@@ -86,7 +86,7 @@ public partial class Magnifier : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _magnifierHost = GetTemplateChild(PART_MagnifierHost) as Border;
+        _magnifierHost = (GetTemplateChild(PART_MagnifierHost) as Border)!;
         Initialize();
     }
 

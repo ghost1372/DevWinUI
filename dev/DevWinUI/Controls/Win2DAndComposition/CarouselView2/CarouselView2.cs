@@ -7,40 +7,40 @@ namespace DevWinUI;
 
 public partial class CarouselView2 : ContentControl, ICarouselView2
 {
-    public event EventHandler ItemsCreated;
-    public event EventHandler ItemsLoaded;
-    public event EventHandler CarouselMovingStateChanged;
-    public event EventHandler SelectionAnimationComplete;
-    public event EventHandler SelectionChanged;
-    Grid _root;
-    volatile bool _inputAllowed;
-    double _width;
-    double _height;
-    DispatcherTimer _delayedRefreshTimer;
-    DispatcherTimer _delayedZIndexUpdateTimer = new DispatcherTimer();
-    CancellationTokenSource _cancelTokenSource;
+    public event EventHandler? ItemsCreated;
+    public event EventHandler? ItemsLoaded;
+    public event EventHandler? CarouselMovingStateChanged;
+    public event EventHandler? SelectionAnimationComplete;
+    public event EventHandler? SelectionChanged;
+    private readonly Grid _root;
+    private volatile bool _inputAllowed;
+    private double _width;
+    private double _height;
+    private readonly DispatcherTimer _delayedRefreshTimer;
+    private readonly DispatcherTimer _delayedZIndexUpdateTimer;
+    private CancellationTokenSource _cancelTokenSource = new();
     protected int _maxItemWidth;
     protected int _maxItemHeight;
-    int _previousSelectedIndex;
-    volatile float _scrollValue = 0;
-    volatile float _scrollSnapshot = 0;
-    volatile int _carouselInsertPosition;
-    protected Visual _dynamicGridVisual;
-    Grid _dynamicContainerGrid;
-    Grid _itemsLayerGrid;
-    Canvas _hitbox;
-    volatile float _currentWheelTick;
-    volatile float _currentWheelTickOffset;
-    long _currentColumnYPosTick;
-    long _currentRowXPosTick;
-    bool _manipulationStarted;
-    bool _selectedIndexSetInternally;
-    bool _deltaDirectionIsReverse;
+    private int _previousSelectedIndex;
+    private volatile float _scrollValue = 0;
+    private volatile float _scrollSnapshot = 0;
+    private volatile int _carouselInsertPosition;
+    protected Visual _dynamicGridVisual = null!;
+    private Grid _dynamicContainerGrid = null!;
+    private Grid _itemsLayerGrid = null!;
+    private Canvas _hitbox = null!;
+    private volatile float _currentWheelTick;
+    private volatile float _currentWheelTickOffset;
+    private long _currentColumnYPosTick;
+    private long _currentRowXPosTick;
+    private bool _manipulationStarted;
+    private bool _selectedIndexSetInternally;
+    private bool _deltaDirectionIsReverse;
     protected bool _uIItemsCreated;
-    volatile int _elementsToLoadCount;
-    Dictionary<Visual, float> _activeVerticalScrollAnimations;
-    Dictionary<Visual, float> _activeHorizontalScrollAnimations;
-    protected bool isXaxisNavigation
+    private volatile int _elementsToLoadCount;
+    private Dictionary<Visual, float> _activeVerticalScrollAnimations = [];
+    private Dictionary<Visual, float> _activeHorizontalScrollAnimations = [];
+    protected bool IsXaxisNavigation
     {
         get
         {
@@ -68,7 +68,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    int itemsToScale
+    private int ItemsToScale
     {
         get
         {
@@ -80,7 +80,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    int itemsToWarp
+    private int ItemsToWarp
     {
         get
         {
@@ -92,15 +92,15 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    protected bool useFliptych
+    protected bool UseFliptych
     {
         get
         {
-            return this.FliptychDegrees > 1 || this.FliptychDegrees < -1;
+            return FliptychDegrees > 1 || FliptychDegrees < -1;
         }
     }
 
-    int displaySelectedIndex
+    private int DisplaySelectedIndex
     {
         get
         {
@@ -108,26 +108,26 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    float degrees
+    private float Degrees
     {
         get
         {
             return 360.0f / Density;
         }
     }
-    int currentStartIndexForwards
+    private int CurrentStartIndexForwards
     {
         get
         {
-            return Items != null ? (currentStartIndexBackwards + (Density - 1)) % Items.Count() : 0;
+            return Items != null ? (CurrentStartIndexBackwards + (Density - 1)) % Items.Count : 0;
         }
     }
 
-    int currentStartIndexBackwards
+    private int CurrentStartIndexBackwards
     {
         get
         {
-            return Items != null ? Modulus((SelectedIndex - (Density / 2)), Items.Count()) : 0;
+            return Items != null ? Modulus((SelectedIndex - (Density / 2)), Items.Count) : 0;
         }
     }
 
@@ -135,11 +135,11 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     public bool AreItemsLoaded { get; set; }
 
-    public object SelectedItem { get; private set; }
+    public object? SelectedItem { get; private set; }
 
-    public FrameworkElement SelectedItemElement { get; private set; }
+    public FrameworkElement? SelectedItemElement { get; private set; }
 
-    public IList<object> Items { get; private set; }
+    public IList<object>? Items { get; private set; }
 
     public int WheelSize
     {
@@ -153,11 +153,11 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     public CarouselView2()
     {
         _root = new Grid();
-        this.Content = _root;
+        Content = _root;
         _delayedRefreshTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
-        _delayedRefreshTimer.Tick += _delayedRefreshTimer_Tick;
+        _delayedRefreshTimer.Tick += DelayedRefreshTimer_Tick;
         _delayedZIndexUpdateTimer = new DispatcherTimer();
-        _delayedZIndexUpdateTimer.Tick += _delayedZIndexUpdateTimer_Tick;
+        _delayedZIndexUpdateTimer.Tick += DelayedZIndexUpdateTimer_Tick;
         _root.Background = new SolidColorBrush(Colors.Transparent);
 
         PointerWheelChanged -= Carousel_PointerWheelChanged;
@@ -260,7 +260,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void Refresh()
+    private void Refresh()
     {
         _inputAllowed = false;
         AreItemsLoaded = false;
@@ -272,30 +272,30 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void LoadNewCarousel()
+    private void LoadNewCarousel()
     {
         _uIItemsCreated = false;
-        _width = Double.IsNaN(Width) ? ActualWidth : Width;
-        _height = Double.IsNaN(Height) ? ActualHeight : Height;
+        _width = double.IsNaN(Width) ? ActualWidth : Width;
+        _height = double.IsNaN(Height) ? ActualHeight : Height;
         _cancelTokenSource = new CancellationTokenSource();
         var cancellationToken = _cancelTokenSource.Token;
         CreateContainers();
-        _activeVerticalScrollAnimations = new Dictionary<Visual, float>();
-        _activeHorizontalScrollAnimations = new Dictionary<Visual, float>();
+        _activeVerticalScrollAnimations = [];
+        _activeHorizontalScrollAnimations = [];
         _elementsToLoadCount = Density;
         var items = new FrameworkElement[Density];
-        if (Items != null && Items.Count() > 0)
+        if (Items != null && Items.Count > 0)
         {
             try
             {
                 _itemsLayerGrid.Children.Clear();
 
-                for (int i = 0; i < Density; i++)
+                for (var i = 0; i < Density; i++)
                 {
                     _itemsLayerGrid.Children.Add(new ContentControl());
                 }
 
-                for (int i = 0; i < Density / 2; i++)
+                for (var i = 0; i < Density / 2; i++)
                 {
                     var idx1 = (i + (Density / 2)) % Density;
                     var idx2 = Density - 1 - idx1;
@@ -326,7 +326,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     protected virtual void InitializeAnimations(FrameworkElement[] items)
     {
-        for (int i = 0; i < Density / 2; i++)
+        for (var i = 0; i < Density / 2; i++)
         {
             var idx1 = (i + (Density / 2)) % Density;
             var idx2 = Density - 1 - idx1;
@@ -336,9 +336,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    FrameworkElement AddCarouselItemToUI(int idx)
+    private FrameworkElement AddCarouselItemToUI(int idx)
     {
-        int playlistIdx = (idx + this.currentStartIndexBackwards) % Items.Count();
+        var playlistIdx = (idx + CurrentStartIndexBackwards) % Items!.Count;
         var itemElement = CreateCarouselItemElement(idx, playlistIdx);
         if (itemElement != null)
         {
@@ -365,16 +365,20 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void CreateContainers()
+    private void CreateContainers()
     {
         _root.Children.Clear();
         _currentRowXPosTick = 0;
         _currentWheelTick = 0;
         _carouselInsertPosition = 0;
 
-        _dynamicContainerGrid = new Grid { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
-        _dynamicContainerGrid.Width = _width;
-        _dynamicContainerGrid.Height = _height;
+        _dynamicContainerGrid = new Grid
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Width = _width,
+            Height = _height
+        };
         _dynamicGridVisual = ElementCompositionPreview.GetElementVisual(_dynamicContainerGrid);
         _dynamicGridVisual.CenterPoint = new Vector3(Convert.ToSingle(_width / 2), Convert.ToSingle(_height / 2), 0);
         CarouselRotationAngle = _dynamicGridVisual.RotationAngleInDegrees;
@@ -383,27 +387,29 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         _root.Children.Add(_dynamicContainerGrid);
         if (_hitbox != null)
         {
-            _hitbox.ManipulationStarted -= _hitbox_ManipulationStarted;
-            _hitbox.ManipulationCompleted -= _hitbox_ManipulationCompleted;
-            _hitbox.ManipulationDelta -= _hitbox_ManipulationDelta;
+            _hitbox.ManipulationStarted -= Hitbox_ManipulationStarted;
+            _hitbox.ManipulationCompleted -= Hitbox_ManipulationCompleted;
+            _hitbox.ManipulationDelta -= Hitbox_ManipulationDelta;
         }
         if (UseGestures)
         {
-            _hitbox = new Canvas();
-            _hitbox.Background = new SolidColorBrush(Colors.Transparent);
-            _hitbox.HorizontalAlignment = HorizontalAlignment.Center;
-            _hitbox.VerticalAlignment = VerticalAlignment.Center;
-            _hitbox.ManipulationMode = ManipulationModes.All;
-            _hitbox.ManipulationStarted += _hitbox_ManipulationStarted;
-            _hitbox.ManipulationCompleted += _hitbox_ManipulationCompleted;
-            _hitbox.ManipulationDelta += _hitbox_ManipulationDelta;
+            _hitbox = new Canvas
+            {
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                ManipulationMode = ManipulationModes.All
+            };
+            _hitbox.ManipulationStarted += Hitbox_ManipulationStarted;
+            _hitbox.ManipulationCompleted += Hitbox_ManipulationCompleted;
+            _hitbox.ManipulationDelta += Hitbox_ManipulationDelta;
             _root.Children.Add(_hitbox);
         }
 
         ElementCompositionPreview.SetIsTranslationEnabled(_root, true);
     }
 
-    private void _hitbox_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+    private void Hitbox_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
         if (AreItemsLoaded && ItemsSource != null)
         {
@@ -440,17 +446,17 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    private void _hitbox_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+    private void Hitbox_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
     {
         StopManipulationMode();
     }
 
-    private void _hitbox_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+    private void Hitbox_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
     {
         StartManipulationMode();
     }
 
-    void SetHitboxSize()
+    private void SetHitboxSize()
     {
         if (UseGestures)
         {
@@ -479,7 +485,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 case CarouselView2CarouselTypes.Column:
                     _hitbox.Height = _height;
                     _hitbox.Width = _maxItemWidth * SelectedItemScale;
-                    if (WarpIntensity != 0 && WarpCurve != 0 && this.SelectedItemElement != null)
+                    if (WarpIntensity != 0 && WarpCurve != 0 && SelectedItemElement != null)
                     {
                         _hitbox.Width += (int)(Math.Abs((-WarpCurve) + Math.Abs(WarpIntensity)));
                     }
@@ -487,7 +493,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 case CarouselView2CarouselTypes.Row:
                     _hitbox.Width = _width;
                     _hitbox.Height = _maxItemHeight * SelectedItemScale;
-                    if (WarpIntensity != 0 && WarpCurve != 0 && this.SelectedItemElement != null)
+                    if (WarpIntensity != 0 && WarpCurve != 0 && SelectedItemElement != null)
                     {
                         _hitbox.Height += (int)(Math.Abs((-WarpCurve) + Math.Abs(WarpIntensity)));
                     }
@@ -497,15 +503,15 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    private void _delayedRefreshTimer_Tick(object sender, object e)
+    private void DelayedRefreshTimer_Tick(object? sender, object e)
     {
         _delayedRefreshTimer.Stop();
 
         if (!IsLoaded)
             return;
 
-        var width = Double.IsNaN(Width) ? ActualWidth : Width;
-        var height = Double.IsNaN(Height) ? ActualHeight : Height;
+        var width = double.IsNaN(Width) ? ActualWidth : Width;
+        var height = double.IsNaN(Height) ? ActualHeight : Height;
 
         if (width <= 0 || height <= 0)
         {
@@ -516,7 +522,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         LoadNewCarousel();
     }
 
-    private void _delayedZIndexUpdateTimer_Tick(object sender, object e)
+    private void DelayedZIndexUpdateTimer_Tick(object? sender, object e)
     {
         _delayedZIndexUpdateTimer.Stop();
         UpdateZIndices();
@@ -526,7 +532,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     {
         if (NavigationSpeed != 0)
         {
-            int duration = (NavigationSpeed < 500) ? NavigationSpeed : 500;
+            var duration = (NavigationSpeed < 500) ? NavigationSpeed : 500;
             var animationRotate = visual.Compositor.CreateScalarKeyFrameAnimation();
             animationRotate.InsertKeyFrame(1f, degrees);
             animationRotate.Duration = TimeSpan.FromMilliseconds(duration);
@@ -536,9 +542,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     private void ClearImplicitOffsetAnimations(float xDiff, float yDiff, bool clearAll = false)
     {
-        for (int i = (Density - 1); i > -1; i--)
+        for (var i = (Density - 1); i > -1; i--)
         {
-            int idx = Modulus(((Density - 1) - i), Density);
+            var idx = Modulus(((Density - 1) - i), Density);
             if (_itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
             {
                 var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -562,113 +568,106 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     {
         if (element == null) { return; }
         var visual = ElementCompositionPreview.GetElementVisual(element);
-        var compositor = visual.Compositor;
-        ScalarNode distanceAsPercentOfSelectionAreaThreshold = null;
-        ScalarNode scaleThresholdDistanceRaw = null;
-        BooleanNode distanceIsNegativeValue = null;
-        BooleanNode isWithinScaleThreshold = null;
-        Vector3Node offset = null;
-        float selectionAreaThreshold = 0;
+        ScalarNode? distanceAsPercentOfSelectionAreaThreshold = null;
+        ScalarNode? scaleThresholdDistanceRaw = null;
+        BooleanNode? distanceIsNegativeValue = null;
+        BooleanNode? isWithinScaleThreshold = null;
+        Vector3Node? offset = null;
+        float selectionAreaThreshold;
 
         if (CarouselType == CarouselView2CarouselTypes.Wheel && slotNum != null)
         {
-            selectionAreaThreshold = itemsToScale == 0 ? degrees : degrees * itemsToScale;
+            selectionAreaThreshold = ItemsToScale == 0 ? Degrees : Degrees * ItemsToScale;
 
-            var slotDegrees = ((slotNum + (Density / 2)) % Density) * degrees;
+            var slotDegrees = ((slotNum + (Density / 2)) % Density) * Degrees;
 
-            float wheelDegreesWhenItemIsSelected = Convert.ToSingle(slotDegrees);
+            var wheelDegreesWhenItemIsSelected = Convert.ToSingle(slotDegrees);
 
-            using (ScalarNode wheelAngle = _dynamicGridVisual.GetReference().RotationAngleInDegrees)
+            using var wheelAngle = _dynamicGridVisual.GetReference().RotationAngleInDegrees;
+            switch (WheelAlignment)
             {
-                switch (WheelAlignment)
-                {
-                    case CarouselView2WheelAlignments.Right:
-                        scaleThresholdDistanceRaw = EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected), 360);
-                        break;
-                    case CarouselView2WheelAlignments.Top:
-                        scaleThresholdDistanceRaw = EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected), 360);
-                        break;
-                    case CarouselView2WheelAlignments.Left:
-                        scaleThresholdDistanceRaw = EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected), 360);
-                        break;
-                    case CarouselView2WheelAlignments.Bottom:
-                        scaleThresholdDistanceRaw = EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected), 360);
-                        break;
-                }
-
-                using (ScalarNode distanceToZero = EF.Abs(scaleThresholdDistanceRaw))
-                using (ScalarNode distanceTo360 = 360 - distanceToZero)
-                using (BooleanNode isClosestToZero = distanceToZero <= distanceTo360)
-                using (ScalarNode distanceInDegrees = EF.Conditional(isClosestToZero, distanceToZero, distanceTo360))
-                {
-                    distanceAsPercentOfSelectionAreaThreshold = distanceInDegrees / selectionAreaThreshold;
-                    switch (WheelAlignment)
-                    {
-                        case CarouselView2WheelAlignments.Top:
-                        case CarouselView2WheelAlignments.Bottom:
-                            distanceIsNegativeValue = EF.Abs(scaleThresholdDistanceRaw) < 180;
-                            break;
-                        case CarouselView2WheelAlignments.Left:
-                            distanceIsNegativeValue = EF.Abs(EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected - 90), 360)) < 180;
-                            break;
-                        case CarouselView2WheelAlignments.Right:
-                            distanceIsNegativeValue = EF.Abs(EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected + 90), 360)) < 180;
-                            break;
-                    }
-
-                    isWithinScaleThreshold = distanceInDegrees < selectionAreaThreshold;
-                    StartScaleAnimation(element, distanceAsPercentOfSelectionAreaThreshold, isWithinScaleThreshold);
-                }
+                case CarouselView2WheelAlignments.Right:
+                    scaleThresholdDistanceRaw = EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected), 360);
+                    break;
+                case CarouselView2WheelAlignments.Top:
+                    scaleThresholdDistanceRaw = EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected), 360);
+                    break;
+                case CarouselView2WheelAlignments.Left:
+                    scaleThresholdDistanceRaw = EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected), 360);
+                    break;
+                case CarouselView2WheelAlignments.Bottom:
+                    scaleThresholdDistanceRaw = EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected), 360);
+                    break;
             }
+
+            using var distanceToZero = EF.Abs(scaleThresholdDistanceRaw!);
+            using var distanceTo360 = 360 - distanceToZero;
+            using var isClosestToZero = distanceToZero <= distanceTo360;
+            using var distanceInDegrees = EF.Conditional(isClosestToZero, distanceToZero, distanceTo360);
+            distanceAsPercentOfSelectionAreaThreshold = distanceInDegrees / selectionAreaThreshold;
+            switch (WheelAlignment)
+            {
+                case CarouselView2WheelAlignments.Top:
+                case CarouselView2WheelAlignments.Bottom:
+                    distanceIsNegativeValue = EF.Abs(scaleThresholdDistanceRaw!) < 180;
+                    break;
+                case CarouselView2WheelAlignments.Left:
+                    distanceIsNegativeValue = EF.Abs(EF.Mod((wheelAngle + wheelDegreesWhenItemIsSelected - 90), 360)) < 180;
+                    break;
+                case CarouselView2WheelAlignments.Right:
+                    distanceIsNegativeValue = EF.Abs(EF.Mod((wheelAngle - wheelDegreesWhenItemIsSelected + 90), 360)) < 180;
+                    break;
+            }
+
+            isWithinScaleThreshold = distanceInDegrees < selectionAreaThreshold;
+            StartScaleAnimation(element, distanceAsPercentOfSelectionAreaThreshold, isWithinScaleThreshold);
         }
         else if (CarouselType == CarouselView2CarouselTypes.Row || CarouselType == CarouselView2CarouselTypes.Column)
         {
-            selectionAreaThreshold = isXaxisNavigation ? AdditionalItemsToScale * (_maxItemWidth + ItemGap) : AdditionalItemsToScale * (_maxItemHeight + ItemGap);
+            selectionAreaThreshold = IsXaxisNavigation ? AdditionalItemsToScale * (_maxItemWidth + ItemGap) : AdditionalItemsToScale * (_maxItemHeight + ItemGap);
             if (selectionAreaThreshold == 0)
             {
-                selectionAreaThreshold = isXaxisNavigation ? _maxItemWidth + ItemGap : _maxItemHeight + ItemGap;
+                selectionAreaThreshold = IsXaxisNavigation ? _maxItemWidth + ItemGap : _maxItemHeight + ItemGap;
             }
 
             offset = visual.GetReference().Offset;
-            scaleThresholdDistanceRaw = this.isXaxisNavigation ? offset.X / selectionAreaThreshold : offset.Y / selectionAreaThreshold;
+            scaleThresholdDistanceRaw = IsXaxisNavigation ? offset.X / selectionAreaThreshold : offset.Y / selectionAreaThreshold;
 
             distanceAsPercentOfSelectionAreaThreshold = EF.Abs(scaleThresholdDistanceRaw);
 
             distanceIsNegativeValue = scaleThresholdDistanceRaw < 0;
-            isWithinScaleThreshold = isXaxisNavigation ? offset.X > -selectionAreaThreshold & offset.X < selectionAreaThreshold : offset.Y > -selectionAreaThreshold & offset.Y < selectionAreaThreshold;
+            isWithinScaleThreshold = IsXaxisNavigation ? offset.X > -selectionAreaThreshold & offset.X < selectionAreaThreshold : offset.Y > -selectionAreaThreshold & offset.Y < selectionAreaThreshold;
 
             StartScaleAnimation(element, distanceAsPercentOfSelectionAreaThreshold, isWithinScaleThreshold);
 
             if (WarpIntensity != 0)
             {
-                var warpItemsthreshold = isXaxisNavigation ? AdditionalItemsToWarp * (_maxItemWidth + ItemGap) : AdditionalItemsToWarp * (_maxItemHeight + ItemGap);
+                var warpItemsthreshold = IsXaxisNavigation ? AdditionalItemsToWarp * (_maxItemWidth + ItemGap) : AdditionalItemsToWarp * (_maxItemHeight + ItemGap);
                 if (warpItemsthreshold == 0)
                 {
-                    warpItemsthreshold = isXaxisNavigation ? _maxItemWidth + ItemGap : _maxItemHeight + ItemGap;
+                    warpItemsthreshold = IsXaxisNavigation ? _maxItemWidth + ItemGap : _maxItemHeight + ItemGap;
                 }
-                using (ScalarNode warpThresholdDistanceRaw = this.isXaxisNavigation ? offset.X / warpItemsthreshold : offset.Y / warpItemsthreshold)
-                using (ScalarNode distanceAsPercentOfWarpThreshold = EF.Abs(warpThresholdDistanceRaw))
-                using (BooleanNode isWithinWarpThreshold = isXaxisNavigation ? offset.X > -warpItemsthreshold & offset.X < warpItemsthreshold : offset.Y > -warpItemsthreshold & offset.Y < warpItemsthreshold)
-                using (ScalarNode y = WarpIntensity - (distanceAsPercentOfWarpThreshold * WarpIntensity))
-                using (ScalarNode WarpOffset = Convert.ToSingle(-WarpCurve) * warpThresholdDistanceRaw * warpThresholdDistanceRaw + WarpIntensity)
-                using (ScalarNode finalWarpValue = EF.Conditional(isWithinWarpThreshold, y * EF.Abs(y) * (float)WarpCurve, 0))
+                using var warpThresholdDistanceRaw = IsXaxisNavigation ? offset.X / warpItemsthreshold : offset.Y / warpItemsthreshold;
+                using var distanceAsPercentOfWarpThreshold = EF.Abs(warpThresholdDistanceRaw);
+                using var isWithinWarpThreshold = IsXaxisNavigation ? offset.X > -warpItemsthreshold & offset.X < warpItemsthreshold : offset.Y > -warpItemsthreshold & offset.Y < warpItemsthreshold;
+                using var y = WarpIntensity - (distanceAsPercentOfWarpThreshold * WarpIntensity);
+                using var WarpOffset = Convert.ToSingle(-WarpCurve) * warpThresholdDistanceRaw * warpThresholdDistanceRaw + WarpIntensity;
+                using var finalWarpValue = EF.Conditional(isWithinWarpThreshold, y * EF.Abs(y) * (float)WarpCurve, 0);
+                if (IsXaxisNavigation)
                 {
-                    if (isXaxisNavigation)
-                    {
-                        visual.StartAnimation("Translation.Y", finalWarpValue);
-                    }
-                    else
-                    {
-                        visual.StartAnimation("Translation.X", finalWarpValue);
-                    }
+                    visual.StartAnimation("Translation.Y", finalWarpValue);
+                }
+                else
+                {
+                    visual.StartAnimation("Translation.X", finalWarpValue);
                 }
             }
 
         }
 
-        if (useFliptych && CarouselType != CarouselView2CarouselTypes.Wheel)
+        if (UseFliptych && CarouselType != CarouselView2CarouselTypes.Wheel)
         {
-            UIElement child = null;
+            UIElement? child = null;
 
             if (element.Transform3D == null)
             {
@@ -698,18 +697,16 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
             if (child != null)
             {
                 var childVisual = ElementCompositionPreview.GetElementVisual(child);
-                var fliptychDegrees = isXaxisNavigation ? Convert.ToSingle(FliptychDegrees) : Convert.ToSingle(-FliptychDegrees);
+                var fliptychDegrees = IsXaxisNavigation ? Convert.ToSingle(FliptychDegrees) : Convert.ToSingle(-FliptychDegrees);
                 if (CarouselType == CarouselView2CarouselTypes.Wheel) { fliptychDegrees *= -1; }
-                childVisual.RotationAxis = isXaxisNavigation ? new Vector3(0, 1, 0) : new Vector3(1, 0, 0);
+                childVisual.RotationAxis = IsXaxisNavigation ? new Vector3(0, 1, 0) : new Vector3(1, 0, 0);
                 childVisual.CenterPoint = new Vector3(_maxItemWidth / 2, _maxItemHeight / 2, 0);
-                using (ScalarNode rotatedValue = EF.Conditional(distanceIsNegativeValue, fliptychDegrees, -fliptychDegrees))
-                using (ScalarNode finalValue = EF.Conditional(isWithinScaleThreshold, distanceAsPercentOfSelectionAreaThreshold * rotatedValue, rotatedValue))
-                {
-                    childVisual.StartAnimation(nameof(childVisual.RotationAngleInDegrees), finalValue);
-                }
+                using var rotatedValue = EF.Conditional(distanceIsNegativeValue!, fliptychDegrees, -fliptychDegrees);
+                using var finalValue = EF.Conditional(isWithinScaleThreshold!, distanceAsPercentOfSelectionAreaThreshold! * rotatedValue, rotatedValue);
+                childVisual.StartAnimation(nameof(childVisual.RotationAngleInDegrees), finalValue);
             }
         }
-        SetColorAnimation(distanceAsPercentOfSelectionAreaThreshold, isWithinScaleThreshold, element);
+        SetColorAnimation(distanceAsPercentOfSelectionAreaThreshold!, isWithinScaleThreshold!, element);
 
         offset?.Dispose();
         distanceAsPercentOfSelectionAreaThreshold?.Dispose();
@@ -724,12 +721,10 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         {
             var visual = ElementCompositionPreview.GetElementVisual(element);
             var scaleRange = (float)SelectedItemScale - 1;
-            using (ScalarNode scalePercent = scaleRange * (1 - distanceAsPercentOfScaleThreshold) + 1)
-            using (ScalarNode finalScaleValue = ExpressionFunctions.Conditional(isWithinScaleThreshold, scalePercent, 1))
-            {
-                visual.StartAnimation("Scale.X", finalScaleValue);
-                visual.StartAnimation("Scale.Y", finalScaleValue);
-            }
+            using var scalePercent = scaleRange * (1 - distanceAsPercentOfScaleThreshold) + 1;
+            using var finalScaleValue = ExpressionFunctions.Conditional(isWithinScaleThreshold, scalePercent, 1);
+            visual.StartAnimation("Scale.X", finalScaleValue);
+            visual.StartAnimation("Scale.Y", finalScaleValue);
 
         }
     }
@@ -737,7 +732,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     private void SetColorAnimation(ScalarNode distanceAsPercentOfScaleThreshold, BooleanNode isWithinScaleThreshold, FrameworkElement fe)
     {
         var descendants = fe.FindDescendants();
-        List<FrameworkElement> elements = new List<FrameworkElement>();
+        List<FrameworkElement> elements = [];
         foreach (var descendant in descendants)
         {
             if (descendant is FrameworkElement cfe)
@@ -760,29 +755,25 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                     {
                         if (prop.GetValue(element) is CompositionColorBrush compositionSolid)
                         {
-                            using (ColorNode deselectedColor = ExpressionFunctions.ColorRgb(compositionSolid.Color.A,
-                               compositionSolid.Color.R, compositionSolid.Color.G, compositionSolid.Color.B))
-                            using (ColorNode selectedColor = ExpressionFunctions.ColorRgb(solidColorBrush.Color.A,
-                               solidColorBrush.Color.R, solidColorBrush.Color.G, solidColorBrush.Color.B))
-                            using (ColorNode colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold))
-                            using (ColorNode finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor))
-                            {
-                                compositionSolid.StartAnimation("Color", finalColorExp);
-                            }
+                            using var deselectedColor = ExpressionFunctions.ColorRgb(compositionSolid.Color.A,
+                               compositionSolid.Color.R, compositionSolid.Color.G, compositionSolid.Color.B);
+                            using var selectedColor = ExpressionFunctions.ColorRgb(solidColorBrush.Color.A,
+                               solidColorBrush.Color.R, solidColorBrush.Color.G, solidColorBrush.Color.B);
+                            using var colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold);
+                            using var finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor);
+                            compositionSolid.StartAnimation("Color", finalColorExp);
 
                         }
                         else if (prop.GetValue(element) is CompositionLinearGradientBrush compositionGradient)
                         {
-                            for (int i = 0; i < compositionGradient.ColorStops.Count; i++)
+                            for (var i = 0; i < compositionGradient.ColorStops.Count; i++)
                             {
-                                using (CompositionColorGradientStop targetStop = compositionGradient.ColorStops[i])
-                                using (ColorNode deselectedColor = ExpressionFunctions.ColorRgb(targetStop.Color.A, targetStop.Color.R, targetStop.Color.G, targetStop.Color.B))
-                                using (ColorNode selectedColor = ExpressionFunctions.ColorRgb(solidColorBrush.Color.A, solidColorBrush.Color.R, solidColorBrush.Color.G, solidColorBrush.Color.B))
-                                using (ColorNode colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold))
-                                using (ColorNode finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor))
-                                {
-                                    targetStop.StartAnimation("Color", finalColorExp);
-                                }
+                                using var targetStop = compositionGradient.ColorStops[i];
+                                using var deselectedColor = ExpressionFunctions.ColorRgb(targetStop.Color.A, targetStop.Color.R, targetStop.Color.G, targetStop.Color.B);
+                                using var selectedColor = ExpressionFunctions.ColorRgb(solidColorBrush.Color.A, solidColorBrush.Color.R, solidColorBrush.Color.G, solidColorBrush.Color.B);
+                                using var colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold);
+                                using var finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor);
+                                targetStop.StartAnimation("Color", finalColorExp);
                             }
                         }
                     }
@@ -790,19 +781,15 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                     {
                         if (linearGradientBrush.GradientStops.Count == compositionGradient.ColorStops.Count)
                         {
-                            for (int i = 0; i < compositionGradient.ColorStops.Count; i++)
+                            for (var i = 0; i < compositionGradient.ColorStops.Count; i++)
                             {
-                                using (CompositionColorGradientStop targetStop = compositionGradient.ColorStops[i])
-                                using (ColorNode deselectedColor = ExpressionFunctions.ColorRgb(targetStop.Color.A, targetStop.Color.R, targetStop.Color.G, targetStop.Color.B))
-                                {
-                                    GradientStop sourceStop = linearGradientBrush.GradientStops[i];
-                                    using (ColorNode selectedColor = ExpressionFunctions.ColorRgb(sourceStop.Color.A, sourceStop.Color.R, sourceStop.Color.G, sourceStop.Color.B))
-                                    using (ColorNode colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold))
-                                    using (ColorNode finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor))
-                                    {
-                                        targetStop.StartAnimation("Color", finalColorExp);
-                                    }
-                                }
+                                using var targetStop = compositionGradient.ColorStops[i];
+                                using var deselectedColor = ExpressionFunctions.ColorRgb(targetStop.Color.A, targetStop.Color.R, targetStop.Color.G, targetStop.Color.B);
+                                var sourceStop = linearGradientBrush.GradientStops[i];
+                                using var selectedColor = ExpressionFunctions.ColorRgb(sourceStop.Color.A, sourceStop.Color.R, sourceStop.Color.G, sourceStop.Color.B);
+                                using var colorLerp = ExpressionFunctions.ColorLerp(selectedColor, deselectedColor, distanceAsPercentOfScaleThreshold);
+                                using var finalColorExp = ExpressionFunctions.Conditional(isWithinScaleThreshold, colorLerp, deselectedColor);
+                                targetStop.StartAnimation("Color", finalColorExp);
                             }
                         }
                     }
@@ -874,7 +861,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
     {
         if (NavigationSpeed > 0)
         {
-            ImplicitAnimationCollection implicitAnimations = visual.Compositor.CreateImplicitAnimationCollection();
+            var implicitAnimations = visual.Compositor.CreateImplicitAnimationCollection();
             var animation = visual.Compositor.CreateScalarKeyFrameAnimation();
             animation.InsertExpressionKeyFrame(1f, "this.FinalValue");
             animation.Target = "RotationAngleInDegrees";
@@ -884,12 +871,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    private void RemoveImplicitWheelRotationAnimation(Visual visual)
+    private static void RemoveImplicitWheelRotationAnimation(Visual visual)
     {
-        if (visual.ImplicitAnimations != null)
-        {
-            visual.ImplicitAnimations.Clear();
-        }
+        visual.ImplicitAnimations?.Clear();
     }
 
     public void StartManipulationMode()
@@ -907,7 +891,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         OnCarouselMovingStateChanged();
     }
 
-    void UpdateCarouselVerticalScrolling(float newValue)
+    private void UpdateCarouselVerticalScrolling(float newValue)
     {
         if (Items != null && _itemsLayerGrid.Children.Count == Density)
         {
@@ -942,9 +926,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 }
             }
 
-            for (int i = (Density - 1); i > -1; i--)
+            for (var i = (Density - 1); i > -1; i--)
             {
-                int idx = Modulus(((Density - 1) - i), Density);
+                var idx = Modulus(((Density - 1) - i), Density);
                 if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
                 {
                     var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -966,7 +950,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void UpdateCarouselHorizontalScrolling(float newValue)
+    private void UpdateCarouselHorizontalScrolling(float newValue)
     {
         if (Items != null && _itemsLayerGrid.Children.Count == Density)
         {
@@ -1001,9 +985,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 }
             }
 
-            for (int i = (Density - 1); i > -1; i--)
+            for (var i = (Density - 1); i > -1; i--)
             {
-                int idx = Modulus(((Density - 1) - i), Density);
+                var idx = Modulus(((Density - 1) - i), Density);
                 if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
                 {
                     var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -1026,7 +1010,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void UpdateWheelRotation(float newValue)
+    private void UpdateWheelRotation(float newValue)
     {
         if (Items != null && _itemsLayerGrid.Children.Count == Density)
         {
@@ -1038,11 +1022,11 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 _deltaDirectionIsReverse = _scrollValue < 0;
                 if (_deltaDirectionIsReverse)
                 {
-                    _currentWheelTickOffset = degrees / 2;
+                    _currentWheelTickOffset = Degrees / 2;
                 }
                 else
                 {
-                    _currentWheelTickOffset = -degrees / 2;
+                    _currentWheelTickOffset = -Degrees / 2;
                 }
             }
             else if ((_deltaDirectionIsReverse && _scrollValue > 0) || (!_deltaDirectionIsReverse && _scrollValue < 0))
@@ -1050,18 +1034,18 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 _deltaDirectionIsReverse = !_deltaDirectionIsReverse;
                 if (_deltaDirectionIsReverse)
                 {
-                    _currentWheelTickOffset += degrees;
+                    _currentWheelTickOffset += Degrees;
                 }
                 else
                 {
-                    _currentWheelTickOffset -= degrees;
+                    _currentWheelTickOffset -= Degrees;
                 }
             }
 
             _dynamicGridVisual.RotationAngleInDegrees = newValue;
-            while (newValue > _currentWheelTick + degrees + _currentWheelTickOffset)
+            while (newValue > _currentWheelTick + Degrees + _currentWheelTickOffset)
             {
-                _currentWheelTick += degrees;
+                _currentWheelTick += Degrees;
                 switch (WheelAlignment)
                 {
                     case CarouselView2WheelAlignments.Right:
@@ -1074,9 +1058,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                         break;
                 }
             }
-            while (newValue < _currentWheelTick - degrees + _currentWheelTickOffset)
+            while (newValue < _currentWheelTick - Degrees + _currentWheelTickOffset)
             {
-                _currentWheelTick -= degrees;
+                _currentWheelTick -= Degrees;
                 switch (WheelAlignment)
                 {
                     case CarouselView2WheelAlignments.Right:
@@ -1092,13 +1076,13 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    async Task StopCarouselMoving()
+    private async Task StopCarouselMoving()
     {
-        var selectedIdx = Modulus(((Density - 1) - (displaySelectedIndex)), Density);
+        var selectedIdx = Modulus(((Density - 1) - (DisplaySelectedIndex)), Density);
         if (CarouselType == CarouselView2CarouselTypes.Wheel)
         {
             StartWheelSnapToAnimation(_dynamicGridVisual, _currentWheelTick);
-            _currentWheelTick = _currentWheelTick % 360;
+            _currentWheelTick %= 360;
             _dynamicGridVisual.RotationAngleInDegrees = _currentWheelTick;
             CarouselRotationAngle = _currentWheelTick;
         }
@@ -1106,9 +1090,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         var offsetVertical = _maxItemHeight + ItemGap;
         var offsetHorizontal = _maxItemWidth + ItemGap;
 
-        for (int i = -((Density / 2) - 1); i <= (Density / 2); i++)
+        for (var i = -((Density / 2) - 1); i <= (Density / 2); i++)
         {
-            int j = Modulus((selectedIdx + i), Density);
+            var j = Modulus((selectedIdx + i), Density);
             if (_itemsLayerGrid != null && _itemsLayerGrid.Children[j] is FrameworkElement itemElement)
             {
                 var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -1132,13 +1116,16 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         _scrollSnapshot = 0;
     }
 
-    FrameworkElement CreateCarouselItemElement(int i, int playlistIdx)
+    private FrameworkElement? CreateCarouselItemElement(int i, int playlistIdx)
     {
         if (ItemTemplate != null)
         {
-            int w = 0;
-            int h = 0;
-            FrameworkElement element = ItemTemplate.LoadContent() as FrameworkElement;
+            var w = 0;
+            var h = 0;
+            if (ItemTemplate.LoadContent() is not FrameworkElement element)
+            {
+                return null;
+            }
             if (ItemContentStyle != null)
             {
                 var descendants = element.FindDescendants();
@@ -1148,9 +1135,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                     Convert.ChangeType(targetTypeChild, ItemContentStyle.TargetType);
                     targetTypeChild.Style = ItemContentStyle;
                     targetTypeChild.Tag = true;
-                    if (Double.IsNaN(targetTypeChild.Width) || Double.IsNaN(targetTypeChild.Height))
+                    if (double.IsNaN(targetTypeChild.Width) || double.IsNaN(targetTypeChild.Height))
                     {
-                        if (!Double.IsInfinity(targetTypeChild.MaxWidth) && !Double.IsInfinity(targetTypeChild.MaxHeight))
+                        if (!double.IsInfinity(targetTypeChild.MaxWidth) && !double.IsInfinity(targetTypeChild.MaxHeight))
                         {
                             w = Convert.ToInt32(targetTypeChild.MaxWidth + targetTypeChild.Margin.Left + targetTypeChild.Margin.Right);
                             h = Convert.ToInt32(targetTypeChild.MaxHeight + targetTypeChild.Margin.Top + targetTypeChild.Margin.Bottom);
@@ -1163,19 +1150,19 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                     }
                 }
             }
-            element.DataContext = Items[playlistIdx];
-            if (Double.IsNaN(element.Height) || Double.IsNaN(element.Width))
+            element.DataContext = Items![playlistIdx];
+            if (double.IsNaN(element.Height) || double.IsNaN(element.Width))
             {
-                if (!Double.IsInfinity(element.MaxWidth) && !Double.IsInfinity(element.MaxHeight))
+                if (!double.IsInfinity(element.MaxWidth) && !double.IsInfinity(element.MaxHeight))
                 {
                     w = Convert.ToInt32(element.MaxWidth);
                     h = Convert.ToInt32(element.MaxHeight);
                 }
                 else if (element is UserControl uc && uc.Content is FrameworkElement childElement)
                 {
-                    if (Double.IsNaN(childElement.Width) || Double.IsNaN(childElement.Height))
+                    if (double.IsNaN(childElement.Width) || double.IsNaN(childElement.Height))
                     {
-                        if (!Double.IsInfinity(childElement.MaxWidth) && !Double.IsInfinity(childElement.MaxHeight))
+                        if (!double.IsInfinity(childElement.MaxWidth) && !double.IsInfinity(childElement.MaxHeight))
                         {
                             w = Convert.ToInt32(childElement.MaxWidth + childElement.Margin.Left + childElement.Margin.Right);
                             h = Convert.ToInt32(childElement.MaxHeight + childElement.Margin.Top + childElement.Margin.Bottom);
@@ -1209,13 +1196,13 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
             element.SizeChanged -= Element_SizeChanged;
             if (_maxItemHeight < element.ActualHeight) { _maxItemHeight = Convert.ToInt32(element.ActualHeight); }
             if (_maxItemWidth < element.ActualWidth) { _maxItemWidth = Convert.ToInt32(element.ActualWidth); }
-            if (_uIItemsCreated)
+            if (_uIItemsCreated && Items != null)
             {
-                for (int i = (Density - 1); i > -1; i--)
+                for (var i = (Density - 1); i > -1; i--)
                 {
-                    int playlistIdx = (i + this.currentStartIndexBackwards) % Items.Count();
+                    var playlistIdx = (i + CurrentStartIndexBackwards) % Items.Count;
                     var context = Items[playlistIdx];
-                    FrameworkElement itemElement = null;
+                    FrameworkElement? itemElement = null;
                     foreach (var child in _itemsLayerGrid.Children)
                     {
                         if (child is FrameworkElement childElement && childElement.DataContext == context)
@@ -1234,7 +1221,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void PositionElement(FrameworkElement element, int index, float elementWidth, float elementHeight)
+    private void PositionElement(FrameworkElement element, int index, float elementWidth, float elementHeight)
     {
         var elementVisual = ElementCompositionPreview.GetElementVisual(element);
         elementVisual.CenterPoint = new Vector3((elementWidth / 2), (elementHeight / 2), 0);
@@ -1247,20 +1234,20 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    List<Visual> UpdateItemInCarouselSlot(int carouselIdx, int sourceIdx, bool loFi)
+    private List<Visual> UpdateItemInCarouselSlot(int carouselIdx, int sourceIdx, bool loFi)
     {
         var output = new List<Visual>();
-        int idx = Modulus(((Density - 1) - carouselIdx), Density);
+        var idx = Modulus(((Density - 1) - carouselIdx), Density);
         if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement element)
         {
-            element.DataContext = Items[sourceIdx];
+            element.DataContext = Items![sourceIdx];
 
             if (CarouselType != CarouselView2CarouselTypes.Wheel)
             {
                 double translateX = 0;
                 double translateY = 0;
                 var elementVisual = ElementCompositionPreview.GetElementVisual(element);
-                UIElement precedingItemElement = loFi ? _itemsLayerGrid.Children[Modulus(idx - 1, Density)] : _itemsLayerGrid.Children[(idx + 1) % Density];
+                var precedingItemElement = loFi ? _itemsLayerGrid.Children[Modulus(idx - 1, Density)] : _itemsLayerGrid.Children[(idx + 1) % Density];
                 var precedingItemElementVisual = ElementCompositionPreview.GetElementVisual(precedingItemElement);
                 output.Add(elementVisual);
 
@@ -1310,8 +1297,8 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         if (_inputAllowed)
         {
             _selectedIndexSetInternally = true;
-            SelectedIndex = reverse ? Modulus(SelectedIndex - 1, Items.Count()) : (SelectedIndex + 1) % Items.Count();
-            ChangeSelection(reverse ? currentStartIndexBackwards : currentStartIndexForwards, reverse);
+            SelectedIndex = reverse ? Modulus(SelectedIndex - 1, Items!.Count) : (SelectedIndex + 1) % Items!.Count;
+            ChangeSelection(reverse ? CurrentStartIndexBackwards : CurrentStartIndexForwards, reverse);
             if (NavigationSpeed > 1 && ZIndexUpdateWaitsForAnimation)
             {
                 _delayedZIndexUpdateTimer.Interval = TimeSpan.FromMilliseconds(NavigationSpeed / 2);
@@ -1329,7 +1316,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void ChangeSelection(int startIdx, bool reverse)
+    private void ChangeSelection(int startIdx, bool reverse)
     {
         _carouselInsertPosition = reverse ? Modulus((_carouselInsertPosition - 1), Density) : (_carouselInsertPosition + 1) % Density;
         var carouselIdx = reverse ? _carouselInsertPosition : Modulus((_carouselInsertPosition - 1), Density);
@@ -1373,11 +1360,11 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     public void AnimateToSelectedIndex()
     {
-        var count = Items != null && Items.Count >= 0 ? Items.Count() : 0;
+        var count = Items != null && Items.Count >= 0 ? Items.Count : 0;
         if (count > 0)
         {
             var distance = ModularDistance(_previousSelectedIndex, SelectedIndex, count);
-            bool goForward = false;
+            var goForward = false;
 
             if (Carousel2Ext.Mod(_previousSelectedIndex + distance, count) == SelectedIndex)
             {
@@ -1389,15 +1376,15 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
             if (goForward)
             {
                 var startIdx = Modulus((SelectedIndex + 1 - steps - (Density / 2)), count);
-                for (int i = 0; i < steps; i++)
+                for (var i = 0; i < steps; i++)
                 {
-                    ChangeSelection((startIdx + i + (Density - 1)) % Items.Count(), false);
+                    ChangeSelection((startIdx + i + (Density - 1)) % count, false);
                 }
             }
             else
             {
                 var startIdx = Modulus(SelectedIndex - 1 + steps - (Density / 2), count);
-                for (int i = 0; i < steps; i++)
+                for (var i = 0; i < steps; i++)
                 {
                     ChangeSelection(Carousel2Ext.Mod(startIdx - i, count), true);
                 }
@@ -1410,9 +1397,9 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     public void AnimateSelection()
     {
-        if (this.SelectedItemElement is FrameworkElement selectedItemContent)
+        if (SelectedItemElement is FrameworkElement selectedItemContent)
         {
-            Storyboard sb = null;
+            Storyboard? sb = null;
             if (selectedItemContent.Resources.ContainsKey("SelectionAnimation"))
             {
                 sb = selectedItemContent.Resources["SelectionAnimation"] as Storyboard;
@@ -1430,7 +1417,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    private void SelectionAnimation_Completed(object sender, object e)
+    private void SelectionAnimation_Completed(object? sender, object e)
     {
         if (sender is Storyboard sb)
         {
@@ -1441,7 +1428,7 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     private void RotateWheel(bool clockwise)
     {
-        float endAngle = (clockwise) ? degrees : -degrees;
+        var endAngle = (clockwise) ? Degrees : -Degrees;
         var newVal = (float)CarouselRotationAngle + endAngle;
         var rotationAnimation = _dynamicGridVisual.Compositor.CreateScalarKeyFrameAnimation();
         var navSpeed = NavigationSpeed > 0 ? NavigationSpeed : 1;
@@ -1453,12 +1440,12 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         _dynamicGridVisual.StartAnimation("RotationAngleInDegrees", rotationAnimation);
     }
 
-    void ScrollVerticalColumn(bool scrollUp, List<Visual> dontAnimate)
+    private void ScrollVerticalColumn(bool scrollUp, List<Visual> dontAnimate)
     {
         long scrollAmount = (scrollUp) ? -(_maxItemHeight + ItemGap) : (_maxItemHeight + ItemGap);
-        for (int i = (Density - 1); i > -1; i--)
+        for (var i = (Density - 1); i > -1; i--)
         {
-            int idx = Modulus(((Density - 1) - i), Density);
+            var idx = Modulus(((Density - 1) - i), Density);
             if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
             {
                 var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -1469,8 +1456,8 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 }
                 else
                 {
-                    finalValue = _activeVerticalScrollAnimations.ContainsKey(itemElementVisual)
-                        ? _activeVerticalScrollAnimations[itemElementVisual] + scrollAmount : itemElementVisual.Offset.Y + scrollAmount;
+                    finalValue = _activeVerticalScrollAnimations.TryGetValue(itemElementVisual, out var activeValue)
+                        ? activeValue + scrollAmount : itemElementVisual.Offset.Y + scrollAmount;
                 }
                 var scrollAnimation = itemElementVisual.Compositor.CreateScalarKeyFrameAnimation();
                 scrollAnimation.StopBehavior = AnimationStopBehavior.SetToFinalValue;
@@ -1483,12 +1470,12 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void ScrollHorizontalRow(bool scrollLeft, List<Visual> dontAnimate)
+    private void ScrollHorizontalRow(bool scrollLeft, List<Visual> dontAnimate)
     {
         long scrollAmount = (scrollLeft) ? -(_maxItemWidth + ItemGap) : (_maxItemWidth + ItemGap);
-        for (int i = (Density - 1); i > -1; i--)
+        for (var i = (Density - 1); i > -1; i--)
         {
-            int idx = Modulus(((Density - 1) - i), Density);
+            var idx = Modulus(((Density - 1) - i), Density);
             if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
             {
                 var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -1499,8 +1486,8 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
                 }
                 else
                 {
-                    finalValue = _activeHorizontalScrollAnimations.ContainsKey(itemElementVisual)
-                        ? _activeHorizontalScrollAnimations[itemElementVisual] + scrollAmount : itemElementVisual.Offset.X + scrollAmount;
+                    finalValue = _activeHorizontalScrollAnimations.TryGetValue(itemElementVisual, out var activeValue)
+                        ? activeValue + scrollAmount : itemElementVisual.Offset.X + scrollAmount;
                 }
                 var scrollAnimation = itemElementVisual.Compositor.CreateScalarKeyFrameAnimation();
                 scrollAnimation.StopBehavior = AnimationStopBehavior.SetToFinalValue;
@@ -1513,12 +1500,12 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void ScrollHorizontalRowOLD(bool scrollLeft)
+    private void ScrollHorizontalRowOLD(bool scrollLeft)
     {
         long endPosition = (scrollLeft) ? -(_maxItemWidth + ItemGap) : (_maxItemWidth + ItemGap);
-        for (int i = (Density - 1); i > -1; i--)
+        for (var i = (Density - 1); i > -1; i--)
         {
-            int idx = Modulus(((Density - 1) - i), Density);
+            var idx = Modulus(((Density - 1) - i), Density);
             if (_itemsLayerGrid != null && _itemsLayerGrid.Children[idx] is FrameworkElement itemElement)
             {
                 var itemElementVisual = ElementCompositionPreview.GetElementVisual(itemElement);
@@ -1528,13 +1515,13 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
             }
         }
     }
-    void UpdateZIndices()
+    private void UpdateZIndices()
     {
         if (Items != null && _itemsLayerGrid != null)
         {
-            for (int i = -(Density / 2); i < (Density / 2); i++)
+            for (var i = -(Density / 2); i < (Density / 2); i++)
             {
-                var slot = Modulus(((Density - 1) - (displaySelectedIndex + i)), Density);
+                var slot = Modulus(((Density - 1) - (DisplaySelectedIndex + i)), Density);
                 Canvas.SetZIndex((UIElement)_itemsLayerGrid.Children[slot], 10000 - Math.Abs(i));
                 if (i == 0)
                 {
@@ -1546,61 +1533,44 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     protected double GetOffsetY(int i)
     {
-        switch (CarouselType)
+        return CarouselType switch
         {
-            default:
-                switch (WheelAlignment)
-                {
-                    default:
-                        return -(Math.Sin(DegreesToRadians(degrees * i))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Left:
-                        return (Math.Sin(DegreesToRadians(360 - (degrees * i)))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Top:
-                        return (Math.Sin(DegreesToRadians(360 - (degrees * ((i + (Density / 4)) % Density))))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Bottom:
-                        return -(Math.Sin(DegreesToRadians(360 - (degrees * ((i + (Density / 4)) % Density))))) * (WheelSize / 2);
-                }
-            case CarouselView2CarouselTypes.Column:
-                return ((_maxItemHeight + ItemGap) * (i - (Density / 2)));
-            case CarouselView2CarouselTypes.Row:
-                return 0;
-        }
+            CarouselView2CarouselTypes.Column => (_maxItemHeight + ItemGap) * (i - (Density / 2)),
+            CarouselView2CarouselTypes.Row => 0,
+            _ => WheelAlignment switch
+            {
+                CarouselView2WheelAlignments.Left => Math.Sin(DegreesToRadians(360 - (Degrees * i))) * (WheelSize / 2),
+                CarouselView2WheelAlignments.Top => Math.Sin(DegreesToRadians(360 - (Degrees * ((i + (Density / 4)) % Density)))) * (WheelSize / 2),
+                CarouselView2WheelAlignments.Bottom => -Math.Sin(DegreesToRadians(360 - (Degrees * ((i + (Density / 4)) % Density)))) * (WheelSize / 2),
+                _ => -Math.Sin(DegreesToRadians(Degrees * i)) * (WheelSize / 2)
+            }
+        };
     }
     protected double GetOffsetX(int i)
     {
-        switch (CarouselType)
+        return CarouselType switch
         {
-            default:
-                switch (WheelAlignment)
-                {
-                    default:
-                        return (Math.Cos(DegreesToRadians(degrees * i))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Left:
-                        return -(Math.Cos(DegreesToRadians(360 - (degrees * i)))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Top:
-                        return (Math.Cos(DegreesToRadians(360 - (degrees * ((i + (Density / 4)) % Density))))) * (WheelSize / 2);
-                    case CarouselView2WheelAlignments.Bottom:
-                        return (Math.Cos(DegreesToRadians(360 - (degrees * ((i + (Density / 4)) % Density))))) * (WheelSize / 2);
-                }
-            case CarouselView2CarouselTypes.Row:
-                return ((_maxItemWidth + ItemGap) * (i - (Density / 2)));
-            case CarouselView2CarouselTypes.Column:
-                return 0;
-        }
+            CarouselView2CarouselTypes.Row => (_maxItemWidth + ItemGap) * (i - (Density / 2)),
+            CarouselView2CarouselTypes.Column => 0,
+            _ => WheelAlignment switch
+            {
+                CarouselView2WheelAlignments.Left => -Math.Cos(DegreesToRadians(360 - (Degrees * i))) * (WheelSize / 2),
+                CarouselView2WheelAlignments.Top => Math.Cos(DegreesToRadians(360 - (Degrees * ((i + (Density / 4)) % Density)))) * (WheelSize / 2),
+                CarouselView2WheelAlignments.Bottom => Math.Cos(DegreesToRadians(360 - (Degrees * ((i + (Density / 4)) % Density)))) * (WheelSize / 2),
+                _ => Math.Cos(DegreesToRadians(Degrees * i)) * (WheelSize / 2)
+            }
+        };
     }
 
     private int GetRotation(int i)
     {
         if (CarouselType == CarouselView2CarouselTypes.Wheel)
         {
-            switch (WheelAlignment)
+            return WheelAlignment switch
             {
-                default:
-                    return Convert.ToInt32(((360 - (degrees * i)) + 180) % 360);
-                case CarouselView2WheelAlignments.Left:
-                case CarouselView2WheelAlignments.Bottom:
-                    return Convert.ToInt32(((degrees * i) + 180) % 360);
-            }
+                CarouselView2WheelAlignments.Left or CarouselView2WheelAlignments.Bottom => Convert.ToInt32(((Degrees * i) + 180) % 360),
+                _ => Convert.ToInt32(((360 - (Degrees * i)) + 180) % 360)
+            };
         }
         else
         {
@@ -1608,49 +1578,42 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
         }
     }
 
-    void OnItemsCreated()
+    private void OnItemsCreated()
     {
         AreItemsLoaded = true;
-        EventHandler handler = ItemsCreated;
-        if (handler != null)
-            handler(this, null);
+        ItemsCreated?.Invoke(this, EventArgs.Empty);
     }
 
 
-    void OnItemsLoaded()
+    private void OnItemsLoaded()
     {
         AreItemsLoaded = true;
-        EventHandler handler = ItemsLoaded;
-        if (handler != null)
-            handler(this, null);
+        ItemsLoaded?.Invoke(this, EventArgs.Empty);
     }
 
-    void OnCarouselMovingStateChanged()
+    private void OnCarouselMovingStateChanged()
     {
-        EventHandler handler = CarouselMovingStateChanged;
-        if (handler != null)
-            handler(this, null);
+        CarouselMovingStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    void OnSelectionAnimationComplete()
+    private void OnSelectionAnimationComplete()
     {
-        EventHandler handler = SelectionAnimationComplete;
-        if (handler != null)
-            handler(this, null);
+        SelectionAnimationComplete?.Invoke(this, EventArgs.Empty);
     }
 
-    void OnSelectionChanged()
+    private void OnSelectionChanged()
     {
-        EventHandler handler = SelectionChanged;
-        if (handler != null)
-            handler(this, null);
+        SelectionChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private static void OnSelectedIndexChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
         if (e.Property == SelectedIndexProperty)
         {
-            var control = dependencyObject as CarouselView2;
+            if (dependencyObject is not CarouselView2 control)
+            {
+                return;
+            }
             if (e.OldValue is int oldVal)
             {
                 control._previousSelectedIndex = oldVal;
@@ -1672,13 +1635,15 @@ public partial class CarouselView2 : ContentControl, ICarouselView2
 
     private static void OnCaptionPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
-        var control = dependencyObject as CarouselView2;
-        control.Refresh();
+        if (dependencyObject is CarouselView2 control)
+        {
+            control.Refresh();
+        }
     }
 
     internal static int Modulus(int num, int mod)
     {
-        int result = num % mod;
+        var result = num % mod;
         if (result < 0)
         {
             result += mod;
@@ -1702,7 +1667,7 @@ internal static partial class Carousel2Ext
     internal static int Mod(this int x, int m)
     {
         if (m < 0) m = -m;
-        int r = x % m;
+        var r = x % m;
         return r < 0 ? r + m : r;
     }
 }

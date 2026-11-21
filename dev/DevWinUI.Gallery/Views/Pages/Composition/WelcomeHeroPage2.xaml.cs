@@ -2,7 +2,7 @@
 
 public sealed partial class WelcomeHeroPage2 : Page
 {
-    public static Action<string> NavigateToModuleCallback { get; set; }
+    public static Action<string>? NavigateToModuleCallback { get; set; }
 
     private const string WelcomeAssetFolder = "ms-appx:///Assets/Modules/OOBE/Welcome/";
     public WelcomeHeroPage2()
@@ -77,6 +77,6 @@ public sealed partial class WelcomeHeroPage2 : Page
         // Simulates opening a module's settings page. Navigating back to BlankPage1
         // re-constructs it, and since WelcomeIntroPlayed is now true it plays the
         // short "Settle" animation instead of the full "Intro" again.
-        WelcomeHeroPage.Instance.NavigateToModule(tag);
+        WelcomeHeroPage.Instance?.NavigateToModule(tag);
     }
 }

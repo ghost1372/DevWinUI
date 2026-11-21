@@ -16,15 +16,15 @@ public partial class ClockPicker : Control
     private const string PART_ConfirmButton = "PART_ConfirmButton";
     private const string PART_ClockView = "PART_ClockView";
 
-    public event EventHandler<RoutedEventArgs> ConfirmClick;
-    public event EventHandler<TimeSpan> SelectedTimeChanged;
-    public event EventHandler<ClockPickerSelectedValueChangedEventArgs> SelectedTimeValueChanged;
+    public event EventHandler<RoutedEventArgs>? ConfirmClick;
+    public event EventHandler<TimeSpan>? SelectedTimeChanged;
+    public event EventHandler<ClockPickerSelectedValueChangedEventArgs>? SelectedTimeValueChanged;
 
-    private ContentPresenter headerContentPresenter;
-    private ContentPresenter descriptionContentPresenter;
-    private Grid rootGrid;
-    private Button confirmButton;
-    internal Clock clock;
+    private ContentPresenter headerContentPresenter = null!;
+    private ContentPresenter descriptionContentPresenter = null!;
+    private Grid rootGrid = null!;
+    private Button confirmButton = null!;
+    internal Clock clock = null!;
     private bool isUpdating;
     private bool openedViaKeyboard;
 
@@ -37,15 +37,15 @@ public partial class ClockPicker : Control
     {
         base.OnApplyTemplate();
 
-        headerContentPresenter = GetTemplateChild(nameof(HeaderContentPresenter)) as ContentPresenter;
-        descriptionContentPresenter = GetTemplateChild(nameof(DescriptionPresenter)) as ContentPresenter;
+        headerContentPresenter = (GetTemplateChild(nameof(HeaderContentPresenter)) as ContentPresenter)!;
+        descriptionContentPresenter = (GetTemplateChild(nameof(DescriptionPresenter)) as ContentPresenter)!;
 
         UpdateHeaderVisibility();
         UpdateDescriptionVisibility();
 
-        rootGrid = GetTemplateChild(PART_Root) as Grid;
-        confirmButton = GetTemplateChild(PART_ConfirmButton) as Button;
-        clock = GetTemplateChild(PART_ClockView) as Clock;
+        rootGrid = (GetTemplateChild(PART_Root) as Grid)!;
+        confirmButton = (GetTemplateChild(PART_ConfirmButton) as Button)!;
+        clock = (GetTemplateChild(PART_ClockView) as Clock)!;
 
         if (rootGrid != null)
         {
@@ -84,7 +84,7 @@ public partial class ClockPicker : Control
         UpdateTemplate();
     }
 
-    private void Clock_SelectedTimeChanged(object sender, DateTime e)
+    private void Clock_SelectedTimeChanged(object? sender, DateTime e)
     {
         if (!isUpdating && clock != null)
         {
@@ -177,7 +177,7 @@ public partial class ClockPicker : Control
         }
     }
 
-    private void Flyout_Opened(object sender, object e)
+    private void Flyout_Opened(object? sender, object e)
     {
         if (sender is FlyoutBase flyout)
         {
@@ -196,7 +196,7 @@ public partial class ClockPicker : Control
         }
     }
 
-    private void Flyout_Closed(object sender, object e)
+    private void Flyout_Closed(object? sender, object e)
     {
         UpdatePlaceholder();
     }

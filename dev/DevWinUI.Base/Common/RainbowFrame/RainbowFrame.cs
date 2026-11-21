@@ -2,7 +2,7 @@
 public partial class RainbowFrame : IRainbowFrame
 {
     private uint _defaultColor = 0xFFFFFFFF;
-    private DispatcherTimer _frameTimer;
+    private DispatcherTimer? _frameTimer;
     private DateTimeOffset _started;
     private TimeSpan FrameUpdateInterval = TimeSpan.FromMilliseconds(16);
     private IntPtr _hwnd;
@@ -77,7 +77,7 @@ public partial class RainbowFrame : IRainbowFrame
         InternalInitialize(null, hwnd, EffectSpeed, FrameUpdateInterval);
     }
 
-    private void InternalInitialize(Microsoft.UI.Xaml.Window window, IntPtr hwnd, double effectSpeed, TimeSpan frameUpdateInterval)
+    private void InternalInitialize(Microsoft.UI.Xaml.Window? window, IntPtr hwnd, double effectSpeed, TimeSpan frameUpdateInterval)
     {
         if (window != null)
         {
@@ -185,7 +185,7 @@ public partial class RainbowFrame : IRainbowFrame
         _frameTimer?.Stop();
     }
 
-    private void UpdateFrameColor(object sender, object e)
+    private void UpdateFrameColor(object? sender, object e)
     {
         var saturateAndToColor = new Func<float, float, float, uint>((a, b, c) =>
         {

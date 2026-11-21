@@ -1,8 +1,8 @@
-﻿using ComputeSharp.D2D1.WinUI;
+﻿using System.Numerics;
+using ComputeSharp.D2D1.WinUI;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using System.Numerics;
 
 namespace DevWinUI;
 

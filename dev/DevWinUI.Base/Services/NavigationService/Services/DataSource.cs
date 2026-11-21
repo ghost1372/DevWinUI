@@ -5,7 +5,7 @@ namespace DevWinUI;
 
 public partial class Root
 {
-    public ObservableCollection<DataGroup> Groups { get; set; }
+    public ObservableCollection<DataGroup>? Groups { get; set; }
 }
 [JsonSourceGenerationOptions(PropertyNameCaseInsensitive = true)]
 [JsonSerializable(typeof(Root))]
@@ -15,9 +15,9 @@ internal partial class RootContext : JsonSerializerContext
 
 public sealed partial class DataSource
 {
-    private string _jsonFilePath;
+    private string? _jsonFilePath;
     private PathType _pathType;
-    private string _loadedJsonFilePath;
+    private string? _loadedJsonFilePath;
     private PathType _loadedPathType;
     private int _loadedGroupCount;
     private bool _isLoaded;
@@ -75,11 +75,11 @@ public sealed partial class DataSource
         }
     }
 
-    public static async Task<DataGroup> GetGroupAsync(string uniqueId)
+    public static async Task<DataGroup?> GetGroupAsync(string uniqueId)
     {
         await _instance.GetControlInfoDataAsync();
         // Simple linear search is acceptable for small data sets
-        DataGroup match = null;
+        DataGroup? match = null;
         foreach (var group in _instance.Groups)
         {
             if (string.Equals(group.UniqueId, uniqueId, StringComparison.Ordinal))
@@ -91,7 +91,7 @@ public sealed partial class DataSource
         return match;
     }
 
-    public static async Task<DataItem> GetItemAsync(string uniqueId)
+    public static async Task<DataItem?> GetItemAsync(string uniqueId)
     {
         await _instance.GetControlInfoDataAsync();
         foreach (var group in _instance.Groups)
@@ -104,10 +104,10 @@ public sealed partial class DataSource
         return null;
     }
 
-    public static async Task<DataGroup> GetGroupFromItemAsync(string uniqueId)
+    public static async Task<DataGroup?> GetGroupFromItemAsync(string uniqueId)
     {
         await _instance.GetControlInfoDataAsync();
-        DataGroup match = null;
+        DataGroup? match = null;
         foreach (var group in _instance.Groups)
         {
             foreach (var item in group.Items)
@@ -125,7 +125,7 @@ public sealed partial class DataSource
 
     private async Task GetControlInfoDataAsync()
     {
-        string jsonFilePath;
+        string? jsonFilePath;
         PathType pathType;
         bool useTaskForDeserialization;
         lock (_lock)
@@ -273,12 +273,12 @@ public sealed partial class DataSource
 
     public static async Task<string> LoadText(string filePath, PathType pathType)
     {
-        StorageFile file = null;
+        StorageFile? file = null;
         if (!PackageHelper.IsPackaged)
         {
             if (pathType == PathType.Relative)
             {
-                var sourcePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(ProcessInfoHelper.GetFileVersionInfo().FileName), filePath));
+                var sourcePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(ProcessInfoHelper.GetFileVersionInfo().FileName) ?? string.Empty, filePath));
                 file = await StorageFile.GetFileFromPathAsync(sourcePath);
             }
             else

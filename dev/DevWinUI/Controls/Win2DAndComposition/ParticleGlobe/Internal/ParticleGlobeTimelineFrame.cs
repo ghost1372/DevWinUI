@@ -1,7 +1,7 @@
-﻿namespace DevWinUI;
+namespace DevWinUI;
 
 internal sealed partial class ParticleGlobeTimelineFrame
 {
-    public string Label;
-    public Dictionary<string, double> Values;
+    public string Label = string.Empty;
+    public Dictionary<string, double> Values = new();
 }

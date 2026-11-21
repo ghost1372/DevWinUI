@@ -5,18 +5,18 @@ namespace DevWinUI;
 public partial class Stars : Control
 {
     private const string PART_Sky = "PART_Sky";
-    private Border sky;
+    private Border? sky;
     private readonly Random _random = new Random((int)DateTime.Now.Ticks);
 
-    private CompositionSurfaceBrush _circleBrush;
-    private Compositor _compositor;
-    private ContainerVisual _skyVisual;
+    private CompositionSurfaceBrush? _circleBrush;
+    private Compositor? _compositor;
+    private ContainerVisual? _skyVisual;
 
-    private Inclinometer _inclinometer;
+    private Inclinometer? _inclinometer;
     private uint _desiredReportInterval;
-    private ExpressionAnimation _skyViusalOffsetExpressionAnimation;
-    private CompositionPropertySet _reading;
-    private float SkyVisualRadius => _skyVisual.Size.X / 2;
+    private ExpressionAnimation? _skyViusalOffsetExpressionAnimation;
+    private CompositionPropertySet? _reading;
+    private float SkyVisualRadius => (_skyVisual?.Size.X ?? 0f) / 2;
     private bool _isUnloading;
     public Stars()
     {
@@ -213,27 +213,37 @@ public partial class Stars : Control
 
     private void UpdateVisual()
     {
+        if (sky == null) return;
+
         var appWindow = WindowHelper.GetAppWindow(this);
+        if (appWindow == null) return;
+
         var bounds = appWindow.ClientSize;
 
         var maxWindowWidth = (float)bounds.Width;
         var maxWindowHeight = (float)bounds.Height;
         var maxWindowRadius = Math.Max(maxWindowWidth, maxWindowHeight);
 
-        // Setup sky visual's size, position, opacity, etc.
-        _skyVisual = sky.ContainerVisual();
-        _skyVisual.Size = new Vector2(maxWindowRadius * (float)SkyVisualAreaRatio);
-        _skyVisual.Offset = new Vector3(-SkyVisualRadius + maxWindowWidth / 2.0f, -SkyVisualRadius + maxWindowHeight / 2.0f, 0.0f);
-        _skyVisual.CenterPoint = new Vector3(SkyVisualRadius, SkyVisualRadius, 0.0f);
-        _skyVisual.Opacity = 0;
+        var skyVisual = sky.ContainerVisual();
+        _skyVisual = skyVisual;
+        skyVisual.Size = new Vector2(maxWindowRadius * (float)SkyVisualAreaRatio);
+        skyVisual.Offset = new Vector3(-SkyVisualRadius + maxWindowWidth / 2.0f, -SkyVisualRadius + maxWindowHeight / 2.0f, 0.0f);
+        skyVisual.CenterPoint = new Vector3(SkyVisualRadius, SkyVisualRadius, 0.0f);
+        skyVisual.Opacity = 0;
     }
+
     private void InitializeCompositionVariables()
     {
         UpdateVisual();
-        _compositor = _skyVisual.Compositor;
-        _reading = _compositor.CreatePropertySet();
+
+        var skyVisual = _skyVisual;
+        if (skyVisual == null) return;
+
+        var compositor = skyVisual.Compositor;
+        _compositor = compositor;
+        _reading = compositor.CreatePropertySet();
         _reading.InsertVector3("Offset", new Vector3(0.0f, 0.0f, 0.0f));
-        _circleBrush = _compositor.CreateSurfaceBrush();
+        _circleBrush = compositor.CreateSurfaceBrush();
         UpdateCircleSurface();
 
         if (_inclinometer != null) SetupSkyVisualOffsetExpressionAnimation();
@@ -241,10 +251,13 @@ public partial class Stars : Control
 
     private void UpdateCircleSurface()
     {
+        if (_circleBrush == null) return;
+
         if (string.IsNullOrEmpty(StarUri))
         {
             var assembly = typeof(Stars).Assembly;
             var stream = FileHelper.GetFileFromEmbededResourcesOrUri(new Uri("ms-appx:///Assets/Mask/CircleMask.png"), assembly);
+            if (stream == null) return;
             _circleBrush.Surface = LoadedImageSurface.StartLoadFromStream(stream.AsRandomAccessStream());
         }
         else
@@ -255,20 +268,20 @@ public partial class Stars : Control
 
     private void SetupSkyVisualOffsetExpressionAnimation()
     {
-        // Kick off an expression animation that links the roll & pitch degress to the -offset of the sky canvas visual
-        // TODO: Need to constraint the offset (total offset < dimension * SkyVisualAreaRatio) with
-        // CreateConditionalExpressionAnimation once the next mobile build is available.
+        if (_compositor == null || _skyVisual == null || _reading == null) return;
+
         _skyViusalOffsetExpressionAnimation = _compositor.CreateExpressionAnimation(
             "Vector3(SkyVisual.Offset.X - Reading.Offset.X * Sensitivity, SkyVisual.Offset.Y - Reading.Offset.Y * Sensitivity, 0.0f)");
         _skyViusalOffsetExpressionAnimation.SetReferenceParameter("SkyVisual", _skyVisual);
         _skyViusalOffsetExpressionAnimation.SetReferenceParameter("Reading", _reading);
         _skyViusalOffsetExpressionAnimation.SetScalarParameter("Sensitivity", 0.2f);
-        //_skyViusalOffsetExpressionAnimation.SetScalarParameter("MaxDimension", SkyVisualRadius * 2 * SkyVisualAreaRatio);
         _skyVisual.StartAnimation("Offset", _skyViusalOffsetExpressionAnimation);
     }
 
     private void CreateStarsVisuals()
     {
+        if (_skyVisual == null || _compositor == null) return;
+
         for (int i = 0; i < NumberOfSmallTwinklingStars; i++)
         {
             CreateSmallTwinklingStarVisual();
@@ -282,15 +295,20 @@ public partial class Stars : Control
 
     private void StartSkyCanvasStartupAnimations()
     {
+        if (_skyVisual == null) return;
+
         _skyVisual.StartScaleAnimation(new Vector2(0.8f, 0.8f), new Vector2(1.0f, 1.0f), 1600);
         _skyVisual.StartOpacityAnimation(0.0f, 1.0f, 1600);
     }
 
     private void CreateSmallTwinklingStarVisual()
     {
+        if (_skyVisual == null) return;
+
         float z = _random.Create(-160, 160);
         float diameter = _random.Create(1, 3);
         var starVisual = CreateStarVisual(z, diameter);
+        if (starVisual == null) return;
 
         double duration = _random.Create(40000, 80000);
         StartStarVisualOffsetAnimation(starVisual, duration);
@@ -301,9 +319,12 @@ public partial class Stars : Control
 
     private void CreateBigMovingStarVisual()
     {
+        if (_skyVisual == null) return;
+
         float offsetZ = _random.Create(-240, 0);
         float diameter = _random.Create(3, 5, (value) => value > 4);
         var starVisual = CreateStarVisual(offsetZ, diameter);
+        if (starVisual == null) return;
 
         float finalOffsetZ = _random.Create(240, 400, (value) => value > 320);
         double duration = _random.Create(10000, 40000, (value) => value < 20000);
@@ -313,8 +334,10 @@ public partial class Stars : Control
         _skyVisual.Children.InsertAtTop(starVisual);
     }
 
-    private SpriteVisual CreateStarVisual(float offsetZ, float diameter)
+    private SpriteVisual? CreateStarVisual(float offsetZ, float diameter)
     {
+        if (_compositor == null) return null;
+
         int radius = SkyVisualRadius.ToInt();
         float offsetX = _random.Create(-radius, radius);
         float offsetY = _random.Create(-radius, radius);

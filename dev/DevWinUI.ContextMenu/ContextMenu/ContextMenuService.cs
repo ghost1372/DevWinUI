@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-
-namespace DevWinUI;
+﻿namespace DevWinUI;
 
 public partial class ContextMenuService
 {
@@ -134,7 +131,7 @@ public partial class ContextMenuService
 
         var file = (item?.File) ?? throw new Exception("Menu file is null");
 
-        string newName = null;
+        string? newName = null;
         if (!string.IsNullOrEmpty(name))
         {
             newName = Path.GetFileName(name);
@@ -248,6 +245,7 @@ public partial class ContextMenuService
         menus.Clear();
     }
 
+#pragma warning disable CS0612
     public ContextMenuItem ConvertMenuFromJson(string content)
     {
         var menu = JsonUtil.Deserialize(content);
@@ -268,6 +266,7 @@ public partial class ContextMenuService
 
         return menu;
     }
+#pragma warning restore CS0612
 
     public string ConvertMenuToJson(ContextMenuItem content)
     {

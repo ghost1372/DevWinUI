@@ -83,7 +83,7 @@ public partial class TileControl : ContentControl
 
     private static async void OnScrollViewerContainerChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as TileControl;
+        var control = (TileControl)d;
         await control.InitializeScrollViewerContainer(e.OldValue as FrameworkElement, e.NewValue as FrameworkElement);
     }
 
@@ -99,7 +99,7 @@ public partial class TileControl : ContentControl
 
     private static async void OnAlignmentChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as TileControl;
+        var control = (TileControl)d;
         await control.RefreshContainerTileLocked();
     }
 
@@ -114,7 +114,7 @@ public partial class TileControl : ContentControl
 
     private static async void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as TileControl;
+        var control = (TileControl)d;
         await control.LoadImageBrushAsync(e.NewValue as Uri);
     }
 
@@ -130,7 +130,7 @@ public partial class TileControl : ContentControl
 
     private static async void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as TileControl;
+        var control = (TileControl)d;
         await control.RefreshContainerTileLocked();
         await control.CreateModuloExpression(control._scrollViewer);
     }
@@ -146,7 +146,7 @@ public partial class TileControl : ContentControl
 
     private static void OnOffsetChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var c = d as TileControl;
+        var c = (TileControl)d;
 
         c.RefreshMove();
     }
@@ -171,7 +171,7 @@ public partial class TileControl : ContentControl
 
     private static void OnScrollSpeedRatioChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var c = d as TileControl;
+        var c = (TileControl)d;
         c.RefreshScrollSpeedRatio((double)e.NewValue);
     }
 
@@ -186,7 +186,7 @@ public partial class TileControl : ContentControl
 
     private static void OnIsAnimatedChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var c = d as TileControl;
+        var c = (TileControl)d;
 
         if ((bool)e.NewValue)
         {
@@ -229,7 +229,7 @@ public partial class TileControl : ContentControl
 
     private static void OnAnimationDuration(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var c = d as TileControl;
+        var c = (TileControl)d;
 
         c._timerAnimation.Interval = TimeSpan.FromMilliseconds(c.AnimationDuration);
     }

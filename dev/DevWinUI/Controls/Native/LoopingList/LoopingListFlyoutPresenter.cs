@@ -25,26 +25,26 @@ internal partial class LoopingListFlyoutPresenter : FlyoutPresenter
     private const string PART_AcceptButton = "PART_AcceptButton";
     private const string PART_DismissButton = "PART_DismissButton";
 
-    public event EventHandler<LoopingListEventArgs> Accepted;
-    public event EventHandler<RoutedEventArgs> Dismissed;
+    public event EventHandler<LoopingListEventArgs>? Accepted;
+    public event EventHandler<RoutedEventArgs>? Dismissed;
 
-    private ColumnDefinition gridFirstColumn;
-    private ColumnDefinition gridSecondColumn;
-    private ColumnDefinition gridThirdColumn;
+    private ColumnDefinition gridFirstColumn = null!;
+    private ColumnDefinition gridSecondColumn = null!;
+    private ColumnDefinition gridThirdColumn = null!;
 
-    private Border primaryBorderHost;
-    private Border secondaryBorderHost;
-    private Border tertiaryBorderHost;
+    private Border primaryBorderHost = null!;
+    private Border secondaryBorderHost = null!;
+    private Border tertiaryBorderHost = null!;
 
-    private Button acceptButton;
-    private Button dismissButton;
+    private Button acceptButton = null!;
+    private Button dismissButton = null!;
 
     private LoopingSelector primarySelector;
     private LoopingSelector secondarySelector;
     private LoopingSelector tertiarySelector;
 
-    private Rectangle firstPickerSpacing;
-    private Rectangle secondPickerSpacing;
+    private Rectangle firstPickerSpacing = null!;
+    private Rectangle secondPickerSpacing = null!;
 
     public LoopingListFlyoutPresenter(LoopingSelector primarySelector, LoopingSelector secondarySelector, LoopingSelector tertiarySelector)
     {
@@ -54,19 +54,19 @@ internal partial class LoopingListFlyoutPresenter : FlyoutPresenter
     }
     protected override void OnApplyTemplate()
     {
-        primaryBorderHost = GetTemplateChild(PART_FlyoutFirstPickerHost) as Border;
-        secondaryBorderHost = GetTemplateChild(PART_FlyoutSecondPickerHost) as Border;
-        tertiaryBorderHost = GetTemplateChild(PART_FlyoutThirdPickerHost) as Border;
+        primaryBorderHost = (GetTemplateChild(PART_FlyoutFirstPickerHost) as Border)!;
+        secondaryBorderHost = (GetTemplateChild(PART_FlyoutSecondPickerHost) as Border)!;
+        tertiaryBorderHost = (GetTemplateChild(PART_FlyoutThirdPickerHost) as Border)!;
 
-        gridFirstColumn = GetTemplateChild(PART_FlyoutFirstColumnHost) as ColumnDefinition;
-        gridSecondColumn = GetTemplateChild(PART_FlyoutSecondColumnHost) as ColumnDefinition;
-        gridThirdColumn = GetTemplateChild(PART_FlyoutThirdColumnHost) as ColumnDefinition;
+        gridFirstColumn = (GetTemplateChild(PART_FlyoutFirstColumnHost) as ColumnDefinition)!;
+        gridSecondColumn = (GetTemplateChild(PART_FlyoutSecondColumnHost) as ColumnDefinition)!;
+        gridThirdColumn = (GetTemplateChild(PART_FlyoutThirdColumnHost) as ColumnDefinition)!;
 
-        firstPickerSpacing = GetTemplateChild(PART_FlyoutFirstPickerSpacing) as Rectangle;
-        secondPickerSpacing = GetTemplateChild(PART_FlyoutSecondPickerSpacing) as Rectangle;
+        firstPickerSpacing = (GetTemplateChild(PART_FlyoutFirstPickerSpacing) as Rectangle)!;
+        secondPickerSpacing = (GetTemplateChild(PART_FlyoutSecondPickerSpacing) as Rectangle)!;
 
-        acceptButton = GetTemplateChild(PART_AcceptButton) as Button;
-        dismissButton = GetTemplateChild(PART_DismissButton) as Button;
+        acceptButton = (GetTemplateChild(PART_AcceptButton) as Button)!;
+        dismissButton = (GetTemplateChild(PART_DismissButton) as Button)!;
 
         acceptButton.Click -= OnAcceptButton;
         acceptButton.Click += OnAcceptButton;
@@ -116,7 +116,7 @@ internal partial class LoopingListFlyoutPresenter : FlyoutPresenter
 
     private void OnDismissButton(object sender, RoutedEventArgs e)
     {
-        Dismissed?.Invoke(this, null);
+        Dismissed?.Invoke(this, null!);
     }
 
     private void OnAcceptButton(object sender, RoutedEventArgs e)

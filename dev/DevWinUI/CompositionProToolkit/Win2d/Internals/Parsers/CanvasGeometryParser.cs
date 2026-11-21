@@ -48,8 +48,8 @@ internal static partial class CanvasGeometryParser
     /// CanvasPathBuilder commands, used for creating the CanvasGeometry, in 
     /// string format.</param>
     /// <returns>CanvasGeometry</returns>
-    public static CanvasGeometry Parse(ICanvasResourceCreator resourceCreator, string pathData,
-        StringBuilder logger = null)
+    public static CanvasGeometry Parse(ICanvasResourceCreator? resourceCreator, string pathData,
+        StringBuilder? logger = null)
     {
         var pathFigures = new List<ICanvasPathElement>();
 
@@ -121,9 +121,11 @@ internal static partial class CanvasGeometryParser
         }
 
         if (pathFigures.Count == 0)
-            return null;
+        {
+            throw new ArgumentException($"Path data contains no path elements!\nPath Data: {pathData}", nameof(pathData));
+        }
 
-        ICanvasPathElement lastElement = null;
+        ICanvasPathElement? lastElement = null;
         var currentPoint = Vector2.Zero;
 
         using (var pathBuilder = new CanvasPathBuilder(resourceCreator))

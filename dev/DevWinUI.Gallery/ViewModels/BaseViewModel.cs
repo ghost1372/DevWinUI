@@ -142,8 +142,8 @@ public partial class BaseViewModel : ObservableObject
     {
         StoreCarouselData = new(CarouselData.Select(x => new StoreCarouselItem
         {
-            Title = x.Title,
-            Description = x.Description,
+            Title = x.Title ?? string.Empty,
+            Description = x.Description ?? string.Empty,
             ImageSource = PathHelper.GetFilePath(new Uri(x.ImagePath)).OriginalString
         }).Cast<StoreCarouselItem>().ToList());
     }
@@ -151,7 +151,7 @@ public partial class BaseViewModel : ObservableObject
     {
         CarouselViewData = BannerViewData.Select(x => new CarouselItemSource
         {
-            Title = x.Title,
+            Title = x.Title ?? string.Empty,
             ImageSource = x.ImagePath
         }).Cast<ICarouselViewItemSource>().ToList();
     }

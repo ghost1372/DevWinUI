@@ -1,4 +1,4 @@
-﻿// Copyright (c) Ratish Philip 
+// Copyright (c) Ratish Philip 
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -62,7 +62,7 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="geometry">Geometry of the MaskSurface</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.</param>
-    void RedrawMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size, CanvasGeometry geometry, Vector2 offset);
+    void RedrawMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size, CanvasGeometry? geometry, Vector2 offset);
 
     /// <summary>
     /// Redraws the GaussianMaskSurface with the given size and geometry.
@@ -74,7 +74,7 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="geometry">Geometry of the MaskSurface</param>
     /// <param name="offset">The offset from the top left corner of the ICompositionSurface where the Geometry is rendered.</param>
     /// <param name="blurRadius">Radius of Gaussian Blur to be applied on the GaussianMaskSurface</param>
-    void RedrawGaussianMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size, CanvasGeometry geometry, 
+    void RedrawGaussianMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Size size, CanvasGeometry? geometry, 
         Vector2 offset, float blurRadius);
 
     /// <summary>
@@ -89,7 +89,7 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <param name="backgroundBrush">The brush with which the GeometrySurface background has to be filled</param>
     void RedrawGeometrySurface(object surfaceLock, CompositionDrawingSurface surface, Size size,
-        CanvasGeometry geometry, ICanvasStroke stroke, ICanvasBrush fillBrush, ICanvasBrush backgroundBrush);
+        CanvasGeometry? geometry, ICanvasStroke? stroke, ICanvasBrush fillBrush, ICanvasBrush backgroundBrush);
 
     /// <summary>
     /// Resizes the ImageSurface to the given size and redraws the ImageSurface by rendering the canvasBitmap onto the surface.
@@ -99,7 +99,7 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
     /// <param name="canvasBitmap">The CanvasBitmap on which the image is loaded.</param>
     void RedrawImageSurface(object surfaceLock, CompositionDrawingSurface surface, ImageSurfaceOptions options,
-        CanvasBitmap canvasBitmap);
+        CanvasBitmap? canvasBitmap);
 
     /// <summary>
     /// Resizes the ImageSurface with the given size and redraws the ImageSurface by loading image from the new Uri.
@@ -111,8 +111,8 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="options">Describes the image's resize and alignment options in the allocated space.</param>
     /// <param name="canvasBitmap">The CanvasBitmap on which the image is loaded.</param>
     /// <returns>CanvasBitmap</returns>
-    Task<CanvasBitmap> RedrawImageSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface, Uri uri,
-        ImageSurfaceOptions options, CanvasBitmap canvasBitmap);
+    Task<CanvasBitmap?> RedrawImageSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface, Uri? uri,
+        ImageSurfaceOptions options, CanvasBitmap? canvasBitmap);
 
     /// <summary>
     /// Resizes the ImageMaskSurface to the given size and redraws the ImageMaskSurface by rendering the mask
@@ -125,7 +125,7 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// the mask, created from the loaded image's alpha values, should be rendered.</param>
     /// <param name="surfaceBitmap">The image whose alpha values is used to create the IImageMaskSurface.</param>
     void RedrawImageMaskSurface(object surfaceLock, CompositionDrawingSurface surface, Thickness padding, ImageSurfaceOptions options,
-        CanvasBitmap surfaceBitmap);
+        CanvasBitmap? surfaceBitmap);
 
     /// <summary>
     /// Resizes the ImageMaskSurface to the given size and redraws the ImageMaskSurface by loading the image from the new Uri and
@@ -140,6 +140,6 @@ internal interface ICompositionGeneratorInternal : ICompositionGenerator
     /// <param name="options">Describes the image's resize and alignment options and blur radius in the allocated space.</param>
     /// <param name="surfaceBitmap">The CanvasBitmap on which the image is loaded.</param>
     /// <returns>The CanvasBitmap whose alpha values is used to create the IImageMaskSurface.</returns>
-    Task<CanvasBitmap> RedrawImageMaskSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface, Uri uri, Thickness padding,
-        ImageSurfaceOptions options, CanvasBitmap surfaceBitmap);
+    Task<CanvasBitmap?> RedrawImageMaskSurfaceAsync(object surfaceLock, CompositionDrawingSurface surface, Uri? uri, Thickness padding,
+        ImageSurfaceOptions options, CanvasBitmap? surfaceBitmap);
 }

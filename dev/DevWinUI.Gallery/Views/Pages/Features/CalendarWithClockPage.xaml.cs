@@ -14,8 +14,10 @@ public sealed partial class CalendarWithClockPage : Page
 
     private void RadioButton_Checked(object sender, RoutedEventArgs e)
     {
-        var tag = (sender as RadioButton).Tag;
-        var displayMode = GeneralHelper.GetEnum<TimePickerDisplayMode>(tag?.ToString());
+        if (sender is not RadioButton { Tag: string tag })
+            return;
+
+        var displayMode = GeneralHelper.GetEnum<TimePickerDisplayMode>(tag);
         CalendarWithClockSample2.TimePickerDisplayMode = displayMode;
     }
 

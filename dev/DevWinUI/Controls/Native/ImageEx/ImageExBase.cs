@@ -48,7 +48,7 @@ public abstract partial class ImageExBase : Control
     /// <summary>
     /// Gets the backing image object
     /// </summary>
-    protected object Image { get; private set; }
+    protected object? Image { get; private set; }
 
     /// <inheritdoc/>
     public bool WaitUntilLoaded => true;
@@ -176,7 +176,7 @@ public abstract partial class ImageExBase : Control
         ImageExFailed?.Invoke(this, new ImageExFailedEventArgs(new Exception(e.ErrorMessage)));
     }
 
-    private void ImageExBase_LayoutUpdated(object sender, object e)
+    private void ImageExBase_LayoutUpdated(object? sender, object e)
     {
         InvalidateLazyLoading();
     }
@@ -190,7 +190,7 @@ public abstract partial class ImageExBase : Control
         }
 
         // Find the first ascendant ScrollViewer, if not found, use the root element.
-        FrameworkElement hostElement = null;
+        FrameworkElement? hostElement = null;
         var ascendants = this.FindAscendants().OfType<FrameworkElement>();
         foreach (var ascendant in ascendants)
         {

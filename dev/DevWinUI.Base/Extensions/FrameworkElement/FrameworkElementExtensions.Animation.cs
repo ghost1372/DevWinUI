@@ -3,7 +3,7 @@ public static partial class AnimationExtensions
 {
     extension(FrameworkElement element)
     {
-        public Storyboard AnimateX(double x, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateX(double x, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetTranslateX() != x)
             {
@@ -11,7 +11,7 @@ public static partial class AnimationExtensions
             }
             return null;
         }
-        public async Task AnimateXAsync(double x, double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task AnimateXAsync(double x, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetTranslateX() != x)
             {
@@ -19,7 +19,7 @@ public static partial class AnimationExtensions
             }
         }
 
-        public Storyboard AnimateY(double y, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateY(double y, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetTranslateY() != y)
             {
@@ -27,7 +27,7 @@ public static partial class AnimationExtensions
             }
             return null;
         }
-        public async Task AnimateYAsync(double y, double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task AnimateYAsync(double y, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetTranslateY() != y)
             {
@@ -35,7 +35,7 @@ public static partial class AnimationExtensions
             }
         }
 
-        public Storyboard AnimateScaleX(double x, double duration = 150, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateScaleX(double x, double duration = 150, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetScaleX() != x)
             {
@@ -43,7 +43,7 @@ public static partial class AnimationExtensions
             }
             return null;
         }
-        public async Task AnimateScaleXAsync(double x, double duration = 150, EasingFunctionBase easingFunction = null)
+        public async Task AnimateScaleXAsync(double x, double duration = 150, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetScaleX() != x)
             {
@@ -51,7 +51,7 @@ public static partial class AnimationExtensions
             }
         }
 
-        public Storyboard AnimateScaleY(double y, double duration = 150, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateScaleY(double y, double duration = 150, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetScaleY() != y)
             {
@@ -59,7 +59,7 @@ public static partial class AnimationExtensions
             }
             return null;
         }
-        public async Task AnimateScaleYAsync(double y, double duration = 150, EasingFunctionBase easingFunction = null)
+        public async Task AnimateScaleYAsync(double y, double duration = 150, EasingFunctionBase? easingFunction = null)
         {
             if (element.GetScaleY() != y)
             {
@@ -67,7 +67,7 @@ public static partial class AnimationExtensions
             }
         }
 
-        public Storyboard AnimateWidth(double width, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateWidth(double width, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element == null)
             {
@@ -81,7 +81,7 @@ public static partial class AnimationExtensions
             return null;
         }
 
-        public async Task AnimateWidthAsync(double width, double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task AnimateWidthAsync(double width, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.ActualWidth != width)
             {
@@ -89,7 +89,7 @@ public static partial class AnimationExtensions
             }
         }
 
-        public Storyboard AnimateHeight(double height, double duration = 250, EasingFunctionBase easingFunction = null)
+        public Storyboard? AnimateHeight(double height, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element == null)
             {
@@ -102,7 +102,7 @@ public static partial class AnimationExtensions
             return null;
         }
 
-        public async Task AnimateHeightAsync(double height, double duration = 250, EasingFunctionBase easingFunction = null)
+        public async Task AnimateHeightAsync(double height, double duration = 250, EasingFunctionBase? easingFunction = null)
         {
             if (element.Height != height)
             {

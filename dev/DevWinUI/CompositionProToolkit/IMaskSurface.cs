@@ -40,7 +40,7 @@ public interface IMaskSurface : IRenderSurface
     /// <summary>
     /// Gets the Geometry of the MaskSurface
     /// </summary>
-    CanvasGeometry Geometry { get; }
+    CanvasGeometry? Geometry { get; }
     /// <summary>
     /// The offset from the top left corner of the ICompositionSurface where
     /// the Geometry is rendered.

@@ -25,8 +25,8 @@ public partial class CoverBackgroundRenderer : RendererBase
     private float _rotationAngle = 0f;
 
     private bool _needsCacheUpdate = false;
-    private byte[] coverImageBytes = null;
-    private CanvasAnimatedControl canvas;
+    private byte[]? coverImageBytes;
+    private CanvasAnimatedControl? canvas;
     public CoverBackgroundRenderer()
     {
         _crossfadeTransition = new ValueTransition<double>(1.0, AnimationEasingHelper.GetInterpolatorByEasingType<double>(AnimationEasingType.Linear), 0.7);
@@ -270,6 +270,8 @@ public partial class CoverBackgroundRenderer : RendererBase
 
     private async Task LoadCover()
     {
+        if (string.IsNullOrEmpty(coverImage)) return;
+
         var uri = PathHelper.GetFilePath(new Uri(coverImage));
         if (RuntimeHelper.IsPackaged())
         {

@@ -1,6 +1,7 @@
-﻿using Microsoft.UI.Xaml;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 
 namespace DevWinUIGallery.Views;
 
@@ -8,19 +9,22 @@ public sealed partial class RadarPage : Page
 {
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromMilliseconds(50) };
     private readonly Random _random = new();
+    private Brush _aircraftBrush = new SolidColorBrush(Color.FromArgb(255, 0xFF, 0xB0, 0x20));
     private int _counter = 3;
 
-    public ObservableCollection<RadarAircraft> Aircraft { get; } = new()
-    {
-        new RadarAircraft("AC-101", 30, 0.8, 6),
-        new RadarAircraft("AC-102", 140, 0.55, -4),
-        new RadarAircraft("AC-103", 250, 0.9, 8),
-    };
+    public ObservableCollection<RadarAircraft> Aircraft { get; }
 
     public RadarAircraftMapper Mapper { get; } = new();
 
     public RadarPage()
     {
+        Aircraft = new()
+        {
+            new RadarAircraft("AC-101", 30, 0.8, 6) { Foreground = _aircraftBrush },
+            new RadarAircraft("AC-102", 140, 0.55, -4) { Foreground = _aircraftBrush },
+            new RadarAircraft("AC-103", 250, 0.9, 8) { Foreground = _aircraftBrush },
+        };
+
         InitializeComponent();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
@@ -58,10 +62,20 @@ public sealed partial class RadarPage : Page
         }
     }
 
+    private void OnAircraftColorChanged(ColorOption sender, Color color)
+    {
+        _aircraftBrush = new SolidColorBrush(color);
+
+        foreach (RadarAircraft aircraft in Aircraft)
+        {
+            aircraft.Foreground = _aircraftBrush;
+        }
+    }
+
     private void AddAircraft_Click(object sender, RoutedEventArgs e)
     {
         _counter++;
-        Aircraft.Add(new RadarAircraft($"AC-{100 + _counter}", _random.Next(360), 0.3 + _random.NextDouble() * 0.65, _random.Next(-8, 9)));
+        Aircraft.Add(new RadarAircraft($"AC-{100 + _counter}", _random.Next(360), 0.3 + _random.NextDouble() * 0.65, _random.Next(-8, 9)) { Foreground = _aircraftBrush });
     }
 
     private void RemoveAircraft_Click(object sender, RoutedEventArgs e)
@@ -81,6 +95,7 @@ public sealed partial class RadarAircraft : INotifyPropertyChanged
     private double _bearing;
     private double _range;
     private bool _isAlert;
+    private Brush? _foreground;
 
     public RadarAircraft(string callsign, double bearing, double range, double speed)
     {
@@ -118,6 +133,12 @@ public sealed partial class RadarAircraft : INotifyPropertyChanged
         set { SetField(ref _isAlert, value); }
     }
 
+    public Brush? Foreground
+    {
+        get { return _foreground; }
+        set { SetField(ref _foreground, value); }
+    }
+
     private void SetField<T>(ref T field, T value, [CallerMemberName] string? name = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return;
@@ -138,6 +159,7 @@ public sealed partial class RadarAircraftMapper : IRadarBlipMapper
         blip.Heading = aircraft.Bearing + (aircraft.Speed >= 0 ? 90 : -90);
         blip.Label = aircraft.Callsign;
         blip.Marker = RadarMarker.Plane;
+        blip.Foreground = aircraft.Foreground;
         blip.State = aircraft.IsAlert ? RadarBlipState.Alert : RadarBlipState.Normal;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 namespace DevWinUI;
 
@@ -6,12 +6,12 @@ public sealed partial class ParticleGlobe
 {
     private const double EarthRadiusKm = 6371.0;
 
-    private volatile ParticleGlobeCompareState _cmp;
+    private volatile ParticleGlobeCompareState? _cmp;
     private float _cmpSpeed = 850f;
-    private CanvasTextFormat _cmpFormat;
+    private CanvasTextFormat? _cmpFormat;
     private readonly List<Vector2> _cmpPts = new();
 
-    public event EventHandler<ParticleGlobeCompareEventArgs> CompareChanged;
+    public event EventHandler<ParticleGlobeCompareEventArgs>? CompareChanged;
 
     public bool IsCompareModeEnabled
     {
@@ -89,7 +89,7 @@ public sealed partial class ParticleGlobe
         float x = MathF.Cos(la1) * MathF.Sin(la2) - MathF.Sin(la1) * MathF.Cos(la2) * MathF.Cos(dl);
         float bearing = (MathF.Atan2(y, x) * 180f / MathF.PI + 360f) % 360f;
 
-        ParticleGlobeArcState path = null;
+        ParticleGlobeArcState? path = null;
         if (omega > 0.01f && omega < MathF.PI - 0.01f)
         {
             path = new ParticleGlobeArcState { A = cur.Av, B = bv, Omega = omega, Height = 0.10f + 0.30f * (omega / MathF.PI) };

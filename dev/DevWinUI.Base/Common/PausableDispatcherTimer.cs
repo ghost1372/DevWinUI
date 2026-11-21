@@ -10,7 +10,7 @@ public partial class PausableDispatcherTimer
     private bool _resumed;
     public TimeSpan RemainingAfterPause { get; private set; }
 
-    public event EventHandler Tick;
+    public event EventHandler? Tick;
     public PausableDispatcherTimer(TimeSpan interval)
     {
         Interval = interval;

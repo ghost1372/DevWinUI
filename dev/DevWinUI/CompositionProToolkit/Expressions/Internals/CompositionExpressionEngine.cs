@@ -60,7 +60,7 @@ internal abstract partial class CompositionExpressionEngine
     private static bool _firstParseBinaryExpression;
     private static bool _noQuotesForParseConstant;
 
-    private static Dictionary<string, ExpressionParameter> _parameters;
+    private static Dictionary<string, ExpressionParameter> _parameters = new();
 
     #endregion
 
@@ -284,7 +284,7 @@ internal abstract partial class CompositionExpressionEngine
         _noQuotesForParseConstant = false;
         _firstParseBinaryExpression = false;
 
-        var exprString = Parse(expression).ToString();
+        var exprString = Parse(expression)?.ToString() ?? string.Empty;
         return exprString;
     }
 
@@ -307,7 +307,7 @@ internal abstract partial class CompositionExpressionEngine
         _noQuotesForParseConstant = false;
         _firstParseBinaryExpression = false;
 
-        var exprString = Parse(expression).ToString();
+        var exprString = Parse(expression)?.ToString() ?? string.Empty;
         return exprString;
     }
 
@@ -341,7 +341,7 @@ internal abstract partial class CompositionExpressionEngine
             return new SimpleExpressionToken(string.Empty);
 
         // Once a matching Visit method is found, Invoke it!
-        return (ExpressionToken)VisitMethods[methodKey].Invoke(null, new object[] { expression });
+        return (ExpressionToken)VisitMethods[methodKey].Invoke(null, new object[] { expression })!;
     }
 
     /// <summary>
@@ -380,7 +380,7 @@ internal abstract partial class CompositionExpressionEngine
         var leftToken = Visit(expression.Left);
         var rightToken = Visit(expression.Right);
 
-        if (!BinaryExpressionStrings.TryGetValue(expression.NodeType, out string symbol))
+        if (!BinaryExpressionStrings.TryGetValue(expression.NodeType, out var symbol))
             return new SimpleExpressionToken("");
 
         // This check is done to avoid wrapping the final ExpressionToken 
@@ -423,7 +423,7 @@ internal abstract partial class CompositionExpressionEngine
         if (str != null)
             return new CompositeExpressionToken(str, _noQuotesForConstant ? BracketType.None : BracketType.Quotes);
 
-        return new SimpleExpressionToken(expression.Value.ToString());
+        return new SimpleExpressionToken(expression.Value.ToString() ?? string.Empty);
     }
 
     /// <summary>
@@ -502,8 +502,8 @@ internal abstract partial class CompositionExpressionEngine
         if (typeof(ExpressionTemplate).IsAssignableFrom(expression.Type))
         {
             var parentExpr = expression.Expression;
-            var parentValue = parentExpr.GetPropertyValue("Value");
-            ExpressionTemplate template = null;
+            var parentValue = parentExpr?.GetPropertyValue("Value");
+            ExpressionTemplate? template = null;
 
             // Check whether the member is a Field or Property
             if (expression.Member is FieldInfo fieldInfo)
@@ -517,7 +517,7 @@ internal abstract partial class CompositionExpressionEngine
 
             // Get the value of the Name property of this Expression Target
             var property = expression.Type.GetProperty("Name", BindingFlags.Instance | BindingFlags.NonPublic);
-            var targetName = property.GetValue(template) as string;
+            var targetName = property?.GetValue(template) as string;
 
             if (string.IsNullOrWhiteSpace(targetName))
             {
@@ -567,7 +567,7 @@ internal abstract partial class CompositionExpressionEngine
                 var parentExpr = expression.Expression;
                 var parentValue = parentExpr.GetPropertyValue("Value");
 
-                object paramValue = null;
+                object? paramValue = null;
                 if (expression.Member is FieldInfo fieldInfo)
                 {
                     paramValue = fieldInfo.GetValue(parentValue);
@@ -598,7 +598,7 @@ internal abstract partial class CompositionExpressionEngine
                 var grandparentExpr = parentMemberExpr.Expression;
                 var grandparentValue = grandparentExpr.GetPropertyValue("Value");
 
-                object paramValue = null;
+                object? paramValue = null;
                 if (parentMemberExpr.Member is FieldInfo parentFieldInfo)
                 {
                     var localFieldValue = parentFieldInfo.GetValue(grandparentValue);
@@ -640,7 +640,7 @@ internal abstract partial class CompositionExpressionEngine
             // Add to the parameters dictionary
             if (!_parameters.ContainsKey(expression.Member.Name))
             {
-                object paramValue = null;
+                object? paramValue = null;
                 if (expression.Member is FieldInfo fieldInfo)
                 {
                     paramValue = fieldInfo.GetValue(constExpr.Value);
@@ -663,7 +663,7 @@ internal abstract partial class CompositionExpressionEngine
         }
         else
         {
-            token.AddToken(expression.Member.DeclaringType.Name);
+            token.AddToken(expression.Member.DeclaringType!.Name);
         }
 
         token.AddToken($".{CleanIdentifier(expression.Member.Name)}");
@@ -717,7 +717,7 @@ internal abstract partial class CompositionExpressionEngine
             // Is this a static method?
             if (expression.Object == null)
             {
-                token.AddToken(expression.Method.DeclaringType.FormattedName());
+                token.AddToken(expression.Method.DeclaringType!.FormattedName());
             }
             // No need to print the object name if the object is of type CompositionExpressionContext<T>
             else if (IsGenericCompositionExpressionContextType(expression.Object.Type))
@@ -746,7 +746,7 @@ internal abstract partial class CompositionExpressionEngine
             }
 
             if (expression.Method.IsSpecialName &&
-                (expression.Method.DeclaringType.GetProperties()
+                (expression.Method.DeclaringType!.GetProperties()
                      .FirstOrDefault(p => p.GetAccessors().Contains(expression.Method)) != null))
             {
                 token.AddToken(new CompositeExpressionToken(expression.Arguments.Select(Visit), BracketType.Square, true));
@@ -826,8 +826,9 @@ internal abstract partial class CompositionExpressionEngine
         // Get the key
         var key = GetExpressionValue(expression.Arguments[0]);
         // Get the collection
-        var collection = GetObject(expression.Object);
-        object item = null;
+        var collection = GetObject(expression.Object) ??
+                         throw new InvalidOperationException("Unable to obtain the collection object from the expression.");
+        object? item = null;
         try
         {
             // Get the object deriving from CompositionObject
@@ -1011,7 +1012,7 @@ internal abstract partial class CompositionExpressionEngine
     private static ExpressionToken Visit(ListInitExpression expression)
     {
         // Not supported right now
-        return null;
+        return new SimpleExpressionToken(string.Empty);
     }
 
     /// <summary>
@@ -1022,7 +1023,7 @@ internal abstract partial class CompositionExpressionEngine
     private static ExpressionToken Visit(MemberInitExpression expression)
     {
         // Not supported right now
-        return null;
+        return new SimpleExpressionToken(string.Empty);
     }
 
     /// <summary>
@@ -1033,7 +1034,7 @@ internal abstract partial class CompositionExpressionEngine
     private static ExpressionToken Visit(MemberListBinding mb)
     {
         // Not supported right now
-        return null;
+        return new SimpleExpressionToken(string.Empty);
     }
 
     /// <summary>
@@ -1044,7 +1045,7 @@ internal abstract partial class CompositionExpressionEngine
     private static ExpressionToken Visit(MemberMemberBinding mb)
     {
         // Not supported right now
-        return null;
+        return new SimpleExpressionToken(string.Empty);
     }
 
     /// <summary>
@@ -1055,7 +1056,7 @@ internal abstract partial class CompositionExpressionEngine
     private static ExpressionToken Visit(NewArrayExpression expression)
     {
         // Not supported right now
-        return null;
+        return new SimpleExpressionToken(string.Empty);
     }
 
     /// <summary>
@@ -1134,11 +1135,11 @@ internal abstract partial class CompositionExpressionEngine
         // be the index number or string.
         var arrayExpr = expression.Left as MemberExpression;
         if (arrayExpr == null)
-            return null;
+            return new SimpleExpressionToken(string.Empty);
 
         var arrayName = arrayExpr.Member.Name;
         // Get the array index
-        var index = (int)GetExpressionValue(expression.Right);
+        var index = (int)GetExpressionValue(expression.Right)!;
         // Is a valid index obtained?
         if (index == -1)
         {
@@ -1152,7 +1153,7 @@ internal abstract partial class CompositionExpressionEngine
         {
             var parentValue = arrayExpr.Expression.GetPropertyValue("Value");
 
-            object arrayValue = null;
+            object? arrayValue = null;
 
             // Is the array a field?
             if (arrayExpr.Member is FieldInfo fieldInfo)
@@ -1191,9 +1192,9 @@ internal abstract partial class CompositionExpressionEngine
     /// <param name="expression">Expression</param>
     /// <returns>object</returns>
     [RequiresDynamicCode("Calls System.Linq.Expressions.Expression.Lambda(Expression, params ParameterExpression[])")]
-    private static object GetExpressionValue(Expression expression)
+    private static object? GetExpressionValue(Expression? expression)
     {
-        object result = null;
+        object? result = null;
 
         // Is it a ConstantExpression
         if (expression is ConstantExpression constExpr)
@@ -1209,19 +1210,19 @@ internal abstract partial class CompositionExpressionEngine
             // Is the member a field
             if (membExpr.Member is FieldInfo fieldInfo)
             {
-                result = (int)fieldInfo.GetValue(exprValue);
+                result = (int)fieldInfo.GetValue(exprValue)!;
             }
             // Or is the member a property
             else if (membExpr.Member is PropertyInfo propInfo)
             {
-                result = (int)propInfo.GetValue(exprValue);
+                result = (int)propInfo.GetValue(exprValue)!;
             }
         }
         // If it is neither of the above two, then compile the expression 
         // and invoke it dynamically to get the value
         else
         {
-            result = Expression.Lambda(expression).Compile().DynamicInvoke();
+            result = Expression.Lambda(expression ?? throw new ArgumentNullException(nameof(expression))).Compile().DynamicInvoke();
         }
 
         return result;
@@ -1238,7 +1239,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">Expression</param>
     /// <returns>ExpressionToken</returns>
-    private static ExpressionToken Parse(Expression expression)
+    private static ExpressionToken? Parse(Expression? expression)
     {
         if (expression == null)
         {
@@ -1248,16 +1249,17 @@ internal abstract partial class CompositionExpressionEngine
         var baseType = expression.GetType();
         while (!baseType.IsPublic())
         {
-            baseType = baseType.BaseType();
+            baseType = baseType.BaseType() ?? typeof(object);
         }
 
         // Get the Visit method whose first parameter best matches the type of baseType
-        MethodInfo methodInfo;
+        MethodInfo? methodInfo;
+        var parentType = baseType.BaseType();
         if (ParseMethods.TryGetValue(baseType, out methodInfo) ||
-            ((baseType.BaseType() != null) && ParseMethods.TryGetValue(baseType.BaseType(), out methodInfo)))
+            ((parentType != null) && ParseMethods.TryGetValue(parentType, out methodInfo)))
         {
             // Once a matching Visit method is found, Invoke it!
-            return (ExpressionToken)methodInfo.Invoke(null, new object[] { expression });
+            return (ExpressionToken?)methodInfo.Invoke(null, new object[] { expression });
         }
 
         return null;
@@ -1268,7 +1270,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">BinaryExpression</param>
     /// <returns>ExpressionToken</returns>
-    private static ExpressionToken Parse(BinaryExpression expression)
+    private static ExpressionToken? Parse(BinaryExpression expression)
     {
         // If it the property of an object, (deriving from CompositionObject)
         // which is a part of an array of similar objects, is being 
@@ -1293,8 +1295,7 @@ internal abstract partial class CompositionExpressionEngine
         var leftToken = Parse(expression.Left);
         var rightToken = Parse(expression.Right);
 
-        string symbol;
-        if (!BinaryExpressionStrings.TryGetValue(expression.NodeType, out symbol))
+        if (!BinaryExpressionStrings.TryGetValue(expression.NodeType, out var symbol))
             return null;
 
         // This check is done to avoid wrapping the final ExpressionToken in Round Brackets
@@ -1324,7 +1325,7 @@ internal abstract partial class CompositionExpressionEngine
         if (str != null)
             return new CompositeExpressionToken(str, _noQuotesForParseConstant ? BracketType.None : BracketType.Quotes);
 
-        return new SimpleExpressionToken(expression.Value.ToString());
+        return new SimpleExpressionToken(expression.Value.ToString() ?? string.Empty);
     }
 
     /// <summary>
@@ -1332,7 +1333,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">LambdaExpression</param>
     /// <returns>ExpressionToken</returns>
-    private static ExpressionToken Parse(LambdaExpression expression)
+    private static ExpressionToken? Parse(LambdaExpression expression)
     {
         if ((expression.Body as BinaryExpression) != null)
         {
@@ -1349,7 +1350,7 @@ internal abstract partial class CompositionExpressionEngine
     /// <param name="expression">MemberExpression</param>
     /// <returns>ExpressionToken</returns>
     [RequiresDynamicCode("Calls DevWinUI.CompositionExpressionEngine.IsGenericCompositionExpressionContextType(Type)")]
-    private static ExpressionToken Parse(MemberExpression expression)
+    private static ExpressionToken? Parse(MemberExpression expression)
     {
         // If the the expression type is a class implementing the IGraphicEffect interface or
         // the IGraphicEffectSource interface and the instance object of this expression has
@@ -1395,7 +1396,7 @@ internal abstract partial class CompositionExpressionEngine
         // Visit the parent
         var parent = expression.Expression != null ?
             Parse(expression.Expression) :
-            new SimpleExpressionToken(expression.Member.DeclaringType.Name);
+            new SimpleExpressionToken(expression.Member.DeclaringType!.Name);
 
         if (parent != null)
         {
@@ -1415,7 +1416,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">MethodCallExpression</param>
     /// <returns>ExpressionToken</returns>
-    private static ExpressionToken Parse(MethodCallExpression expression)
+    private static ExpressionToken? Parse(MethodCallExpression expression)
     {
         var isExtensionMethod = expression.Method.IsDefined(typeof(ExtensionAttribute));
         var methodName = expression.Method.Name;
@@ -1468,7 +1469,7 @@ internal abstract partial class CompositionExpressionEngine
             var showDot = true;
             if (expression.Object == null)
             {
-                token.AddToken(expression.Method.DeclaringType.FormattedName());
+                token.AddToken(expression.Method.DeclaringType!.FormattedName());
             }
             // No need to print the object name if the object derives from CompositionObject
             else if (typeof(CompositionObject).IsAssignableFrom(expression.Type))
@@ -1483,7 +1484,7 @@ internal abstract partial class CompositionExpressionEngine
 
             // Is it an array index based access?
             if (expression.Method.IsSpecialName &&
-                (expression.Method.DeclaringType.GetProperties()
+                (expression.Method.DeclaringType!.GetProperties()
                      .FirstOrDefault(p => p.GetAccessors().Contains(expression.Method)) != null))
             {
                 token.AddToken(new CompositeExpressionToken(expression.Arguments.Select(Parse), BracketType.Square, true));
@@ -1513,7 +1514,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">UnaryExpression</param>
     /// <returns>ExpressionToken</returns>
-    private static ExpressionToken Parse(UnaryExpression expression)
+    private static ExpressionToken? Parse(UnaryExpression expression)
     {
         if (expression.NodeType == ExpressionType.Quote)
         {
@@ -1545,10 +1546,10 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="name">Identifier Name</param>
     /// <returns>Formatted Name</returns>
-    private static string CleanIdentifier(string name)
+    private static string CleanIdentifier(string? name)
     {
         if (name == null)
-            return null;
+            return string.Empty;
         if (name.StartsWith("<>h__TransparentIdentifier", StringComparison.Ordinal))
             return "temp_" + name.Substring(26);
         return name;
@@ -1577,7 +1578,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="expression">Expression</param>
     /// <returns>Object</returns>
-    public static object GetObject(Expression expression)
+    public static object? GetObject(Expression? expression)
     {
         var memberStack = new Stack<MemberInfo>();
 
@@ -1586,19 +1587,18 @@ internal abstract partial class CompositionExpressionEngine
         // UnaryExpression(convert or cast operations only)
         do
         {
-            if ((expression as MemberExpression) != null)
+            if (expression is MemberExpression memberExpr)
             {
-                var memberExpr = expression as MemberExpression;
                 memberStack.Push(memberExpr.Member);
                 expression = memberExpr.Expression;
             }
-            else if ((expression as UnaryExpression) != null)
+            else if (expression is UnaryExpression unaryExpr)
             {
-                if ((expression.NodeType == ExpressionType.Convert) ||
-                    (expression.NodeType == ExpressionType.ConvertChecked) ||
-                    (expression.NodeType == ExpressionType.TypeAs))
+                if ((unaryExpr.NodeType == ExpressionType.Convert) ||
+                    (unaryExpr.NodeType == ExpressionType.ConvertChecked) ||
+                    (unaryExpr.NodeType == ExpressionType.TypeAs))
                 {
-                    expression = ((UnaryExpression)expression).Operand;
+                    expression = unaryExpr.Operand;
                 }
                 else
                 {
@@ -1610,7 +1610,7 @@ internal abstract partial class CompositionExpressionEngine
         }
         while ((expression is MemberExpression) || (expression is UnaryExpression));
 
-        var resultObject = (object)null;
+        object? resultObject = null;
         // If the expression is null then it means the root is a static member
         if (expression == null)
         {
@@ -1618,7 +1618,7 @@ internal abstract partial class CompositionExpressionEngine
             if ((memberInfo as PropertyInfo) != null)
             {
                 // Property will be (public or non-public) and static
-                resultObject = memberInfo.DeclaringType
+                resultObject = memberInfo.DeclaringType!
                     .GetProperty(memberInfo.Name, BindingFlags.NonPublic |
                                                   BindingFlags.Public |
                                                   BindingFlags.Static)
@@ -1630,15 +1630,14 @@ internal abstract partial class CompositionExpressionEngine
                 var flags = BindingFlags.Static;
                 flags |= ((FieldInfo)memberInfo).IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
 
-                resultObject = memberInfo.DeclaringType
+                resultObject = memberInfo.DeclaringType!
                     .GetField(memberInfo.Name, flags)
                     ?.GetValue(null);
             }
         }
         // If the root is a ConstantExpression, then its Value represents the root object
-        else if ((expression as ConstantExpression) != null)
+        else if (expression is ConstantExpression constExpr)
         {
-            var constExpr = expression as ConstantExpression;
             resultObject = constExpr.Value;
         }
         else
@@ -1661,10 +1660,9 @@ internal abstract partial class CompositionExpressionEngine
                                           BindingFlags.NonPublic | BindingFlags.Public)
                     ?.GetValue(resultObject, null);
             }
-            else if ((mi as FieldInfo) != null)
+            else if (mi is FieldInfo fieldInfo)
             {
                 // Field can be (public or non-public) and (static or instance)
-                var fieldInfo = mi as FieldInfo;
                 var flags = fieldInfo.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
                 flags |= fieldInfo.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
 
@@ -1684,7 +1682,7 @@ internal abstract partial class CompositionExpressionEngine
     /// <param name="paramName">Parameter name</param>
     /// <param name="paramValue">Parameter value</param>
     /// <returns></returns>
-    private static bool CanAddParameter(string paramName, object paramValue)
+    private static bool CanAddParameter(string paramName, object? paramValue)
     {
         if (string.IsNullOrWhiteSpace(paramName) || (paramValue == null))
             return false;
@@ -1716,7 +1714,7 @@ internal abstract partial class CompositionExpressionEngine
     /// </summary>
     /// <param name="paramName">Parameter Key</param>
     /// <param name="paramValue">Parameter Value</param>
-    private static void AddParameter(string paramName, object paramValue)
+    private static void AddParameter(string paramName, object? paramValue)
     {
         if (paramValue == null)
         {

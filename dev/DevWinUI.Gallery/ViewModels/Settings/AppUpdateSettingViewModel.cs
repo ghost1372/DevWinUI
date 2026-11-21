@@ -1,6 +1,7 @@
 ﻿using Windows.System;
 
 namespace DevWinUIGallery.ViewModels;
+
 public partial class AppUpdateSettingViewModel : ObservableObject
 {
     [ObservableProperty]
@@ -26,7 +27,7 @@ public partial class AppUpdateSettingViewModel : ObservableObject
     public AppUpdateSettingViewModel()
     {
         CurrentVersion = $"Current Version {ProcessInfoHelper.VersionWithPrefix}";
-        LastUpdateCheck = Settings.LastUpdateCheck;
+        LastUpdateCheck = Settings.LastUpdateCheck ?? string.Empty;
     }
 
     [RelayCommand]
@@ -48,13 +49,13 @@ public partial class AppUpdateSettingViewModel : ObservableObject
                 if (update.StableRelease.IsExistNewVersion)
                 {
                     IsUpdateAvailable = true;
-                    ChangeLog = update.StableRelease.Changelog;
+                    ChangeLog = update.StableRelease.Changelog ?? string.Empty;
                     LoadingStatus = $"We found a new version {update.StableRelease.TagName} Created at {update.StableRelease.CreatedAt} and Published at {update.StableRelease.PublishedAt}";
                 }
                 else if (update.PreRelease.IsExistNewVersion)
                 {
                     IsUpdateAvailable = true;
-                    ChangeLog = update.PreRelease.Changelog;
+                    ChangeLog = update.PreRelease.Changelog ?? string.Empty;
                     LoadingStatus = $"We found a new PreRelease Version {update.PreRelease.TagName} Created at {update.PreRelease.CreatedAt} and Published at {update.PreRelease.PublishedAt}";
                 }
                 else

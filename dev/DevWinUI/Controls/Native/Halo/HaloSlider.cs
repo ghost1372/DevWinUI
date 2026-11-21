@@ -6,7 +6,7 @@ namespace DevWinUI;
 
 public partial class HaloSlider : Control
 {
-    public event Action<object, HaloSliderEventArgs> SlideStart, SlideStop;
+    public event Action<object, HaloSliderEventArgs>? SlideStart, SlideStop;
 
     public double Offset
     {

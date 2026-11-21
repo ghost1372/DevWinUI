@@ -13,14 +13,14 @@ public partial class PinBox
 
     private Border GetBorderElement(PasswordBox passwordBox)
     {
-        Border border = passwordBox.FindDescendant<Border>();
+        Border? border = passwordBox.FindDescendant<Border>();
         if (border != null && border.Name.Equals("BorderElement"))
         {
             return border;
         }
         else
         {
-            return passwordBox.FindDescendants().Where(element => ((FrameworkElement)element).Name.Equals("BorderElement")).Cast<Border>().FirstOrDefault();
+            return passwordBox.FindDescendants().Where(element => ((FrameworkElement)element).Name.Equals("BorderElement")).Cast<Border>().FirstOrDefault()!;
         }
     }
 
@@ -32,7 +32,7 @@ public partial class PinBox
     private string GetPassword(string value)
     {
         if (_uniformGrid == null)
-            return null;
+            return null!;
 
         if (string.IsNullOrEmpty(value))
         {

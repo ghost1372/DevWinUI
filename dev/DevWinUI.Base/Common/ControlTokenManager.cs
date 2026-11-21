@@ -1,5 +1,5 @@
 ﻿namespace DevWinUI;
-public partial class ControlTokenManager<T>(Action<string, T> registerCallback = null, Action<string, T> unregisterCallback = null) where T : FrameworkElement
+public partial class ControlTokenManager<T>(Action<string, T>? registerCallback = null, Action<string, T>? unregisterCallback = null) where T : FrameworkElement
 {
     private readonly Dictionary<string, WeakReference<T>> _controlDict = new();
 
@@ -47,7 +47,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
             return;
         }
 
-        string unregisteredToken = null;
+        string? unregisteredToken = null;
         foreach (var item in _controlDict)
         {
             if (!item.Value.TryGetTarget(out var target) || !ReferenceEquals(control, target))
@@ -90,9 +90,9 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
         unregisterCallback?.Invoke(token, target);
     }
 
-    public bool TryGetControl(string token, out T control)
+    public bool TryGetControl(string token, [System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)] out T control)
     {
-        control = null;
+        control = default!;
 
         if (string.IsNullOrEmpty(token) || !_controlDict.TryGetValue(token, out var reference))
         {
@@ -115,7 +115,7 @@ public partial class ControlTokenManager<T>(Action<string, T> registerCallback =
         }
         else
         {
-            Register(e.NewValue.ToString(), control);
+            Register(e.NewValue.ToString() ?? string.Empty, control);
         }
     }
 }

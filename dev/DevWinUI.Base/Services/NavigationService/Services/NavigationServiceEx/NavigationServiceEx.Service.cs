@@ -43,7 +43,7 @@ public partial class NavigationServiceEx
         {
             var frameContentBeforeNavigationAOTSafe = _frame?.Content;
 
-            _frame.GoBack();
+            _frame?.GoBack();
 
             if (frameContentBeforeNavigationAOTSafe is Page page && page?.DataContext is INavigationAwareEx viewModel)
             {
@@ -56,12 +56,12 @@ public partial class NavigationServiceEx
         return false;
     }
 
-    public bool NavigateTo(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
+    public bool NavigateTo(Type? pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null)
     {
         return Navigate(pageType, parameter, clearNavigation, transitionInfo);
     }
 
-    public bool Navigate(Type pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo transitionInfo = null)
+    public bool Navigate(Type? pageType, object? parameter = null, bool clearNavigation = false, NavigationTransitionInfo? transitionInfo = null)
     {
         if (pageType == null)
         {
@@ -74,7 +74,7 @@ public partial class NavigationServiceEx
 
             if (_useBreadcrumbBar)
             {
-                _mainBreadcrumb.AddNewItem(pageType, parameter);
+                _mainBreadcrumb?.AddNewItem(pageType, parameter);
             }
 
             var frameContentBeforeNavigationAOTSafe = _frame.Content;

@@ -108,19 +108,19 @@ public sealed partial class FlipSide : Control
         }
     }
 
-    private Grid LayoutRoot;
+    private Grid LayoutRoot = null!;
 
-    private Visual s1Visual;
+    private Visual s1Visual = null!;
 
-    private Visual s2Visual;
+    private Visual s2Visual = null!;
 
-    private ContentPresenter Side1Content;
+    private ContentPresenter Side1Content = null!;
 
-    private ContentPresenter Side2Content;
+    private ContentPresenter Side2Content = null!;
 
-    private SpringScalarNaturalMotionAnimation springAnimation1;
+    private SpringScalarNaturalMotionAnimation springAnimation1 = null!;
 
-    private SpringScalarNaturalMotionAnimation springAnimation2;
+    private SpringScalarNaturalMotionAnimation springAnimation2 = null!;
 
     public FlipSide()
     {
@@ -131,9 +131,9 @@ public sealed partial class FlipSide : Control
     {
         base.OnApplyTemplate();
 
-        Side1Content = GetTemplateChild(PART_Side1Content) as ContentPresenter;
-        Side2Content = GetTemplateChild(PART_Side2Content) as ContentPresenter;
-        LayoutRoot = GetTemplateChild(PART_LayoutRoot) as Grid;
+        Side1Content = (GetTemplateChild(PART_Side1Content) as ContentPresenter)!;
+        Side2Content = (GetTemplateChild(PART_Side2Content) as ContentPresenter)!;
+        LayoutRoot = (GetTemplateChild(PART_LayoutRoot) as Grid)!;
 
         InitComposition();
     }

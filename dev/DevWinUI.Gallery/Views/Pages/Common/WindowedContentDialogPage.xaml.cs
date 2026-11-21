@@ -11,9 +11,9 @@ public sealed partial class WindowedContentDialogPage : Page
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value;
-        var flow = (FlowDirection)CmbFlow.Value;
-        var orientation = (Orientation)CmbButtonOrientation.Value;
+        var underlayBackdrop = (BackdropType)CmbUnderlayBackdrops.Value!;
+        var flow = (FlowDirection)CmbFlow.Value!;
+        var orientation = (Orientation)CmbButtonOrientation.Value!;
 
         WindowedContentDialog dialog = new()
         {

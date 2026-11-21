@@ -6,7 +6,7 @@ public partial class BruteForce : Control
     private const string PART_ItemsRepeater = "PART_ItemsRepeater";
     private readonly ObservableCollection<string> _characters = [];
     private readonly Dictionary<int, BruteForceState> _characterStates = [];
-    private ItemsRepeater _itemsRepeater;
+    private ItemsRepeater _itemsRepeater = null!;
     public string Password
     {
         get { return (string)GetValue(PasswordProperty); }
@@ -94,7 +94,7 @@ public partial class BruteForce : Control
 
         base.OnApplyTemplate();
 
-        _itemsRepeater = GetTemplateChild(PART_ItemsRepeater) as ItemsRepeater;
+        _itemsRepeater = (GetTemplateChild(PART_ItemsRepeater) as ItemsRepeater)!;
         if (_itemsRepeater is null)
         {
             return;

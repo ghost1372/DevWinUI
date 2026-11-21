@@ -45,10 +45,10 @@ public partial class ExpressionAnimation<T>
     private readonly Compositor _compositor;
     private bool _anyReferenceUpdated;
 
-    private Expression<CompositionExpression<T>> _expression;
-    private ExpressionAnimation _animation;
+    private Expression<CompositionExpression<T>> _expression = null!;
+    private ExpressionAnimation? _animation;
 
-    private string _expressionString;
+    private string _expressionString = string.Empty;
     private Dictionary<string, ExpressionParameter> _references;
 
     #endregion

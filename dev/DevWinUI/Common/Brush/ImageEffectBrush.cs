@@ -3,8 +3,8 @@
 namespace DevWinUI;
 public partial class ImageEffectBrush : XamlCompositionBrushBase
 {
-    private LoadedImageSurface _surface;
-    private CompositionSurfaceBrush _surfaceBrush;
+    private LoadedImageSurface? _surface;
+    private CompositionSurfaceBrush? _surfaceBrush;
 
     public string ImageUri
     {

@@ -4,16 +4,16 @@
 public partial class AnimationPath : Control
 {
     private const string PART_Border = "PART_Border";
-    private Border hostBorder;
+    private Border? hostBorder;
 
-    private Compositor _compositor;
-    private CompositionSpriteShape _shape;
-    private ShapeVisual _shapeVisual;
+    private Compositor? _compositor;
+    private CompositionSpriteShape? _shape;
+    private ShapeVisual? _shapeVisual;
     private float _length;
     private Rect bounds;
-    private CanvasGeometry _baseGeometry;
-    private CompositionPath _compositionPath;
-    private ScalarKeyFrameAnimation _strokeAnimation;
+    private CanvasGeometry? _baseGeometry;
+    private CompositionPath? _compositionPath;
+    private ScalarKeyFrameAnimation? _strokeAnimation;
     public AnimationPath()
     {
         DefaultStyleKey = typeof(AnimationPath);
@@ -29,7 +29,7 @@ public partial class AnimationPath : Control
 
     private void Init()
     {
-        if (string.IsNullOrEmpty(Data))
+        if (hostBorder == null || string.IsNullOrEmpty(Data))
             return;
 
         _compositor = ElementCompositionPreview.GetElementVisual(hostBorder).Compositor;
@@ -89,7 +89,7 @@ public partial class AnimationPath : Control
 
     private void UpdateLayoutOnly()
     {
-        if (_baseGeometry == null || _shapeVisual == null)
+        if (_baseGeometry == null || _shapeVisual == null || _shape == null)
             return;
 
         float targetWidth = (float)ActualWidth;
@@ -147,7 +147,8 @@ public partial class AnimationPath : Control
 
         if (IsPlaying)
         {
-            _shape.StartAnimation(nameof(_shape.StrokeDashOffset), _strokeAnimation);
+            if (_strokeAnimation != null)
+                _shape.StartAnimation(nameof(_shape.StrokeDashOffset), _strokeAnimation);
         }
         else
         {

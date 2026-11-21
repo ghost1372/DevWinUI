@@ -9,11 +9,11 @@ public partial class BlurEffectManager : IDisposable
 
     private readonly FrameworkElement _targetElement;
     private readonly Compositor _compositor;
-    private SpriteVisual _blurVisual;
-    private CompositionEffectBrush _blurBrush;
-    private ManagedSurface _noiseSurface;
-    private string _loadedNoiseUri;
-    private LinearEasingFunction _linearEasing;
+    private SpriteVisual? _blurVisual;
+    private CompositionEffectBrush? _blurBrush;
+    private ManagedSurface? _noiseSurface;
+    private string? _loadedNoiseUri;
+    private LinearEasingFunction? _linearEasing;
 
     private bool _isTintEnabled = false;
     public bool IsTintEnabled
@@ -67,8 +67,8 @@ public partial class BlurEffectManager : IDisposable
     }
 
 
-    private ICompositionSurface _surfaceSource;
-    public ICompositionSurface SurfaceSource
+    private ICompositionSurface? _surfaceSource;
+    public ICompositionSurface? SurfaceSource
     {
         get => _surfaceSource;
         set
@@ -82,8 +82,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
-    private CompositionSurfaceBrush _surfaceBrushSource;
-    public CompositionSurfaceBrush SurfaceBrushSource
+    private CompositionSurfaceBrush? _surfaceBrushSource;
+    public CompositionSurfaceBrush? SurfaceBrushSource
     {
         get => _surfaceBrushSource;
         set
@@ -97,8 +97,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
-    private Visual _visualSource;
-    public Visual VisualSource
+    private Visual? _visualSource;
+    public Visual? VisualSource
     {
         get => _visualSource;
         set
@@ -112,8 +112,8 @@ public partial class BlurEffectManager : IDisposable
         }
     }
 
-    private CompositionBrush _customSourceBrush;
-    public CompositionBrush CustomSourceBrush
+    private CompositionBrush? _customSourceBrush;
+    public CompositionBrush? CustomSourceBrush
     {
         get => _customSourceBrush;
         set
@@ -453,7 +453,7 @@ public partial class BlurEffectManager : IDisposable
         return list;
     }
 
-    public CompositionBrush GetBrush() => _blurBrush;
+    public CompositionBrush? GetBrush() => _blurBrush;
     public Compositor GetCompositor() => _compositor;
 
     public void StartBlurAnimation() => StartBlurAnimation(BlurAmount, TimeSpan.FromMilliseconds(300));

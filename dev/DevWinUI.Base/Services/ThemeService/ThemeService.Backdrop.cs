@@ -130,7 +130,7 @@ public partial class ThemeService
             var result = applicationData.LocalSettings.Values[BackdropTypeSettingKey];
             if (result != null)
             {
-                return GeneralHelper.GetEnum<BackdropType>(result.ToString());
+                return GeneralHelper.GetEnum<BackdropType>(result.ToString() ?? string.Empty);
             }
         }
         catch { }
@@ -138,11 +138,11 @@ public partial class ThemeService
         return null;
     }
 
-    public SystemBackdrop GetSystemBackdrop()
+    public SystemBackdrop? GetSystemBackdrop()
     {
         return _rootElements?.Keys.FirstOrDefault()?.SystemBackdrop;
     }
-    public MicaSystemBackdrop GetMicaSystemBackdrop()
+    public MicaSystemBackdrop? GetMicaSystemBackdrop()
     {
         if (GetSystemBackdrop() is MicaSystemBackdrop micaSystemBackdrop)
         {
@@ -152,7 +152,7 @@ public partial class ThemeService
         return null;
     }
 
-    public AcrylicSystemBackdrop GetAcrylicSystemBackdrop()
+    public AcrylicSystemBackdrop? GetAcrylicSystemBackdrop()
     {
         if (GetSystemBackdrop() is AcrylicSystemBackdrop acrylicSystemBackdrop)
         {

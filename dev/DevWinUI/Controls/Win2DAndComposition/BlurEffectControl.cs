@@ -206,6 +206,6 @@ public partial class BlurEffectControl : Control
     }
 
     public BlurEffectManager GetBlurEffectManager() => _blurManager;
-    public CompositionBrush GetBrush() => _blurManager?.GetBrush();
-    public Compositor GetCompositor() => _blurManager?.GetCompositor();
+    public CompositionBrush? GetBrush() => _blurManager?.GetBrush();
+    public Compositor? GetCompositor() => _blurManager?.GetCompositor();
 }

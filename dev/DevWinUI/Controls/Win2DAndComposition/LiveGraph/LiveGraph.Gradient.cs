@@ -46,6 +46,7 @@ public partial class LiveGraph
 
     public (CanvasLinearGradientBrush Brush, CanvasLinearGradientBrush OpacityBrush, CanvasSolidColorBrush BorderBrush) GetCustomBrush(ICanvasResourceCreator resourceCreator, Color[] colors)
     {
+        var currentCanvas = canvas ?? throw new InvalidOperationException("The LiveGraph template has not been applied.");
         var brush = new CanvasLinearGradientBrush(resourceCreator, CreateGradientStops(colors));
 
         var opacityBrush = new CanvasLinearGradientBrush(resourceCreator, new CanvasGradientStop[]
@@ -56,10 +57,10 @@ public partial class LiveGraph
 
         var borderBrush = new CanvasSolidColorBrush(resourceCreator, colors[0]);
 
-        brush.StartPoint = new Vector2(0, (float)canvas.ActualHeight);
+        brush.StartPoint = new Vector2(0, (float)currentCanvas.ActualHeight);
         brush.EndPoint = new Vector2(0, 0);
 
-        opacityBrush.StartPoint = new Vector2(0, (float)canvas.ActualHeight);
+        opacityBrush.StartPoint = new Vector2(0, (float)currentCanvas.ActualHeight);
         opacityBrush.EndPoint = new Vector2(0, 0);
 
         return (brush, opacityBrush, borderBrush);

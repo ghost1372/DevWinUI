@@ -25,7 +25,9 @@ public sealed partial class BubblePage : Page
 
     private void OnGestureRecognizerTapped(object sender, TappedEventArgs e)
     {
-        var progressButton = sender as BubbleProgressButton;
+        if (sender is not BubbleProgressButton progressButton)
+            return;
+
         if (progressButton.State == BubbleProgressState.Idle)
             progressButton.State = BubbleProgressState.Completed;
         else
@@ -35,15 +37,16 @@ public sealed partial class BubblePage : Page
 
     private void OnGestureRecognizerHolding(object sender, HoldingEventArgs e)
     {
-        var progressButton = sender as BubbleProgressButton;
         if (e.HoldingState == HoldingState.Started)
         {
-            if (!_isAnimateBegin)
+            if (!_isAnimateBegin &&
+                sender is BubbleProgressButton progressButton &&
+                _progressStoryboard.Children[0] is DoubleAnimation animation)
             {
                 _isAnimateBegin = true;
-                (_progressStoryboard.Children[0] as DoubleAnimation).From = progressButton.Minimum;
-                (_progressStoryboard.Children[0] as DoubleAnimation).To = progressButton.Maximum;
-                Storyboard.SetTarget(_progressStoryboard.Children[0] as DoubleAnimation, progressButton);
+                animation.From = progressButton.Minimum;
+                animation.To = progressButton.Maximum;
+                Storyboard.SetTarget(animation, progressButton);
                 _progressStoryboard.Begin();
             }
         }
@@ -71,7 +74,7 @@ public sealed partial class BubblePage : Page
         return storyboard;
     }
 
-    private void OnProgressStoryboardCompleted(object sender, object e)
+    private void OnProgressStoryboardCompleted(object? sender, object e)
     {
         LikeButton.State = BubbleProgressState.Completed;
         CoinButton.State = BubbleProgressState.Completed;

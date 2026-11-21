@@ -5,7 +5,7 @@ public partial class Accordion : Control
 {
     private const string PART_RectangleGeometry = "PART_RectangleGeometry";
 
-    private RectangleGeometry _clip = null;
+    private RectangleGeometry? _clip = null;
 
     public Accordion()
     {
@@ -40,9 +40,9 @@ public partial class Accordion : Control
     public static readonly DependencyProperty ItemTemplateProperty =
         DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(Accordion), new PropertyMetadata(null));
 
-    public DataTemplate HeaderTemplate
+    public DataTemplate? HeaderTemplate
     {
-        get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+        get { return GetValue(HeaderTemplateProperty) as DataTemplate; }
         set { SetValue(HeaderTemplateProperty, value); }
     }
 

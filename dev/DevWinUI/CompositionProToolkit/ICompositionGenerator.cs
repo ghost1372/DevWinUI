@@ -178,8 +178,8 @@ public interface ICompositionGenerator : IDisposable
     /// <param name="stroke">ICanvasStroke defining the outline for the geometry</param>
     /// <param name="fillBrush">The brush with which the geometry has to be filled</param>
     /// <returns>IGeometrySurface</returns>
-    IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke stroke,
-        ICanvasBrush fillBrush);
+    IGeometrySurface CreateGeometrySurface(Size size, CanvasGeometry geometry, ICanvasStroke? stroke,
+        ICanvasBrush? fillBrush);
 
     /// <summary>
     /// Creates an IGeometrySurface having the given size, geometry, fill brush and

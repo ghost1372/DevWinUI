@@ -5,13 +5,13 @@ public partial class FrostedGlass : Control
 {
     #region Fields
 
-    private Compositor _compositor;
-    private ICompositionGenerator _generator;
-    private SpriteVisual _glassVisual;
-    private IMaskSurface _glassMaskSurface;
-    private CompositionBackdropBrush _backdropBrush;
-    private DropShadow _glassShadow;
-    private Grid _rootGrid;
+    private Compositor _compositor = null!;
+    private ICompositionGenerator _generator = null!;
+    private SpriteVisual _glassVisual = null!;
+    private IMaskSurface _glassMaskSurface = null!;
+    private CompositionBackdropBrush _backdropBrush = null!;
+    private DropShadow _glassShadow = null!;
+    private Grid? _rootGrid;
 
     #endregion
 
@@ -512,7 +512,7 @@ public partial class FrostedGlass : Control
             _compositor = CompositionTarget.GetCompositorForCurrentThread();
             _generator = _compositor.CreateCompositionGenerator();
             _glassVisual = _compositor.CreateSpriteVisual();
-            _glassMaskSurface = _generator.CreateMaskSurface(Size.Empty, null);
+            _glassMaskSurface = _generator.CreateMaskSurface(Size.Empty, null!);
             _backdropBrush = _compositor.CreateBackdropBrush();
             _glassShadow = _compositor.CreateDropShadow();
 

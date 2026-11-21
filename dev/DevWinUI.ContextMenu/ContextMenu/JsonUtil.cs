@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 
 namespace DevWinUI;
+
 public static partial class JsonUtil
 {
     public static string Serialize(object obj)
@@ -10,6 +11,7 @@ public static partial class JsonUtil
 
     public static ContextMenuItem Deserialize(string json)
     {
-        return JsonSerializer.Deserialize<ContextMenuItem>(json, ContextMenuJsonSerializerContext.Default.ContextMenuItem);
+        return JsonSerializer.Deserialize<ContextMenuItem>(json, ContextMenuJsonSerializerContext.Default.ContextMenuItem)
+            ?? throw new JsonException("Menu JSON is empty or invalid.");
     }
 }

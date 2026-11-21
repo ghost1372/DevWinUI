@@ -1,10 +1,10 @@
 ﻿using System.Numerics;
 using CommunityToolkit.WinUI.Animations;
-using Microsoft.UI.Dispatching;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -102,41 +102,41 @@ public sealed partial class ControlExample : Control
     private readonly List<Sample> _samples = new();
     private readonly List<OptionGroup> _optionGroups = new();
     private readonly List<ContentControl> _optionHosts = new();
-    private Grid _headerTintHost;
-    private Border _headerPanel;
-    private TextBlock _titleText;
-    private TextBlock _descriptionText;
-    private Border _headerToolsHost;
-    private Border _previewSurface;
-    private Grid _backgroundHost;
-    private ScrollViewer _previewScrollViewer;
-    private Grid _previewHost;
-    private SwitchPresenter _samplePresenter;
-    private SelectorBar _sampleSelector;
-    private Border _rightPanel;
-    private Border _panePanel;
-    private Grid _paneContent;
-    private Grid _paneHeader;
-    private SelectorBar _optionsSelector;
-    private Button _optionsOverflowButton;
-    private MenuFlyout _optionsOverflowMenu;
-    private Button _resetButton;
-    private TextBlock _resetText;
-    private Grid _optionsHost;
-    private Border _sideToolsHost;
-    private StackPanel _toolsPanel;
-    private Button _docButton;
-    private Button _backgroundButton;
-    private FontIcon _backgroundIcon;
-    private Button _glowButton;
-    private FontIcon _glowIcon;
-    private Button _paneToggleButton;
-    private Expander _footerExpander;
-    private SelectorBar _codeSelector;
-    private ContentControl _xamlHost;
-    private ContentControl _csharpHost;
-    private Grid _glowHost;
-    private Flyout _paneFlyout;
+    private Grid _headerTintHost = null!;
+    private Border _headerPanel = null!;
+    private TextBlock _titleText = null!;
+    private TextBlock _descriptionText = null!;
+    private Border _headerToolsHost = null!;
+    private Border _previewSurface = null!;
+    private Grid _backgroundHost = null!;
+    private ScrollViewer _previewScrollViewer = null!;
+    private Grid _previewHost = null!;
+    private SwitchPresenter _samplePresenter = null!;
+    private SelectorBar _sampleSelector = null!;
+    private Border _rightPanel = null!;
+    private Border _panePanel = null!;
+    private Grid _paneContent = null!;
+    private Grid _paneHeader = null!;
+    private SelectorBar _optionsSelector = null!;
+    private Button _optionsOverflowButton = null!;
+    private MenuFlyout _optionsOverflowMenu = null!;
+    private Button _resetButton = null!;
+    private TextBlock _resetText = null!;
+    private Grid _optionsHost = null!;
+    private Border _sideToolsHost = null!;
+    private StackPanel _toolsPanel = null!;
+    private Button _docButton = null!;
+    private Button _backgroundButton = null!;
+    private FontIcon _backgroundIcon = null!;
+    private Button _glowButton = null!;
+    private FontIcon _glowIcon = null!;
+    private Button _paneToggleButton = null!;
+    private Expander _footerExpander = null!;
+    private SelectorBar _codeSelector = null!;
+    private ContentControl _xamlHost = null!;
+    private ContentControl _csharpHost = null!;
+    private Grid _glowHost = null!;
+    private Flyout _paneFlyout = null!;
     private int _selectedOptionIndex;
     private int _optionSlotIndex;
     private bool _updatingOptions;
@@ -145,22 +145,22 @@ public sealed partial class ControlExample : Control
     private int _visibleCount;
     private bool _resetCompact;
     private double _previewHeight;
-    private EventHandler _resetRequested;
-    private CanvasControl _backgroundCanvas;
-    private CanvasControl _glowCanvas;
-    private CanvasControl _headerCanvas;
+    private EventHandler? _resetRequested;
+    private CanvasControl? _backgroundCanvas;
+    private CanvasControl? _glowCanvas;
+    private CanvasControl? _headerCanvas;
     private CornerRadius _previewCorner = new(8, 0, 0, 0);
     private bool _isLoaded;
     private bool _isNear;
     private bool _isResizing;
-    private DispatcherQueueTimer _resizeTimer;
+    private DispatcherQueueTimer? _resizeTimer;
     private bool _isTemplateApplied;
     private bool _isCompact;
     private int _selectedSampleIndex;
     private bool _updatingSamples;
     private bool _codeDirty;
-    private (string Code, string File) _xaml;
-    private (string Code, string File) _csharp;
+    private (string? Code, string? File) _xaml;
+    private (string? Code, string? File) _csharp;
 
     public event EventHandler ResetRequested
     {
@@ -184,7 +184,7 @@ public sealed partial class ControlExample : Control
 
     private double SafePaneMaxHeight => double.IsNaN(PaneMaxHeight) || PaneMaxHeight <= 0 ? 480 : PaneMaxHeight;
 
-    private Sample CurrentSample => _selectedSampleIndex >= 0 && _selectedSampleIndex < _samples.Count ? _samples[_selectedSampleIndex] : null;
+    private Sample? CurrentSample => _selectedSampleIndex >= 0 && _selectedSampleIndex < _samples.Count ? _samples[_selectedSampleIndex] : null;
 
     public ControlExample()
     {
@@ -221,40 +221,40 @@ public sealed partial class ControlExample : Control
 
         DestroyCanvases();
 
-        _headerTintHost = GetTemplateChild(HeaderTintHostPart) as Grid;
-        _headerPanel = GetTemplateChild(HeaderPanelPart) as Border;
-        _titleText = GetTemplateChild(TitleTextPart) as TextBlock;
-        _descriptionText = GetTemplateChild(DescriptionTextPart) as TextBlock;
-        _headerToolsHost = GetTemplateChild(HeaderToolsHostPart) as Border;
-        _previewSurface = GetTemplateChild(PreviewSurfacePart) as Border;
-        _backgroundHost = GetTemplateChild(BackgroundHostPart) as Grid;
-        _previewScrollViewer = GetTemplateChild(PreviewScrollViewerPart) as ScrollViewer;
-        _previewHost = GetTemplateChild(PreviewHostPart) as Grid;
-        _samplePresenter = GetTemplateChild(SamplePresenterPart) as SwitchPresenter;
-        _sampleSelector = GetTemplateChild(SampleSelectorPart) as SelectorBar;
-        _rightPanel = GetTemplateChild(RightPanelPart) as Border;
-        _panePanel = GetTemplateChild(PanePanelPart) as Border;
-        _paneContent = GetTemplateChild(PaneContentPart) as Grid;
-        _paneHeader = GetTemplateChild(PaneHeaderPart) as Grid;
-        _optionsSelector = GetTemplateChild(OptionsSelectorPart) as SelectorBar;
-        _optionsOverflowButton = GetTemplateChild(OptionsOverflowButtonPart) as Button;
-        _optionsOverflowMenu = _optionsOverflowButton?.Flyout as MenuFlyout;
-        _resetButton = GetTemplateChild(ResetButtonPart) as Button;
-        _resetText = GetTemplateChild(ResetTextPart) as TextBlock;
-        _optionsHost = GetTemplateChild(OptionsHostPart) as Grid;
-        _sideToolsHost = GetTemplateChild(SideToolsHostPart) as Border;
-        _toolsPanel = GetTemplateChild(ToolsPanelPart) as StackPanel;
-        _docButton = GetTemplateChild(DocButtonPart) as Button;
-        _backgroundButton = GetTemplateChild(BackgroundButtonPart) as Button;
-        _backgroundIcon = GetTemplateChild(BackgroundIconPart) as FontIcon;
-        _glowButton = GetTemplateChild(GlowButtonPart) as Button;
-        _glowIcon = GetTemplateChild(GlowIconPart) as FontIcon;
-        _paneToggleButton = GetTemplateChild(PaneToggleButtonPart) as Button;
-        _footerExpander = GetTemplateChild(FooterExpanderPart) as Expander;
-        _codeSelector = GetTemplateChild(CodeSelectorPart) as SelectorBar;
-        _xamlHost = GetTemplateChild(XamlHostPart) as ContentControl;
-        _csharpHost = GetTemplateChild(CSharpHostPart) as ContentControl;
-        _glowHost = GetTemplateChild(GlowHostPart) as Grid;
+        _headerTintHost = GetPart<Grid>(HeaderTintHostPart);
+        _headerPanel = GetPart<Border>(HeaderPanelPart);
+        _titleText = GetPart<TextBlock>(TitleTextPart);
+        _descriptionText = GetPart<TextBlock>(DescriptionTextPart);
+        _headerToolsHost = GetPart<Border>(HeaderToolsHostPart);
+        _previewSurface = GetPart<Border>(PreviewSurfacePart);
+        _backgroundHost = GetPart<Grid>(BackgroundHostPart);
+        _previewScrollViewer = GetPart<ScrollViewer>(PreviewScrollViewerPart);
+        _previewHost = GetPart<Grid>(PreviewHostPart);
+        _samplePresenter = GetPart<SwitchPresenter>(SamplePresenterPart);
+        _sampleSelector = GetPart<SelectorBar>(SampleSelectorPart);
+        _rightPanel = GetPart<Border>(RightPanelPart);
+        _panePanel = GetPart<Border>(PanePanelPart);
+        _paneContent = GetPart<Grid>(PaneContentPart);
+        _paneHeader = GetPart<Grid>(PaneHeaderPart);
+        _optionsSelector = GetPart<SelectorBar>(OptionsSelectorPart);
+        _optionsOverflowButton = GetPart<Button>(OptionsOverflowButtonPart);
+        _optionsOverflowMenu = (_optionsOverflowButton?.Flyout as MenuFlyout)!;
+        _resetButton = GetPart<Button>(ResetButtonPart);
+        _resetText = GetPart<TextBlock>(ResetTextPart);
+        _optionsHost = GetPart<Grid>(OptionsHostPart);
+        _sideToolsHost = GetPart<Border>(SideToolsHostPart);
+        _toolsPanel = GetPart<StackPanel>(ToolsPanelPart);
+        _docButton = GetPart<Button>(DocButtonPart);
+        _backgroundButton = GetPart<Button>(BackgroundButtonPart);
+        _backgroundIcon = GetPart<FontIcon>(BackgroundIconPart);
+        _glowButton = GetPart<Button>(GlowButtonPart);
+        _glowIcon = GetPart<FontIcon>(GlowIconPart);
+        _paneToggleButton = GetPart<Button>(PaneToggleButtonPart);
+        _footerExpander = GetPart<Expander>(FooterExpanderPart);
+        _codeSelector = GetPart<SelectorBar>(CodeSelectorPart);
+        _xamlHost = GetPart<ContentControl>(XamlHostPart);
+        _csharpHost = GetPart<ContentControl>(CSharpHostPart);
+        _glowHost = GetPart<Grid>(GlowHostPart);
 
         _glowHost.Margin = new Thickness(-GlowInset);
         _paneFlyout = new Flyout
@@ -285,6 +285,11 @@ public sealed partial class ControlExample : Control
         {
             Initialize();
         }
+    }
+
+    private T GetPart<T>(string name) where T : class
+    {
+        return (GetTemplateChild(name) as T)!;
     }
 
     private static Style CreateFlyoutPresenterStyle()
@@ -388,7 +393,7 @@ public sealed partial class ControlExample : Control
         return canvas;
     }
 
-    private static void DestroyCanvas(ref CanvasControl canvas, Grid host, TypedEventHandler<CanvasControl, CanvasDrawEventArgs> draw)
+    private static void DestroyCanvas(ref CanvasControl? canvas, Grid host, TypedEventHandler<CanvasControl, CanvasDrawEventArgs> draw)
     {
         if (canvas == null)
         {
@@ -513,7 +518,7 @@ public sealed partial class ControlExample : Control
     private void RebuildSamples()
     {
         _updatingSamples = true;
-        _samplePresenter.Value = null;
+        _samplePresenter.Value = null!;
         _sampleSelector.ClearItems();
         _samples.Clear();
 
@@ -903,7 +908,7 @@ public sealed partial class ControlExample : Control
         _csharpHost.Content = CreatePresenter(SampleCodePresenterType.CSharp, _csharp);
     }
 
-    private static (string Code, string File) Resolve(string sampleCode, string sampleFile, string code, string file)
+    private static (string? Code, string? File) Resolve(string? sampleCode, string? sampleFile, string? code, string? file)
     {
         if (!string.IsNullOrEmpty(sampleCode) || !string.IsNullOrEmpty(sampleFile))
         {
@@ -913,12 +918,12 @@ public sealed partial class ControlExample : Control
         return (code, file);
     }
 
-    private static bool HasCode((string Code, string File) source)
+    private static bool HasCode((string? Code, string? File) source)
     {
         return !string.IsNullOrEmpty(source.Code) || !string.IsNullOrEmpty(source.File);
     }
 
-    private static SampleCodePresenter CreatePresenter(SampleCodePresenterType type, (string Code, string File) source)
+    private static SampleCodePresenter? CreatePresenter(SampleCodePresenterType type, (string? Code, string? File) source)
     {
         if (!HasCode(source))
         {
@@ -932,7 +937,7 @@ public sealed partial class ControlExample : Control
         }
         else
         {
-            presenter.CodeSourceFile = source.File;
+            presenter.CodeSourceFile = source.File!;
         }
 
         return presenter;

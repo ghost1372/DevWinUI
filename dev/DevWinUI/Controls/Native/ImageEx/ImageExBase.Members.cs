@@ -51,17 +51,17 @@ public partial class ImageExBase
     /// <summary>
     /// Event raised if the image failed loading.
     /// </summary>
-    public event ImageExFailedEventHandler ImageExFailed;
+    public event ImageExFailedEventHandler? ImageExFailed;
 
     /// <summary>
     /// Event raised when the image is successfully loaded and opened.
     /// </summary>
-    public event ImageExOpenedEventHandler ImageExOpened;
+    public event ImageExOpenedEventHandler? ImageExOpened;
 
     /// <summary>
     /// Event raised when the control is initialized.
     /// </summary>
-    public event EventHandler ImageExInitialized;
+    public event EventHandler? ImageExInitialized;
 
     /// <summary>
     /// Gets a value indicating whether control has been initialized.

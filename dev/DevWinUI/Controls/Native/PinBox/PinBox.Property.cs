@@ -1,7 +1,7 @@
 ﻿namespace DevWinUI;
 public partial class PinBox
 {
-    public event EventHandler<PinBoxPasswordChangedEventArgs> PasswordChanged;
+    public event EventHandler<PinBoxPasswordChangedEventArgs>? PasswordChanged;
 
     public string Password
     {

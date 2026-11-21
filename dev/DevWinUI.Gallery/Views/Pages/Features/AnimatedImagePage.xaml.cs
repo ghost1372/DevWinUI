@@ -3,7 +3,7 @@
 public sealed partial class AnimatedImagePage : Page
 {
     public BaseViewModel ViewModel { get; }
-    private DispatcherTimer _timer;
+    private DispatcherTimer? _timer;
     private readonly Random _random = new();
     public AnimatedImagePage()
     {
@@ -27,7 +27,7 @@ public sealed partial class AnimatedImagePage : Page
         _timer?.Stop();
         _timer = null;
     }
-    private void Timer_Tick(object sender, object e)
+    private void Timer_Tick(object? sender, object e)
     {
         var index = _random.Next(ViewModel.LandscapeData.Count);
         ViewModel.AnimatedImageImagePath = ViewModel.LandscapeData[index].ImageUri;

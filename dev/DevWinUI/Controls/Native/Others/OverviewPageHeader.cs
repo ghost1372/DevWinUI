@@ -7,8 +7,8 @@ public partial class OverviewPageHeader : Control
     private const string PART_TextPanel = "PART_TextPanel";
     private const string PART_ImageContentHolder = "PART_ImageContentHolder";
 
-    private ContentPresenter imageContentHolder;
-    private StackPanel textPanel;
+    private ContentPresenter imageContentHolder = null!;
+    private StackPanel textPanel = null!;
 
     public object ImageContent
     {
@@ -55,8 +55,8 @@ public partial class OverviewPageHeader : Control
     {
         base.OnApplyTemplate();
 
-        textPanel = GetTemplateChild(PART_TextPanel) as StackPanel;
-        imageContentHolder = GetTemplateChild(PART_ImageContentHolder) as ContentPresenter;
+        textPanel = (GetTemplateChild(PART_TextPanel) as StackPanel)!;
+        imageContentHolder = (GetTemplateChild(PART_ImageContentHolder) as ContentPresenter)!;
 
         SizeChanged -= OnSizeChanged;
         SizeChanged += OnSizeChanged;

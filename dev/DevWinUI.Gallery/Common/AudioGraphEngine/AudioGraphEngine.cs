@@ -21,21 +21,19 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 {
     private readonly DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
-    private AudioGraph graph;
-    private AudioFileInputNode fileNode;
-    private AudioDeviceOutputNode deviceNode;
-    private AudioFrameOutputNode frameNode;
+    private AudioGraph? graph;
+    private AudioFileInputNode? fileNode;
+    private AudioDeviceOutputNode? deviceNode;
+    private AudioFrameOutputNode? frameNode;
 
     private readonly int fftDataSize = 2048;
     private readonly SampleAggregator sampleAggregator;
 
-    private bool isPlaying;
-    private double channelLength;
     private double channelPosition;
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    private AudioSampleRingBuffer sampleBuffer;
-    private CancellationTokenSource processingCts;
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private readonly AudioSampleRingBuffer sampleBuffer;
+    private readonly CancellationTokenSource processingCts;
 
     private TimeSpan playbackStartTime;
     public TimeSpan SelectionBegin { get; set; }
@@ -52,12 +50,10 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
     {
         Task.Run(async () =>
         {
-            float left, right;
-
             while (!processingCts.IsCancellationRequested)
             {
-                if (sampleBuffer.TryRead(out left) &&
-                    sampleBuffer.TryRead(out right))
+                if (sampleBuffer.TryRead(out var left) &&
+                    sampleBuffer.TryRead(out var right))
                 {
                     sampleAggregator.Add(left, right);
                 }
@@ -77,7 +73,7 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
     public int GetFFTFrequencyIndex(int frequency)
     {
-        double maxFrequency = graph != null
+        var maxFrequency = graph != null
             ? graph.EncodingProperties.SampleRate / 2.0
             : 22050;
 
@@ -101,30 +97,28 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
     public double ChannelLength
     {
-        get => channelLength;
+        get;
         private set
         {
-            channelLength = value;
+            field = value;
             NotifyPropertyChanged(nameof(ChannelLength));
         }
     }
 
-    private float[] waveformData;
-
     public float[] WaveformData
     {
-        get => waveformData;
+        get;
         private set
         {
-            waveformData = value;
+            field = value;
             NotifyPropertyChanged(nameof(WaveformData));
         }
-    }
+    } = [];
     private async Task GenerateWaveformAsync(string wavPath)
     {
         await Task.Run(() =>
         {
-            byte[] data = File.ReadAllBytes(wavPath);
+            var data = File.ReadAllBytes(wavPath);
 
             if (data.Length < 44)
                 throw new InvalidOperationException("Invalid WAV file");
@@ -132,13 +126,13 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
             int channels = BitConverter.ToInt16(data, 22);
             int bitsPerSample = BitConverter.ToInt16(data, 34);
 
-            int dataChunkOffset = -1;
-            int dataChunkSize = 0;
+            var dataChunkOffset = -1;
+            var dataChunkSize = 0;
 
-            for (int i = 12; i < data.Length - 8;)
+            for (var i = 12; i < data.Length - 8;)
             {
-                string chunkId = Encoding.ASCII.GetString(data, i, 4);
-                int chunkSize = BitConverter.ToInt32(data, i + 4);
+                var chunkId = Encoding.ASCII.GetString(data, i, 4);
+                var chunkSize = BitConverter.ToInt32(data, i + 4);
 
                 if (chunkId == "data")
                 {
@@ -155,16 +149,16 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
             const int samplesPerBucket = 1024;
 
-            List<float> waveform = new();
+            List<float> waveform = [];
 
             float leftSumSq = 0, rightSumSq = 0;
             float leftPeak = 0, rightPeak = 0;
-            int sampleCounter = 0;
+            var sampleCounter = 0;
 
-            int bytesPerSample = bitsPerSample / 8;
-            int frameSize = bytesPerSample * channels;
+            var bytesPerSample = bitsPerSample / 8;
+            var frameSize = bytesPerSample * channels;
 
-            for (int i = dataChunkOffset; i + frameSize <= dataChunkOffset + dataChunkSize; i += frameSize)
+            for (var i = dataChunkOffset; i + frameSize <= dataChunkOffset + dataChunkSize; i += frameSize)
             {
                 float l, r;
 
@@ -175,13 +169,13 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
                 }
                 else if (bitsPerSample == 24)
                 {
-                    int left = (data[i + 2] << 24) | (data[i + 1] << 16) | (data[i] << 8);
+                    var left = (data[i + 2] << 24) | (data[i + 1] << 16) | (data[i] << 8);
                     left >>= 8;
                     l = left / 8388608f;
 
                     if (channels == 2)
                     {
-                        int right = (data[i + 5] << 24) | (data[i + 4] << 16) | (data[i + 3] << 8);
+                        var right = (data[i + 5] << 24) | (data[i + 4] << 16) | (data[i + 3] << 8);
                         right >>= 8;
                         r = right / 8388608f;
                     }
@@ -207,8 +201,8 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
                 if (sampleCounter >= samplesPerBucket)
                 {
-                    float leftRms = MathF.Sqrt(leftSumSq / sampleCounter);
-                    float rightRms = MathF.Sqrt(rightSumSq / sampleCounter);
+                    var leftRms = MathF.Sqrt(leftSumSq / sampleCounter);
+                    var rightRms = MathF.Sqrt(rightSumSq / sampleCounter);
 
                     waveform.Add((leftRms + leftPeak) * 0.5f);
                     waveform.Add((rightRms + rightPeak) * 0.5f);
@@ -219,34 +213,34 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
                 }
             }
 
-            float max = 0f;
-            for (int i = 0; i < waveform.Count; i++)
+            var max = 0f;
+            for (var i = 0; i < waveform.Count; i++)
             {
-                float v = Math.Abs(waveform[i]);
+                var v = Math.Abs(waveform[i]);
                 if (v > max)
                     max = v;
             }
 
             if (max > 0)
             {
-                float gain = 1f / max;
-                for (int i = 0; i < waveform.Count; i++)
+                var gain = 1f / max;
+                for (var i = 0; i < waveform.Count; i++)
                     waveform[i] *= gain;
             }
 
             dispatcherQueue.TryEnqueue(() =>
             {
-                WaveformData = waveform.ToArray();
+                WaveformData = [.. waveform];
             });
         });
     }
 
     public bool IsPlaying
     {
-        get => isPlaying;
+        get;
         private set
         {
-            isPlaying = value;
+            field = value;
             NotifyPropertyChanged(nameof(IsPlaying));
         }
     }
@@ -270,27 +264,31 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
         if (graphResult.Status != AudioGraphCreationStatus.Success)
             throw new InvalidOperationException("AudioGraph creation failed");
 
-        graph = graphResult.Graph;
+        var newGraph = graphResult.Graph;
+        graph = newGraph;
 
-        var deviceResult = await graph.CreateDeviceOutputNodeAsync();
-        deviceNode = deviceResult.DeviceOutputNode;
+        var deviceResult = await newGraph.CreateDeviceOutputNodeAsync();
+        var newDeviceNode = deviceResult.DeviceOutputNode;
+        deviceNode = newDeviceNode;
 
-        var fileResult = await graph.CreateFileInputNodeAsync(storageFile);
-        fileNode = fileResult.FileInputNode;
+        var fileResult = await newGraph.CreateFileInputNodeAsync(storageFile);
+        var newFileNode = fileResult.FileInputNode;
+        fileNode = newFileNode;
 
-        frameNode = graph.CreateFrameOutputNode();
+        var newFrameNode = newGraph.CreateFrameOutputNode();
+        frameNode = newFrameNode;
 
-        fileNode.AddOutgoingConnection(deviceNode);
-        fileNode.AddOutgoingConnection(frameNode);
+        newFileNode.AddOutgoingConnection(newDeviceNode);
+        newFileNode.AddOutgoingConnection(newFrameNode);
 
-        ChannelLength = fileNode.Duration.TotalSeconds;
+        ChannelLength = newFileNode.Duration.TotalSeconds;
 
-        graph.QuantumStarted += OnQuantumStarted;
+        newGraph.QuantumStarted += OnQuantumStarted;
     }
 
     public void Play()
     {
-        if (graph == null)
+        if (graph == null || fileNode == null)
             return;
 
         playbackStartTime = fileNode.Position;
@@ -310,7 +308,7 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
     public void Stop()
     {
-        if (graph == null)
+        if (graph == null || fileNode == null)
             return;
 
         graph.Stop();
@@ -321,17 +319,21 @@ public sealed partial class AudioGraphEngine : ISpectrumPlayer, IWaveformPlayer,
 
     private unsafe void OnQuantumStarted(AudioGraph sender, object args)
     {
-        var frame = frameNode.GetFrame();
+        var output = frameNode;
+        if (output == null)
+            return;
+
+        var frame = output.GetFrame();
         using var buffer = frame.LockBuffer(AudioBufferAccessMode.Read);
         using var reference = buffer.CreateReference();
 
         ((IMemoryBufferByteAccess)reference)
-            .GetBuffer(out byte* data, out uint capacity);
+            .GetBuffer(out var data, out var capacity);
 
-        float* samples = (float*)data;
-        int count = (int)(capacity / sizeof(float));
+        var samples = (float*)data;
+        var count = (int)(capacity / sizeof(float));
 
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
             sampleBuffer.Write(samples[i]);
 
         double positionSeconds = 0;

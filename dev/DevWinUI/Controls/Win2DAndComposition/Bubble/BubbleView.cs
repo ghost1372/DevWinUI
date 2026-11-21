@@ -20,17 +20,19 @@ public partial class BubbleView : Control
                     }
         }));
 
-    private ContainerVisual _BubblesVisual;
+    private ContainerVisual? _BubblesVisual;
 
-    private CanvasDevice _canvasDevice;
+    private CanvasDevice? _canvasDevice;
 
-    private Compositor _Compositor;
-    private CompositionGraphicsDevice _graphicsDevice;
-    private Visual _HostVisual;
+    // Assigned in SetupComposition() (OnApplyTemplate) before any use.
+    private Compositor _Compositor = null!;
+    private CompositionGraphicsDevice? _graphicsDevice;
+    private Visual _HostVisual = null!;
 
-    private Rectangle BubbleHost;
+    // Template part, assigned in OnApplyTemplate().
+    private Rectangle BubbleHost = null!;
 
-    private List<Bubble> Bubbles;
+    private List<Bubble>? Bubbles;
     private Color ForegroundColor;
 
     private long ForegroundPropertyChangedToken;
@@ -52,7 +54,7 @@ public partial class BubbleView : Control
     {
         base.OnApplyTemplate();
 
-        BubbleHost = GetTemplateChild("BubbleHost") as Rectangle;
+        BubbleHost = (Rectangle)GetTemplateChild("BubbleHost");
         BubbleHost.SizeChanged += BubbleHost_SizeChanged;
         SetupComposition();
         SetupDevices();
@@ -84,16 +86,18 @@ public partial class BubbleView : Control
         {
             if (IsDeviceLost)
             {
-                _canvasDevice.DeviceLost -= _canvasDevice_DeviceLost;
+                if (_canvasDevice != null)
+                    _canvasDevice.DeviceLost -= _canvasDevice_DeviceLost;
                 _canvasDevice = CanvasDevice.GetSharedDevice();
                 _canvasDevice.DeviceLost += _canvasDevice_DeviceLost;
             }
 
-            CanvasComposition.SetCanvasDevice(_graphicsDevice, _canvasDevice);
+            if (_graphicsDevice != null && _canvasDevice != null)
+                CanvasComposition.SetCanvasDevice(_graphicsDevice, _canvasDevice);
         }
         catch (Exception e) when (_canvasDevice != null && _canvasDevice.IsDeviceLost(e.HResult))
         {
-            _canvasDevice.RaiseDeviceLost();
+            _canvasDevice?.RaiseDeviceLost();
         }
     }
 
@@ -113,7 +117,7 @@ public partial class BubbleView : Control
     {
         ClearBubbles();
         if (DesignMode.DesignModeEnabled) return;
-        if (_canvasDevice == null || _graphicsDevice == null) return;
+        if (_canvasDevice == null || _graphicsDevice == null || _BubblesVisual == null) return;
         if (ForegroundColor != Colors.Transparent && ActualWidth > 0 && ActualHeight > 0)
         {
             var count = 20;

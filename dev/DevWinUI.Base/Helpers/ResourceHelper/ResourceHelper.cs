@@ -21,7 +21,7 @@ public partial class ResourceHelper : IResourceHelper
     /// </summary>
     /// <param name="identifier">Specifies the prefix to filter resource keys, defaulting to 'Resources' if not provided.</param>
     /// <returns>A list of resource keys formatted as strings.</returns>
-    public List<string> GetAllResourcesKeys(string identifier = null)
+    public List<string> GetAllResourcesKeys(string? identifier = null)
     {
         var reslist = new List<string>();
 
@@ -59,7 +59,7 @@ public partial class ResourceHelper : IResourceHelper
         Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
     }
 
-    private string GetStringBase(string key, string language, string filename)
+    private string GetStringBase(string key, string? language, string? filename)
     {
         var resourceContext = resourceManager.CreateResourceContext();
         if (!string.IsNullOrEmpty(language))
@@ -111,7 +111,7 @@ public partial class ResourceHelper : IResourceHelper
     /// <param name="language">The language code to use for the resource lookup. This should be a valid BCP-47 language tag.</param>
     /// <param name="filename">The filename where the resource is located.</param>
     /// <returns>The resource string associated with the specified key, language, and filename.</returns>
-    public string GetStringFromResource(string key, string language, string filename)
+    public string GetStringFromResource(string key, string? language, string? filename)
     {
         return GetStringBase(key, language, filename);
     }

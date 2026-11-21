@@ -4,7 +4,7 @@ namespace DevWinUI;
 
 public partial class SegmentedSliderSegment
 {
-    public Rectangle TrackRectangle { get; set; }
-    public Rectangle FillSegmentRectangle { get; set; }
-    public TextBlock TitleTextBlock { get; set; }
+    public Rectangle TrackRectangle { get; set; } = null!;
+    public Rectangle FillSegmentRectangle { get; set; } = null!;
+    public TextBlock TitleTextBlock { get; set; } = null!;
 }

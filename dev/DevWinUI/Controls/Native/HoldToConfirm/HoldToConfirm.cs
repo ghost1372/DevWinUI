@@ -91,7 +91,11 @@ public sealed partial class HoldToConfirm : Control
     {
         if (IsHoldKey(e.Key))
         {
-            if (!e.KeyStatus.WasKeyDown) BeginHold(Source.Key, e.Key);
+            if (!e.KeyStatus.WasKeyDown)
+            {
+                if (_doneVisual && CanBeCanceled && IsEnabled) Cancel();
+                else BeginHold(Source.Key, e.Key);
+            }
             e.Handled = true;
             return;
         }
@@ -107,6 +111,15 @@ public sealed partial class HoldToConfirm : Control
             return;
         }
         base.OnKeyUp(e);
+    }
+
+    private void Cancel()
+    {
+        if (!_doneVisual) return;
+
+        ApplyDone(false, true);
+        if (Confirmed == true) Confirmed = false;
+        Canceled?.Invoke(this, null);
     }
 
     public void Reset()
@@ -150,7 +163,17 @@ public sealed partial class HoldToConfirm : Control
     {
         var pt = e.GetCurrentPoint(this);
         if (pt.PointerDeviceType == PointerDeviceType.Mouse && !pt.Properties.IsLeftButtonPressed) return;
-        if (_doneVisual || !IsEnabled) return;
+        if (!IsEnabled) return;
+
+        if (_doneVisual)
+        {
+            if (!CanBeCanceled) return;
+
+            Focus(FocusState.Pointer);
+            Cancel();
+            e.Handled = true;
+            return;
+        }
 
         CapturePointer(e.Pointer);
         Focus(FocusState.Pointer);
@@ -395,7 +418,7 @@ public sealed partial class HoldToConfirm : Control
         double s = Duration / 1000.0;
         string hint = $"Press and hold for {s:0.##} {(s == 1 ? "second" : "seconds")}";
         AutomationProperties.SetName(this, _doneVisual ? ConfirmedLabel : Label);
-        AutomationProperties.SetHelpText(this, _doneVisual ? string.Empty : hint);
+        AutomationProperties.SetHelpText(this, _doneVisual ? (CanBeCanceled ? "Press to cancel" : string.Empty) : hint);
     }
 
     private void UpdateVisualStates()

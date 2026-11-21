@@ -6,8 +6,8 @@ namespace DevWinUI;
 public partial class PinBox : Control
 {
     private const string PART_Panel = "PART_Panel";
-    private UniformGrid _uniformGrid;
-    private List<SecureString> _passwordList;
+    private UniformGrid _uniformGrid = null!;
+    private List<SecureString> _passwordList = null!;
 #pragma warning disable CS0649 // Field is never assigned to, and will always have its default value 0
     private long _foregroundPropertyToken;
     private long _backgroundPropertyToken;
@@ -24,7 +24,7 @@ public partial class PinBox : Control
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _uniformGrid = GetTemplateChild(PART_Panel) as UniformGrid;
+        _uniformGrid = (GetTemplateChild(PART_Panel) as UniformGrid)!;
         UpdateOrientation(Orientation);
         CreatePinBoxes(PasswordLength);
         UpdatePinBoxes(GetPassword(), PasswordLength);
@@ -231,7 +231,7 @@ public partial class PinBox : Control
         if (_uniformGrid == null)
             return;
 
-        var currentBox = sender as PasswordBox;
+        var currentBox = (sender as PasswordBox)!;
         var currentBoxIndex = GetCurrentPasswordBoxIndex(currentBox);
 
         int nextBoxIndex = currentBoxIndex + 1;
@@ -250,7 +250,7 @@ public partial class PinBox : Control
     {
         if (_uniformGrid != null)
         {
-            var currentBox = sender as PasswordBox;
+            var currentBox = (sender as PasswordBox)!;
             var currentBoxIndex = GetCurrentPasswordBoxIndex(currentBox);
 
             switch (Orientation)
@@ -294,7 +294,7 @@ public partial class PinBox : Control
 
     private void OnBoxGettingFocus(UIElement sender, Microsoft.UI.Xaml.Input.GettingFocusEventArgs args)
     {
-        var currentBox = sender as PasswordBox;
+        var currentBox = (sender as PasswordBox)!;
         currentBox.SelectAll();
         UpdateFocusMode(currentBox);
     }
@@ -320,7 +320,7 @@ public partial class PinBox : Control
     }
     private PasswordBox CreatePinBox(int index)
     {
-        string password = null;
+        string? password = null;
 
         if (_passwordList != null && index - 1 < _passwordList.Count)
         {
@@ -417,7 +417,7 @@ public partial class PinBox : Control
                 List<char> charsList = new List<char>(chars);
                 for (int i = 0; i < charsList.Count; i++)
                 {
-                    PasswordBox box = _uniformGrid.Children[i] as PasswordBox;
+                    PasswordBox box = (_uniformGrid.Children[i] as PasswordBox)!;
 
                     box.PlaceholderText = charsList[i].ToString();
                 }

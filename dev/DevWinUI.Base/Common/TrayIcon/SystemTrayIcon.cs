@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using Microsoft.UI.Xaml.Controls.Primitives;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.Win32.UI.WindowsAndMessaging;
 using WinRT;
 using static DevWinUI.NativeValues;

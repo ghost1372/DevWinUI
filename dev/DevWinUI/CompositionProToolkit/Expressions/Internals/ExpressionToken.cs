@@ -129,8 +129,8 @@ internal partial class CompositeExpressionToken : ExpressionToken
 {
     #region Fields
 
-    private string _openBracket;
-    private string _closeBracket;
+    private string _openBracket = string.Empty;
+    private string _closeBracket = string.Empty;
     private BracketType _bracketType;
     private readonly bool _addCommas;
     private readonly List<ExpressionToken> _tokens;
@@ -180,10 +180,10 @@ internal partial class CompositeExpressionToken : ExpressionToken
     /// <param name="tokens"></param>
     /// <param name="bracketType"></param>
     /// <param name="addCommas"></param>
-    internal CompositeExpressionToken(IEnumerable<ExpressionToken> tokens, BracketType bracketType, bool addCommas)
+    internal CompositeExpressionToken(IEnumerable<ExpressionToken?> tokens, BracketType bracketType, bool addCommas)
         : this(bracketType, addCommas)
     {
-        _tokens.AddRange(tokens.Where(t => t != null));
+        _tokens.AddRange(tokens.OfType<ExpressionToken>());
     }
 
     #endregion
@@ -272,9 +272,12 @@ internal partial class CompositeExpressionToken : ExpressionToken
     /// </summary>
     /// <typeparam name="T">Type of the token.</typeparam>
     /// <param name="token">Token.</param>
-    internal void AddToken<T>(T token) where T : ExpressionToken
+    internal void AddToken(ExpressionToken? token)
     {
-        _tokens.Add(token);
+        if (token != null)
+        {
+            _tokens.Add(token);
+        }
     }
 
     /// <summary>

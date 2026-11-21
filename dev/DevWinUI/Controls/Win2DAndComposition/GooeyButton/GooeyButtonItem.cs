@@ -7,7 +7,7 @@ namespace DevWinUI;
 [ContentProperty(Name = "Content")]
 public sealed partial class GooeyButtonItem : Button
 {
-    private Brush background;
+    private Brush? background;
     private long brushColorToken = -1;
     private long brushOpacityToken = -1;
 
@@ -109,7 +109,7 @@ public sealed partial class GooeyButtonItem : Button
 
     #region Event
 
-    public event GooeyButtonItemPropertyChangedEventHandler GooeyButtonItemPropertyChanged;
+    public event GooeyButtonItemPropertyChangedEventHandler? GooeyButtonItemPropertyChanged;
 
     private void OnGooeyButtonItemPropertyChanged()
     {

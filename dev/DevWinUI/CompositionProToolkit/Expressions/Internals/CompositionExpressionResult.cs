@@ -40,11 +40,11 @@ internal partial class CompositionExpressionResult
     /// <summary>
     /// Gets the Expression as a string
     /// </summary>
-    public string Expression { get; set; }
+    public string Expression { get; set; } = string.Empty;
     /// <summary>
     /// Map of parameters
     /// </summary>
-    public Dictionary<string, ExpressionParameter> Parameters { get; set; }
+    public Dictionary<string, ExpressionParameter> Parameters { get; set; } = new();
 
     #endregion
 }

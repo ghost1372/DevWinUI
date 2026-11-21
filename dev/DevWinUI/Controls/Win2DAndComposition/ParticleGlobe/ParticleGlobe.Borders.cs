@@ -66,7 +66,7 @@ public sealed partial class ParticleGlobe
     private float[] _bdLon = Array.Empty<float>(), _bdSeed = Array.Empty<float>();
     private byte[] _bdShared = Array.Empty<byte>();
     private int _bdCount;
-    private ushort[] _bdSrc;
+    private ushort[]? _bdSrc;
     private int _bdBuiltMax;
 
     private void SyncBorderSettings()

@@ -10,16 +10,26 @@ public sealed partial class RichTextFormatterPage : Page
 
     private void RichTextFormatterPage_Loaded(object sender, RoutedEventArgs e)
     {
-        Txt_TextChanged(null, null);
-        Txt2_TextChanged(null, null);
+        UpdateTextBlock();
+        UpdateRichTextBlock();
     }
 
     private void Txt_TextChanged(object sender, TextChangedEventArgs e)
     {
-        RichTextFormatterHelper.FormatTextBlock(Txt.Text, txtBlock);
+        UpdateTextBlock();
     }
 
     private void Txt2_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateRichTextBlock();
+    }
+
+    private void UpdateTextBlock()
+    {
+        RichTextFormatterHelper.FormatTextBlock(Txt.Text, txtBlock);
+    }
+
+    private void UpdateRichTextBlock()
     {
         RichTextFormatterHelper.FormatRichTextBlock(Txt2.Text, txtRichBlock);
     }

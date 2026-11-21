@@ -108,7 +108,8 @@ public partial class ThemeService
         }
     }
 
-    private string FixAcrylicBackdropTag(string backdropTag)
+    [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(backdropTag))]
+    private string? FixAcrylicBackdropTag(string? backdropTag)
     {
         if (string.IsNullOrEmpty(backdropTag))
             return backdropTag;

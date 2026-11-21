@@ -109,11 +109,11 @@ public partial class ThemeService : IThemeService, IDisposable
         return GetInternalBackdropType(_rootElements?.Keys.FirstOrDefault()?.SystemBackdrop);
     }
 
-    private BackdropType GetInternalBackdropType(SystemBackdrop systemBackdrop)
+    private BackdropType GetInternalBackdropType(SystemBackdrop? systemBackdrop)
     {
         return CreateBackdropType(systemBackdrop);
     }
-    private static BackdropType CreateBackdropType(SystemBackdrop systemBackdrop)
+    private static BackdropType CreateBackdropType(SystemBackdrop? systemBackdrop)
     {
         if (systemBackdrop is MicaSystemBackdrop mica)
         {

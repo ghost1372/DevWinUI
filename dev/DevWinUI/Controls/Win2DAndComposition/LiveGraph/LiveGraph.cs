@@ -7,12 +7,12 @@ public partial class LiveGraph : Control
     private const string PART_Canvas = "PART_Canvas";
     private const string PART_HostGrid = "PART_HostGrid";
 
-    private CanvasAnimatedControl canvas;
-    private Grid hostGrid;
+    private CanvasAnimatedControl? canvas;
+    private Grid? hostGrid;
 
-    public event EventHandler<float> HighlightLineUpdated;
-    public event EventHandler<LiveGraphEventArgs> Draw;
-    public event EventHandler<CanvasAnimatedControl> CreateResources;
+    public event EventHandler<float>? HighlightLineUpdated;
+    public event EventHandler<LiveGraphEventArgs>? Draw;
+    public event EventHandler<CanvasAnimatedControl>? CreateResources;
 
     private Color drawColor = Colors.Transparent;
     private Color clearColor = Colors.Transparent;
@@ -40,14 +40,14 @@ public partial class LiveGraph : Control
     private HighlightLineBehavior highlightLineBehavior = HighlightLineBehavior.EachPoint;
     private LiveGraphBackgroundMode backgroundMode = LiveGraphBackgroundMode.Cross;
     private Visibility highlightLineVisibility = Visibility.Visible;
-    private object highlightLineContent;
+    private object? highlightLineContent;
 
     private int currentPolygonIndex = 0;
     private int currentPointIndex = 0;
 
-    private Compositor compositor;
-    private Visual gridVisual;
-    private CubicBezierEasingFunction highlightLineEasing;
+    private Compositor? compositor;
+    private Visual? gridVisual;
+    private CubicBezierEasingFunction? highlightLineEasing;
     public LiveGraph()
     {
         this.DefaultStyleKey = typeof(LiveGraph);
@@ -207,7 +207,7 @@ public partial class LiveGraph : Control
     }
     private void UpdateHighlightLine()
     {
-        if (polygons.Count == 0 || highlightLineVisibility == Visibility.Collapsed || highlightLineContent == null)
+        if (polygons.Count == 0 || highlightLineVisibility == Visibility.Collapsed || highlightLineContent == null || canvas == null)
             return;
 
         float canvasWidth = (float)canvas.Size.Width;
@@ -335,6 +335,9 @@ public partial class LiveGraph : Control
     }
     private void MoveHostGridWithAnimation(double y)
     {
+        if (compositor == null || gridVisual == null)
+            return;
+
         highlightLineEasing ??= compositor.CreateCubicBezierEasingFunction(new System.Numerics.Vector2(0.0f, 0.0f), new System.Numerics.Vector2(0.2f, 1.0f));
 
         var animation = compositor.CreateScalarKeyFrameAnimation();
@@ -570,7 +573,7 @@ public partial class LiveGraph : Control
         return distance / (float)time.TotalSeconds;
     }
 
-    public CanvasAnimatedControl GetCanvasAnimatedControl()
+    public CanvasAnimatedControl? GetCanvasAnimatedControl()
     {
         return canvas;
     }
