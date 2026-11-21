@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page x:Class="DevWinUIGallery.Views.StatusCenterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dev="using:DevWinUI"
+      xmlns:local="using:DevWinUIGallery"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Margin="10" dev:PanelAttach.ChildrenTransitions="Default" Spacing="10">
+            <local:ControlExample Title="Status center" CSharp="Features/StatusCenterPage_cs.txt" Doc="controls/statusCenter">
+                <local:ControlExample.XamlCode>
+                    <x:String>&lt;dev:StatusCenterButton x:Name="StatusCenterButtonSample" /&gt;</x:String>
+                </local:ControlExample.XamlCode>
+                <local:ControlExample.OptionGroups>
+                    <local:OptionGroup Title="Operations">
+                        <local:OptionPanel>
+                            <Button Click="Copy_Click" Content="Copy" />
+                            <Button Click="Move_Click" Content="Move" />
+                            <Button Click="Delete_Click" Content="Delete" />
+                            <Button Click="Recycle_Click" Content="Recycle" />
+                            <Button Click="Compress_Click" Content="Compress" />
+                            <Button Click="Extract_Click" Content="Extract" />
+                            <Button Click="InstallFont_Click" Content="Install font" />
+                            <Button Click="EmptyRecycleBin_Click" Content="Recycle bin" />
+                            <Button Click="GitClone_Click" Content="Git clone" />
+                            <Button Click="GitFetch_Click" Content="Git fetch" />
+                            <Button Click="GitPull_Click" Content="Git pull" />
+                            <Button Click="GitPush_Click" Content="Git push" />
+                            <Button Click="GitSync_Click" Content="Git sync" />
+                            <Button Click="GitCheckout_Click" Content="Git checkout" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Display">
+                        <local:OptionPanel>
+                            <local:ChoiceOption x:Name="CmbFlyoutPlacement" Header="Flyout placement" Value="{x:Bind primitives:FlyoutPlacementMode.RightEdgeAlignedTop}" />
+                            <local:ChoiceOption x:Name="CmbSizeUnit" Header="Size unit" Value="{x:Bind dev:SizeUnitTypes.BinaryUnits}" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                </local:ControlExample.OptionGroups>
+                <dev:StatusCenterButton x:Name="StatusCenterButtonSample" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
+            </local:ControlExample>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

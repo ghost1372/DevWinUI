@@ -1,0 +1,51 @@
+﻿<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:DevWinUI">
+
+    <Style BasedOn="{StaticResource DefaultStatusCenterStyle}" TargetType="local:StatusCenter" />
+
+    <Style x:Key="DefaultStatusCenterStyle" TargetType="local:StatusCenter">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StatusCenter">
+                    <Grid x:Name="RootGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Header  -->
+                        <Grid x:Name="HeaderGrid" Padding="12,8,12,8">
+
+                            <!--  Header Texts  -->
+                            <TextBlock Margin="4" VerticalAlignment="Center" FontSize="14" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Status center" />
+
+                            <!--  Remove All Cards Button  -->
+                            <Button x:Name="CloseAllItemsButton" Height="24" Padding="8,0" HorizontalAlignment="Right" Content="Clear completed" FontSize="12" IsEnabled="{TemplateBinding HasAnyItem}" />
+
+                        </Grid>
+
+                        <!--  Status Center Items  -->
+                        <ListView x:Name="StatusCenterItemsListView" Grid.Row="1" Padding="12,0,12,12" VerticalAlignment="Stretch" ItemsSource="{TemplateBinding StatusCenterItems}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Enabled" SelectionMode="None">
+
+                            <!--  Item Style  -->
+                            <ListView.ItemContainerStyle>
+                                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                                    <Setter Property="Margin" Value="0,2,0,2" />
+                                    <Setter Property="Padding" Value="0,0,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                        </ListView>
+
+                        <!--  No Items  -->
+                        <TextBlock x:Name="NoItemsMessageTextBlock" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="No ongoing file operations" Visibility="{TemplateBinding EmptyStateVisibility}" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

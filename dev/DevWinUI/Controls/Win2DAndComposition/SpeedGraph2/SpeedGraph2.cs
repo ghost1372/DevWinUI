@@ -20,6 +20,22 @@ public sealed partial class SpeedGraph2 : Control
     public static readonly DependencyProperty PointsProperty =
         DependencyProperty.Register(nameof(Points), typeof(ObservableCollection<Vector2>), typeof(SpeedGraph2), new PropertyMetadata(null, OnPointsPropertyChanged));
 
+    public GraphState State
+    {
+        get => (GraphState)GetValue(StateProperty);
+        set => SetValue(StateProperty, value);
+    }
+
+    public static readonly DependencyProperty StateProperty =
+        DependencyProperty.Register(nameof(State), typeof(GraphState), typeof(SpeedGraph2), new PropertyMetadata(GraphState.Normal, OnStatePropertyChanged));
+
+    private static void OnStatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var ctl = (SpeedGraph2)d;
+        ctl.graphState = (GraphState)e.NewValue;
+        ctl.ApplyGraphState();
+    }
+
     private static void OnPointsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var ctl = (SpeedGraph2)d;
@@ -322,29 +338,24 @@ public sealed partial class SpeedGraph2 : Control
 
     public void SetGraphNormal()
     {
-        SetGraphColors(accentColor);
-        graphState = GraphState.Normal;
+        State = GraphState.Normal;
     }
     public void SetGraphSuccess()
     {
-        SetGraphColors(successColor);
-        graphState = GraphState.Success;
+        State = GraphState.Success;
     }
     public void SetGraphError()
     {
-        SetGraphColors(criticalColor);
-        graphState = GraphState.Error;
+        State = GraphState.Error;
     }
     public void SetGraphWarning()
     {
-        SetGraphColors(cautionColor);
-        graphState = GraphState.Warning;
+        State = GraphState.Warning;
     }
     public void SetGraphColor(string colorResourceKey)
     {
         customColor = colorResourceKey;
-        SetGraphColors(colorResourceKey);
-        graphState = GraphState.Custom;
+        State = GraphState.Custom;
     }
 
     private void SetGraphColors(string colorResourceKey)
@@ -353,15 +364,20 @@ public sealed partial class SpeedGraph2 : Control
         if (backgroundBrush == null)
             return;
 
-        if (!Application.Current.Resources.TryGetValue(colorResourceKey, out var resource) || resource is not Color accentColor)
+        var themeKey = ActualTheme == ElementTheme.Light ? "Light" : "Default";
+
+        if (colorResourceKey == accentColor)
+            colorResourceKey = ActualTheme == ElementTheme.Light ? "SystemAccentColorDark1" : "SystemAccentColorLight2";
+
+        if (FindThemedColor(Application.Current.Resources, themeKey, colorResourceKey) is not { } color)
             return;
 
-        var veryLightColor = accentColor with { A = 0x0f };
+        var veryLightColor = color with { A = 0x0f };
 
         var slightlyDarkerColor = this.ActualTheme switch
         {
-            ElementTheme.Light => accentColor with { A = 0x55 },
-            _ => accentColor with { A = 0x7f }
+            ElementTheme.Light => color with { A = 0x55 },
+            _ => color with { A = 0x7f }
         };
 
         backgroundBrush.Color = veryLightColor;
@@ -369,10 +385,30 @@ public sealed partial class SpeedGraph2 : Control
         graphFillTop.Color = slightlyDarkerColor;
         graphFillBottom.Color = veryLightColor;
 
-        graphStrokeBrush.Color = accentColor;
+        graphStrokeBrush.Color = color;
+    }
+
+    private static Color? FindThemedColor(ResourceDictionary dictionary, string themeKey, string key)
+    {
+        foreach (var candidate in new[] { themeKey, "Default" })
+        {
+            if (dictionary.ThemeDictionaries.TryGetValue(candidate, out var themeDictionary)
+                && themeDictionary is ResourceDictionary themedDict
+                && themedDict.TryGetValue(key, out var themedResource)
+                && themedResource is Color themedColor)
+                return themedColor;
+        }
+
+        foreach (var mergedDictionary in dictionary.MergedDictionaries)
+        {
+            if (FindThemedColor(mergedDictionary, themeKey, key) is { } mergedColor)
+                return mergedColor;
+        }
+
+        return dictionary.TryGetValue(key, out var resource) && resource is Color color ? color : null;
     }
 }
-internal enum GraphState
+public enum GraphState
 {
     Normal,
     Warning,

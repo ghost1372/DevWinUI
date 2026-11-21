@@ -68,32 +68,33 @@ public partial class FileHelper
         return s;
     }
 
+    private static readonly string[] DecimalSizeSuffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    private static readonly string[] BinarySizeSuffixes = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+
     /// <summary>
     /// Converts a file size in bytes to a human-readable format with appropriate units.
     /// </summary>
     /// <param name="size">The input value represents the size in bytes to be converted.</param>
+    /// <param name="useBinaryUnits">The input value indicates whether binary units (1 KiB = 1024 B) are used instead of decimal units (1 KB = 1000 B).</param>
     /// <returns>A formatted string that displays the size along with the appropriate unit.</returns>
-    public static string GetFileSize(long size)
+    public static string GetFileSize(long size, bool useBinaryUnits = false)
     {
-        string[] sizeSuffixes = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
-        const string formatTemplate = "{0}{1:0.#} {2}";
+        var sizeSuffixes = useBinaryUnits ? BinarySizeSuffixes : DecimalSizeSuffixes;
+        var divisor = useBinaryUnits ? 1024d : 1000d;
+        var isNegative = size < 0;
 
-        if (size == 0)
+        var normSize = isNegative ? -(double)size : size;
+        var iUnit = 0;
+
+        while (normSize >= divisor && iUnit < sizeSuffixes.Length - 1)
         {
-            return string.Format(formatTemplate, null, 0, sizeSuffixes[0]);
+            normSize /= divisor;
+            iUnit++;
         }
 
-        var absSize = Math.Abs((double)size);
-        var fpPower = Math.Log(absSize, 1000);
-        var intPower = (int)fpPower;
-        var iUnit = intPower >= sizeSuffixes.Length
-            ? sizeSuffixes.Length - 1
-            : intPower;
-        var normSize = absSize / Math.Pow(1000, iUnit);
-
         return string.Format(
-            formatTemplate,
-            size < 0 ? "-" : null, normSize, sizeSuffixes[iUnit]);
+            "{0}{1:0.##} {2}",
+            isNegative ? "-" : null, normSize, sizeSuffixes[iUnit]);
     }
 
     /// <summary>

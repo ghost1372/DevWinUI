@@ -500,6 +500,13 @@
           "ImagePath": "ms-appx:///Assets/Fluent/AudioWave2.png"
         },
         {
+          "UniqueId": "DevWinUIGallery.Views.StatusCenterPage",
+          "Title": "Status Center",
+          "Subtitle": "A status center that tracks the progress of operations, from long-running tasks with detailed progress to quick status notifications.",
+          "IsNew": true,
+          "ImagePath": "ms-appx:///Assets/Fluent/ProgressRing.png"
+        },
+        {
           "UniqueId": "DevWinUIGallery.Views.WaveformTimelinePage",
           "Title": "Waveform Timeline",
           "Subtitle": "Displays a stereo waveform and allows a user to change playback position.",
