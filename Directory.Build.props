@@ -17,12 +17,12 @@
   <PropertyGroup>
     <LibraryMajorVersion>11</LibraryMajorVersion>
 
-    <DevWinUI_MinorVersion>0</DevWinUI_MinorVersion>
-    <DevWinUI_Base_MinorVersion>0</DevWinUI_Base_MinorVersion>
+    <DevWinUI_MinorVersion>1</DevWinUI_MinorVersion>
+    <DevWinUI_Base_MinorVersion>1</DevWinUI_Base_MinorVersion>
     <DevWinUI_ContextMenu_MinorVersion>0</DevWinUI_ContextMenu_MinorVersion>
     <DevWinUI_SourceGenerator_MinorVersion>0</DevWinUI_SourceGenerator_MinorVersion>
     <DevWinUI_Shader_MinorVersion>0</DevWinUI_Shader_MinorVersion>
-    <DevWinUI_Gallery_MinorVersion>0</DevWinUI_Gallery_MinorVersion>
+    <DevWinUI_Gallery_MinorVersion>1</DevWinUI_Gallery_MinorVersion>
 
     <DevWinUI_PatchVersion>0</DevWinUI_PatchVersion>
     <DevWinUI_Base_PatchVersion>0</DevWinUI_Base_PatchVersion>
@@ -85,10 +85,10 @@
     <DebugWinSdkVersion>$(WinSdkVersion)</DebugWinSdkVersion>
     <DebugWinSdkVersion Condition="'$(IsShader)' == 'true'">10.0.26100.0</DebugWinSdkVersion>
 
-    <GalleryTargetFramework>net10.0-windows10.0.26100.0</GalleryTargetFramework>
+    <GalleryTargetFramework>net11.0-windows10.0.26100.0</GalleryTargetFramework>
 
-    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Release'">net8.0-windows$(WinSdkVersion);net9.0-windows$(WinSdkVersion);net10.0-windows$(WinSdkVersion)</TargetFrameworks>
-    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Debug'">net10.0-windows$(DebugWinSdkVersion)</TargetFrameworks>
+    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Release'">net8.0-windows$(WinSdkVersion);net9.0-windows$(WinSdkVersion);net10.0-windows$(WinSdkVersion);net11.0-windows$(WinSdkVersion)</TargetFrameworks>
+    <TargetFrameworks Condition="'$(IsGallery)' == 'false' And '$(Configuration)' == 'Debug'">net11.0-windows$(DebugWinSdkVersion)</TargetFrameworks>
 
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
