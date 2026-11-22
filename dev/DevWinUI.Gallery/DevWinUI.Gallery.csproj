@@ -33,7 +33,7 @@
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.7.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2957" />
     <PackageReference Include="DevWinUI.SourceGenerator" Version="10.9.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
