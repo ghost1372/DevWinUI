@@ -36,12 +36,13 @@
                     </local:OptionGroup>
                     <local:OptionGroup Title="Display">
                         <local:OptionPanel>
+                            <TextBox x:Name="TxtNoItemsText" Header="No items text" Text="No ongoing file operations" />
                             <local:ChoiceOption x:Name="CmbFlyoutPlacement" Header="Flyout placement" Value="{x:Bind primitives:FlyoutPlacementMode.RightEdgeAlignedTop}" />
                             <local:ChoiceOption x:Name="CmbSizeUnit" Header="Size unit" Value="{x:Bind dev:SizeUnitTypes.BinaryUnits}" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                 </local:ControlExample.OptionGroups>
-                <dev:StatusCenterButton x:Name="StatusCenterButtonSample" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" />
+                <dev:StatusCenterButton x:Name="StatusCenterButtonSample" VerticalAlignment="Top" FlyoutPlacement="{x:Bind ((primitives:FlyoutPlacementMode)CmbFlyoutPlacement.Value), Mode=OneWay}" SizeUnitFormat="{x:Bind ((dev:SizeUnitTypes)CmbSizeUnit.Value), Mode=OneWay}" NoItemsText="{x:Bind TxtNoItemsText.Text, Mode=TwoWay}" />
             </local:ControlExample>
         </StackPanel>
     </ScrollViewer>
