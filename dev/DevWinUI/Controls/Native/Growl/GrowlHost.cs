@@ -17,6 +17,9 @@ public sealed partial class GrowlHost : Control
     {
         DefaultStyleKey = typeof(GrowlHost);
 
+        SizeChanged += (_, _) => RefreshWidthLimits();
+        RegisterPropertyChangedCallback(PaddingProperty, (_, _) => RefreshWidthLimits());
+
         Loaded += (_, _) =>
         {
             if (!SuppressRegistration)

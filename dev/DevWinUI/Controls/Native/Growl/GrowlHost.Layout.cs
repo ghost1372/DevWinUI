@@ -2,6 +2,53 @@
 
 public sealed partial class GrowlHost
 {
+    private double? _widthLimit;
+
+    internal double? WidthLimit
+    {
+        get => _widthLimit;
+        set
+        {
+            if (_widthLimit == value)
+            {
+                return;
+            }
+
+            _widthLimit = value;
+            RefreshWidthLimits();
+        }
+    }
+
+    private double GetMaxCardWidth()
+    {
+        if (_widthLimit is { } limit)
+        {
+            return Math.Max(0, limit);
+        }
+
+        double available = ActualWidth - Padding.Left - Padding.Right;
+
+        return available > 0 ? available : double.PositiveInfinity;
+    }
+
+    private void ApplyMaxWidth(GrowlCard card)
+    {
+        double max = GetMaxCardWidth();
+
+        if (card.MaxWidth != max)
+        {
+            card.MaxWidth = max;
+        }
+    }
+
+    private void RefreshWidthLimits()
+    {
+        foreach (var position in Enum.GetValues<GrowlPosition>())
+        {
+            ApplyLayout(position);
+        }
+    }
+
     private void HookPanel(Panel panel, GrowlPosition position)
     {
         panel.Background ??= new SolidColorBrush(Colors.Transparent);
@@ -159,6 +206,8 @@ public sealed partial class GrowlHost
             {
                 continue;
             }
+
+            ApplyMaxWidth(card);
 
             int depth = stacked ? (top ? i : count - 1 - i) : 0;
 

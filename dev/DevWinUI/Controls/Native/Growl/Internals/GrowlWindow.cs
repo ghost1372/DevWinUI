@@ -129,6 +129,8 @@ internal sealed partial class GrowlWindow : Window
             scale = 1.0;
         }
 
+        Host.WidthLimit = work.Width / scale - Host.Padding.Left - Host.Padding.Right;
+
         Host.Measure(new Size(work.Width / scale, work.Height / scale));
 
         var desired = Host.DesiredSize;
