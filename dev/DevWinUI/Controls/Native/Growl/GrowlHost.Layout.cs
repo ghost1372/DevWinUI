@@ -2,7 +2,17 @@
 
 public sealed partial class GrowlHost
 {
+    private const double VisibleEpsilon = 0.5;
+    private const double MinCardWidth = 240;
+    private const double MinSidePadding = 8;
+
     private double? _widthLimit;
+    private double _visibleLeft;
+    private double _visibleWidth = double.PositiveInfinity;
+    private double _cutLeft;
+    private double _cutRight;
+    private bool _visibleHooked;
+    private Grid? _templateRoot;
 
     internal double? WidthLimit
     {
@@ -15,6 +25,7 @@ public sealed partial class GrowlHost
             }
 
             _widthLimit = value;
+            UpdateVisibleBounds();
             RefreshWidthLimits();
         }
     }
@@ -26,7 +37,8 @@ public sealed partial class GrowlHost
             return Math.Max(0, limit);
         }
 
-        double available = ActualWidth - Padding.Left - Padding.Right;
+        double width = double.IsInfinity(_visibleWidth) ? ActualWidth : _visibleWidth;
+        double available = width - (Padding.Left - _cutLeft) - (Padding.Right - _cutRight);
 
         return available > 0 ? available : double.PositiveInfinity;
     }
@@ -41,6 +53,126 @@ public sealed partial class GrowlHost
         }
     }
 
+    private void EnsureVisibleHook()
+    {
+        if (_visibleHooked)
+        {
+            return;
+        }
+
+        _visibleHooked = true;
+        LayoutUpdated += (_, _) => UpdateVisibleBounds();
+    }
+
+    private void UpdateVisibleBounds()
+    {
+        _templateRoot ??= VisualTreeHelper.GetChildrenCount(this) > 0 ? VisualTreeHelper.GetChild(this, 0) as Grid : null;
+
+        if (_templateRoot is null)
+        {
+            return;
+        }
+
+        if (_widthLimit is not null || !IsLoaded || ActualWidth <= 0)
+        {
+            ResetVisibleBounds();
+            return;
+        }
+
+        double left = 0;
+        double right = ActualWidth;
+        var parent = VisualTreeHelper.GetParent(this);
+
+        while (parent is not null)
+        {
+            if (parent is FrameworkElement element && element.ActualWidth > 0 && element.Visibility == Visibility.Visible)
+            {
+                try
+                {
+                    double x = element.TransformToVisual(this).TransformPoint(new Point(0, 0)).X;
+
+                    left = Math.Max(left, x);
+                    right = Math.Min(right, x + element.ActualWidth);
+                }
+                catch
+                {
+                }
+            }
+
+            parent = VisualTreeHelper.GetParent(parent);
+        }
+
+        double width = right - left;
+
+        if (width <= 0)
+        {
+            ResetVisibleBounds();
+            return;
+        }
+
+        double padding = Padding.Left + Padding.Right;
+        double cutLeft = 0;
+        double cutRight = 0;
+
+        if (padding > 0)
+        {
+            double allowed = Math.Min(padding, Math.Max(2 * MinSidePadding, width - MinCardWidth));
+            double cut = padding - allowed;
+
+            cutLeft = cut * Padding.Left / padding;
+            cutRight = cut * Padding.Right / padding;
+        }
+
+        bool unchanged = left <= VisibleEpsilon && width >= ActualWidth - VisibleEpsilon && cutLeft <= VisibleEpsilon && cutRight <= VisibleEpsilon;
+
+        if (unchanged)
+        {
+            ResetVisibleBounds();
+            return;
+        }
+
+        if (Math.Abs(width - _visibleWidth) < VisibleEpsilon
+            && Math.Abs(left - _visibleLeft) < VisibleEpsilon
+            && Math.Abs(cutLeft - _cutLeft) < VisibleEpsilon
+            && Math.Abs(cutRight - _cutRight) < VisibleEpsilon)
+        {
+            return;
+        }
+
+        _visibleLeft = left;
+        _visibleWidth = width;
+        _cutLeft = cutLeft;
+        _cutRight = cutRight;
+
+        _templateRoot.HorizontalAlignment = HorizontalAlignment.Left;
+        _templateRoot.Margin = new Thickness(left - cutLeft, 0, 0, 0);
+        _templateRoot.Width = width + cutLeft + cutRight;
+
+        RefreshWidthLimits();
+    }
+
+    private void ResetVisibleBounds()
+    {
+        if (double.IsInfinity(_visibleWidth))
+        {
+            return;
+        }
+
+        _visibleLeft = 0;
+        _visibleWidth = double.PositiveInfinity;
+        _cutLeft = 0;
+        _cutRight = 0;
+
+        if (_templateRoot is not null)
+        {
+            _templateRoot.ClearValue(FrameworkElement.WidthProperty);
+            _templateRoot.ClearValue(FrameworkElement.MarginProperty);
+            _templateRoot.ClearValue(FrameworkElement.HorizontalAlignmentProperty);
+        }
+
+        RefreshWidthLimits();
+    }
+
     private void RefreshWidthLimits()
     {
         foreach (var position in Enum.GetValues<GrowlPosition>())
@@ -51,6 +183,9 @@ public sealed partial class GrowlHost
 
     private void HookPanel(Panel panel, GrowlPosition position)
     {
+        _templateRoot = null;
+        EnsureVisibleHook();
+
         panel.Background ??= new SolidColorBrush(Colors.Transparent);
 
         panel.PointerEntered += (_, _) => SetExpanded(position, true);
