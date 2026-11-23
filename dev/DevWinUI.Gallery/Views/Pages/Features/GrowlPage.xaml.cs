@@ -34,16 +34,42 @@ public sealed partial class GrowlPage : Page
         GlobalShowAnimationBox.SelectedItem = GrowlGlobal.DefaultShowAnimation;
         GlobalCloseAnimationBox.SelectedItem = GrowlGlobal.DefaultCloseAnimation;
 
-        Loaded += (_, _) => Growl.SetDefault(DefaultHost);
+        DefaultHost.Loaded += (_, _) => Growl.SetDefault(DefaultHost);
     }
-
-    private void Success_Click(object sender, RoutedEventArgs e)
+    private async Task<bool> EnsureInAppHostAsync()
     {
+        if (Growl.HasHost())
+        {
+            return true;
+        }
+
+        await new ContentDialog
+        {
+            XamlRoot = XamlRoot,
+            Title = "In-app host not visible",
+            Content = "Switch to the In-App Growl sample to show in-app notifications.",
+            CloseButtonText = "OK"
+        }.ShowAsync();
+
+        return false;
+    }
+    private async void Success_Click(object sender, RoutedEventArgs e)
+    {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         Growl.ShowSuccess("Saved", "Your changes were saved.", true, GrowlCardAutoClose.Default);
     }
 
-    private void AllSeverities_Click(object sender, RoutedEventArgs e)
+    private async void AllSeverities_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         Growl.ShowSuccess("Success", "Operation completed.");
         Growl.ShowWarning("Warning", "Check your settings.");
         Growl.ShowError("Error", "Could not connect.");
@@ -51,8 +77,13 @@ public sealed partial class GrowlPage : Page
         Growl.ShowAttention("Attention", "Something needs your attention.");
     }
 
-    private void AutoCloseBySeverity_Click(object sender, RoutedEventArgs e)
+    private async void AutoCloseBySeverity_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         foreach (var severity in Enum.GetValues<GrowlCardSeverity>())
         {
             Growl.Show(new GrowlOptions
@@ -68,6 +99,11 @@ public sealed partial class GrowlPage : Page
 
     private async void Download_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         var handle = Growl.Show(new GrowlOptions
         {
             Title = "Downloading",
@@ -92,8 +128,13 @@ public sealed partial class GrowlPage : Page
         handle.Update(title: "Downloaded", severity: GrowlCardSeverity.Success, showProgress: false, restartAutoClose: true);
     }
 
-    private void Key_Click(object sender, RoutedEventArgs e)
+    private async void Key_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         _messageCount++;
 
         Growl.Show(new GrowlOptions
@@ -105,8 +146,13 @@ public sealed partial class GrowlPage : Page
         });
     }
 
-    private void Rainbow_Click(object sender, RoutedEventArgs e)
+    private async void Rainbow_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         Growl.Show(new GrowlOptions
         {
             Title = "Rainbow",
@@ -117,8 +163,13 @@ public sealed partial class GrowlPage : Page
         });
     }
 
-    private void Action_Click(object sender, RoutedEventArgs e)
+    private async void Action_Click(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         Growl.Show(new GrowlOptions
         {
             Title = "Update available",
@@ -133,8 +184,13 @@ public sealed partial class GrowlPage : Page
         Growl.GetHost("Test")?.ShowInfo("Test host", "Shown on the host with key Test.", true, GrowlCardAutoClose.Default);
     }
 
-    private void Stacked_Toggled(object sender, RoutedEventArgs e)
+    private async void Stacked_Toggled(object sender, RoutedEventArgs e)
     {
+        if (!await EnsureInAppHostAsync())
+        {
+            return;
+        }
+
         if (DefaultHost is null || TestHost is null)
         {
             return;

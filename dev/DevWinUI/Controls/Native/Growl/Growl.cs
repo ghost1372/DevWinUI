@@ -251,4 +251,9 @@ public static partial class Growl
                 ? "No GrowlHost is registered."
                 : $"No GrowlHost is registered with key '{key}'.");
     }
+
+    public static bool HasHost(string? key = null)
+    {
+        return GetHost(key) is not null;
+    }
 }
