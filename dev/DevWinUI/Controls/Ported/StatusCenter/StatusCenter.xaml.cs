@@ -70,6 +70,15 @@ public sealed partial class StatusCenter : Control
         private set => SetValue(EmptyStateVisibilityProperty, value);
     }
 
+    public static readonly DependencyProperty NoItemsTextProperty =
+        DependencyProperty.Register(nameof(NoItemsText), typeof(string), typeof(StatusCenter), new PropertyMetadata("No ongoing file operations"));
+
+    public string NoItemsText
+    {
+        get => (string)GetValue(NoItemsTextProperty);
+        set => SetValue(NoItemsTextProperty, value);
+    }
+
     public StatusCenter()
     {
         DefaultStyleKey = typeof(StatusCenter);
