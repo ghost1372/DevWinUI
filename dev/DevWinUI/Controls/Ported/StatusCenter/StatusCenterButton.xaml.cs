@@ -8,6 +8,9 @@ namespace DevWinUI;
 
 public sealed partial class StatusCenterButton : Control
 {
+	public static readonly DependencyProperty NoItemsTextProperty =
+		DependencyProperty.Register(nameof(NoItemsText), typeof(string), typeof(StatusCenterButton), new PropertyMetadata("No ongoing file operations", OnNoItemsTextChanged));
+
 	public static readonly DependencyProperty FlyoutPlacementProperty =
 		DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacementMode), typeof(StatusCenterButton), new PropertyMetadata(FlyoutPlacementMode.BottomEdgeAlignedRight));
 
@@ -30,8 +33,15 @@ public sealed partial class StatusCenterButton : Control
 
 	private Button? _showStatusCenterButton;
 	private Flyout? _statusCenterFlyout;
+	private StatusCenter? _statusCenter;
 
 	private StatusCenterViewModel ViewModel { get; } = new();
+
+	public string NoItemsText
+	{
+		get => (string)GetValue(NoItemsTextProperty);
+		set => SetValue(NoItemsTextProperty, value);
+	}
 
 	public FlyoutPlacementMode FlyoutPlacement
 	{
@@ -133,8 +143,19 @@ public sealed partial class StatusCenterButton : Control
 		_statusCenterFlyout.Opened += StatusCenterFlyout_Opened;
 		_statusCenterFlyout.Closed += StatusCenterFlyout_Closed;
 
-		if (_statusCenterFlyout.Content is StatusCenter statusCenter)
-			statusCenter.ViewModel = ViewModel;
+		_statusCenter = _statusCenterFlyout.Content as StatusCenter;
+
+		if (_statusCenter is not null)
+		{
+			_statusCenter.ViewModel = ViewModel;
+			_statusCenter.NoItemsText = NoItemsText;
+		}
+	}
+
+	private static void OnNoItemsTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is StatusCenterButton button && button._statusCenter is not null)
+			button._statusCenter.NoItemsText = (string)e.NewValue;
 	}
 
     private void StatusCenterFlyout_Opened(object? sender, object e)

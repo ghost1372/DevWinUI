@@ -27,7 +27,7 @@
                             </ResourceDictionary>
                         </Grid.Resources>
 
-                        <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
+                        <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="{Binding Path=(ToolTipService.ToolTip), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, TargetNullValue=Status center}">
 
                             <Grid Margin="-16">
                                 <Grid Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource BoolToVisibilityReConverter}, Mode=OneWay}">
