@@ -36,7 +36,7 @@
                                     <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityReConverter}, Mode=OneWay}" />
                                 </Grid>
 
-                                <ProgressRing x:Name="MedianOperationProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.Name="Status center progress ring" IsIndeterminate="False" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding AverageOperationProgressValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                <ProgressRing x:Name="MedianOperationProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.Name="Status center progress ring" IsIndeterminate="{Binding IsOperationProgressIndeterminate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding AverageOperationProgressValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
 
                                 <InfoBadge x:Name="StatusInfoBadge" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding InfoBadgeValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                             </Grid>

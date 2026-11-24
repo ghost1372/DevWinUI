@@ -20,6 +20,9 @@ public sealed partial class StatusCenterButton : Control
 	public static readonly DependencyProperty AverageOperationProgressValueProperty =
 		DependencyProperty.Register(nameof(AverageOperationProgressValue), typeof(double), typeof(StatusCenterButton), new PropertyMetadata(0d));
 
+	public static readonly DependencyProperty IsOperationProgressIndeterminateProperty =
+		DependencyProperty.Register(nameof(IsOperationProgressIndeterminate), typeof(bool), typeof(StatusCenterButton), new PropertyMetadata(false));
+
 	public static readonly DependencyProperty InfoBadgeValueProperty =
 		DependencyProperty.Register(nameof(InfoBadgeValue), typeof(int), typeof(StatusCenterButton), new PropertyMetadata(-1));
 
@@ -61,6 +64,12 @@ public sealed partial class StatusCenterButton : Control
 		private set => SetValue(AverageOperationProgressValueProperty, value);
 	}
 
+	public bool IsOperationProgressIndeterminate
+	{
+		get => (bool)GetValue(IsOperationProgressIndeterminateProperty);
+		private set => SetValue(IsOperationProgressIndeterminateProperty, value);
+	}
+
 	public int InfoBadgeValue
 	{
 		get => (int)GetValue(InfoBadgeValueProperty);
@@ -88,6 +97,7 @@ public sealed partial class StatusCenterButton : Control
 
         ShowProgressRing = ViewModel.ShowProgressRing;
         AverageOperationProgressValue = ViewModel.AverageOperationProgressValue;
+        IsOperationProgressIndeterminate = ViewModel.IsOperationProgressIndeterminate;
         InfoBadgeValue = ViewModel.InfoBadgeValue;
         InfoBadgeState = ViewModel.InfoBadgeState;
     }
@@ -176,6 +186,9 @@ public sealed partial class StatusCenterButton : Control
 				break;
 			case nameof(StatusCenterViewModel.AverageOperationProgressValue):
 				AverageOperationProgressValue = ViewModel.AverageOperationProgressValue;
+				break;
+			case nameof(StatusCenterViewModel.IsOperationProgressIndeterminate):
+				IsOperationProgressIndeterminate = ViewModel.IsOperationProgressIndeterminate;
 				break;
 			case nameof(StatusCenterViewModel.InfoBadgeValue):
 				InfoBadgeValue = ViewModel.InfoBadgeValue;

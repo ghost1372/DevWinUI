@@ -37,6 +37,13 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 		private set => SetProperty(ref _AverageOperationProgressValue, value);
 	}
 
+	private bool _isOperationProgressIndeterminate;
+	public bool IsOperationProgressIndeterminate
+	{
+		get => _isOperationProgressIndeterminate;
+		private set => SetProperty(ref _isOperationProgressIndeterminate, value);
+	}
+
 	public int InProgressItemCount
 	{
 		get
@@ -80,8 +87,8 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 		get
 		{
 			var anyFailure = StatusCenterItems.Any(i =>
-				i.FileSystemOperationReturnResult != ReturnResult.InProgress &&
-				i.FileSystemOperationReturnResult != ReturnResult.Success);
+				i.OperationReturnResult != ReturnResult.InProgress &&
+				i.OperationReturnResult != ReturnResult.Success);
 
 			var anyActiveOperation = StatusCenterItems.Any(i => i.IsInProgress && !i.IsPaused);
 			var anyPausedOperation = StatusCenterItems.Any(i => i.IsInProgress && i.IsPaused);
@@ -225,9 +232,21 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 	public void UpdateAverageProgressValue()
 	{
 		if (HasAnyItemInProgress)
-			AverageOperationProgressValue = (int)StatusCenterItems.Where((item) => item.IsInProgress).Average(x => x.ProgressPercentage);
+		{
+			var determinateItems = StatusCenterItems
+				.Where(item => item.IsInProgress && !item.IsIndeterminateProgress)
+				.ToList();
+
+			IsOperationProgressIndeterminate = determinateItems.Count == 0;
+			AverageOperationProgressValue = determinateItems.Count > 0
+				? (int)determinateItems.Average(x => x.ProgressPercentage)
+				: 0;
+		}
 		else
+		{
+			IsOperationProgressIndeterminate = false;
 			AverageOperationProgressValue = 0;
+		}
 	}
 
 	private void UpdateTaskbarProgress()
