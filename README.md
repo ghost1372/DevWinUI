@@ -149,6 +149,10 @@ dotnet add package DevWinUI.Shader
 
 ## 🕰️ History
 
+
+### StatusCenter
+![StatusCenter](https://raw.githubusercontent.com/ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/StatusCenter.gif)
+
 ### Diagram
 ![Diagram](https://raw.githubusercontent.com/Ghost1372/DevWinUI-Resources/refs/heads/main/DevWinUI-Docs/Diagram.gif)
 
