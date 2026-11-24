@@ -190,13 +190,13 @@
                             <StackPanel Spacing="6">
                                 <TextBlock Text="Default host" />
                                 <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
-                                    <dev:GrowlHost x:Name="DefaultHost" MinWidth="320" MinHeight="400" HostKey="Main" />
+                                    <dev:GrowlHost x:Name="DefaultHost" MinHeight="400" HostKey="Main" />
                                 </Border>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Spacing="6">
                                 <TextBlock Text="Host with key &quot;Test&quot;" />
                                 <Border Height="500" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{ThemeResource ControlCornerRadius}">
-                                    <dev:GrowlHost x:Name="TestHost" MinWidth="320" MinHeight="400" HostKey="Test" />
+                                    <dev:GrowlHost x:Name="TestHost" MinHeight="400" HostKey="Test" />
                                 </Border>
                             </StackPanel>
                         </Grid>
