@@ -41,21 +41,59 @@ internal static partial class StatusCenterTaskbarProgress
             if (!_windows.TryGetValue(windowHandle, out var windowProgress))
                 return;
 
-            var progressValues = windowProgress.ViewModels
+            var allItems = windowProgress.ViewModels
                 .SelectMany(vm => vm.StatusCenterItems)
+                .ToList();
+
+            var inProgressItems = allItems
                 .Where(item => item.IsInProgress)
+                .ToList();
+
+            var activeItems = inProgressItems.Where(item => !item.IsPaused).ToList();
+            var determinateActiveValues = activeItems
+                .Where(item => !item.IsIndeterminateProgress)
+                .Select(item => (double)item.ProgressPercentage)
+                .ToList();
+
+            var determinateValues = inProgressItems
+                .Where(item => !item.IsIndeterminateProgress)
                 .Select(item => (double)item.ProgressPercentage)
                 .ToList();
 
             try
             {
-                if (progressValues.Count > 0)
+                if (activeItems.Count > 0)
                 {
-                    TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Normal);
-                    TaskbarHelper.SetProgressValue(windowHandle, (int)progressValues.Average(), 100);
+                    windowProgress.HasError = false;
+                    if (determinateActiveValues.Count > 0)
+                    {
+                        TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Normal);
+                        TaskbarHelper.SetProgressValue(windowHandle, (int)determinateActiveValues.Average(), 100);
+                    }
+                    else
+                    {
+                        TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Indeterminate);
+                    }
+                }
+                else if (inProgressItems.Count > 0)
+                {
+                    windowProgress.HasError = false;
+                    TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Paused);
+                    if (determinateValues.Count > 0)
+                        TaskbarHelper.SetProgressValue(windowHandle, (int)determinateValues.Average(), 100);
+                }
+                else if (allItems.Any(item => item.OperationReturnResult is ReturnResult.Failed or ReturnResult.Cancelled))
+                {
+                    if (!windowProgress.HasError)
+                        TaskbarHelper.FlashWindow(windowHandle);
+
+                    windowProgress.HasError = true;
+                    TaskbarHelper.SetProgressValue(windowHandle, 100, 100);
+                    TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.Error);
                 }
                 else
                 {
+                    windowProgress.HasError = false;
                     TaskbarHelper.SetProgressState(windowHandle, TaskbarStates.NoProgress);
                 }
             }
@@ -69,6 +107,8 @@ internal static partial class StatusCenterTaskbarProgress
     private sealed partial class WindowTaskbarProgress
     {
         public HashSet<StatusCenterViewModel> ViewModels { get; } = [];
+
+        public bool HasError { get; set; }
 
         public WindowTaskbarProgress(IntPtr windowHandle)
         {
