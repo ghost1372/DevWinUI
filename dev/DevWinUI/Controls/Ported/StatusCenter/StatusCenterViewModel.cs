@@ -87,8 +87,8 @@ internal sealed partial class StatusCenterViewModel : INotifyPropertyChanged
 		get
 		{
 			var anyFailure = StatusCenterItems.Any(i =>
-				i.FileSystemOperationReturnResult != ReturnResult.InProgress &&
-				i.FileSystemOperationReturnResult != ReturnResult.Success);
+				i.OperationReturnResult != ReturnResult.InProgress &&
+				i.OperationReturnResult != ReturnResult.Success);
 
 			var anyActiveOperation = StatusCenterItems.Any(i => i.IsInProgress && !i.IsPaused);
 			var anyPausedOperation = StatusCenterItems.Any(i => i.IsInProgress && i.IsPaused);

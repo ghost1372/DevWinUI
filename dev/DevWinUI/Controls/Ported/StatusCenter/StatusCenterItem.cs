@@ -173,7 +173,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		set => SetProperty(ref _Progress, value);
 	}
 
-	public ReturnResult FileSystemOperationReturnResult { get; set; }
+	public ReturnResult OperationReturnResult { get; set; }
 
 	private StatusCenterItemKind _ItemKind;
 	public StatusCenterItemKind ItemKind
@@ -277,7 +277,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		_operationCancellationToken = operationCancellationToken;
 		Header = header;
 		SubHeader = subHeader;
-		FileSystemOperationReturnResult = status;
+		OperationReturnResult = status;
 		ProgressEventSource = new Progress<StatusCenterItemProgressModel>(ReportProgress);
 		Progress = new(ProgressEventSource, status: ReturnResult.InProgress);
 		IsCancelable = _operationCancellationToken is not null;
@@ -293,7 +293,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 		if (Application.Current.Resources["App.Theme.FillColorAttentionBrush"] is not SolidColorBrush accentBrush)
 			return;
 
-		switch (FileSystemOperationReturnResult)
+		switch (OperationReturnResult)
 		{
 			case ReturnResult.InProgress:
 				{
@@ -365,7 +365,7 @@ public sealed partial class StatusCenterItem : INotifyPropertyChanged
 
 		// Update status code
 		if (value.Status is ReturnResult status)
-			FileSystemOperationReturnResult = status;
+			OperationReturnResult = status;
 
 		// Update the percentage and processing item name
 		if (value.Percentage is double p)
