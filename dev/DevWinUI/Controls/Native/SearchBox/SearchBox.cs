@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Runtime.InteropServices;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
@@ -403,14 +404,14 @@ public sealed partial class SearchBox : Control
         }
     }
 
-    private static void OnFlyoutOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        ((SearchBox)d).ApplyFlyoutOptions();
-    }
-
     private static void OnFlyoutContentOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         ((SearchBox)d).ApplyFlyoutContentOptions();
+    }
+
+    private static void OnFlyoutOptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((SearchBox)d).ApplyFlyoutOptions();
     }
 
     private void ApplyFlyoutOptions()
@@ -420,10 +421,45 @@ public sealed partial class SearchBox : Control
             return;
         }
 
-        _flyout.ShouldConstrainToRootBounds = ConstrainToAppBounds;
-        _flyout.Placement = FlyoutPlacement == FlyoutPlacementMode.Auto
+        var placement = FlyoutPlacement == FlyoutPlacementMode.Auto
             ? FlyoutPlacementMode.Bottom
             : FlyoutPlacement;
+
+        if (_flyout.ShouldConstrainToRootBounds != ConstrainToAppBounds)
+        {
+            RebuildFlyout(placement);
+            return;
+        }
+
+        _flyout.Placement = placement;
+    }
+
+    private void RebuildFlyout(FlyoutPlacementMode placement)
+    {
+        if (_triggerButton is null || _flyout is not Flyout oldFlyout)
+        {
+            return;
+        }
+
+        oldFlyout.Hide();
+        oldFlyout.Opening -= Flyout_Opening;
+        oldFlyout.Opened -= Flyout_Opened;
+        oldFlyout.Closed -= Flyout_Closed;
+
+        var content = oldFlyout.Content;
+        oldFlyout.Content = null;
+
+        var newFlyout = new Flyout
+        {
+            Content = content,
+            FlyoutPresenterStyle = oldFlyout.FlyoutPresenterStyle,
+            ShouldConstrainToRootBounds = ConstrainToAppBounds,
+            Placement = placement
+        };
+
+        _triggerButton.Flyout = newFlyout;
+        _flyout = newFlyout;
+        AttachFlyoutEvents();
     }
 
     private void ApplyFlyoutContentOptions()

@@ -10816,7 +10816,7 @@ Themes\Styles\Controls\WorldMap.xaml
               </ListView.ItemContainerStyle>
             </ListView>
             <!--  No Items  -->
-            <TextBlock x:Name="NoItemsMessageTextBlock" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="No ongoing file operations" Visibility="{TemplateBinding EmptyStateVisibility}" />
+            <TextBlock x:Name="NoItemsMessageTextBlock" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{TemplateBinding NoItemsText}" Visibility="{TemplateBinding EmptyStateVisibility}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -24711,13 +24711,13 @@ Themes\Styles\Controls\WorldMap.xaml
                 </Style>
               </ResourceDictionary>
             </Grid.Resources>
-            <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="Status center">
+            <Button x:Name="ShowStatusCenterButton" Padding="0" AutomationProperties.Name="Status center" Style="{StaticResource StatusCenterButtonStyle}" ToolTipService.ToolTip="{Binding Path=(ToolTipService.ToolTip), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, TargetNullValue=Status center}">
               <Grid Margin="-16">
                 <Grid Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource BoolToVisibilityReConverter}, Mode=OneWay}">
                   <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityConverter}, Mode=OneWay}" />
                   <local:ThemedIcon x:Name="StatusCenterIcon" Width="16" Height="16" Style="{StaticResource App.ThemedIcons.StatusCenter}" Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={ThemeResource NullToVisibilityReConverter}, Mode=OneWay}" />
                 </Grid>
-                <ProgressRing x:Name="MedianOperationProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.Name="Status center progress ring" IsIndeterminate="False" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding AverageOperationProgressValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                <ProgressRing x:Name="MedianOperationProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" AutomationProperties.Name="Status center progress ring" IsIndeterminate="{Binding IsOperationProgressIndeterminate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding AverageOperationProgressValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                 <InfoBadge x:Name="StatusInfoBadge" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding ShowProgressRing, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Value="{Binding InfoBadgeValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
               </Grid>
               <Button.Flyout>
