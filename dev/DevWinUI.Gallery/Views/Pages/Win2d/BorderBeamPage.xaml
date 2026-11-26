@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="16">
-            <local:ControlExample Title="BorderBeam" Doc="controls/borderBeam">
+            <local:ControlExample Title="BorderBeam" Doc="controls/borderBeam" ResetRequested="ControlExample_ResetRequested">
                 <local:ControlExample.OptionGroups>
                     <local:OptionGroup Title="Beam">
                         <local:OptionPanel>
@@ -29,6 +29,14 @@
                             <Slider x:Name="SliderBeamCount" Header="Beam Count" Maximum="6" Minimum="1" StepFrequency="1" Value="1" />
                             <Slider x:Name="SliderDuration" Header="Duration (seconds)" Maximum="30" Minimum="1" StepFrequency="0.5" Value="15" />
                             <Slider x:Name="SliderDelay" Header="Delay (seconds)" Maximum="10" Minimum="0" StepFrequency="0.5" Value="0" />
+                        </local:OptionPanel>
+                    </local:OptionGroup>
+                    <local:OptionGroup Title="Lifecycle">
+                        <local:OptionPanel>
+                            <ToggleSwitch x:Name="TglActive" Header="Is Active" IsOn="True" />
+                            <Slider x:Name="SliderCycleCount" Header="Cycle Count (0 = forever)" Maximum="10" Minimum="0" StepFrequency="1" Value="0" />
+                            <ToggleSwitch x:Name="TglFadeOut" Header="Fade Out" IsOn="True" />
+                            <Slider x:Name="SliderFadeOut" Header="Fade Out (seconds)" Maximum="3" Minimum="0" StepFrequency="0.1" Value="0.5" />
                         </local:OptionPanel>
                     </local:OptionGroup>
                     <local:OptionGroup Title="Chase">
@@ -61,7 +69,7 @@
                             </x:String>
                         </local:Sample.XamlCode>
                         <Grid Width="360" Height="200" HorizontalAlignment="Center">
-                            <dev:BorderBeam BeamCount="{x:Bind (x:Int32)SliderBeamCount.Value, Mode=OneWay}" BorderWidth="{x:Bind SliderBorderWidth.Value, Mode=OneWay}" ChaseDirection="{x:Bind (dev:BorderBeamDirection)CmbChaseDirection.Value, Mode=OneWay}" ChaseEdge="{x:Bind (dev:BorderBeamEdge)CmbChaseEdge.Value, Mode=OneWay}" ChaseOrigin="{x:Bind (dev:BorderBeamOrigin)CmbChaseOrigin.Value, Mode=OneWay}" ColorFrom="{x:Bind ClrFrom.Value, Mode=OneWay}" ColorTo="{x:Bind ClrTo.Value, Mode=OneWay}" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" MirrorEdge="{x:Bind (dev:BorderBeamEdge)CmbMirrorEdge.Value, Mode=OneWay}" MirrorLag="{x:Bind SliderMirrorLag.Value, Mode=OneWay}" MirrorOrigin="{x:Bind (dev:BorderBeamOrigin)CmbMirrorOrigin.Value, Mode=OneWay}" MirrorStart="{x:Bind (dev:BorderBeamStart)CmbMirrorStart.Value, Mode=OneWay}" Mode="{x:Bind (dev:BorderBeamMode)CmbMode.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
+                            <dev:BorderBeam x:Name="CardBeam" BeamCount="{x:Bind (x:Int32)SliderBeamCount.Value, Mode=OneWay}" BorderWidth="{x:Bind SliderBorderWidth.Value, Mode=OneWay}" ChaseDirection="{x:Bind (dev:BorderBeamDirection)CmbChaseDirection.Value, Mode=OneWay}" ChaseEdge="{x:Bind (dev:BorderBeamEdge)CmbChaseEdge.Value, Mode=OneWay}" ChaseOrigin="{x:Bind (dev:BorderBeamOrigin)CmbChaseOrigin.Value, Mode=OneWay}" ColorFrom="{x:Bind ClrFrom.Value, Mode=OneWay}" ColorTo="{x:Bind ClrTo.Value, Mode=OneWay}" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" CycleCount="{x:Bind (x:Int32)SliderCycleCount.Value, Mode=OneWay}" Delay="{x:Bind SliderDelay.Value, Mode=OneWay}" FadeOut="{x:Bind TglFadeOut.IsOn, Mode=OneWay}" FadeOutDuration="{x:Bind ToTimeSpan(SliderFadeOut.Value), Mode=OneWay}" IsActive="{x:Bind TglActive.IsOn, Mode=OneWay}" MirrorEdge="{x:Bind (dev:BorderBeamEdge)CmbMirrorEdge.Value, Mode=OneWay}" MirrorLag="{x:Bind SliderMirrorLag.Value, Mode=OneWay}" MirrorOrigin="{x:Bind (dev:BorderBeamOrigin)CmbMirrorOrigin.Value, Mode=OneWay}" MirrorStart="{x:Bind (dev:BorderBeamStart)CmbMirrorStart.Value, Mode=OneWay}" Mode="{x:Bind (dev:BorderBeamMode)CmbMode.Value, Mode=OneWay}" Size="{x:Bind SliderSize.Value, Mode=OneWay}" Duration="{x:Bind SliderDuration.Value, Mode=OneWay}" />
                             <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="{x:Bind ToCornerRadius(SliderRadius.Value), Mode=OneWay}" Visibility="Collapsed" />
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Border Beam" />
                         </Grid>
@@ -77,6 +85,26 @@
                             <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="28" />
                             <TextBox Margin="24,0" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" PlaceholderText="Ask anything..." />
                         </Grid>
+                    </local:Sample>
+                    <local:Sample Title="Attention grabber">
+                        <local:Sample.XamlCode>
+                            <x:String>
+                                &lt;dev:BorderBeam x:Name="HighlightBeam" BorderWidth="2" ColorFrom="#FF38BDF8" ColorTo="#FFA855F7" CornerRadius="28" CycleCount="3" Duration="1" FadeOutDuration="0:0:0.6" IsActive="False" Size="120" /&gt;
+                            </x:String>
+                        </local:Sample.XamlCode>
+                        <local:Sample.CSharpCode>
+                            <x:String>
+                                HighlightBeam.Start();
+                            </x:String>
+                        </local:Sample.CSharpCode>
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <Grid Width="420" Height="56" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="28">
+                                <dev:BorderBeam x:Name="HighlightBeam" BorderWidth="2" ColorFrom="#FF38BDF8" ColorTo="#FFA855F7" CornerRadius="28" CycleCount="3" FadeOutDuration="0:0:0.6" IsActive="False" Size="120" Duration="1" />
+                                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="28" />
+                                <TextBox Margin="24,0" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" PlaceholderText="Search..." />
+                            </Grid>
+                            <Button HorizontalAlignment="Center" Click="OnHighlightClick" Content="Highlight" />
+                        </StackPanel>
                     </local:Sample>
                 </local:ControlExample.Samples>
             </local:ControlExample>

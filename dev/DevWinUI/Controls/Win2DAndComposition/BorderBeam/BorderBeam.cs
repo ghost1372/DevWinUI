@@ -15,7 +15,7 @@ public sealed partial class BorderBeam : Control
 
     private sealed record RimPath(Vector2[] Points, double Perimeter, double Origin, double ChaseStart);
 
-    private sealed record BeamStyle(BorderBeamMode Mode, Lead Lead, double Lag, double Length, int Count, double Duration, double Speed, double Delay, float Thickness, Color From, Color To, BorderBeamDirection Direction, int Version);
+    private sealed record BeamStyle(BorderBeamMode Mode, Lead Lead, double Lag, double Length, int Count, double Duration, double Speed, double Delay, float Thickness, Color From, Color To, BorderBeamDirection Direction, bool Active, int Cycles, double Fade, int Version);
 
     private Grid? _host;
     private CanvasAnimatedControl? _canvas;
@@ -26,6 +26,11 @@ public sealed partial class BorderBeam : Control
     private double _distance;
     private int _seenVersion;
     private bool _visible = true;
+    private volatile bool _finished;
+    private bool _fading;
+    private TimeSpan _fadeOrigin;
+
+    public event EventHandler? Completed;
 
     public BorderBeam()
     {
@@ -39,8 +44,31 @@ public sealed partial class BorderBeam : Control
         EffectiveViewportChanged += (_, e) =>
         {
             _visible = e.EffectiveViewport.Width > 0 && e.EffectiveViewport.Height > 0;
-            _canvas?.Paused = !_visible;
+            UpdatePaused();
         };
+    }
+
+    public void Start()
+    {
+        if (IsActive) PublishStyle(true);
+        else IsActive = true;
+    }
+
+    public void Stop() => IsActive = false;
+
+    private void UpdatePaused()
+    {
+        if (_canvas is not null) _canvas.Paused = !_visible || _finished;
+    }
+
+    private void Finish(bool notify = true)
+    {
+        _finished = true;
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            UpdatePaused();
+            if (notify) Completed?.Invoke(this, EventArgs.Empty);
+        });
     }
 
     protected override void OnApplyTemplate()
@@ -216,7 +244,30 @@ public sealed partial class BorderBeam : Control
         var version = _style?.Version ?? 0;
         if (restart || _style is null) version++;
 
-        _style = new BeamStyle(Mode, ResolveLead(), Math.Max(0, MirrorLag), Math.Max(1, Size), Math.Max(1, BeamCount), Duration, Math.Max(0, Speed), Math.Max(0, Delay), (float)BorderWidth, ColorFrom, ColorTo, ChaseDirection, version);
+        if (restart)
+        {
+            _finished = false;
+            UpdatePaused();
+        }
+
+        _style = new BeamStyle(Mode, ResolveLead(), Math.Max(0, MirrorLag), Math.Max(1, Size), Math.Max(1, BeamCount), Duration, Math.Max(0, Speed), Math.Max(0, Delay), (float)BorderWidth, ColorFrom, ColorTo, ChaseDirection, IsActive, Math.Max(0, CycleCount), FadeOut ? Math.Max(0, FadeOutDuration.TotalSeconds) : 0, version);
+    }
+
+    private static double MirrorTiming(BeamStyle style, double perimeter, double speed, out double lagForward, out double lagBackward, out double meet)
+    {
+        var lagDistance = style.Lead == Lead.None ? 0 : style.Lag * speed;
+        lagForward = style.Lead == Lead.Backward ? lagDistance : 0;
+        lagBackward = style.Lead == Lead.Forward ? lagDistance : 0;
+
+        meet = Math.Clamp((perimeter + lagBackward - lagForward) / 2, 0, perimeter);
+        return Math.Max(meet + style.Length + lagForward, perimeter - meet + style.Length + lagBackward);
+    }
+
+    private static double CycleDistance(BeamStyle style, RimPath path, double speed)
+    {
+        return style.Mode == BorderBeamMode.Mirror
+            ? MirrorTiming(style, path.Perimeter, speed, out _, out _, out _)
+            : path.Perimeter;
     }
 
     private static Color BeamColor(Color from, Color to, double d, double length)
@@ -236,7 +287,7 @@ public sealed partial class BorderBeam : Control
     {
         var path = _path;
         var style = _style;
-        if (path is null || style is null || (style.Speed <= 0 && style.Duration <= 0)) return;
+        if (path is null || style is null || (style.Speed <= 0 && style.Duration <= 0) || _finished) return;
 
         var points = path.Points;
         var n = points.Length - 1;
@@ -249,15 +300,54 @@ public sealed partial class BorderBeam : Control
             _seenVersion = style.Version;
             _origin = args.Timing.TotalTime;
             _distance = 0;
+            _fading = false;
+
+            if (!style.Active)
+            {
+                Finish(false);
+                return;
+            }
         }
 
         var speed = style.Speed > 0 ? style.Speed : _referencePerimeter / style.Duration;
         var elapsed = (args.Timing.TotalTime - _origin).TotalSeconds - style.Delay;
-        if (elapsed <= 0) return;
+        if (elapsed <= 0)
+        {
+            if (!style.Active) Finish();
+            return;
+        }
 
         _distance += speed * args.Timing.ElapsedTime.TotalSeconds;
 
+        var cyclesDone = style.Cycles > 0 && _distance >= style.Cycles * CycleDistance(style, path, speed);
+
+        if (style.Active && cyclesDone && style.Mode == BorderBeamMode.Mirror)
+        {
+            Finish();
+            return;
+        }
+
+        var stopping = !style.Active || cyclesDone;
+
+        var opacity = 1.0;
+        if (stopping)
+        {
+            if (!_fading)
+            {
+                _fading = true;
+                _fadeOrigin = args.Timing.TotalTime;
+            }
+
+            opacity = style.Fade > 0 ? 1 - (args.Timing.TotalTime - _fadeOrigin).TotalSeconds / style.Fade : 0;
+            if (opacity <= 0)
+            {
+                Finish();
+                return;
+            }
+        }
+
         var ds = args.DrawingSession;
+        using var layer = opacity < 1 ? ds.CreateLayer((float)opacity) : null;
 
         if (style.Mode == BorderBeamMode.Mirror)
             DrawMirror(ds, style, path, step, half, speed);
@@ -317,12 +407,7 @@ public sealed partial class BorderBeam : Control
         var n = points.Length - 1;
         var perimeter = path.Perimeter;
 
-        var lagDistance = style.Lead == Lead.None ? 0 : style.Lag * speed;
-        var lagForward = style.Lead == Lead.Backward ? lagDistance : 0;
-        var lagBackward = style.Lead == Lead.Forward ? lagDistance : 0;
-
-        var meet = Math.Clamp((perimeter + lagBackward - lagForward) / 2, 0, perimeter);
-        var cycle = Math.Max(meet + style.Length + lagForward, perimeter - meet + style.Length + lagBackward);
+        var cycle = MirrorTiming(style, perimeter, speed, out var lagForward, out var lagBackward, out var meet);
 
         var x = _distance % cycle;
         var xForward = x - lagForward;

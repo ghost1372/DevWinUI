@@ -146,6 +146,44 @@ public sealed partial class BorderBeam
     public static readonly DependencyProperty ColorToProperty =
         DependencyProperty.Register(nameof(ColorTo), typeof(Color), typeof(BorderBeam), new PropertyMetadata(Color.FromArgb(255, 0x9C, 0x40, 0xFF), OnPaintChanged));
 
+    public bool IsActive
+    {
+        get { return (bool)GetValue(IsActiveProperty); }
+        set { SetValue(IsActiveProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsActiveProperty =
+        DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(BorderBeam), new PropertyMetadata(true, OnActiveChanged));
+
+    public bool FadeOut
+    {
+        get { return (bool)GetValue(FadeOutProperty); }
+        set { SetValue(FadeOutProperty, value); }
+    }
+
+    public static readonly DependencyProperty FadeOutProperty =
+        DependencyProperty.Register(nameof(FadeOut), typeof(bool), typeof(BorderBeam), new PropertyMetadata(true, OnPaintChanged));
+
+    public int CycleCount
+    {
+        get { return (int)GetValue(CycleCountProperty); }
+        set { SetValue(CycleCountProperty, value); }
+    }
+
+    public static readonly DependencyProperty CycleCountProperty =
+        DependencyProperty.Register(nameof(CycleCount), typeof(int), typeof(BorderBeam), new PropertyMetadata(0, OnPaintChanged));
+
+    public TimeSpan FadeOutDuration
+    {
+        get { return (TimeSpan)GetValue(FadeOutDurationProperty); }
+        set { SetValue(FadeOutDurationProperty, value); }
+    }
+
+    public static readonly DependencyProperty FadeOutDurationProperty =
+        DependencyProperty.Register(nameof(FadeOutDuration), typeof(TimeSpan), typeof(BorderBeam), new PropertyMetadata(TimeSpan.FromSeconds(0.5), OnPaintChanged));
+
+    private static void OnActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((BorderBeam)d).PublishStyle((bool)e.NewValue);
+
     private static void OnPaintChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((BorderBeam)d).PublishStyle(false);
 
     private static void OnTimingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((BorderBeam)d).PublishStyle(true);

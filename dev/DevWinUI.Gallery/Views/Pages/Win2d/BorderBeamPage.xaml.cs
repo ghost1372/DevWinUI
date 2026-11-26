@@ -33,4 +33,12 @@ public sealed partial class BorderBeamPage : Page
     }
 
     public CornerRadius ToCornerRadius(double value) => new(value);
+    public TimeSpan ToTimeSpan(double seconds) => TimeSpan.FromSeconds(seconds);
+
+    private void OnHighlightClick(object sender, RoutedEventArgs e) => HighlightBeam.Start();
+
+    private void ControlExample_ResetRequested(object sender, EventArgs e)
+    {
+        CardBeam.Start();
+    }
 }
